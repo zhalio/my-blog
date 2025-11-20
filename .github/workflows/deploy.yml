@@ -52,10 +52,7 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          # 自动注入 basePath (这一步会自动把 next.config.js 里的 basePath 覆盖或处理)
-          # 如果你在 next.config.js 手动写了 basePath，这里可以保持默认
-          static_site_generator: next
+
 
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
