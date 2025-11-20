@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PostLayout } from "@/components/post-layout";
+import { FadeIn } from "@/components/fade-in";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -34,27 +35,29 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
 
   return (
     <PostLayout toc={post.toc || []}>
-      <Button variant="ghost" asChild className="mb-4 pl-0 hover:bg-transparent hover:text-primary">
-        <Link href="/posts" className="flex items-center gap-2 text-muted-foreground">
-          <ChevronLeft className="size-4" /> {tCommon('back')}
-        </Link>
-      </Button>
-      
-      <article className="prose dark:prose-invert max-w-none">
-        <div className="space-y-4 border-b pb-8">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{post.title}</h1>
-          <div className="flex items-center gap-4 text-muted-foreground">
-            <time>{post.date}</time>
-            <span>•</span>
-            <span className="font-medium text-primary">{post.category}</span>
-          </div>
-        </div>
+      <FadeIn>
+        <Button variant="ghost" asChild className="mb-4 pl-0 hover:bg-transparent hover:text-primary">
+          <Link href="/posts" className="flex items-center gap-2 text-muted-foreground">
+            <ChevronLeft className="size-4" /> {tCommon('back')}
+          </Link>
+        </Button>
         
-        <div 
-          className="mt-8 leading-7 text-lg"
-          dangerouslySetInnerHTML={{ __html: post.contentHtml || '' }} 
-        />
-      </article>
+        <article className="prose dark:prose-invert max-w-none">
+          <div className="space-y-4 border-b pb-8">
+            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{post.title}</h1>
+            <div className="flex items-center gap-4 text-muted-foreground">
+              <time>{post.date}</time>
+              <span>•</span>
+              <span className="font-medium text-primary">{post.category}</span>
+            </div>
+          </div>
+          
+          <div 
+            className="mt-8 leading-7 text-lg"
+            dangerouslySetInnerHTML={{ __html: post.contentHtml || '' }} 
+          />
+        </article>
+      </FadeIn>
     </PostLayout>
   );
 }

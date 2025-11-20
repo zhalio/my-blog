@@ -1,17 +1,11 @@
 import { Link } from "@/i18n/routing";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Github, MessageCircle } from "lucide-react";
 import { getSortedPostsData } from "@/lib/posts";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from 'next-intl/server';
+import { PostList } from "@/components/post-list";
+import { FadeIn } from "@/components/fade-in";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -31,7 +25,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">
       {/* Hero Section: 网站欢迎区域 */}
-      <section className="mx-auto flex max-w-[980px] flex-col items-center gap-4 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20 text-center">
+      <FadeIn className="mx-auto flex max-w-[980px] flex-col items-center gap-4 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20 text-center">
         <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-6xl lg:leading-[1.1]">
           {t('title')}
         </h1>
@@ -55,42 +49,18 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             </Link>
           </Button>
         </div>
-      </section>
+      </FadeIn>
 
       {/* Posts Grid: 文章列表区域 */}
       <section className="mx-auto max-w-5xl space-y-8">
-        <div className="flex items-center justify-between border-b pb-2">
+        <FadeIn delay={0.2} className="flex items-center justify-between border-b pb-2">
           <h2 className="text-2xl font-bold tracking-tight">{t('latestPosts')}</h2>
           <Link href="/posts" className="text-sm font-medium text-muted-foreground hover:text-primary">
             {t('viewAll')} &rarr;
           </Link>
-        </div>
+        </FadeIn>
         
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.slice(0, 3).map((post) => (
-            <Card key={post.id} className="flex flex-col transition-all hover:shadow-md">
-              <CardHeader>
-                <div className="mb-2 text-sm text-muted-foreground font-medium text-primary/80">
-                  {post.category}
-                </div>
-                <CardTitle className="line-clamp-2">{post.title}</CardTitle>
-                <CardDescription>{post.date}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <p className="line-clamp-3 text-muted-foreground text-sm">
-                  {post.summary}
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button asChild variant="ghost" className="w-full justify-start px-0 hover:bg-transparent hover:text-primary">
-                  <Link href={`/posts/${post.id}`} className="flex items-center">
-                    {tCommon('readMore')} <ArrowRight className="ml-2 size-4" />
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+        <PostList posts={posts.slice(0, 3)} readMoreText={tCommon('readMore')} />
       </section>
     </div>
   );

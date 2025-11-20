@@ -1,16 +1,6 @@
-import { Link } from "@/i18n/routing";
 import { getSortedPostsData } from "@/lib/posts";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { PostList } from "@/components/post-list";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -36,31 +26,7 @@ export default async function PostsPage({ params }: { params: Promise<{ locale: 
         </div>
       </div>
       <hr className="my-8" />
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
-          <Card key={post.id} className="flex flex-col transition-all hover:shadow-md">
-            <CardHeader>
-              <div className="mb-2 text-sm text-muted-foreground font-medium text-primary/80">
-                {post.category}
-              </div>
-              <CardTitle className="line-clamp-2">{post.title}</CardTitle>
-              <CardDescription>{post.date}</CardDescription>
-            </CardHeader>
-            <CardContent className="flex-1">
-              <p className="line-clamp-3 text-muted-foreground text-sm">
-                {post.summary}
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Button asChild variant="ghost" className="w-full justify-start px-0 hover:bg-transparent hover:text-primary">
-                <Link href={`/posts/${post.id}`} className="flex items-center">
-                  {tCommon('readMore')} <ArrowRight className="ml-2 size-4" />
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
+      <PostList posts={posts} readMoreText={tCommon('readMore')} />
     </div>
   );
 }
