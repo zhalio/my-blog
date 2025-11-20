@@ -1,15 +1,18 @@
-"use client";
-
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-
 // Root redirect for static export
 export default function RootPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/zh");
-  }, [router]);
-
-  return null;
+  return (
+    <html>
+      <head>
+        <meta httpEquiv="refresh" content="0;url=/zh" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.location.href = '/zh'`
+          }}
+        />
+      </head>
+      <body>
+        <p>Redirecting to /zh...</p>
+      </body>
+    </html>
+  );
 }
