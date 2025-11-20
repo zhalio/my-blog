@@ -123,8 +123,7 @@
 }
 
 /* Custom Typography Overrides */
-/*
-.prose :where(code):not(:where([class~="not-prose"] *)) {
+.prose code:not(pre code) {
   background-color: #eff1f3;
   color: #24292e;
   padding: 0.2em 0.4em;
@@ -132,17 +131,16 @@
   font-weight: 500;
 }
 
-.dark .prose :where(code):not(:where([class~="not-prose"] *)) {
+.dark .prose code:not(pre code) {
   background-color: #0d1117;
   color: #c9d1d9;
   border: 1px solid var(--border);
 }
 
-.prose :where(code):not(:where([class~="not-prose"] *))::before,
-.prose :where(code):not(:where([class~="not-prose"] *))::after {
+.prose code:not(pre code)::before,
+.prose code:not(pre code)::after {
   content: "";
 }
-*/
 
 /* 代码块样式优化 - 仿 Mac 窗口风格 */
 .prose pre {
@@ -171,7 +169,6 @@
 }
 
 /* Line numbers support for rehype-pretty-code */
-/*
 .prose pre code {
   counter-reset: line;
   display: grid;
@@ -192,7 +189,6 @@
 .dark .prose pre code > [data-line]::before {
   color: #8b949e;
 }
-*/
 
 /* 确保代码块内的文字颜色正确 */
 .prose pre code,
@@ -206,7 +202,6 @@
 }
 
 /* Rehype Pretty Code 多主题支持 */
-/*
 code[data-theme*=" "],
 code[data-theme*=" "] span {
   color: var(--shiki-light);
@@ -218,4 +213,3 @@ code[data-theme*=" "] span {
   color: var(--shiki-dark);
   background-color: var(--shiki-dark-bg);
 }
-*/
