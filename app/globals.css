@@ -123,6 +123,7 @@
 }
 
 /* Custom Typography Overrides */
+/*
 .prose code:not(pre code) {
   background-color: #eff1f3;
   color: #24292e;
@@ -141,6 +142,7 @@
 .prose code:not(pre code)::after {
   content: "";
 }
+*/
 
 /* 代码块样式优化 - 仿 Mac 窗口风格 */
 .prose pre {
@@ -169,6 +171,7 @@
 }
 
 /* Line numbers support for rehype-pretty-code */
+/*
 .prose pre code {
   counter-reset: line;
   display: grid;
@@ -189,6 +192,7 @@
 .dark .prose pre code > [data-line]::before {
   color: #8b949e;
 }
+*/
 
 /* 确保代码块内的文字颜色正确 */
 .prose pre code,
@@ -202,6 +206,7 @@
 }
 
 /* Rehype Pretty Code 多主题支持 */
+/*
 code[data-theme*=" "],
 code[data-theme*=" "] span {
   color: var(--shiki-light);
@@ -213,3 +218,4 @@ code[data-theme*=" "] span {
   color: var(--shiki-dark);
   background-color: var(--shiki-dark-bg);
 }
+*/
