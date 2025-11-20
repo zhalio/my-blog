@@ -200,12 +200,18 @@
 }
 
 /* 5. 多主题切换支持 (Safe Selectors) */
-/* 在亮色模式下，隐藏暗色主题元素 */
-:root:not(.dark) [data-theme="dark"] {
-  display: none;
+/* 强制在亮色模式下显示亮色主题内容，隐藏暗色主题内容 */
+:root:not(.dark) span[data-theme="light"] {
+  display: inline !important;
+}
+:root:not(.dark) span[data-theme="dark"] {
+  display: none !important;
 }
 
-/* 在暗色模式下，隐藏亮色主题元素 */
-.dark [data-theme="light"] {
-  display: none;
+/* 强制在暗色模式下显示暗色主题内容，隐藏亮色主题内容 */
+.dark span[data-theme="light"] {
+  display: none !important;
+}
+.dark span[data-theme="dark"] {
+  display: inline !important;
 }
