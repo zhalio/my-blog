@@ -144,8 +144,8 @@
 
 /* 代码块样式优化 - 仿 Mac 窗口风格 */
 .prose pre {
-  background-color: #f6f8fa !important; /* 亮色背景 */
-  color: #24292e !important; /* 亮色文字 */
+  background-color: #f6f8fa; /* 亮色背景 */
+  /* color: #24292e;  移除硬编码颜色，使用 shiki 变量 */
   border-radius: 0.5rem;
   border: 1px solid var(--border);
   position: relative;
@@ -153,8 +153,8 @@
 }
 
 .dark .prose pre {
-  background-color: #0d1117 !important; /* 暗色背景 */
-  color: #c9d1d9 !important; /* 暗色文字 */
+  background-color: #0d1117; /* 暗色背景 */
+  /* color: #c9d1d9; 移除硬编码颜色，使用 shiki 变量 */
 }
 
 /* 窗口顶部的三个点 */
@@ -200,10 +200,22 @@
 .prose pre code,
 .dark .prose pre code {
   background-color: transparent !important;
-  color: inherit !important;
   font-size: 0.9em;
   border: none !important;
   padding: 0 !important;
   box-shadow: none !important;
   outline: none !important;
+}
+
+/* Rehype Pretty Code 多主题支持 */
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+.dark code[data-theme*=" "],
+.dark code[data-theme*=" "] span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
 }

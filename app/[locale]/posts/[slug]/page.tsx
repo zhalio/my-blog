@@ -1,20 +1,31 @@
 import { getSortedPostsData, getPostData } from "@/lib/posts";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
+import { setRequestLocale, getTranslations } from 'next-intl/server';
+
+const locales = ['zh', 'en', 'fr', 'ja'];
 
 // 生成静态路径 (SSG)
 export function generateStaticParams() {
-  const posts = getSortedPostsData();
-  return posts.map((post) => ({
-    slug: post.id,
-  }));
+  // We can use 'zh' or any locale to get the list of all slugs
+  const posts = getSortedPostsData('zh');
+  const params = [];
+  for (const locale of locales) {
+    for (const post of posts) {
+      params.push({ locale, slug: post.id });
+    }
+  }
+  return params;
 }
 
-export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const post = await getPostData(slug);
+export default async function PostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+  const tCommon = await getTranslations('Common');
+
+  const post = await getPostData(slug, locale);
 
   if (!post) {
     notFound();
@@ -24,7 +35,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     <div className="container mx-auto max-w-3xl px-4 py-6 md:py-10">
       <Button variant="ghost" asChild className="mb-4 pl-0 hover:bg-transparent hover:text-primary">
         <Link href="/posts" className="flex items-center gap-2 text-muted-foreground">
-          <ChevronLeft className="size-4" /> 返回列表
+          <ChevronLeft className="size-4" /> {tCommon('back')}
         </Link>
       </Button>
       

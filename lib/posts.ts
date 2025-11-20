@@ -17,19 +17,52 @@ export type PostData = {
   contentHtml?: string;
 };
 
-export function getSortedPostsData(): PostData[] {
+export function getSortedPostsData(locale: string = 'zh'): PostData[] {
   // Get file names under /posts
   if (!fs.existsSync(postsDirectory)) {
     return [];
   }
   
   const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map((fileName) => {
-    // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, '');
+  
+  // 1. Identify all unique slugs
+  const slugs = new Set<string>();
+  fileNames.forEach(fileName => {
+    if (fileName.endsWith('.md')) {
+      // Remove .md and locale suffix (e.g., .zh, .en)
+      // Pattern: name.locale.md -> name
+      const match = fileName.match(/^(.*)\.[a-z]{2}\.md$/);
+      if (match) {
+        slugs.add(match[1]);
+      } else {
+        // Handle legacy files without locale if any (though we renamed them)
+        slugs.add(fileName.replace(/\.md$/, ''));
+      }
+    }
+  });
+
+  const allPostsData = Array.from(slugs).map((id) => {
+    // 2. Determine which file to read for this slug and locale
+    let fileName = `${id}.${locale}.md`;
+    let fullPath = path.join(postsDirectory, fileName);
+
+    // Fallback to 'zh' if specific locale file doesn't exist
+    if (!fs.existsSync(fullPath)) {
+      fileName = `${id}.zh.md`;
+      fullPath = path.join(postsDirectory, fileName);
+    }
+
+    // If fallback also doesn't exist (shouldn't happen if logic is correct), skip or handle error
+    if (!fs.existsSync(fullPath)) {
+       // Try legacy format just in case
+       fileName = `${id}.md`;
+       fullPath = path.join(postsDirectory, fileName);
+       if (!fs.existsSync(fullPath)) {
+         return null;
+       }
+    }
 
     // Read markdown file as string
-    const fullPath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     // Use gray-matter to parse the post metadata section
@@ -40,7 +73,8 @@ export function getSortedPostsData(): PostData[] {
       id,
       ...(matterResult.data as { date: string; title: string; category: string; summary: string }),
     };
-  });
+  }).filter((post): post is PostData => post !== null);
+
   // Sort posts by date
   return allPostsData.sort((a, b) => {
     if (a.date < b.date) {
@@ -51,8 +85,19 @@ export function getSortedPostsData(): PostData[] {
   });
 }
 
-export async function getPostData(id: string): Promise<PostData> {
-  const fullPath = path.join(postsDirectory, `${id}.md`);
+export async function getPostData(id: string, locale: string = 'zh'): Promise<PostData> {
+  let fullPath = path.join(postsDirectory, `${id}.${locale}.md`);
+  
+  // Fallback to zh
+  if (!fs.existsSync(fullPath)) {
+    fullPath = path.join(postsDirectory, `${id}.zh.md`);
+  }
+  
+  // Fallback to legacy
+  if (!fs.existsSync(fullPath)) {
+    fullPath = path.join(postsDirectory, `${id}.md`);
+  }
+
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   // Use gray-matter to parse the post metadata section

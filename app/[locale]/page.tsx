@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import {
   Card,
   CardContent,
@@ -10,23 +10,38 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Github, MessageCircle } from "lucide-react";
 import { getSortedPostsData } from "@/lib/posts";
+import { getTranslations } from "next-intl/server";
+import { setRequestLocale } from 'next-intl/server';
 
-export default function Home() {
-  const posts = getSortedPostsData();
+const locales = ['zh', 'en', 'fr', 'ja'];
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  // Enable static rendering
+  setRequestLocale(locale);
+
+  const t = await getTranslations('Home');
+  const tCommon = await getTranslations('Common');
+  const posts = getSortedPostsData(locale);
+
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">
       {/* Hero Section: 网站欢迎区域 */}
       <section className="mx-auto flex max-w-[980px] flex-col items-center gap-4 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20 text-center">
         <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-6xl lg:leading-[1.1]">
-          emmm的个人博客
+          {t('title')}
         </h1>
         <p className="max-w-[750px] text-lg text-muted-foreground sm:text-xl">
-          分享技术、生活与思考，记录学习成长的点滴。
+          {t('description')}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 py-4">
           <Button asChild size="lg">
             <Link href="/posts">
-              浏览文章 <ArrowRight className="ml-2 size-4" />
+              {t('viewPosts')} <ArrowRight className="ml-2 size-4" />
             </Link>
           </Button>
           <Button variant="outline" size="lg" asChild>
@@ -45,9 +60,9 @@ export default function Home() {
       {/* Posts Grid: 文章列表区域 */}
       <section className="mx-auto max-w-5xl space-y-8">
         <div className="flex items-center justify-between border-b pb-2">
-          <h2 className="text-2xl font-bold tracking-tight">最新文章</h2>
+          <h2 className="text-2xl font-bold tracking-tight">{t('latestPosts')}</h2>
           <Link href="/posts" className="text-sm font-medium text-muted-foreground hover:text-primary">
-            查看全部 &rarr;
+            {t('viewAll')} &rarr;
           </Link>
         </div>
         
@@ -69,7 +84,7 @@ export default function Home() {
               <CardFooter>
                 <Button asChild variant="ghost" className="w-full justify-start px-0 hover:bg-transparent hover:text-primary">
                   <Link href={`/posts/${post.id}`} className="flex items-center">
-                    阅读更多 <ArrowRight className="ml-2 size-4" />
+                    {tCommon('readMore')} <ArrowRight className="ml-2 size-4" />
                   </Link>
                 </Button>
               </CardFooter>

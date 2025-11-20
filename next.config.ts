@@ -1,4 +1,8 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin();
+const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig: NextConfig = {
   // 1. 开启静态导出
@@ -12,7 +16,8 @@ const nextConfig: NextConfig = {
   // 3. 配置 BasePath (非常重要！)
   // 如果你的仓库名是 username.github.io，则留空 ""
   // 如果你的仓库名是 my-blog，则填写 "/my-blog"
-  basePath: "/my-blog", 
+  // 本地开发时 (dev) 不使用 basePath，方便访问 localhost:3000
+  basePath: isProd ? "/my-blog" : "", 
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

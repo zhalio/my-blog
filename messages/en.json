@@ -1,0 +1,32 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "about": "About",
+    "posts": "Posts"
+  },
+  "Common": {
+    "language": "Language",
+    "theme": "Theme",
+    "back": "Back to list",
+    "readMore": "Read More",
+    "dateFormat": "{date, date, ::yyyyMMdd}"
+  },
+  "Home": {
+    "title": "emmm's Blog",
+    "description": "Welcome to emmm's blog",
+    "viewPosts": "View Posts",
+    "latestPosts": "Latest Posts",
+    "viewAll": "View All"
+  },
+  "About": {
+    "title": "About Me",
+    "intro": "Hello! I am emmm, a frontend developer who loves technology.",
+    "description": "I am passionate about exploring the infinite possibilities of Web development, especially the React ecosystem and modern frontend toolchains. This blog is a place for me to record study notes, share technical insights, and showcase personal projects.",
+    "contactTitle": "Contact",
+    "contactDesc": "If you are interested in my articles or have any questions, please feel free to contact me via:"
+  },
+  "Posts": {
+    "title": "All Posts",
+    "description": "Here is a collection of all my thoughts and tutorials."
+  }
+}
