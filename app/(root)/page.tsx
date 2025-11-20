@@ -11,7 +11,7 @@ export default function RootPage() {
         />
       </head>
       <body>
-        <p>Redirecting to <a href="/zh">/zh</a>...</p>
+        <p>Redirecting to /zh...</p>
       </body>
     </html>
   );
