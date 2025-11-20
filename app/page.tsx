@@ -9,30 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Github } from "lucide-react";
-
-const posts = [
-  {
-    id: 1,
-    title: "使用 Next.js 构建博客",
-    summary: "学习如何使用 React 和 Next.js 搭建个人网站，从零开始配置环境、安装依赖并部署到 GitHub Pages。",
-    date: "2023-10-01",
-    category: "Tech",
-  },
-  {
-    id: 2,
-    title: "Tailwind CSS 的魅力",
-    summary: "为什么 utility-first CSS 框架如此流行？深入探讨 Tailwind CSS 的核心概念、优势以及在现代前端开发中的应用。",
-    date: "2023-10-05",
-    category: "Design",
-  },
-  {
-    id: 3,
-    title: "我的第一次更新",
-    summary: "这是我通过 Git Push 自动部署上来的新文章！体验 CI/CD 流水线带来的便捷与高效。",
-    date: "2025-11-20",
-    category: "Life",
-  },
-];
+import { posts } from "@/lib/data"; // 导入数据
 
 export default function Home() {
   return (
@@ -40,10 +17,10 @@ export default function Home() {
       {/* Hero Section: 网站欢迎区域 */}
       <section className="mx-auto flex max-w-[980px] flex-col items-center gap-4 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20 text-center">
         <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-6xl lg:leading-[1.1]">
-          我的个人博客
+          emmm的个人博客
         </h1>
         <p className="max-w-[750px] text-lg text-muted-foreground sm:text-xl">
-          分享技术、生活与思考。在这里，我记录学习成长的点滴，探索编程世界的奥秘。
+          分享技术、生活与思考，记录学习成长的点滴。
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 py-4">
           <Button asChild size="lg">
@@ -52,7 +29,7 @@ export default function Home() {
             </Link>
           </Button>
           <Button variant="outline" size="lg" asChild>
-            <Link href="https://github.com" target="_blank" rel="noreferrer">
+            <Link href="https://github.com/zhemmmzh" target="_blank" rel="noreferrer">
               <Github className="mr-2 size-4" /> GitHub
             </Link>
           </Button>
@@ -69,7 +46,7 @@ export default function Home() {
         </div>
         
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
+          {posts.slice(0, 3).map((post) => (
             <Card key={post.id} className="flex flex-col transition-all hover:shadow-md">
               <CardHeader>
                 <div className="mb-2 text-sm text-muted-foreground font-medium text-primary/80">
@@ -85,7 +62,7 @@ export default function Home() {
               </CardContent>
               <CardFooter>
                 <Button asChild variant="ghost" className="w-full justify-start px-0 hover:bg-transparent hover:text-primary">
-                  <Link href="#" className="flex items-center">
+                  <Link href={`/posts/${post.id}`} className="flex items-center">
                     阅读更多 <ArrowRight className="ml-2 size-4" />
                   </Link>
                 </Button>
