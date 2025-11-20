@@ -200,14 +200,14 @@
 }
 
 /* 5. 多主题切换支持 (CSS Variables) */
-code[data-theme*=" "],
-code[data-theme*=" "] span {
+code[data-theme],
+code[data-theme] span {
   color: var(--shiki-light);
   background-color: var(--shiki-light-bg);
 }
 
-.dark code[data-theme*=" "],
-.dark code[data-theme*=" "] span {
+.dark code[data-theme],
+.dark code[data-theme] span {
   color: var(--shiki-dark);
   background-color: var(--shiki-dark-bg);
 }
