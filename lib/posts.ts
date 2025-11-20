@@ -28,9 +28,19 @@ export type PostData = {
 };
 
 // Helper to extract text from a node
-function getNodeText(node: any): string {
+interface Node {
+  type: string;
+  value?: string;
+  children?: Node[];
+  tagName?: string;
+  properties?: {
+    id?: string;
+  };
+}
+
+function getNodeText(node: Node): string {
   if (node.type === 'text') {
-    return node.value;
+    return node.value || '';
   }
   if (node.children) {
     return node.children.map(getNodeText).join('');
@@ -132,11 +142,12 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
     .use(remarkRehype)
     .use(rehypeSlug)
     .use(() => (tree) => {
-      visit(tree, 'element', (node: any) => {
-        if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(node.tagName)) {
-          const id = node.properties?.id;
-          const text = getNodeText(node);
-          const depth = parseInt(node.tagName.substring(1), 10);
+      visit(tree, 'element', (node: unknown) => {
+        const elementNode = node as Node;
+        if (elementNode.tagName && ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(elementNode.tagName)) {
+          const id = elementNode.properties?.id;
+          const text = getNodeText(elementNode);
+          const depth = parseInt(elementNode.tagName.substring(1), 10);
           if (id && text) {
             toc.push({ id, text, depth });
           }
@@ -192,11 +203,12 @@ export async function getPageData(id: string, locale: string = 'zh'): Promise<Po
     .use(remarkRehype)
     .use(rehypeSlug)
     .use(() => (tree) => {
-      visit(tree, 'element', (node: any) => {
-        if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(node.tagName)) {
-          const id = node.properties?.id;
-          const text = getNodeText(node);
-          const depth = parseInt(node.tagName.substring(1), 10);
+      visit(tree, 'element', (node: unknown) => {
+        const elementNode = node as Node;
+        if (elementNode.tagName && ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(elementNode.tagName)) {
+          const id = elementNode.properties?.id;
+          const text = getNodeText(elementNode);
+          const depth = parseInt(elementNode.tagName.substring(1), 10);
           if (id && text) {
             toc.push({ id, text, depth });
           }

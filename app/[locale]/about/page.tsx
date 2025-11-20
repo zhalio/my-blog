@@ -16,7 +16,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   let pageData;
   try {
     pageData = await getPageData('about', locale);
-  } catch (error) {
+  } catch {
     notFound();
   }
 
