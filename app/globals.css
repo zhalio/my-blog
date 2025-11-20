@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "tw-animate-css";
+/* @import "tw-animate-css"; */
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
@@ -166,12 +166,8 @@
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 50%;
-  background-color: #ff5f56; /* 红点 */
-  box-shadow: 1.25rem 0 0 #ffbd2e, 2.5rem 0 0 #27c93f; /* 黄点和绿点 */
-}
-
-.dark .prose pre::before {
-  content: "";
+  background-color: #ff5f56;
+  box-shadow: 1.25rem 0 0 #ffbd2e, 2.5rem 0 0 #27c93f;
 }
 
 /* Line numbers support for rehype-pretty-code */
