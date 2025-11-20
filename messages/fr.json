@@ -12,18 +12,11 @@
     "dateFormat": "{date, date, ::yyyyMMdd}"
   },
   "Home": {
-    "title": "Mon Blog",
-    "description": "Bienvenue sur mon blog",
+    "title": "emmm",
+    "description": "Bienvenue sur le blog de emmm",
     "viewPosts": "Voir les articles",
     "latestPosts": "Derniers articles",
     "viewAll": "Voir tout"
-  },
-  "About": {
-    "title": "À propos de moi",
-    "intro": "Bonjour ! Je suis emmm, un développeur frontend passionné par la technologie.",
-    "description": "Je suis passionné par l'exploration des possibilités infinies du développement Web, en particulier l'écosystème React et les chaînes d'outils frontend modernes. Ce blog est un endroit pour moi pour enregistrer des notes d'étude, partager des idées techniques et présenter des projets personnels.",
-    "contactTitle": "Contact",
-    "contactDesc": "Si vous êtes intéressé par mes articles ou avez des questions, n'hésitez pas à me contacter via :"
   },
   "Posts": {
     "title": "Tous les articles",

@@ -4,6 +4,7 @@ import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { PostLayout } from "@/components/post-layout";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -32,7 +33,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
   }
 
   return (
-    <div className="container mx-auto max-w-3xl px-4 py-6 md:py-10">
+    <PostLayout toc={post.toc || []}>
       <Button variant="ghost" asChild className="mb-4 pl-0 hover:bg-transparent hover:text-primary">
         <Link href="/posts" className="flex items-center gap-2 text-muted-foreground">
           <ChevronLeft className="size-4" /> {tCommon('back')}
@@ -54,6 +55,6 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
           dangerouslySetInnerHTML={{ __html: post.contentHtml || '' }} 
         />
       </article>
-    </div>
+    </PostLayout>
   );
 }

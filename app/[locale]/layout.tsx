@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
+import { ScrollToTopButton } from "@/components/scroll-to-top-button"
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -67,6 +68,7 @@ export default async function LocaleLayout({
                 <main className="flex-1">
                   {children}
                 </main>
+                <ScrollToTopButton />
               </div>
             </ThemeProvider>
         </NextIntlClientProvider>

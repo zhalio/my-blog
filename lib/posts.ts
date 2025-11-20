@@ -5,8 +5,17 @@ import { remark } from 'remark';
 import remarkRehype from 'remark-rehype';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeStringify from 'rehype-stringify';
+import rehypeSlug from 'rehype-slug';
+import { visit } from 'unist-util-visit';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
+const pagesDirectory = path.join(process.cwd(), 'content/pages');
+
+export type TocItem = {
+  id: string;
+  text: string;
+  depth: number;
+};
 
 export type PostData = {
   id: string;
@@ -15,9 +24,22 @@ export type PostData = {
   category: string;
   summary: string;
   contentHtml?: string;
+  toc?: TocItem[];
 };
 
+// Helper to extract text from a node
+function getNodeText(node: any): string {
+  if (node.type === 'text') {
+    return node.value;
+  }
+  if (node.children) {
+    return node.children.map(getNodeText).join('');
+  }
+  return '';
+}
+
 export function getSortedPostsData(locale: string = 'zh'): PostData[] {
+  // ...existing code...
   // Get file names under /posts
   if (!fs.existsSync(postsDirectory)) {
     return [];
@@ -103,9 +125,24 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
+  const toc: TocItem[] = [];
+
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
     .use(remarkRehype)
+    .use(rehypeSlug)
+    .use(() => (tree) => {
+      visit(tree, 'element', (node: any) => {
+        if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(node.tagName)) {
+          const id = node.properties?.id;
+          const text = getNodeText(node);
+          const depth = parseInt(node.tagName.substring(1), 10);
+          if (id && text) {
+            toc.push({ id, text, depth });
+          }
+        }
+      });
+    })
     .use(rehypePrettyCode, {
       theme: {
         dark: 'one-dark-pro',
@@ -121,6 +158,67 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
   return {
     id,
     contentHtml,
+    toc,
+    ...(matterResult.data as { date: string; title: string; category: string; summary: string }),
+  };
+}
+
+export async function getPageData(id: string, locale: string = 'zh'): Promise<PostData> {
+  let fullPath = path.join(pagesDirectory, `${id}.${locale}.md`);
+  
+  // Fallback to zh
+  if (!fs.existsSync(fullPath)) {
+    fullPath = path.join(pagesDirectory, `${id}.zh.md`);
+  }
+  
+  // Fallback to legacy/generic
+  if (!fs.existsSync(fullPath)) {
+    fullPath = path.join(pagesDirectory, `${id}.md`);
+  }
+
+  if (!fs.existsSync(fullPath)) {
+    throw new Error(`Page not found: ${id}`);
+  }
+
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+  // Use gray-matter to parse the post metadata section
+  const matterResult = matter(fileContents);
+
+  const toc: TocItem[] = [];
+
+  // Use remark to convert markdown into HTML string
+  const processedContent = await remark()
+    .use(remarkRehype)
+    .use(rehypeSlug)
+    .use(() => (tree) => {
+      visit(tree, 'element', (node: any) => {
+        if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(node.tagName)) {
+          const id = node.properties?.id;
+          const text = getNodeText(node);
+          const depth = parseInt(node.tagName.substring(1), 10);
+          if (id && text) {
+            toc.push({ id, text, depth });
+          }
+        }
+      });
+    })
+    .use(rehypePrettyCode, {
+      theme: {
+        dark: 'one-dark-pro',
+        light: 'one-light',
+      },
+      keepBackground: false,
+    })
+    .use(rehypeStringify)
+    .process(matterResult.content);
+  const contentHtml = processedContent.toString();
+
+  // Combine the data with the id and contentHtml
+  return {
+    id,
+    contentHtml,
+    toc,
     ...(matterResult.data as { date: string; title: string; category: string; summary: string }),
   };
 }

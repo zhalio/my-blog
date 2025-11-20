@@ -12,18 +12,11 @@
     "dateFormat": "{date, date, ::yyyyMMdd}"
   },
   "Home": {
-    "title": "私のブログ",
-    "description": "私のブログへようこそ",
+    "title": "emmm",
+    "description": "emmmのブログへようこそ",
     "viewPosts": "記事を見る",
     "latestPosts": "最新記事",
     "viewAll": "すべて見る"
-  },
-  "About": {
-    "title": "私について",
-    "intro": "こんにちは！私は emmm、テクノロジーを愛するフロントエンド開発者です。",
-    "description": "Web開発の無限の可能性、特にReactエコシステムと最新のフロントエンドツールチェーンを探求することに情熱を注いでいます。このブログは、学習ノートを記録し、技術的な洞察を共有し、個人的なプロジェクトを紹介する場所です。",
-    "contactTitle": "お問い合わせ",
-    "contactDesc": "私の記事に興味がある場合、または質問がある場合は、お気軽にお問い合わせください："
   },
   "Posts": {
     "title": "すべての記事",
