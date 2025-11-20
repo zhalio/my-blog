@@ -123,8 +123,9 @@
 }
 
 /* Custom Typography Overrides */
-/*
-.prose code:not(pre code) {
+
+/* 1. 先给所有 code 标签应用“行内代码”样式 (灰色背景) */
+.prose code {
   background-color: #eff1f3;
   color: #24292e;
   padding: 0.2em 0.4em;
@@ -132,17 +133,31 @@
   font-weight: 500;
 }
 
-.dark .prose code:not(pre code) {
+.dark .prose code {
   background-color: #0d1117;
   color: #c9d1d9;
   border: 1px solid var(--border);
 }
 
-.prose code:not(pre code)::before,
-.prose code:not(pre code)::after {
-  content: "";
+/* 2. 然后针对 pre 内部的 code (代码块) 重置样式，去掉背景和边框 */
+.prose pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  font-weight: inherit !important;
 }
-*/
+
+.dark .prose pre code {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.prose code::before,
+.prose code::after {
+  content: "" !important;
+}
 
 /* 代码块样式优化 - 仿 Mac 窗口风格 */
 .prose pre {
@@ -170,14 +185,13 @@
   box-shadow: 1.25rem 0 0 #ffbd2e, 2.5rem 0 0 #27c93f;
 }
 
-/* Line numbers support for rehype-pretty-code */
-/*
+/* Line numbers support - 简化写法 */
 .prose pre code {
   counter-reset: line;
   display: grid;
 }
 
-.prose pre code > [data-line]::before {
+.prose pre code > span[data-line]::before {
   counter-increment: line;
   content: counter(line);
   display: inline-block;
@@ -189,33 +203,22 @@
   user-select: none;
 }
 
-.dark .prose pre code > [data-line]::before {
+.dark .prose pre code > span[data-line]::before {
   color: #8b949e;
 }
-*/
 
-/* 确保代码块内的文字颜色正确 */
-.prose pre code,
-.dark .prose pre code {
-  background-color: transparent !important;
-  font-size: 0.9em;
-  border: none !important;
-  padding: 0 !important;
-  box-shadow: none !important;
-  outline: none !important;
+/* Rehype Pretty Code 多主题支持 - 简化写法 */
+/* 尝试只用 CSS 变量，避免复杂的属性选择器 */
+span[data-theme="light"] {
+  display: inline;
+}
+span[data-theme="dark"] {
+  display: none;
 }
 
-/* Rehype Pretty Code 多主题支持 */
-/*
-code[data-theme*=" "],
-code[data-theme*=" "] span {
-  color: var(--shiki-light);
-  background-color: var(--shiki-light-bg);
+.dark span[data-theme="light"] {
+  display: none;
 }
-
-.dark code[data-theme*=" "],
-.dark code[data-theme*=" "] span {
-  color: var(--shiki-dark);
-  background-color: var(--shiki-dark-bg);
+.dark span[data-theme="dark"] {
+  display: inline;
 }
-*/
