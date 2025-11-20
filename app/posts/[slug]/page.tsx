@@ -1,4 +1,4 @@
-import { posts } from "@/lib/data";
+import { getSortedPostsData, getPostData } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -6,15 +6,15 @@ import { ChevronLeft } from "lucide-react";
 
 // 生成静态路径 (SSG)
 export function generateStaticParams() {
+  const posts = getSortedPostsData();
   return posts.map((post) => ({
-    id: post.id.toString(),
+    slug: post.id,
   }));
 }
 
-export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
-  // 在 Next.js 15 中，params 需要被 await
-  const { id } = await params;
-  const post = posts.find((p) => p.id.toString() === id);
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getPostData(slug);
 
   if (!post) {
     notFound();
@@ -40,7 +40,7 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
         
         <div 
           className="mt-8 leading-7 text-lg"
-          dangerouslySetInnerHTML={{ __html: post.content }} 
+          dangerouslySetInnerHTML={{ __html: post.contentHtml || '' }} 
         />
       </article>
     </div>

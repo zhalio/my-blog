@@ -121,3 +121,89 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Typography Overrides */
+.prose :where(code):not(:where([class~="not-prose"] *)) {
+  background-color: #eff1f3;
+  color: #24292e;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-weight: 500;
+}
+
+.dark .prose :where(code):not(:where([class~="not-prose"] *)) {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  border: 1px solid var(--border);
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *))::before,
+.prose :where(code):not(:where([class~="not-prose"] *))::after {
+  content: "";
+}
+
+/* 代码块样式优化 - 仿 Mac 窗口风格 */
+.prose pre {
+  background-color: #f6f8fa !important; /* 亮色背景 */
+  color: #24292e !important; /* 亮色文字 */
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  position: relative;
+  padding-top: 2.5rem; /* 为顶部按钮留出空间 */
+}
+
+.dark .prose pre {
+  background-color: #0d1117 !important; /* 暗色背景 */
+  color: #c9d1d9 !important; /* 暗色文字 */
+}
+
+/* 窗口顶部的三个点 */
+.prose pre::before {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: #ff5f56; /* 红点 */
+  box-shadow: 1.25rem 0 0 #ffbd2e, 2.5rem 0 0 #27c93f; /* 黄点和绿点 */
+}
+
+.dark .prose pre::before {
+  content: "";
+}
+
+/* Line numbers support for rehype-pretty-code */
+.prose pre code {
+  counter-reset: line;
+  display: grid;
+}
+
+.prose pre code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: #6e7781;
+  font-size: 0.875rem;
+  user-select: none;
+}
+
+.dark .prose pre code > [data-line]::before {
+  color: #8b949e;
+}
+
+/* 确保代码块内的文字颜色正确 */
+.prose pre code,
+.dark .prose pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+  font-size: 0.9em;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}

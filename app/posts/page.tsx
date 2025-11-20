@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { posts } from "@/lib/data";
+import { getSortedPostsData } from "@/lib/posts";
 import {
   Card,
   CardContent,
@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 export default function PostsPage() {
+  const posts = getSortedPostsData();
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">

@@ -1,0 +1,12 @@
+# 强制所有文本文件使用 LF 换行符
+* text=auto eol=lf
+
+# 显式指定特定文件类型
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.md text eol=lf
+*.html text eol=lf

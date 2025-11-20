@@ -8,10 +8,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Github } from "lucide-react";
-import { posts } from "@/lib/data"; // 导入数据
+import { ArrowRight, Github, MessageCircle } from "lucide-react";
+import { getSortedPostsData } from "@/lib/posts";
 
 export default function Home() {
+  const posts = getSortedPostsData();
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">
       {/* Hero Section: 网站欢迎区域 */}
@@ -31,6 +32,11 @@ export default function Home() {
           <Button variant="outline" size="lg" asChild>
             <Link href="https://github.com/zhemmmzh" target="_blank" rel="noreferrer">
               <Github className="mr-2 size-4" /> GitHub
+            </Link>
+          </Button>
+          <Button variant="outline" size="lg" asChild>
+            <Link href="https://qm.qq.com/cgi-bin/qm/qr?k=GJV7-av-NF7gsXV13umV8RqQC0Cum5zo" target="_blank" rel="noreferrer">
+              <MessageCircle className="mr-2 size-4" /> QQ
             </Link>
           </Button>
         </div>

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "我的个人博客",
+  title: "emmm",
   description: "分享技术、生活与思考",
 };
 
