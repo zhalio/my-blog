@@ -124,8 +124,8 @@
 
 /* Custom Typography Overrides */
 
-/* 1. 先给所有 code 标签应用“行内代码”样式 (灰色背景) */
-.prose code {
+/* 1. 行内代码样式 (不包含代码块) */
+.prose :not(pre) > code {
   background-color: #eff1f3;
   color: #24292e;
   padding: 0.2em 0.4em;
@@ -133,46 +133,32 @@
   font-weight: 500;
 }
 
-.dark .prose code {
+.dark .prose :not(pre) > code {
   background-color: #0d1117;
   color: #c9d1d9;
   border: 1px solid var(--border);
 }
 
-/* 2. 然后针对 pre 内部的 code (代码块) 重置样式，去掉背景和边框 */
-.prose pre code {
-  background-color: transparent !important;
-  color: inherit !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  border: none !important;
-  font-weight: inherit !important;
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: "";
 }
 
-.dark .prose pre code {
-  background-color: transparent !important;
-  border: none !important;
-}
-
-.prose code::before,
-.prose code::after {
-  content: "" !important;
-}
-
-/* 代码块样式优化 - 仿 Mac 窗口风格 */
+/* 2. 代码块容器样式 (pre) */
 .prose pre {
   background-color: #f6f8fa;
   border-radius: 0.5rem;
   border: 1px solid var(--border);
   position: relative;
   padding-top: 2.5rem;
+  overflow-x: auto;
 }
 
 .dark .prose pre {
   background-color: #0d1117;
 }
 
-/* 窗口顶部的三个点 */
+/* Mac 窗口风格圆点 */
 .prose pre::before {
   content: "";
   position: absolute;
@@ -185,13 +171,19 @@
   box-shadow: 1.25rem 0 0 #ffbd2e, 2.5rem 0 0 #27c93f;
 }
 
-/* Line numbers support - 简化写法 */
+/* 3. 代码块内部样式 (code) */
 .prose pre code {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: 0.9em;
+  display: grid; /* 开启 Grid 布局以支持行号 */
   counter-reset: line;
-  display: grid;
 }
 
-.prose pre code > span[data-line]::before {
+/* 4. 行号支持 */
+.prose pre code > [data-line]::before {
   counter-increment: line;
   content: counter(line);
   display: inline-block;
@@ -203,22 +195,17 @@
   user-select: none;
 }
 
-.dark .prose pre code > span[data-line]::before {
+.dark .prose pre code > [data-line]::before {
   color: #8b949e;
 }
 
-/* Rehype Pretty Code 多主题支持 - 简化写法 */
-/* 尝试只用 CSS 变量，避免复杂的属性选择器 */
-span[data-theme="light"] {
-  display: inline;
-}
-span[data-theme="dark"] {
+/* 5. 多主题切换支持 (Safe Selectors) */
+/* 在亮色模式下，隐藏暗色主题元素 */
+:root:not(.dark) [data-theme="dark"] {
   display: none;
 }
 
-.dark span[data-theme="light"] {
+/* 在暗色模式下，隐藏亮色主题元素 */
+.dark [data-theme="light"] {
   display: none;
-}
-.dark span[data-theme="dark"] {
-  display: inline;
 }
