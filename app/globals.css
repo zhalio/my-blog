@@ -199,19 +199,15 @@
   color: #8b949e;
 }
 
-/* 5. 多主题切换支持 (Safe Selectors) */
-/* 强制在亮色模式下显示亮色主题内容，隐藏暗色主题内容 */
-:root:not(.dark) span[data-theme="light"] {
-  display: inline !important;
-}
-:root:not(.dark) span[data-theme="dark"] {
-  display: none !important;
+/* 5. 多主题切换支持 (CSS Variables) */
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
 }
 
-/* 强制在暗色模式下显示暗色主题内容，隐藏亮色主题内容 */
-.dark span[data-theme="light"] {
-  display: none !important;
-}
-.dark span[data-theme="dark"] {
-  display: inline !important;
+.dark code[data-theme*=" "],
+.dark code[data-theme*=" "] span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
 }
