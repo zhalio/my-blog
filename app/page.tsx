@@ -8,8 +8,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/mode-toggle";
 
-// 模拟博客数据
+
+
 const posts = [
   {
     id: 1,
@@ -23,12 +25,21 @@ const posts = [
     summary: "为什么 utility-first CSS 框架如此流行？",
     date: "2023-10-05",
   },
+  // 👇 新增这一段
+  {
+    id: 3,
+    title: "我的第一次更新",
+    summary: "这是我通过 Git Push 自动部署上来的新文章！",
+    date: "2025-11-20",
+  },
 ];
+
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background p-8 font-sans">
       <header className="mb-12 text-center">
+        <ModeToggle />
         <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
           我的个人博客
         </h1>
