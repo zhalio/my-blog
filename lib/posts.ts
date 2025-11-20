@@ -108,8 +108,8 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
     .use(remarkRehype)
     .use(rehypePrettyCode, {
       theme: {
-        dark: 'github-dark',
-        light: 'github-light',
+        dark: 'one-dark-pro',
+        light: 'one-light',
       },
       keepBackground: false,
     })

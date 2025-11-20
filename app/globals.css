@@ -146,7 +146,7 @@
 
 /* 2. 代码块容器样式 (pre) */
 .prose pre {
-  background-color: #f6f8fa;
+  background-color: #fafafa; /* One Light 背景色 */
   border-radius: 0.5rem;
   border: 1px solid var(--border);
   position: relative;
@@ -155,7 +155,7 @@
 }
 
 .dark .prose pre {
-  background-color: #0d1117;
+  background-color: #282c34; /* One Dark Pro 背景色 */
 }
 
 /* Mac 窗口风格圆点 */
