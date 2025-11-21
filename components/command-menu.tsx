@@ -2,13 +2,22 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import { Command as CommandPrimitive } from 'cmdk';
 import { Search } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { PostData } from '@/lib/posts';
 import Fuse from 'fuse.js';
 import { useLocale } from 'next-intl';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 export function CommandMenu() {
   const router = useRouter();
@@ -30,16 +39,18 @@ export function CommandMenu() {
   }, []);
 
   React.useEffect(() => {
-    if (open) {
-      fetch(`/api/search`)
-        .then((res) => res.json())
-        .then((data: (PostData & { locale: string })[]) => {
-          // Filter posts by current locale
-          const filteredPosts = data.filter(post => post.locale === locale);
-          setPosts(filteredPosts);
-        });
-    }
-  }, [open, locale]);
+    // Fetch data immediately on mount or when locale changes, 
+    // so it's ready when user types. Or fetch on first open.
+    // Let's fetch on first open to save bandwidth, but since we want inline experience,
+    // maybe fetch on mount is better if data is small.
+    // Given it's a static JSON, it's fast.
+    fetch(`/api/search`)
+      .then((res) => res.json())
+      .then((data: (PostData & { locale: string })[]) => {
+        const filteredPosts = data.filter(post => post.locale === locale);
+        setPosts(filteredPosts);
+      });
+  }, [locale]);
 
   const fuse = React.useMemo(() => {
     return new Fuse(posts, {
@@ -59,54 +70,50 @@ export function CommandMenu() {
   }, []);
 
   return (
-    <>
-      <button
-        onClick={() => setOpen(true)}
-        className="inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
-      >
-        <span className="hidden lg:inline-flex">Search posts...</span>
-        <span className="inline-flex lg:hidden">Search...</span>
-        <kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
-          <span className="text-xs">⌘</span>K
-        </kbd>
-      </button>
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="overflow-hidden p-0 shadow-lg">
-          <CommandPrimitive className="flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground">
-            <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
-              <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-              <CommandPrimitive.Input
-                className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
-                placeholder="Type a command or search..."
-                value={query}
-                onValueChange={setQuery}
-              />
-            </div>
-            <CommandPrimitive.List className="max-h-[300px] overflow-y-auto overflow-x-hidden p-2">
-              <CommandPrimitive.Empty className="py-6 text-center text-sm">
-                No results found.
-              </CommandPrimitive.Empty>
-              {results.map((post) => (
-                <CommandPrimitive.Item
-                  key={post.id}
-                  value={post.title}
-                  onSelect={() => {
-                    runCommand(() => router.push(`/posts/${post.id}`));
-                  }}
-                  className={cn(
-                    "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
-                  )}
-                >
-                  <div className="flex flex-col">
-                    <span>{post.title}</span>
-                    <span className="text-xs text-muted-foreground">{post.category}</span>
-                  </div>
-                </CommandPrimitive.Item>
-              ))}
-            </CommandPrimitive.List>
-          </CommandPrimitive>
-        </DialogContent>
-      </Dialog>
-    </>
+    <div className="relative w-full md:w-64">
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <div className="relative">
+            <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+            <input
+              className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 pl-8"
+              placeholder="Search posts..."
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                if (!open) setOpen(true);
+              }}
+              onClick={() => setOpen(true)}
+            />
+            <kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+          </div>
+        </PopoverTrigger>
+        <PopoverContent className="p-0 w-[var(--radix-popover-trigger-width)]" align="start">
+          <Command shouldFilter={false}>
+            <CommandList>
+              <CommandEmpty>No results found.</CommandEmpty>
+              <CommandGroup heading="Posts">
+                {results.slice(0, 5).map((post) => (
+                  <CommandItem
+                    key={post.id}
+                    value={post.title}
+                    onSelect={() => {
+                      runCommand(() => router.push(`/posts/${post.id}`));
+                    }}
+                  >
+                    <div className="flex flex-col">
+                      <span>{post.title}</span>
+                      <span className="text-xs text-muted-foreground">{post.category}</span>
+                    </div>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
+    </div>
   );
 }
