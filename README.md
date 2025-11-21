@@ -60,7 +60,27 @@ npm run translate
 npm run translate:all
 ```
 
-> **注意**: 脚本默认尝试使用本地代理 `http://127.0.0.1:7890` 以解决网络问题。如果你的代理端口不同，请设置环境变量 `HTTPS_PROXY`。
+### 文章翻译
+
+自动扫描 `content/posts/` 下的中文文章 (`*.zh.md`)，并生成缺失的其他语言版本（en, fr, ja）。脚本会自动翻译 Frontmatter（标题、摘要）和正文，同时保留代码块格式。
+
+```bash
+npm run translate:post
+```
+
+> **提示**: 机器翻译可能会偶尔破坏复杂的 Markdown 格式（如表格），建议生成后进行人工检查。
+
+### README 同步
+
+将根目录的 `README.md` 内容自动同步到“关于”页面 (`content/pages/about.zh.md`)。
+
+```bash
+npm run sync:readme
+```
+
+**最佳实践流**: 修改 README -> `npm run sync:readme` -> `npm run translate:post` -> 全站关于页面更新完成。
+
+> **注意**: 所有翻译脚本默认尝试使用本地代理 `http://127.0.0.1:7890` 以解决网络问题。如果你的代理端口不同，请设置环境变量 `HTTPS_PROXY`。
 
 ## ✍️ 写作指南
 

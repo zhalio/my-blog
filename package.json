@@ -10,6 +10,8 @@
     "new": "node scripts/new-post.mjs",
     "translate": "node scripts/translate.mjs",
     "translate:all": "node scripts/translate.mjs --force",
+    "translate:post": "node scripts/translate-post.mjs",
+    "sync:readme": "node scripts/sync-readme.mjs",
     "publish": "git add . && git commit -m \"content: update posts\" && git push",
     "cms": "npx decap-server"
   },
