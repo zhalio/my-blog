@@ -179,7 +179,10 @@ export const Particles = ({
 
   const drawParticles = () => {
     clearContext();
-    const particleCount = quantity;
+    let particleCount = quantity;
+    if (canvasSize.current.w < 768) {
+      particleCount = Math.floor(quantity / 2);
+    }
     for (let i = 0; i < particleCount; i++) {
       const circle = circleParams();
       drawCircle(circle);
