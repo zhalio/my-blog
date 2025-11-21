@@ -109,7 +109,7 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
       id,
       readingTime: stats.text,
       ...(matterResult.data as { date: string; title: string; category: string; summary: string }),
-    };
+    } as PostData;
   }).filter((post): post is PostData => post !== null);
 
   // Sort posts by date
