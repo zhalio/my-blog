@@ -30,5 +30,10 @@
   "Guestbook": {
     "title": "Livre d'or",
     "description": "Bienvenue pour laisser un message. Connectez-vous avec GitHub pour commenter."
+  },
+  "NotFound": {
+    "title": "Page non trouvée",
+    "description": "Désolé, nous n'avons pas pu trouver la page que vous recherchez. Elle a peut-être été déplacée ou supprimée.",
+    "backHome": "Retour à l'accueil"
   }
 }

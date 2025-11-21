@@ -1,0 +1,51 @@
+backend:
+  name: github
+  repo: zhemmmzh/my-blog
+  branch: main
+
+# 允许本地编辑 (Local Backend)
+local_backend: true
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "posts_zh"
+    label: "文章 (中文)"
+    folder: "content/posts"
+    extension: "zh.md"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "标题", name: "title", widget: "string"}
+      - {label: "日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false}
+      - {label: "分类", name: "category", widget: "string", default: "Tech"}
+      - {label: "摘要", name: "summary", widget: "text"}
+      - {label: "内容", name: "body", widget: "markdown"}
+  
+  - name: "posts_en"
+    label: "Posts (English)"
+    folder: "content/posts"
+    extension: "en.md"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false}
+      - {label: "Category", name: "category", widget: "string", default: "Tech"}
+      - {label: "Summary", name: "summary", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "pages"
+    label: "独立页面"
+    folder: "content/pages"
+    extension: "zh.md"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "标题", name: "title", widget: "string"}
+      - {label: "日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false}
+      - {label: "内容", name: "body", widget: "markdown"}
