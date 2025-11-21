@@ -1,8 +1,8 @@
 ---
-title: "js语法基础/认识浏览器API"
-date: "2025-11-20"
-category: "tech"
-summary: "前端组第三次授课文档"
+title: js语法基础/认识浏览器API
+date: 2025-11-20
+category: Tech
+summary: 前端组第三次授课文档
 ---
 
 ## JavaScript 简介
