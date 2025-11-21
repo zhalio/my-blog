@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { PostData } from "@/lib/posts";
+import { ThreeDCard } from "@/components/3d-card";
 
 const container = {
   hidden: { opacity: 0 },
@@ -44,35 +45,37 @@ export function PostList({ posts, readMoreText }: PostListProps) {
     >
       {posts.map((post) => (
         <motion.div key={post.id} variants={item} className="h-full">
-          <Card className="flex flex-col transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full">
-            <CardHeader>
-              <div className="mb-2 text-sm text-muted-foreground font-medium text-primary/80">
-                {post.category}
-              </div>
-              <CardTitle className="line-clamp-2">{post.title}</CardTitle>
-              <CardDescription className="flex items-center gap-2">
-                <span>{post.date}</span>
-                {post.readingTime && (
-                  <>
-                    <span>•</span>
-                    <span>{post.readingTime}</span>
-                  </>
-                )}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-1">
-              <p className="line-clamp-3 text-muted-foreground text-sm">
-                {post.summary}
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Button asChild variant="ghost" className="w-full justify-start px-0 hover:bg-transparent hover:text-primary">
-                <Link href={`/posts/${post.id}`} className="flex items-center">
-                  {readMoreText} <ArrowRight className="ml-2 size-4" />
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
+          <ThreeDCard className="h-full">
+            <Card className="flex flex-col h-full border-none bg-transparent shadow-none">
+              <CardHeader>
+                <div className="mb-2 text-sm text-muted-foreground font-medium text-primary/80">
+                  {post.category}
+                </div>
+                <CardTitle className="line-clamp-2">{post.title}</CardTitle>
+                <CardDescription className="flex items-center gap-2">
+                  <span>{post.date}</span>
+                  {post.readingTime && (
+                    <>
+                      <span>•</span>
+                      <span>{post.readingTime}</span>
+                    </>
+                  )}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex-1">
+                <p className="line-clamp-3 text-muted-foreground text-sm">
+                  {post.summary}
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button asChild variant="ghost" className="w-full justify-start px-0 hover:bg-transparent hover:text-primary">
+                  <Link href={`/posts/${post.id}`} className="flex items-center">
+                    {readMoreText} <ArrowRight className="ml-2 size-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </ThreeDCard>
         </motion.div>
       ))}
     </motion.div>

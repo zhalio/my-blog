@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
@@ -37,15 +38,13 @@ export function LanguageToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {languages.map((lang) => (
-          <DropdownMenuItem
-            key={lang.code}
-            onClick={() => handleLanguageChange(lang.code)}
-            className={locale === lang.code ? "bg-accent" : ""}
-          >
-            {lang.name}
-          </DropdownMenuItem>
-        ))}
+        <DropdownMenuRadioGroup value={locale} onValueChange={handleLanguageChange}>
+          {languages.map((lang) => (
+            <DropdownMenuRadioItem key={lang.code} value={lang.code}>
+              {lang.name}
+            </DropdownMenuRadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   )

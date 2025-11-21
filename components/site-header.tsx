@@ -10,7 +10,7 @@ export function SiteHeader() {
   const t = useTranslations('Navigation')
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-neutral-200/50 dark:border-neutral-800/50 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center">
         <MobileNav />
         <div className="mr-4 flex">

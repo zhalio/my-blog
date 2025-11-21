@@ -6,8 +6,10 @@ import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from 'next-intl/server';
 import { PostList } from "@/components/post-list";
 import { FadeIn } from "@/components/fade-in";
-import { DotPattern } from "@/components/background-pattern";
 import { TypewriterEffect } from "@/components/typewriter-effect";
+import { MagneticButton } from "@/components/magnetic-button";
+import { Particles } from "@/components/particles";
+import { TextShimmer } from "@/components/text-shimmer";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -25,35 +27,52 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const posts = getSortedPostsData(locale);
 
   return (
-    <div className="relative min-h-[calc(100vh-4rem)]">
-      {/* Background Pattern */}
-      <DotPattern className="fixed inset-0 -z-10 h-full w-full [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" />
+    <div className="relative min-h-[calc(100vh-4rem)] overflow-hidden">
+      {/* Background Particles */}
+      <div className="fixed inset-0 z-0 h-full w-full pointer-events-none">
+        <Particles
+          className="absolute inset-0 h-full w-full"
+          quantity={80}
+          ease={80}
+          size={0.3}
+          color="#000000"
+          refresh
+        />
+      </div>
       
-      <div className="container mx-auto px-4 py-6 md:py-10">
+      <div className="relative z-10 container mx-auto px-4 py-6 md:py-10">
         {/* Hero Section: 网站欢迎区域 */}
         <FadeIn className="mx-auto flex max-w-[980px] flex-col items-center gap-4 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20 text-center">
           <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-6xl lg:leading-[1.1]">
-            {t('title')}
+            <TextShimmer className="inline-block">
+              {t('title')}
+            </TextShimmer>
           </h1>
           <div className="max-w-[750px] text-lg text-muted-foreground sm:text-xl h-8">
             <TypewriterEffect text={t('description')} speed={150} waitBeforeDelete={5000} />
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 py-4">
-            <Button asChild size="lg">
-              <Link href="/posts">
-                {t('viewPosts')} <ArrowRight className="ml-2 size-4" />
-              </Link>
-            </Button>
-            <Button variant="outline" size="lg" asChild>
-              <Link href="https://github.com/zhemmmzh" target="_blank" rel="noreferrer">
-                <Github className="mr-2 size-4" /> GitHub
-              </Link>
-            </Button>
-            <Button variant="outline" size="lg" asChild>
-              <Link href="https://qm.qq.com/cgi-bin/qm/qr?k=GJV7-av-NF7gsXV13umV8RqQC0Cum5zo" target="_blank" rel="noreferrer">
-                <MessageCircle className="mr-2 size-4" /> QQ
-              </Link>
-            </Button>
+            <MagneticButton>
+              <Button asChild size="lg">
+                <Link href="/posts">
+                  {t('viewPosts')} <ArrowRight className="ml-2 size-4" />
+                </Link>
+              </Button>
+            </MagneticButton>
+            <MagneticButton>
+              <Button variant="outline" size="lg" asChild>
+                <Link href="https://github.com/zhemmmzh" target="_blank" rel="noreferrer">
+                  <Github className="mr-2 size-4" /> GitHub
+                </Link>
+              </Button>
+            </MagneticButton>
+            <MagneticButton>
+              <Button variant="outline" size="lg" asChild>
+                <Link href="https://qm.qq.com/cgi-bin/qm/qr?k=GJV7-av-NF7gsXV13umV8RqQC0Cum5zo" target="_blank" rel="noreferrer">
+                  <MessageCircle className="mr-2 size-4" /> QQ
+                </Link>
+              </Button>
+            </MagneticButton>
           </div>
         </FadeIn>
 

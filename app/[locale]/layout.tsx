@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { ScrollToTopButton } from "@/components/scroll-to-top-button"
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { SmoothScroll } from "@/components/smooth-scroll";
+import { getMessages, setRequestLocale, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,16 +19,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://emmmxx.xyz'),
-  title: "emmm",
-  description: "emmm-blog",
-};
-
-const locales = ['zh', 'en', 'fr', 'ja'];
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({locale, namespace: 'Home'});
+ 
+  return {
+    metadataBase: new URL('https://emmmxx.xyz'),
+    title: t('title'),
+    description: t('description')
+  };
+}
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
@@ -40,7 +48,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!locales.includes(locale)) {
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
 
@@ -57,22 +65,25 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}>
-        <NextIntlClientProvider messages={messages}>
-          <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <div className="relative flex min-h-screen flex-col">
-                <SiteHeader />
-                <main className="flex-1">
-                  {children}
-                </main>
-                <ScrollToTopButton />
-              </div>
-            </ThemeProvider>
-        </NextIntlClientProvider>
+        <SmoothScroll>
+          <NextIntlClientProvider messages={messages}>
+            <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <div className="relative flex min-h-screen flex-col">
+                  <SiteHeader />
+                  {/* Main Content */}
+                  <main className="flex-1">
+                    {children}
+                  </main>
+                  <ScrollToTopButton />
+                </div>
+              </ThemeProvider>
+          </NextIntlClientProvider>
+        </SmoothScroll>
       </body>
     </html>
   )

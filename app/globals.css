@@ -42,6 +42,21 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --animate-text-gradient: text-gradient 3s linear infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes text-gradient {
+  to { background-position: 200% center; }
 }
 
 :root {
