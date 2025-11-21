@@ -1,39 +1,39 @@
 {
   "Navigation": {
-    "home": "ホーム",
-    "about": "私について",
+    "home": "フロントページ",
+    "about": "について",
     "posts": "記事",
-    "guestbook": "ゲストブック"
+    "guestbook": "メッセージ"
   },
   "Common": {
     "language": "言語",
     "theme": "テーマ",
     "back": "リストに戻る",
     "readMore": "続きを読む",
-    "dateFormat": "{date, date, ::yyyyMMdd}",
+    "dateFormat": "{日付、日付、::yyyyMMdd}",
     "searchPlaceholder": "記事を検索...",
     "share": "共有",
     "copyLink": "リンクをコピー",
-    "copied": "コピーしました"
+    "copied": "コピーされました"
   },
   "Home": {
-    "title": "emmm",
-    "description": "emmmのブログへようこそ",
+    "title": "うーん",
+    "description": "私のブログへようこそ",
     "viewPosts": "記事を見る",
-    "latestPosts": "最新記事",
+    "latestPosts": "発見する",
     "viewAll": "すべて見る"
   },
   "Posts": {
     "title": "すべての記事",
-    "description": "ここには、私のすべての考えとチュートリアルが集められています。"
+    "description": "テクノロジーの共有や人生のエッセイ"
   },
   "Guestbook": {
-    "title": "ゲストブック",
-    "description": "メッセージを残してください。コメントするにはGitHubでログインしてください。"
+    "title": "掲示板",
+    "description": "足跡を残すことを歓迎します。コメントするには、GitHub アカウントでログインしてください。読み込みに数秒かかる場合があります..."
   },
   "NotFound": {
     "title": "ページが見つかりません",
-    "description": "お探しのページは見つかりませんでした。移動または削除された可能性があります。",
-    "backHome": "ホームに戻る"
+    "description": "申し訳ありませんが、お探しのページが見つかりません。 移動または削除された可能性があります。",
+    "backHome": "ホームページに戻る"
   }
 }

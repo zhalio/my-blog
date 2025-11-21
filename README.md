@@ -1,4 +1,4 @@
-# My Blog Project
+# Emmm's Blog
 
 这是一个基于 Next.js 构建的个人博客项目，集成了现代化的技术栈和便捷的写作工作流。
 
@@ -8,6 +8,7 @@
 - **样式**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **UI 组件**: [shadcn/ui](https://ui.shadcn.com/)
 - **国际化**: [next-intl](https://next-intl-docs.vercel.app/) (支持中文、英文、法文、日文)
+- **AI 辅助**: 内置自动化翻译脚本，支持一键将中文内容翻译为多语言
 - **内容管理**: 
   - **本地 CMS**: 集成 [Decap CMS](https://decapcms.org/)，提供可视化写作体验
   - **Markdown**: 传统文件驱动，支持 Frontmatter
@@ -38,6 +39,28 @@ npm run dev
 ```
 
 打开 [http://localhost:3000](http://localhost:3000) 查看博客。
+
+## 🌐 国际化与自动翻译
+
+本项目支持多语言（目前配置为 zh, en, fr, ja）。为了简化维护，提供了自动化翻译脚本，利用 Google Translate API 将中文 (`zh.json`) 自动同步到其他语言文件。
+
+### 增量翻译 (推荐)
+
+当你添加了新的中文词条后，运行此命令，脚本只会翻译新增的部分：
+
+```bash
+npm run translate
+```
+
+### 全量重译
+
+如果需要重新生成所有语言的翻译（例如修改了翻译逻辑或想刷新内容）：
+
+```bash
+npm run translate:all
+```
+
+> **注意**: 脚本默认尝试使用本地代理 `http://127.0.0.1:7890` 以解决网络问题。如果你的代理端口不同，请设置环境变量 `HTTPS_PROXY`。
 
 ## ✍️ 写作指南
 

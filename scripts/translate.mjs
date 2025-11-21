@@ -1,63 +1,33 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { translate } from 'google-translate-api-x';
+import { ProxyAgent, setGlobalDispatcher } from 'undici';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// 尝试自动检测代理 (常见的本地代理端口)
+const PROXY_URL = process.env.HTTPS_PROXY || process.env.HTTP_PROXY || 'http://127.0.0.1:7890';
+
+if (PROXY_URL) {
+  try {
+    const dispatcher = new ProxyAgent(PROXY_URL);
+    setGlobalDispatcher(dispatcher);
+    console.log(`\x1b[36mUsing proxy: ${PROXY_URL}\x1b[0m`);
+  } catch (error) {
+    console.warn(`\x1b[33mFailed to set proxy: ${error.message}\x1b[0m`);
+  }
+}
+
+// 获取命令行参数
+const args = process.argv.slice(2);
+const isForce = args.includes('--force');
+
 // 配置
-const OLLAMA_API_URL = 'http://localhost:11434/api/chat';
-const MODEL_NAME = process.env.OLLAMA_MODEL || 'qwen3:8b'; // 推荐使用 8b 版本，平衡速度与质量
 const SOURCE_LANG = 'zh';
 const TARGET_LANGS = ['en', 'fr', 'ja'];
 const MESSAGES_DIR = path.join(__dirname, '../messages');
-
-// 语言名称映射，用于 Prompt
-const LANG_NAMES = {
-  'en': 'English',
-  'fr': 'French',
-  'ja': 'Japanese',
-  'zh': 'Chinese'
-};
-
-async function translate(text, targetLang) {
-  const prompt = `You are a professional translator. Translate the following JSON content from Chinese to ${LANG_NAMES[targetLang]}.
-  
-  Rules:
-  1. Keep the JSON structure and keys exactly the same.
-  2. Only translate the values.
-  3. Output ONLY the valid JSON string, no markdown code blocks, no explanations.
-  4. For technical terms, use standard terminology.
-  
-  Content to translate:
-  ${JSON.stringify(text, null, 2)}`;
-
-  try {
-    const response = await fetch(OLLAMA_API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: MODEL_NAME,
-        messages: [{ role: 'user', content: prompt }],
-        format: 'json', // 强制输出 JSON
-        stream: false
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`Ollama API error: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    return JSON.parse(data.message.content);
-  } catch (error) {
-    if (error.cause && error.cause.code === 'ECONNREFUSED') {
-      console.error('\x1b[31m%s\x1b[0m', 'Error: Could not connect to Ollama. Make sure Ollama is running (http://localhost:11434).');
-      process.exit(1);
-    }
-    throw error;
-  }
-}
 
 // 递归比较两个对象，找出 source 中有但 target 中没有（或类型不匹配）的字段
 function findMissingKeys(source, target) {
@@ -73,7 +43,7 @@ function findMissingKeys(source, target) {
         hasMissing = true;
       } else {
         const subMissing = findMissingKeys(source[key], target[key]);
-        if (Object.keys(subMissing).length > 0) {
+        if (subMissing) {
           missing[key] = subMissing;
           hasMissing = true;
         }
@@ -90,7 +60,36 @@ function findMissingKeys(source, target) {
   return hasMissing ? missing : null;
 }
 
-// 深度合并对象
+// 递归遍历对象并翻译值
+async function translateObject(obj, targetLang) {
+  const result = {};
+  
+  for (const key in obj) {
+    const value = obj[key];
+    
+    if (typeof value === 'object' && value !== null) {
+      result[key] = await translateObject(value, targetLang);
+    } else if (typeof value === 'string') {
+      try {
+        // Google Translate API 调用
+        // 注意：google-translate-api-x 默认会自动检测源语言，但有时指定 'zh-CN' 比 'zh' 更准确
+        const res = await translate(value, { from: 'zh-CN', to: targetLang, forceFrom: true });
+        result[key] = res.text;
+        // 简单的防速率限制延迟
+        await new Promise(resolve => setTimeout(resolve, 100)); 
+      } catch (error) {
+        console.error(`Error translating "${value}":`, error.message);
+        result[key] = value; // 翻译失败保留原文
+      }
+    } else {
+      result[key] = value;
+    }
+  }
+  
+  return result;
+}
+
+// 深度合并
 function deepMerge(target, source) {
   for (const key in source) {
     if (source[key] instanceof Object && key in target) {
@@ -102,7 +101,7 @@ function deepMerge(target, source) {
 }
 
 async function main() {
-  console.log(`\x1b[36mStarting AI translation using model: ${MODEL_NAME}...\x1b[0m`);
+  console.log(`\x1b[36mStarting Google translation...\x1b[0m`);
 
   // 读取源文件 (zh.json)
   const sourcePath = path.join(MESSAGES_DIR, `${SOURCE_LANG}.json`);
@@ -119,28 +118,23 @@ async function main() {
     }
 
     // 找出缺失的翻译
-    const missingContent = findMissingKeys(sourceContent, targetContent);
+    let contentToTranslate;
+    
+    if (isForce) {
+      contentToTranslate = sourceContent;
+    } else {
+      contentToTranslate = findMissingKeys(sourceContent, targetContent);
+    }
 
-    if (!missingContent) {
+    if (!contentToTranslate) {
       console.log(`\x1b[32m[${lang}]\x1b[0m is up to date.`);
       continue;
     }
 
-    console.log(`\x1b[33m[${lang}]\x1b[0m Translating missing keys...`);
-    // console.log(JSON.stringify(missingContent, null, 2)); // Debug
+    console.log(`\x1b[33m[${lang}]\x1b[0m ${isForce ? 'Force translating all keys...' : 'Translating missing keys...'}`);
 
     try {
-      const translatedChunk = await translate(missingContent, lang);
-      
-      // 合并翻译结果
-      // 注意：这里我们需要把 translatedChunk 合并回 targetContent
-      // 简单的 Object.assign 不行，需要深度合并，或者直接重新读取源文件结构并填充
-      // 这里为了简单，我们使用一个简单的深度合并策略：
-      // 将翻译后的部分合并到现有的 targetContent 中
-      
-      // 实际上，findMissingKeys 返回的结构和 source 一样，只是只包含缺失的键
-      // translate 返回的结构也应该一样
-      // 所以我们可以直接把 translatedChunk merge 到 targetContent
+      const translatedChunk = await translateObject(contentToTranslate, lang);
       
       // 简单的深度合并实现
       const merge = (target, source) => {

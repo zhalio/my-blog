@@ -1,39 +1,40 @@
 {
   "Navigation": {
-    "home": "Home",
-    "about": "About",
-    "posts": "Posts",
-    "guestbook": "Guestbook"
+    "home": "front page",
+    "about": "about",
+    "posts": "article",
+    "guestbook": "message"
   },
   "Common": {
-    "language": "Language",
-    "theme": "Theme",
-    "back": "Back to list",
-    "readMore": "Read More",
+    "language": "language",
+    "theme": "theme",
+    "back": "Return to list",
+    "readMore": "Read more",
     "dateFormat": "{date, date, ::yyyyMMdd}",
-    "searchPlaceholder": "Search posts...",
-    "share": "Share",
-    "copyLink": "Copy Link",
+    "searchPlaceholder": "Search for articles...",
+    "share": "share",
+    "copyLink": "Copy link",
     "copied": "Copied"
   },
   "Home": {
     "title": "emmm",
-    "description": "Welcome to emmm's blog",
-    "viewPosts": "View Posts",
-    "latestPosts": "Latest Posts",
-    "viewAll": "View All"
+    "description": "welcome to my blog",
+    "viewPosts": "View article",
+    "latestPosts": "Discover",
+    "viewAll": "View all",
+    "contactMe": "Contact Me"
   },
   "Posts": {
-    "title": "All Posts",
-    "description": "Here is a collection of all my thoughts and tutorials."
+    "title": "All articles",
+    "description": "Some technology sharing or life essays"
   },
   "Guestbook": {
-    "title": "Guestbook",
-    "description": "Welcome to leave a message. Login with GitHub to comment."
+    "title": "message board",
+    "description": "Welcome to leave your footprints. Log in with your GitHub account to comment. It may take a few seconds to load..."
   },
   "NotFound": {
     "title": "Page not found",
-    "description": "Sorry, we couldn't find the page you're looking for. It might have been moved or deleted.",
-    "backHome": "Go back home"
+    "description": "Sorry, we can't find the page you're looking for. It may have been moved or deleted.",
+    "backHome": "Return to homepage"
   }
 }
