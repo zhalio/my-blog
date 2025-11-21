@@ -11,7 +11,10 @@
     "back": "Back to list",
     "readMore": "Read More",
     "dateFormat": "{date, date, ::yyyyMMdd}",
-    "searchPlaceholder": "Search posts..."
+    "searchPlaceholder": "Search posts...",
+    "share": "Share",
+    "copyLink": "Copy Link",
+    "copied": "Copied"
   },
   "Home": {
     "title": "emmm",

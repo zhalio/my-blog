@@ -11,21 +11,24 @@
     "back": "返回列表",
     "readMore": "阅读更多",
     "dateFormat": "{date, date, ::yyyyMMdd}",
-    "searchPlaceholder": "搜索文章..."
+    "searchPlaceholder": "搜索文章...",
+    "share": "分享",
+    "copyLink": "复制链接",
+    "copied": "已复制"
   },
   "Home": {
     "title": "emmm",
-    "description": "欢迎来到emmm的博客",
+    "description": "欢迎来到我的博客",
     "viewPosts": "浏览文章",
-    "latestPosts": "最新文章",
+    "latestPosts": "发现",
     "viewAll": "查看全部"
   },
   "Posts": {
     "title": "所有文章",
-    "description": "这里汇集了我所有的思考与教程。"
+    "description": "一些技术分享或是生活随笔"
   },
   "Guestbook": {
     "title": "留言板",
-    "description": "欢迎留下你的足迹，使用 GitHub 账号登录即可评论。"
+    "description": "欢迎留下你的足迹，使用 GitHub 账号登录即可评论，可能需要几秒钟的加载……"
   }
 }

@@ -1,12 +1,11 @@
 import { getSortedPostsData, getPostData } from "@/lib/posts";
 import { notFound } from "next/navigation";
-import { Link } from "@/i18n/routing";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft } from "lucide-react";
-import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { PostLayout } from "@/components/post-layout";
 import { FadeIn } from "@/components/fade-in";
 import { ArticleContent } from "@/components/article-content";
+import { PostBreadcrumb } from "@/components/post-breadcrumb";
+import { ShareButtons } from "@/components/share-buttons";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -26,7 +25,6 @@ export function generateStaticParams() {
 export default async function PostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const tCommon = await getTranslations('Common');
 
   const post = await getPostData(slug, locale);
 
@@ -37,19 +35,21 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
   return (
     <PostLayout toc={post.toc || []}>
       <FadeIn>
-        <Button variant="ghost" asChild className="mb-4 pl-0 hover:bg-transparent hover:text-primary">
-          <Link href="/posts" className="flex items-center gap-2 text-muted-foreground">
-            <ChevronLeft className="size-4" /> {tCommon('back')}
-          </Link>
-        </Button>
+        <PostBreadcrumb title={post.title} />
         
         <article className="prose dark:prose-invert max-w-none">
           <div className="space-y-4 border-b pb-8">
             <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{post.title}</h1>
-            <div className="flex items-center gap-4 text-muted-foreground">
-              <time>{post.date}</time>
-              <span>•</span>
-              <span className="font-medium text-primary">{post.category}</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4 text-muted-foreground">
+                <time>{post.date}</time>
+                <span>•</span>
+                <span className="font-medium text-primary">{post.category}</span>
+              </div>
+              <ShareButtons 
+                title={post.title} 
+                url={`https://emmmxx.xyz/${locale}/posts/${slug}`} 
+              />
             </div>
           </div>
           

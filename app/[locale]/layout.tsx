@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "emmm",
-  description: "分享技术、生活与思考",
+  description: "技术、生活与思考",
 };
 
 const locales = ['zh', 'en', 'fr', 'ja'];

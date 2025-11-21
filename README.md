@@ -8,11 +8,14 @@
 - **样式**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **UI 组件**: [shadcn/ui](https://ui.shadcn.com/)
 - **国际化**: [next-intl](https://next-intl-docs.vercel.app/) (支持中文、英文、法文、日文)
+- **全站搜索**: 客户端模糊搜索 (Fuse.js)，支持快捷键 (⌘K) 唤起
 - **内容管理**: Markdown 文件驱动，支持 Frontmatter
-- **代码高亮**: [rehype-pretty-code](https://rehype-pretty.pages.dev/) (支持双主题自动切换)
+- **代码高亮**: [rehype-pretty-code](https://rehype-pretty.pages.dev/) (支持双主题自动切换，一键复制)
 - **动画效果**: [Framer Motion](https://www.framer.com/motion/) (页面过渡、滚动显现、列表交错动画)
-- **交互体验**: 文章侧边栏目录 (TOC)、一键回到顶部、响应式布局
+- **交互体验**: 文章侧边栏目录 (TOC)、一键回到顶部、响应式布局、移动端侧边栏导航
+- **留言板**: 集成 [Giscus](https://giscus.app/) 评论系统
 - **主题**: 支持亮色/暗色模式切换
+- **其他**: 动态生成 Favicon 图标
 
 ## 🛠️ 本地运行
 

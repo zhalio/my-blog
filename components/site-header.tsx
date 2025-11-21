@@ -18,6 +18,7 @@ export function SiteHeader() {
             <Terminal className="h-6 w-6" />
           </Link>
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+            <Link href="/" className="transition-colors hover:text-foreground/80">{t('home')}</Link>
             <Link href="/posts" className="transition-colors hover:text-foreground/80">{t('posts')}</Link>
             <Link href="/guestbook" className="transition-colors hover:text-foreground/80">{t('guestbook')}</Link>
             <Link href="/about" className="transition-colors hover:text-foreground/80">{t('about')}</Link>
