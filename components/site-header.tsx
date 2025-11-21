@@ -16,6 +16,7 @@ export function SiteHeader() {
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             <Link href="/posts" className="transition-colors hover:text-foreground/80">{t('posts')}</Link>
+            <Link href="/guestbook" className="transition-colors hover:text-foreground/80">{t('guestbook')}</Link>
             <Link href="/about" className="transition-colors hover:text-foreground/80">{t('about')}</Link>
           </nav>
         </div>

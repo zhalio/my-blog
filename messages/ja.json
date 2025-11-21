@@ -2,7 +2,8 @@
   "Navigation": {
     "home": "ホーム",
     "about": "私について",
-    "posts": "記事"
+    "posts": "記事",
+    "guestbook": "ゲストブック"
   },
   "Common": {
     "language": "言語",
@@ -21,5 +22,9 @@
   "Posts": {
     "title": "すべての記事",
     "description": "ここには、私のすべての考えとチュートリアルが集められています。"
+  },
+  "Guestbook": {
+    "title": "ゲストブック",
+    "description": "メッセージを残してください。コメントするにはGitHubでログインしてください。"
   }
 }

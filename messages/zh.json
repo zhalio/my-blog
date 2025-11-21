@@ -2,7 +2,8 @@
   "Navigation": {
     "home": "首页",
     "about": "关于",
-    "posts": "文章"
+    "posts": "文章",
+    "guestbook": "留言"
   },
   "Common": {
     "language": "语言",
@@ -21,5 +22,9 @@
   "Posts": {
     "title": "所有文章",
     "description": "这里汇集了我所有的思考与教程。"
+  },
+  "Guestbook": {
+    "title": "留言板",
+    "description": "欢迎留下你的足迹，使用 GitHub 账号登录即可评论。"
   }
 }

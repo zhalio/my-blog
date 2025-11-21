@@ -2,7 +2,8 @@
   "Navigation": {
     "home": "Home",
     "about": "About",
-    "posts": "Posts"
+    "posts": "Posts",
+    "guestbook": "Guestbook"
   },
   "Common": {
     "language": "Language",
@@ -21,5 +22,9 @@
   "Posts": {
     "title": "All Posts",
     "description": "Here is a collection of all my thoughts and tutorials."
+  },
+  "Guestbook": {
+    "title": "Guestbook",
+    "description": "Welcome to leave a message. Login with GitHub to comment."
   }
 }
