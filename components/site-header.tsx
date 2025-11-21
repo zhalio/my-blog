@@ -3,6 +3,7 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { LanguageToggle } from "@/components/language-toggle"
 import { useTranslations } from "next-intl"
 import { Command } from "lucide-react"
+import { CommandMenu } from "@/components/command-menu"
 
 export function SiteHeader() {
   const t = useTranslations('Navigation')
@@ -21,6 +22,9 @@ export function SiteHeader() {
           </nav>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-2">
+           <div className="w-full flex-1 md:w-auto md:flex-none">
+             <CommandMenu />
+           </div>
            <ModeToggle />
            <LanguageToggle />
         </div>
