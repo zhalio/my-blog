@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next'
 import { getSortedPostsData } from '@/lib/posts'
 
+export const dynamic = 'force-static'
+
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://emmmxx.xyz'
 const locales = ['zh', 'en', 'fr', 'ja']
 

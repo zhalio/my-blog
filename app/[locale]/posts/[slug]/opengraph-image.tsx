@@ -1,13 +1,27 @@
 import { ImageResponse } from 'next/og'
-import { getPostData } from '@/lib/posts'
+import { getPostData, getSortedPostsData } from '@/lib/posts'
 
 export const runtime = 'nodejs'
+export const dynamic = 'force-static'
 export const alt = 'Blog Post Image'
 export const size = {
   width: 1200,
   height: 630,
 }
 export const contentType = 'image/png'
+
+const locales = ['zh', 'en', 'fr', 'ja'];
+
+export function generateStaticParams() {
+  const posts = getSortedPostsData('zh');
+  const params = [];
+  for (const locale of locales) {
+    for (const post of posts) {
+      params.push({ locale, slug: post.id });
+    }
+  }
+  return params;
+}
 
 export default async function Image({ params }: { params: Promise<{ slug: string; locale: string }> }) {
   const { slug, locale } = await params

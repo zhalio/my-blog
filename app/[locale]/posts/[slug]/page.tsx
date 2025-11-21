@@ -47,7 +47,6 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
                 <span className="font-medium text-primary">{post.category}</span>
               </div>
               <ShareButtons 
-                title={post.title} 
                 url={`https://emmmxx.xyz/${locale}/posts/${slug}`} 
               />
             </div>

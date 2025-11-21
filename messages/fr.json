@@ -11,7 +11,10 @@
     "back": "Retour à la liste",
     "readMore": "Lire la suite",
     "dateFormat": "{date, date, ::yyyyMMdd}",
-    "searchPlaceholder": "Rechercher des articles..."
+    "searchPlaceholder": "Rechercher des articles...",
+    "share": "Partager",
+    "copyLink": "Copier le lien",
+    "copied": "Copié"
   },
   "Home": {
     "title": "emmm",

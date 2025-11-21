@@ -19,6 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://emmmxx.xyz'),
   title: "emmm",
   description: "技术、生活与思考",
 };

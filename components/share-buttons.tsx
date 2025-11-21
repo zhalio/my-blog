@@ -5,7 +5,7 @@ import { Check, Copy, Share2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 
-export function ShareButtons({ title, url }: { title: string; url: string }) {
+export function ShareButtons({ url }: { url: string }) {
   const t = useTranslations('Common');
   const [copied, setCopied] = useState(false);
 
