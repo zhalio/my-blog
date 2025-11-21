@@ -10,7 +10,8 @@
     "theme": "Thème",
     "back": "Retour à la liste",
     "readMore": "Lire la suite",
-    "dateFormat": "{date, date, ::yyyyMMdd}"
+    "dateFormat": "{date, date, ::yyyyMMdd}",
+    "searchPlaceholder": "Rechercher des articles..."
   },
   "Home": {
     "title": "emmm",

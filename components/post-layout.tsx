@@ -17,9 +17,16 @@ interface PostLayoutProps {
 }
 
 export function PostLayout({ children, toc }: PostLayoutProps) {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const [activeId, setActiveId] = React.useState<string>("");
   const tocRef = React.useRef<HTMLDivElement>(null);
+
+  // Initialize state based on screen size
+  React.useEffect(() => {
+    if (window.innerWidth >= 1024) {
+      setIsOpen(true);
+    }
+  }, []);
 
   // 监听滚动，更新 activeId
   React.useEffect(() => {
@@ -74,11 +81,19 @@ export function PostLayout({ children, toc }: PostLayoutProps) {
 
   return (
     <div className="relative min-h-screen">
+      {/* Mobile Backdrop */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 z-20 bg-black/50 lg:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
       {/* Sidebar (TOC) */}
       <aside
         className={cn(
           "fixed left-0 top-14 z-30 h-[calc(100vh-3.5rem)] border-r bg-background transition-all duration-300 ease-in-out",
-          isOpen ? "w-64 translate-x-0" : "w-0 -translate-x-full lg:w-0 lg:translate-x-0 lg:border-none"
+          isOpen ? "w-64 translate-x-0 shadow-lg lg:shadow-none" : "w-0 -translate-x-full lg:w-0 lg:translate-x-0 lg:border-none"
         )}
       >
         <div className={cn("flex h-full flex-col", !isOpen && "invisible")}>

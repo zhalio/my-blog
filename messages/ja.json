@@ -10,7 +10,8 @@
     "theme": "テーマ",
     "back": "リストに戻る",
     "readMore": "続きを読む",
-    "dateFormat": "{date, date, ::yyyyMMdd}"
+    "dateFormat": "{date, date, ::yyyyMMdd}",
+    "searchPlaceholder": "記事を検索..."
   },
   "Home": {
     "title": "emmm",

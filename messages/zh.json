@@ -10,7 +10,8 @@
     "theme": "主题",
     "back": "返回列表",
     "readMore": "阅读更多",
-    "dateFormat": "{date, date, ::yyyyMMdd}"
+    "dateFormat": "{date, date, ::yyyyMMdd}",
+    "searchPlaceholder": "搜索文章..."
   },
   "Home": {
     "title": "emmm",

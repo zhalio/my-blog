@@ -1,11 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/routing';
 import { Search } from 'lucide-react';
 import { PostData } from '@/lib/posts';
 import Fuse from 'fuse.js';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import {
   Command,
   CommandEmpty,
@@ -25,6 +25,7 @@ export function CommandMenu() {
   const [query, setQuery] = React.useState('');
   const [posts, setPosts] = React.useState<PostData[]>([]);
   const locale = useLocale();
+  const t = useTranslations('Common');
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -76,8 +77,8 @@ export function CommandMenu() {
           <div className="relative">
             <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
             <input
-              className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 pl-8"
-              placeholder="Search posts..."
+              className="flex h-9 w-full rounded-md border border-input bg-background dark:bg-input/30 px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 pl-8"
+              placeholder={t('searchPlaceholder')}
               value={query}
               onChange={(e) => {
                 setQuery(e.target.value);
@@ -85,12 +86,12 @@ export function CommandMenu() {
               }}
               onClick={() => setOpen(true)}
             />
-            <kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+            <kbd className="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
               <span className="text-xs">⌘</span>K
             </kbd>
           </div>
         </PopoverTrigger>
-        <PopoverContent className="p-0 w-[var(--radix-popover-trigger-width)]" align="start">
+        <PopoverContent className="p-0 w-[var(--radix-popover-trigger-width)]" align="start" onOpenAutoFocus={(e) => e.preventDefault()}>
           <Command shouldFilter={false}>
             <CommandList>
               <CommandEmpty>No results found.</CommandEmpty>

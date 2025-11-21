@@ -6,6 +6,7 @@ import { ChevronLeft } from "lucide-react";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PostLayout } from "@/components/post-layout";
 import { FadeIn } from "@/components/fade-in";
+import { ArticleContent } from "@/components/article-content";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -52,9 +53,9 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
           
-          <div 
+          <ArticleContent 
             className="mt-8 leading-7 text-lg"
-            dangerouslySetInnerHTML={{ __html: post.contentHtml || '' }} 
+            html={post.contentHtml || ''} 
           />
         </article>
       </FadeIn>
