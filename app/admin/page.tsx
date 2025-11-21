@@ -14,6 +14,10 @@ export default function AdminPage() {
         src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" 
         strategy="afterInteractive"
       />
+      <Script 
+        src="https://unpkg.com/decap-cms-locales@^3.0.0/dist/decap-cms-locales.js" 
+        strategy="afterInteractive"
+      />
     </>
   );
 }

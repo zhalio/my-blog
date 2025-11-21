@@ -101,14 +101,25 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
+    const data = matterResult.data as { date: string | Date; title: string; category: string; summary: string };
 
     const stats = readingTime(matterResult.content);
+
+    let dateStr = '';
+    if (data.date instanceof Date) {
+      dateStr = data.date.toISOString().split('T')[0];
+    } else {
+      dateStr = data.date;
+    }
 
     // Combine the data with the id
     return {
       id,
       readingTime: stats.text,
-      ...(matterResult.data as { date: string; title: string; category: string; summary: string }),
+      title: data.title,
+      category: data.category,
+      summary: data.summary,
+      date: dateStr,
     } as PostData;
   }).filter((post): post is PostData => post !== null);
 
@@ -139,8 +150,16 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
+  const data = matterResult.data as { date: string | Date; title: string; category: string; summary: string };
 
   const stats = readingTime(matterResult.content);
+
+  let dateStr = '';
+  if (data.date instanceof Date) {
+    dateStr = data.date.toISOString().split('T')[0];
+  } else {
+    dateStr = data.date;
+  }
 
   const toc: TocItem[] = [];
 
@@ -178,7 +197,10 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
     contentHtml,
     toc,
     readingTime: stats.text,
-    ...(matterResult.data as { date: string; title: string; category: string; summary: string }),
+    title: data.title,
+    category: data.category,
+    summary: data.summary,
+    date: dateStr,
   };
 }
 
@@ -203,6 +225,14 @@ export async function getPageData(id: string, locale: string = 'zh'): Promise<Po
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
+  const data = matterResult.data as { date: string | Date; title: string; category: string; summary: string };
+
+  let dateStr = '';
+  if (data.date instanceof Date) {
+    dateStr = data.date.toISOString().split('T')[0];
+  } else {
+    dateStr = data.date;
+  }
 
   const toc: TocItem[] = [];
 
@@ -239,6 +269,9 @@ export async function getPageData(id: string, locale: string = 'zh'): Promise<Po
     id,
     contentHtml,
     toc,
-    ...(matterResult.data as { date: string; title: string; category: string; summary: string }),
+    title: data.title,
+    category: data.category,
+    summary: data.summary,
+    date: dateStr,
   };
 }
