@@ -1,6 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Comments } from "@/components/comments";
 import { FadeIn } from "@/components/fade-in";
+import { TypewriterEffect } from "@/components/typewriter-effect";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -18,9 +19,9 @@ export default async function GuestbookPage({ params }: { params: Promise<{ loca
       <FadeIn className="mx-auto max-w-3xl">
         <div className="space-y-4 border-b pb-8 mb-8">
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{t('title')}</h1>
-          <p className="text-xl text-muted-foreground">
-            {t('description')}
-          </p>
+          <div className="text-xl text-muted-foreground h-8">
+            <TypewriterEffect text={t('description')} />
+          </div>
         </div>
         
         <Comments />
