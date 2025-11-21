@@ -30,5 +30,10 @@
   "Guestbook": {
     "title": "留言板",
     "description": "欢迎留下你的足迹，使用 GitHub 账号登录即可评论，可能需要几秒钟的加载……"
+  },
+  "NotFound": {
+    "title": "页面未找到",
+    "description": "抱歉，我们找不到您要查找的页面。它可能已被移动或删除。",
+    "backHome": "返回首页"
   }
 }

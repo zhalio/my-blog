@@ -4,12 +4,19 @@ import * as React from 'react';
 import { Check, Copy } from 'lucide-react';
 import { createRoot } from 'react-dom/client';
 import { cn } from '@/lib/utils';
+import mediumZoom from 'medium-zoom';
 
 export function ArticleContent({ html, className }: { html: string; className?: string }) {
   const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     if (!ref.current) return;
+
+    // Initialize medium-zoom
+    const zoom = mediumZoom(ref.current.querySelectorAll('img'), {
+      background: 'rgba(0, 0, 0, 0.8)',
+      margin: 24,
+    });
 
     // Find all pre elements
     const preElements = ref.current.querySelectorAll('pre');
@@ -56,10 +63,9 @@ export function ArticleContent({ html, className }: { html: string; className?: 
       root.render(<CopyButton text={codeText} />);
     });
 
-    // Cleanup function to unmount React roots if html changes? 
-    // It's tricky with DOM manipulation. 
-    // For a blog post, html usually doesn't change.
-    
+    return () => {
+      zoom.detach();
+    };
   }, [html]);
 
   return (

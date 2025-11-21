@@ -4,6 +4,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ReadingProgress } from "@/components/reading-progress";
 
 interface TocItem {
   id: string;
@@ -81,6 +82,7 @@ export function PostLayout({ children, toc }: PostLayoutProps) {
 
   return (
     <div className="relative min-h-screen">
+      <ReadingProgress />
       {/* Mobile Backdrop */}
       {isOpen && (
         <div 

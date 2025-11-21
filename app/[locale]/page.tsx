@@ -36,7 +36,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             {t('title')}
           </h1>
           <div className="max-w-[750px] text-lg text-muted-foreground sm:text-xl h-8">
-            <TypewriterEffect text={t('description')} />
+            <TypewriterEffect text={t('description')} speed={150} waitBeforeDelete={5000} />
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 py-4">
             <Button asChild size="lg">

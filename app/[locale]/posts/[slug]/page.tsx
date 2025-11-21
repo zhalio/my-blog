@@ -45,6 +45,12 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
                 <time>{post.date}</time>
                 <span>•</span>
                 <span className="font-medium text-primary">{post.category}</span>
+                {post.readingTime && (
+                  <>
+                    <span>•</span>
+                    <span>{post.readingTime}</span>
+                  </>
+                )}
               </div>
               <ShareButtons 
                 url={`https://emmmxx.xyz/${locale}/posts/${slug}`} 

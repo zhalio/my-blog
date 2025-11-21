@@ -50,7 +50,15 @@ export function PostList({ posts, readMoreText }: PostListProps) {
                 {post.category}
               </div>
               <CardTitle className="line-clamp-2">{post.title}</CardTitle>
-              <CardDescription>{post.date}</CardDescription>
+              <CardDescription className="flex items-center gap-2">
+                <span>{post.date}</span>
+                {post.readingTime && (
+                  <>
+                    <span>•</span>
+                    <span>{post.readingTime}</span>
+                  </>
+                )}
+              </CardDescription>
             </CardHeader>
             <CardContent className="flex-1">
               <p className="line-clamp-3 text-muted-foreground text-sm">

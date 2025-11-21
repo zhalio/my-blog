@@ -3,7 +3,6 @@ import { getPageData } from "@/lib/posts";
 import { PostLayout } from "@/components/post-layout";
 import { notFound } from "next/navigation";
 import { FadeIn } from "@/components/fade-in";
-import { TypewriterEffect } from "@/components/typewriter-effect";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -29,9 +28,9 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           <div className="space-y-4 border-b pb-8">
             <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{pageData.title}</h1>
             {pageData.summary && (
-               <div className="text-xl text-muted-foreground h-8">
-                 <TypewriterEffect text={pageData.summary} />
-               </div>
+               <p className="text-xl text-muted-foreground">
+                 {pageData.summary}
+               </p>
             )}
           </div>
           

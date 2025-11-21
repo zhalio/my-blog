@@ -1,7 +1,6 @@
 import { getSortedPostsData } from "@/lib/posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PostList } from "@/components/post-list";
-import { TypewriterEffect } from "@/components/typewriter-effect";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -21,9 +20,9 @@ export default async function PostsPage({ params }: { params: Promise<{ locale: 
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
         <div className="flex-1 space-y-4">
           <h1 className="inline-block font-bold text-4xl tracking-tight lg:text-5xl">{t('title')}</h1>
-          <div className="text-xl text-muted-foreground h-8">
-            <TypewriterEffect text={t('description')} />
-          </div>
+          <p className="text-xl text-muted-foreground">
+            {t('description')}
+          </p>
         </div>
       </div>
       <hr className="my-8" />

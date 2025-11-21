@@ -7,6 +7,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeStringify from 'rehype-stringify';
 import rehypeSlug from 'rehype-slug';
 import { visit } from 'unist-util-visit';
+import readingTime from 'reading-time';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 const pagesDirectory = path.join(process.cwd(), 'content/pages');
@@ -25,6 +26,7 @@ export type PostData = {
   summary: string;
   contentHtml?: string;
   toc?: TocItem[];
+  readingTime?: string;
 };
 
 // Helper to extract text from a node
@@ -100,9 +102,12 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
 
+    const stats = readingTime(matterResult.content);
+
     // Combine the data with the id
     return {
       id,
+      readingTime: stats.text,
       ...(matterResult.data as { date: string; title: string; category: string; summary: string }),
     };
   }).filter((post): post is PostData => post !== null);
@@ -134,6 +139,8 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
+
+  const stats = readingTime(matterResult.content);
 
   const toc: TocItem[] = [];
 
@@ -170,6 +177,7 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
     id,
     contentHtml,
     toc,
+    readingTime: stats.text,
     ...(matterResult.data as { date: string; title: string; category: string; summary: string }),
   };
 }
