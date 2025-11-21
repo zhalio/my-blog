@@ -14,14 +14,14 @@ export function SiteHeader() {
       <div className="container flex h-14 items-center">
         <MobileNav />
         <div className="mr-4 flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2 ml-2 md:ml-[20px]">
+          <Link href="/" className="mr-6 flex items-center space-x-2 ml-4 md:ml-6">
             <Terminal className="h-6 w-6" />
           </Link>
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-            <Link href="/" className="transition-colors hover:text-foreground/80">{t('home')}</Link>
-            <Link href="/posts" className="transition-colors hover:text-foreground/80">{t('posts')}</Link>
-            <Link href="/guestbook" className="transition-colors hover:text-foreground/80">{t('guestbook')}</Link>
-            <Link href="/about" className="transition-colors hover:text-foreground/80">{t('about')}</Link>
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+            <Link href="/" className="transition-colors hover:text-primary">{t('home')}</Link>
+            <Link href="/posts" className="transition-colors hover:text-primary">{t('posts')}</Link>
+            <Link href="/guestbook" className="transition-colors hover:text-primary">{t('guestbook')}</Link>
+            <Link href="/about" className="transition-colors hover:text-primary">{t('about')}</Link>
           </nav>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-2">

@@ -39,7 +39,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
         
         <article className="prose dark:prose-invert max-w-none">
           <div className="space-y-4 border-b pb-8">
-            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{post.title}</h1>
+            <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">{post.title}</h1>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4 text-muted-foreground">
                 <time>{post.date}</time>
@@ -59,7 +59,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
           </div>
           
           <ArticleContent 
-            className="mt-8 leading-7 text-lg"
+            className="mt-8 leading-7 text-base md:text-lg"
             html={post.contentHtml || ''} 
           />
         </article>

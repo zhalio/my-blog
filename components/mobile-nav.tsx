@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Menu, Terminal, Home, BookOpen, MessageSquare, User } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
+import { Separator } from "@/components/ui/separator"
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false)
@@ -19,20 +20,21 @@ export function MobileNav() {
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="pr-0 w-[240px] sm:w-[300px]">
-        <SheetTitle className="px-4 text-left">
+      <SheetContent side="left" className="flex flex-col p-4 w-[220px] sm:w-[280px]">
+        <SheetTitle className="text-left">
           <Link
             href="/"
-            className="flex items-center"
+            className="flex items-center gap-2"
             onClick={() => setOpen(false)}
           >
-            <Terminal className="mr-2 h-4 w-4" />
+            <Terminal className="h-5 w-5" />
           </Link>
         </SheetTitle>
-        <div className="flex flex-col gap-4 py-4 pl-4 pr-6 mt-4">
+        <Separator className="my-4" />
+        <div className="flex flex-col gap-2 px-2">
             <Link
               href="/"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
               onClick={() => setOpen(false)}
             >
               <Home className="h-4 w-4" />
@@ -40,7 +42,7 @@ export function MobileNav() {
             </Link>
             <Link
               href="/posts"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
               onClick={() => setOpen(false)}
             >
               <BookOpen className="h-4 w-4" />
@@ -48,7 +50,7 @@ export function MobileNav() {
             </Link>
             <Link
               href="/guestbook"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
               onClick={() => setOpen(false)}
             >
               <MessageSquare className="h-4 w-4" />
@@ -56,7 +58,7 @@ export function MobileNav() {
             </Link>
             <Link
               href="/about"
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
               onClick={() => setOpen(false)}
             >
               <User className="h-4 w-4" />
