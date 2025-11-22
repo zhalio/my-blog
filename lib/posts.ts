@@ -103,7 +103,7 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
-    const data = matterResult.data as { date: string | Date; title: string; category: string; summary: string; tags?: string[] };
+    const data = matterResult.data as { date: string | Date; title: string; summary: string; tags?: string[] };
 
     const stats = readingTime(matterResult.content);
 
@@ -114,11 +114,7 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
       dateStr = data.date;
     }
 
-    // Combine category into tags
     const tags = data.tags || [];
-    if (data.category && !tags.includes(data.category)) {
-      tags.push(data.category);
-    }
 
     // Combine the data with the id
     return {
@@ -159,7 +155,7 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
-  const data = matterResult.data as { date: string | Date; title: string; category: string; summary: string; tags?: string[] };
+  const data = matterResult.data as { date: string | Date; title: string; summary: string; tags?: string[] };
 
   const stats = readingTime(matterResult.content);
 
@@ -172,11 +168,7 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
 
   const toc: TocItem[] = [];
 
-  // Combine category into tags
   const tags = data.tags || [];
-  if (data.category && !tags.includes(data.category)) {
-    tags.push(data.category);
-  }
 
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
@@ -241,7 +233,7 @@ export async function getPageData(id: string, locale: string = 'zh'): Promise<Po
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
-  const data = matterResult.data as { date: string | Date; title: string; category: string; summary: string };
+  const data = matterResult.data as { date: string | Date; title: string; summary: string };
 
   let dateStr = '';
   if (data.date instanceof Date) {

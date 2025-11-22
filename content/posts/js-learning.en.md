@@ -1,7 +1,6 @@
 ---
 title: "JS Basics / Understanding Browser APIs"
 date: "2025-11-20"
-category: "tech"
 summary: "Frontend Group Third Lecture Document"
 tags:
   - JavaScript
