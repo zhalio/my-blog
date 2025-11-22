@@ -2,10 +2,16 @@ import { Link } from "@/i18n/routing"
 import { ModeToggle } from "@/components/layout/mode-toggle"
 import { LanguageToggle } from "@/components/layout/language-toggle"
 import { useTranslations } from "next-intl"
-import { Terminal } from "lucide-react"
+import { Terminal, CalendarDays } from "lucide-react"
 import { CommandMenu } from "@/components/layout/command-menu"
 import { MobileNav } from "@/components/layout/mobile-nav"
 import { VantaSwitcher } from "@/components/effects/vanta-switcher"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function SiteHeader() {
   const t = useTranslations('Navigation')
@@ -22,7 +28,31 @@ export function SiteHeader() {
             <Link href="/" className="transition-colors hover:text-primary">{t('home')}</Link>
             <Link href="/posts" className="transition-colors hover:text-primary">{t('posts')}</Link>
             <Link href="/guestbook" className="transition-colors hover:text-primary">{t('guestbook')}</Link>
-            <Link href="/about" className="transition-colors hover:text-primary">{t('about')}</Link>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <Link href="/about" className="transition-colors hover:text-primary">{t('about')}</Link>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                <div className="flex justify-between space-x-4">
+                  <Avatar>
+                    <AvatarImage src="https://github.com/zhemmmzh.png" />
+                    <AvatarFallback>EM</AvatarFallback>
+                  </Avatar>
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-semibold">@zhemmmzh</h4>
+                    <p className="text-sm">
+                      Full-stack developer, open source enthusiast.
+                    </p>
+                    <div className="flex items-center pt-2">
+                      <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
+                      <span className="text-xs text-muted-foreground">
+                        Joined November 2025
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
           </nav>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-2">

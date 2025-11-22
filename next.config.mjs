@@ -4,11 +4,10 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
-  images: {
-    unoptimized: true,
-  },
-
+  // output: "export", // Commented out to enable API routes (Resend) and Image Optimization
+  // images: {
+  //   unoptimized: true, // Commented out to enable Image Optimization
+  // },
 };
 
 export default withNextIntl(nextConfig);

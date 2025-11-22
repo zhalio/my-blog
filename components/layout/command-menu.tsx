@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useRouter } from '@/i18n/routing';
 import { Search } from 'lucide-react';
 import { PostData } from '@/lib/posts';
-import Fuse from 'fuse.js';
+import { create, insertMultiple, search, Orama } from '@orama/orama';
 import { useLocale, useTranslations } from 'next-intl';
 import {
   Command,
@@ -23,9 +23,60 @@ export function CommandMenu() {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState('');
-  const [posts, setPosts] = React.useState<PostData[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [oramaDb, setOramaDb] = React.useState<Orama<any> | null>(null);
+  const [results, setResults] = React.useState<PostData[]>([]);
   const locale = useLocale();
   const t = useTranslations('Common');
+
+  React.useEffect(() => {
+    const initOrama = async () => {
+      const db = await create({
+        schema: {
+          id: 'string',
+          title: 'string',
+          summary: 'string',
+          category: 'string',
+          date: 'string',
+        },
+      });
+
+      const res = await fetch(`/api/search`);
+      const data: (PostData & { locale: string })[] = await res.json();
+      const filteredPosts = data.filter(post => post.locale === locale);
+
+      await insertMultiple(db, filteredPosts as unknown as Record<string, unknown>[]);
+      setOramaDb(db);
+      setResults(filteredPosts);
+    };
+
+    initOrama();
+  }, [locale]);
+
+  React.useEffect(() => {
+    const searchOrama = async () => {
+      if (!oramaDb) return;
+      if (!query) {
+        // If no query, we might want to show all, but Orama search requires a term or we can search for empty string?
+        // Actually, if no query, we can just show the initial list if we saved it, 
+        // but for now let's just search for empty string which might return everything or nothing depending on config.
+        // Better to just keep a separate 'allPosts' state if we want to show default, 
+        // but the previous implementation showed 'posts' (all) when query was empty.
+        // Let's try searching with empty string or just return.
+        // Orama search with empty string returns all documents usually.
+        const searchResult = await search(oramaDb, { term: query, limit: 5 });
+        // Map hits back to items. 
+        // The hits contain 'document'.
+        setResults(searchResult.hits.map(hit => hit.document as unknown as PostData));
+        return;
+      }
+
+      const searchResult = await search(oramaDb, { term: query, limit: 5 });
+      setResults(searchResult.hits.map(hit => hit.document as unknown as PostData));
+    };
+
+    searchOrama();
+  }, [query, oramaDb]);
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -38,32 +89,6 @@ export function CommandMenu() {
     document.addEventListener('keydown', down);
     return () => document.removeEventListener('keydown', down);
   }, []);
-
-  React.useEffect(() => {
-    // Fetch data immediately on mount or when locale changes, 
-    // so it's ready when user types. Or fetch on first open.
-    // Let's fetch on first open to save bandwidth, but since we want inline experience,
-    // maybe fetch on mount is better if data is small.
-    // Given it's a static JSON, it's fast.
-    fetch(`/api/search`)
-      .then((res) => res.json())
-      .then((data: (PostData & { locale: string })[]) => {
-        const filteredPosts = data.filter(post => post.locale === locale);
-        setPosts(filteredPosts);
-      });
-  }, [locale]);
-
-  const fuse = React.useMemo(() => {
-    return new Fuse(posts, {
-      keys: ['title', 'summary', 'category'],
-      threshold: 0.3,
-    });
-  }, [posts]);
-
-  const results = React.useMemo(() => {
-    if (!query) return posts;
-    return fuse.search(query).map((result) => result.item);
-  }, [query, posts, fuse]);
 
   const runCommand = React.useCallback((command: () => unknown) => {
     setOpen(false);

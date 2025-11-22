@@ -10,6 +10,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { VantaProvider } from "@/components/effects/vanta-context";
 import { VantaBackground } from "@/components/effects/vanta-background";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,6 +67,13 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning>
+      <head>
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="YOUR-WEBSITE-ID"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}>
         <SmoothScroll>
           <NextIntlClientProvider messages={messages}>

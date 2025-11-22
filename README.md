@@ -8,7 +8,6 @@
 - **样式**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **UI 组件**: [shadcn/ui](https://ui.shadcn.com/)
 - **国际化**: [next-intl](https://next-intl-docs.vercel.app/) (支持中文、英文、法文、日文)
-- **AI 辅助**: 内置自动化翻译脚本，支持一键将中文内容翻译为多语言
 - **内容管理**: 
   - **本地 CMS**: 集成 [Decap CMS](https://decapcms.org/)，提供可视化写作体验
   - **Markdown**: 传统文件驱动，支持 Frontmatter
