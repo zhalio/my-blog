@@ -93,8 +93,12 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           }}
         >
           <span>{post.date}</span>
-          <span style={{ margin: '0 15px' }}>•</span>
-          <span>{post.category}</span>
+          {post.tags && post.tags.length > 0 && (
+            <>
+              <span style={{ margin: '0 15px' }}>•</span>
+              <span>{post.tags[0]}</span>
+            </>
+          )}
         </div>
       </div>
     ),
