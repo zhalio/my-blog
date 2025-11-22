@@ -3,7 +3,6 @@ title: 关于本博客
 date: '2025-11-22'
 summary: 这是emmm的个人博客
 ---
-
 # My Blog
 
 基于 Next.js 15、Tailwind CSS v4 和 shadcn/ui 构建的个人博客。
@@ -62,14 +61,14 @@ tags:
 ---
 ```
 
-## 常用命令 (备忘)
+## 常用命令 
 
-| 命令 | 说明 |
-| --- | --- |
-| `npm run dev` | 启动本地开发服务器 |
-| `npm run build` | 构建生产版本 |
+| 命令                | 说明                                                   |
+| :------------------ | :----------------------------------------------------- |
+| `npm run dev`     | 启动本地开发服务器                                     |
+| `npm run build`   | 构建生产版本                                           |
 | `npm run publish` | 一键提交代码并推送到远程仓库 (git add & commit & push) |
-| `npm run lint` | 运行代码检查 |
+| `npm run lint`    | 运行代码检查                                           |
 
 ## 部署
 
@@ -93,4 +92,3 @@ npm run build
 ## License
 
 MIT
-
