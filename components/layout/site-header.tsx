@@ -30,7 +30,7 @@ export function SiteHeader() {
             <Link href="/guestbook" className="transition-colors hover:text-primary">{t('guestbook')}</Link>
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Link href="/about" className="transition-colors hover:text-primary block">{t('about')}</Link>
+                <Link href="/about" className="transition-colors hover:text-primary cursor-pointer">{t('about')}</Link>
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <div className="flex justify-between space-x-4">

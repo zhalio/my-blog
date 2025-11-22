@@ -5,6 +5,7 @@ import { useRouter } from '@/i18n/routing';
 import { Search } from 'lucide-react';
 import { PostData } from '@/lib/posts';
 import { create, insertMultiple, search, Orama } from '@orama/orama';
+import { tokenizer as mandarinTokenizer } from '@orama/tokenizers/mandarin';
 import { useLocale, useTranslations } from 'next-intl';
 import {
   Command,
@@ -39,6 +40,9 @@ export function CommandMenu() {
           category: 'string',
           date: 'string',
           content: 'string', // Add content to schema for full-text search
+        },
+        components: {
+          tokenizer: mandarinTokenizer,
         },
       });
 
