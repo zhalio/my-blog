@@ -31,7 +31,7 @@ async function generateRssFeed() {
     },
     author: {
       name: "Emmm",
-      email: "contact@emmmxx.xyz",
+      email: "1992107794@qq.com",
       link: siteUrl,
     },
   });
@@ -80,7 +80,7 @@ async function generateRssFeed() {
       author: [
         {
           name: "Emmm",
-          email: "contact@emmmxx.xyz",
+          email: "1992107794@qq.com",
           link: siteUrl,
         },
       ],
