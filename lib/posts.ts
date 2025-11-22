@@ -22,7 +22,6 @@ export type PostData = {
   id: string;
   title: string;
   date: string;
-  category: string;
   summary: string;
   contentHtml?: string;
   content?: string; // Raw content for search
@@ -125,7 +124,6 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
       id,
       readingTime: stats.text,
       title: data.title,
-      category: data.category,
       summary: data.summary,
       date: dateStr,
       tags: tags,
@@ -214,7 +212,6 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
     toc,
     readingTime: stats.text,
     title: data.title,
-    category: data.category,
     summary: data.summary,
     date: dateStr,
     tags: tags,
@@ -287,7 +284,6 @@ export async function getPageData(id: string, locale: string = 'zh'): Promise<Po
     contentHtml,
     toc,
     title: data.title,
-    category: data.category,
     summary: data.summary,
     date: dateStr,
   };

@@ -48,9 +48,6 @@ export function PostList({ posts, readMoreText }: PostListProps) {
           <ThreeDCard className="h-full">
             <Card className="flex flex-col h-full border-none bg-transparent shadow-none">
               <CardHeader>
-                <div className="mb-2 text-sm text-muted-foreground font-medium text-primary/80">
-                  {post.category}
-                </div>
                 <CardTitle className="line-clamp-2">{post.title}</CardTitle>
                 <CardDescription className="flex items-center gap-2">
                   <span>{post.date}</span>

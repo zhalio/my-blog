@@ -45,8 +45,6 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4 text-muted-foreground">
                 <time>{post.date}</time>
-                <span>•</span>
-                <span className="font-medium text-primary">{post.category}</span>
                 {post.readingTime && (
                   <>
                     <span>•</span>
