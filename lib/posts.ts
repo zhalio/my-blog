@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
+import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeStringify from 'rehype-stringify';
@@ -179,6 +180,7 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
 
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
+    .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeSlug)
     .use(() => (tree) => {
@@ -252,6 +254,7 @@ export async function getPageData(id: string, locale: string = 'zh'): Promise<Po
 
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
+    .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeSlug)
     .use(() => (tree) => {
