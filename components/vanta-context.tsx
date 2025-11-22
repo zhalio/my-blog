@@ -13,7 +13,7 @@ interface VantaContextType {
 const VantaContext = createContext<VantaContextType | undefined>(undefined);
 
 export function VantaProvider({ children }: { children: React.ReactNode }) {
-  const [effect, setEffect] = useState<VantaEffectType>('clouds');
+  const [effect, setEffect] = useState<VantaEffectType>('birds');
 
   // Load saved effect from local storage
   useEffect(() => {
