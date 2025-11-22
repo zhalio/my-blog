@@ -19,11 +19,16 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+
+type SearchScope = 'global' | 'title_summary' | 'content' | 'tags';
 
 export function CommandMenu() {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState('');
+  const [searchScope, setSearchScope] = React.useState<SearchScope>('global');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [oramaDb, setOramaDb] = React.useState<Orama<any> | null>(null);
   const [results, setResults] = React.useState<PostData[]>([]);
@@ -61,37 +66,26 @@ export function CommandMenu() {
   React.useEffect(() => {
     const searchOrama = async () => {
       if (!oramaDb) return;
-      if (!query) {
-        // If no query, we might want to show all, but Orama search requires a term or we can search for empty string?
-        // Actually, if no query, we can just show the initial list if we saved it, 
-        // but for now let's just search for empty string which might return everything or nothing depending on config.
-        // Better to just keep a separate 'allPosts' state if we want to show default, 
-        // but the previous implementation showed 'posts' (all) when query was empty.
-        // Let's try searching with empty string or just return.
-        // Orama search with empty string returns all documents usually.
-        const searchResult = await search(oramaDb, { 
+      
+      const properties = {
+        global: undefined, // search all indexed fields
+        title_summary: ['title', 'summary'],
+        content: ['content'],
+        tags: ['tags'],
+      }[searchScope];
+
+      const searchResult = await search(oramaDb, { 
         term: query, 
         limit: 5,
         threshold: 0, // Require exact matches for tokens
         tolerance: 0, // No typo tolerance
+        properties: properties as string[] | undefined,
       });
-      // Map hits back to items. 
-      // The hits contain 'document'.
-      setResults(searchResult.hits.map(hit => hit.document as unknown as PostData));
-      return;
-    }
-
-    const searchResult = await search(oramaDb, { 
-      term: query, 
-      limit: 5,
-      threshold: 0, // Require exact matches for tokens
-      tolerance: 0, // No typo tolerance
-    });
       setResults(searchResult.hits.map(hit => hit.document as unknown as PostData));
     };
 
     searchOrama();
-  }, [query, oramaDb]);
+  }, [query, oramaDb, searchScope]);
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -132,6 +126,27 @@ export function CommandMenu() {
           </div>
         </PopoverTrigger>
         <PopoverContent className="p-0 w-[var(--radix-popover-trigger-width)]" align="start" onOpenAutoFocus={(e) => e.preventDefault()}>
+          <div className="flex items-center gap-1 p-2 border-b overflow-x-auto no-scrollbar">
+            {[
+              { id: 'global', label: 'Global' },
+              { id: 'title_summary', label: 'Title' },
+              { id: 'content', label: 'Article' },
+              { id: 'tags', label: 'Tag' },
+            ].map((scope) => (
+              <Button
+                key={scope.id}
+                variant={searchScope === scope.id ? 'secondary' : 'ghost'}
+                size="sm"
+                onClick={() => setSearchScope(scope.id as SearchScope)}
+                className={cn(
+                  "h-6 text-xs px-2 rounded-full",
+                  searchScope === scope.id && "bg-primary/10 text-primary hover:bg-primary/20"
+                )}
+              >
+                {scope.label}
+              </Button>
+            ))}
+          </div>
           <Command shouldFilter={false}>
             <CommandList>
               <CommandEmpty>No results found.</CommandEmpty>
