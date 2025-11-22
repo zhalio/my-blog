@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl"
 import { Terminal } from "lucide-react"
 import { CommandMenu } from "@/components/command-menu"
 import { MobileNav } from "@/components/mobile-nav"
+import { VantaSwitcher } from "@/components/vanta-switcher"
 
 export function SiteHeader() {
   const t = useTranslations('Navigation')
@@ -28,6 +29,7 @@ export function SiteHeader() {
            <div className="w-full flex-1 md:w-auto md:flex-none">
              <CommandMenu />
            </div>
+           <VantaSwitcher />
            <ModeToggle />
            <LanguageToggle />
         </div>

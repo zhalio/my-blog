@@ -1,15 +1,12 @@
 import { Link } from "@/i18n/routing";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Github, MessageCircle } from "lucide-react";
 import { getSortedPostsData } from "@/lib/posts";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from 'next-intl/server';
 import { PostList } from "@/components/post-list";
 import { FadeIn } from "@/components/fade-in";
 import { TypewriterEffect } from "@/components/typewriter-effect";
-import { MagneticButton } from "@/components/magnetic-button";
-import { Particles } from "@/components/particles";
 import { TextShimmer } from "@/components/text-shimmer";
+import { HomeButtons } from "@/components/home-buttons";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -28,17 +25,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)] overflow-hidden">
-      {/* Background Particles */}
-      <div className="fixed inset-0 z-0 h-full w-full pointer-events-none">
-        <Particles
-          className="absolute inset-0 h-full w-full"
-          quantity={80}
-          ease={80}
-          size={0.3}
-          color="#000000"
-          refresh
-        />
-      </div>
       
       <div className="relative z-10 container mx-auto px-4 py-6 md:py-10">
         {/* Hero Section: 网站欢迎区域 */}
@@ -51,29 +37,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="max-w-[750px] text-lg text-muted-foreground sm:text-xl h-8">
             <TypewriterEffect text={t('description')} speed={150} waitBeforeDelete={5000} />
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-4 py-4">
-            <MagneticButton>
-              <Button asChild size="lg">
-                <Link href="/posts">
-                  {t('viewPosts')} <ArrowRight className="ml-2 size-4" />
-                </Link>
-              </Button>
-            </MagneticButton>
-            <MagneticButton>
-              <Button variant="outline" size="lg" asChild>
-                <Link href="https://github.com/zhemmmzh" target="_blank" rel="noreferrer">
-                  <Github className="mr-2 size-4" /> GitHub
-                </Link>
-              </Button>
-            </MagneticButton>
-            <MagneticButton>
-              <Button variant="outline" size="lg" asChild>
-                <Link href="https://qm.qq.com/cgi-bin/qm/qr?k=GJV7-av-NF7gsXV13umV8RqQC0Cum5zo" target="_blank" rel="noreferrer">
-                  <MessageCircle className="mr-2 size-4" /> QQ
-                </Link>
-              </Button>
-            </MagneticButton>
-          </div>
+          <HomeButtons viewPostsText={t('viewPosts')} />
         </FadeIn>
 
         {/* Posts Grid: 文章列表区域 */}

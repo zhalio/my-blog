@@ -8,6 +8,8 @@ import { SmoothScroll } from "@/components/smooth-scroll";
 import { getMessages, setRequestLocale, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { VantaProvider } from "@/components/vanta-context";
+import { VantaBackground } from "@/components/vanta-background";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,19 +71,22 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider
                 attribute="class"
-                defaultTheme="system"
+                defaultTheme="dark"
                 enableSystem
                 disableTransitionOnChange
               >
-                <div className="relative flex min-h-screen flex-col">
-                  <SiteHeader />
-                  {/* Main Content */}
-                  <main className="flex-1">
-                    {children}
-                  </main>
-                  <ScrollToTopButton />
-                </div>
-              </ThemeProvider>
+                <VantaProvider>
+                  <VantaBackground />
+                  <div className="relative flex min-h-screen flex-col">
+                    <SiteHeader />
+                    {/* Main Content */}
+                    <main className="flex-1">
+                      {children}
+                    </main>
+                    <ScrollToTopButton />
+                  </div>
+                </VantaProvider>
+            </ThemeProvider>
           </NextIntlClientProvider>
         </SmoothScroll>
       </body>

@@ -22,6 +22,8 @@ export function ArticleContent({ html, className }: { html: string; className?: 
     const preElements = ref.current.querySelectorAll('pre');
 
     preElements.forEach((pre) => {
+
+
       // Check if we've already processed this pre element
       if (pre.dataset.processed) return;
       pre.dataset.processed = 'true';
