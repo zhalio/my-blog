@@ -22,6 +22,33 @@ import {
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
+function escapeRegExp(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function HighlightText({ text, query }: { text: string; query: string }) {
+  if (!query || !text) return <>{text}</>;
+  
+  const escapedQuery = escapeRegExp(query);
+  if (!escapedQuery) return <>{text}</>;
+
+  const parts = text.split(new RegExp(`(${escapedQuery})`, 'gi'));
+  
+  return (
+    <>
+      {parts.map((part, i) => 
+        part.toLowerCase() === query.toLowerCase() ? (
+          <span key={i} className="text-primary font-bold bg-primary/10 rounded-[1px]">
+            {part}
+          </span>
+        ) : (
+          part
+        )
+      )}
+    </>
+  );
+}
+
 type SearchScope = 'global' | 'title_summary' | 'content' | 'tags';
 
 export function CommandMenu() {
@@ -160,9 +187,13 @@ export function CommandMenu() {
                     }}
                   >
                     <div className="flex flex-col">
-                      <span>{post.title}</span>
+                      <span>
+                        <HighlightText text={post.title} query={query} />
+                      </span>
                       {post.tags && post.tags.length > 0 && (
-                        <span className="text-xs text-muted-foreground">#{post.tags[0]}</span>
+                        <span className="text-xs text-muted-foreground">
+                          #<HighlightText text={post.tags[0]} query={query} />
+                        </span>
                       )}
                     </div>
                   </CommandItem>
