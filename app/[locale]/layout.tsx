@@ -70,7 +70,7 @@ export default async function LocaleLayout({
       <head>
         <Script
           src="https://cloud.umami.is/script.js"
-          data-website-id="YOUR-WEBSITE-ID"
+          data-website-id="943ca85d-0880-4a74-a276-7130253b90ee"
           strategy="afterInteractive"
         />
       </head>

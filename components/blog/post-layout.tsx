@@ -31,32 +31,51 @@ export function PostLayout({ children, toc }: PostLayoutProps) {
 
   // 监听滚动，更新 activeId
   React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "0% 0% -80% 0%" }
-    );
+    const handleScroll = () => {
+      let currentActiveId = "";
+      // Offset to account for sticky header (h-14 = 56px) + some buffer
+      // Reducing this ensures we don't highlight the next section too early
+      // while the user is still reading the end of the previous one.
+      const offset = 80;
 
-    toc.forEach((item) => {
-      const element = document.getElementById(item.id);
-      if (element) {
-        observer.observe(element);
+      // Handle bottom of page case
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+         if (toc.length > 0) {
+             setActiveId(toc[toc.length - 1].id);
+             return;
+         }
       }
-    });
 
-    return () => {
-      toc.forEach((item) => {
+      for (const item of toc) {
         const element = document.getElementById(item.id);
         if (element) {
-          observer.unobserve(element);
+          const rect = element.getBoundingClientRect();
+          // If the element is above the offset, it's the current active section
+          if (rect.top <= offset) {
+            currentActiveId = item.id;
+          } else {
+            break;
+          }
         }
-      });
+      }
+      setActiveId(currentActiveId);
     };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener("scroll", onScroll);
   }, [toc]);
 
   // 监听 activeId 变化，自动滚动 TOC

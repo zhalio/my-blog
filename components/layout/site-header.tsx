@@ -2,16 +2,10 @@ import { Link } from "@/i18n/routing"
 import { ModeToggle } from "@/components/layout/mode-toggle"
 import { LanguageToggle } from "@/components/layout/language-toggle"
 import { useTranslations } from "next-intl"
-import { Terminal, CalendarDays } from "lucide-react"
+import { Terminal } from "lucide-react"
 import { CommandMenu } from "@/components/layout/command-menu"
 import { MobileNav } from "@/components/layout/mobile-nav"
 import { VantaSwitcher } from "@/components/effects/vanta-switcher"
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function SiteHeader() {
   const t = useTranslations('Navigation')
@@ -28,21 +22,7 @@ export function SiteHeader() {
             <Link href="/" className="transition-colors hover:text-primary">{t('home')}</Link>
             <Link href="/posts" className="transition-colors hover:text-primary">{t('posts')}</Link>
             <Link href="/guestbook" className="transition-colors hover:text-primary">{t('guestbook')}</Link>
-            <HoverCard>
-              <HoverCardTrigger asChild>
-                <Link href="/about" className="transition-colors hover:text-primary cursor-pointer">{t('about')}</Link>
-              </HoverCardTrigger>
-              <HoverCardContent className="w-80">
-                <div className="flex justify-between space-x-4">
-                  <div className="space-y-1">
-                    <h4 className="text-sm font-semibold">{t('about')}</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Learn more about me and this blog.
-                    </p>
-                  </div>
-                </div>
-              </HoverCardContent>
-            </HoverCard>
+            <Link href="/about" className="transition-colors hover:text-primary">{t('about')}</Link>
           </nav>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-2">

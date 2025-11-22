@@ -5,7 +5,7 @@ import { useRouter } from '@/i18n/routing';
 import { Search } from 'lucide-react';
 import { PostData } from '@/lib/posts';
 import { create, insertMultiple, search, Orama } from '@orama/orama';
-import { tokenizer as mandarinTokenizer } from '@orama/tokenizers/mandarin';
+import { createTokenizer } from '@orama/tokenizers/mandarin';
 import { useLocale, useTranslations } from 'next-intl';
 import {
   Command,
@@ -42,7 +42,7 @@ export function CommandMenu() {
           content: 'string', // Add content to schema for full-text search
         },
         components: {
-          tokenizer: mandarinTokenizer,
+          tokenizer: await createTokenizer(),
         },
       });
 
@@ -69,14 +69,24 @@ export function CommandMenu() {
         // but the previous implementation showed 'posts' (all) when query was empty.
         // Let's try searching with empty string or just return.
         // Orama search with empty string returns all documents usually.
-        const searchResult = await search(oramaDb, { term: query, limit: 5 });
-        // Map hits back to items. 
-        // The hits contain 'document'.
-        setResults(searchResult.hits.map(hit => hit.document as unknown as PostData));
-        return;
-      }
+        const searchResult = await search(oramaDb, { 
+        term: query, 
+        limit: 5,
+        threshold: 0, // Require exact matches for tokens
+        tolerance: 0, // No typo tolerance
+      });
+      // Map hits back to items. 
+      // The hits contain 'document'.
+      setResults(searchResult.hits.map(hit => hit.document as unknown as PostData));
+      return;
+    }
 
-      const searchResult = await search(oramaDb, { term: query, limit: 5 });
+    const searchResult = await search(oramaDb, { 
+      term: query, 
+      limit: 5,
+      threshold: 0, // Require exact matches for tokens
+      tolerance: 0, // No typo tolerance
+    });
       setResults(searchResult.hits.map(hit => hit.document as unknown as PostData));
     };
 

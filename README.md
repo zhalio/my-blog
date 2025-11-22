@@ -15,11 +15,16 @@
   - **阅读进度条**: 顶部显示阅读进度
   - **阅读时间**: 自动计算文章阅读时长
   - **图片缩放**: 点击图片查看大图 (Medium Zoom)
+  - **链接预览**: 悬停显示外部链接预览卡片
   - **代码高亮**: [rehype-pretty-code](https://rehype-pretty.pages.dev/) (支持双主题自动切换，一键复制)
-- **全站搜索**: 客户端模糊搜索 (Fuse.js)，支持快捷键 (⌘K) 唤起
+- **全站搜索**: 客户端全文搜索 (Orama + Mandarin Tokenizer)，支持精确匹配与快捷键 (⌘K) 唤起
+- **数据统计**: 集成 [Umami Analytics](https://umami.is/) (隐私友好)
+- **订阅服务**: 
+  - **RSS**: 自动生成 RSS Feed
+  - **邮件**: 集成 [Resend](https://resend.com/) API 提供邮件订阅
 - **视觉特效**: 集成 [Vanta.js](https://www.vantajs.com/) (3D 动态背景，支持多种效果切换)、[Canvas Confetti](https://github.com/catdad/canvas-confetti) (交互庆典效果)、[Lottie](https://lottiefiles.com/) (404 动画)
 - **动画效果**: [Framer Motion](https://www.framer.com/motion/) (页面过渡、滚动显现、列表交错动画)
-- **交互体验**: 文章侧边栏目录 (TOC)、一键回到顶部、响应式布局
+- **交互体验**: 文章侧边栏目录 (TOC，支持智能滚动同步)、一键回到顶部、响应式布局
 - **留言板**: 集成 [Giscus](https://giscus.app/) 评论系统
 - **SEO**: 自动生成 Sitemap 和 Robots.txt，完善的 Metadata 配置
 - **主题**: 支持亮色/暗色模式切换

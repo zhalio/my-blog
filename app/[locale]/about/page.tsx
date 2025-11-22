@@ -3,6 +3,7 @@ import { getPageData } from "@/lib/posts";
 import { PostLayout } from "@/components/blog/post-layout";
 import { notFound } from "next/navigation";
 import { FadeIn } from "@/components/visuals/fade-in";
+import { ArticleContent } from "@/components/blog/article-content";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -34,9 +35,9 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             )}
           </div>
           
-          <div 
+          <ArticleContent 
             className="mt-8 leading-7 text-lg"
-            dangerouslySetInnerHTML={{ __html: pageData.contentHtml || '' }} 
+            html={pageData.contentHtml || ''} 
           />
         </article>
       </FadeIn>
