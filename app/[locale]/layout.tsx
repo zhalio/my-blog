@@ -10,7 +10,6 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { VantaProvider } from "@/components/effects/vanta-context";
 import { VantaBackground } from "@/components/effects/vanta-background";
-import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 
@@ -70,11 +69,6 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning>
       <head>
-        <Script
-          src="https://cloud.umami.is/script.js"
-          data-website-id="943ca85d-0880-4a74-a276-7130253b90ee"
-          strategy="afterInteractive"
-        />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}>
         <SmoothScroll>

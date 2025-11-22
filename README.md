@@ -18,7 +18,8 @@
   - **链接预览**: 悬停显示外部链接预览卡片
   - **代码高亮**: [rehype-pretty-code](https://rehype-pretty.pages.dev/) (支持双主题自动切换，一键复制)
 - **全站搜索**: 客户端全文搜索 (Orama + Mandarin Tokenizer)，支持精确匹配与快捷键 (⌘K) 唤起
-- **数据统计**: 集成 [Umami Analytics](https://umami.is/) (隐私友好)
+- **数据统计**: 集成 [Vercel Analytics](https://vercel.com/analytics) (隐私友好)
+- **性能监控**: 集成 [Vercel Speed Insights](https://vercel.com/docs/speed-insights) (Core Web Vitals)
 - **订阅服务**: 
   - **RSS**: 自动生成 RSS Feed
   - **邮件**: 集成 [Resend](https://resend.com/) API 提供邮件订阅
