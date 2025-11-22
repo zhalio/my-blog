@@ -22,7 +22,7 @@ export function PostStats({ slug }: PostStatsProps) {
         await fetch(`/api/stats?slug=${slug}&type=view`, { method: 'POST' });
         
         // Get current stats
-        const res = await fetch(`/api/stats?slug=${slug}`);
+        const res = await fetch(`/api/stats?slug=${slug}`, { cache: 'no-store' });
         const data = await res.json();
         setViews(data.views);
         setLikes(data.likes);
