@@ -38,6 +38,7 @@ export function CommandMenu() {
           summary: 'string',
           category: 'string',
           date: 'string',
+          content: 'string', // Add content to schema for full-text search
         },
       });
 

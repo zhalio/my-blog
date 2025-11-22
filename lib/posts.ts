@@ -25,6 +25,7 @@ export type PostData = {
   category: string;
   summary: string;
   contentHtml?: string;
+  content?: string; // Raw content for search
   toc?: TocItem[];
   readingTime?: string;
 };
@@ -120,6 +121,7 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
       category: data.category,
       summary: data.summary,
       date: dateStr,
+      content: matterResult.content, // Include raw content for search
     } as PostData;
   }).filter((post): post is PostData => post !== null);
 
