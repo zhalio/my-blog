@@ -4,7 +4,7 @@
 
 ## ✨ 特性
 
-- **框架**: [Next.js 15](https://nextjs.org/) (App Router, Static Export)
+- **框架**: [Next.js 15](https://nextjs.org/) (App Router)
 - **样式**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **UI 组件**: [shadcn/ui](https://ui.shadcn.com/)
 - **国际化**: [next-intl](https://next-intl-docs.vercel.app/) (支持中文、英文、法文、日文)
@@ -144,8 +144,9 @@ npm run publish
 
 ### 部署
 
-本项目配置为静态导出 (`output: 'export'`)，构建后会生成 `out/` 目录。
-推荐部署到 [Vercel](https://vercel.com/)、[Netlify](https://www.netlify.com/) 或 GitHub Pages。
+本项目推荐部署到 [Vercel](https://vercel.com/) 以获得最佳体验（支持动态 API 路由、图片优化等）。
+
+如果需要部署到 GitHub Pages 等静态托管服务，请在 `next.config.mjs` 中取消注释 `output: 'export'`，但请注意这将导致部分动态功能（如链接预览、邮件订阅）不可用。
 
 构建命令：
 ```bash
