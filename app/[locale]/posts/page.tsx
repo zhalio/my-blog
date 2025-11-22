@@ -1,6 +1,6 @@
 import { getSortedPostsData } from "@/lib/posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { PostList } from "@/components/post-list";
+import { PostList } from "@/components/blog/post-list";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 

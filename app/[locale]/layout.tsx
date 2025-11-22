@@ -1,15 +1,15 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import { ThemeProvider } from "@/components/theme-provider"
-import { SiteHeader } from "@/components/site-header"
-import { ScrollToTopButton } from "@/components/scroll-to-top-button"
+import { ThemeProvider } from "@/components/layout/theme-provider"
+import { SiteHeader } from "@/components/layout/site-header"
+import { ScrollToTopButton } from "@/components/layout/scroll-to-top-button"
 import { NextIntlClientProvider } from 'next-intl';
-import { SmoothScroll } from "@/components/smooth-scroll";
+import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { getMessages, setRequestLocale, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import { VantaProvider } from "@/components/vanta-context";
-import { VantaBackground } from "@/components/vanta-background";
+import { VantaProvider } from "@/components/effects/vanta-context";
+import { VantaBackground } from "@/components/effects/vanta-background";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

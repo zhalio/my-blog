@@ -1,8 +1,8 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getPageData } from "@/lib/posts";
-import { PostLayout } from "@/components/post-layout";
+import { PostLayout } from "@/components/blog/post-layout";
 import { notFound } from "next/navigation";
-import { FadeIn } from "@/components/fade-in";
+import { FadeIn } from "@/components/visuals/fade-in";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 

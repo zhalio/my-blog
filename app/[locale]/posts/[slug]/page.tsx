@@ -1,11 +1,11 @@
 import { getSortedPostsData, getPostData } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from 'next-intl/server';
-import { PostLayout } from "@/components/post-layout";
-import { FadeIn } from "@/components/fade-in";
-import { ArticleContent } from "@/components/article-content";
-import { PostBreadcrumb } from "@/components/post-breadcrumb";
-import { ShareButtons } from "@/components/share-buttons";
+import { PostLayout } from "@/components/blog/post-layout";
+import { FadeIn } from "@/components/visuals/fade-in";
+import { ArticleContent } from "@/components/blog/article-content";
+import { PostBreadcrumb } from "@/components/blog/post-breadcrumb";
+import { ShareButtons } from "@/components/blog/share-buttons";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 

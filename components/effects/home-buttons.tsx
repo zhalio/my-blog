@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
 import { ArrowRight, Github, MessageCircle } from "lucide-react"
-import { MagneticButton } from "@/components/magnetic-button"
+import { MagneticButton } from "@/components/visuals/magnetic-button"
 import confetti from "canvas-confetti"
 
 export function HomeButtons({ 

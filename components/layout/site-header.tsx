@@ -1,11 +1,11 @@
 import { Link } from "@/i18n/routing"
-import { ModeToggle } from "@/components/mode-toggle"
-import { LanguageToggle } from "@/components/language-toggle"
+import { ModeToggle } from "@/components/layout/mode-toggle"
+import { LanguageToggle } from "@/components/layout/language-toggle"
 import { useTranslations } from "next-intl"
 import { Terminal } from "lucide-react"
-import { CommandMenu } from "@/components/command-menu"
-import { MobileNav } from "@/components/mobile-nav"
-import { VantaSwitcher } from "@/components/vanta-switcher"
+import { CommandMenu } from "@/components/layout/command-menu"
+import { MobileNav } from "@/components/layout/mobile-nav"
+import { VantaSwitcher } from "@/components/effects/vanta-switcher"
 
 export function SiteHeader() {
   const t = useTranslations('Navigation')

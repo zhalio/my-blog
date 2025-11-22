@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { PostData } from "@/lib/posts";
-import { ThreeDCard } from "@/components/3d-card";
+import { ThreeDCard } from "@/components/visuals/3d-card";
 
 const container = {
   hidden: { opacity: 0 },

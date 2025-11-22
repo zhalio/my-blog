@@ -2,11 +2,11 @@ import { Link } from "@/i18n/routing";
 import { getSortedPostsData } from "@/lib/posts";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from 'next-intl/server';
-import { PostList } from "@/components/post-list";
-import { FadeIn } from "@/components/fade-in";
-import { TypewriterEffect } from "@/components/typewriter-effect";
-import { TextShimmer } from "@/components/text-shimmer";
-import { HomeButtons } from "@/components/home-buttons";
+import { PostList } from "@/components/blog/post-list";
+import { FadeIn } from "@/components/visuals/fade-in";
+import { TypewriterEffect } from "@/components/visuals/typewriter-effect";
+import { TextShimmer } from "@/components/visuals/text-shimmer";
+import { HomeButtons } from "@/components/effects/home-buttons";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
