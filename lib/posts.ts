@@ -114,6 +114,12 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
       dateStr = data.date;
     }
 
+    // Combine category into tags
+    const tags = data.tags || [];
+    if (data.category && !tags.includes(data.category)) {
+      tags.push(data.category);
+    }
+
     // Combine the data with the id
     return {
       id,
@@ -122,7 +128,7 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
       category: data.category,
       summary: data.summary,
       date: dateStr,
-      tags: data.tags,
+      tags: tags,
       content: matterResult.content, // Include raw content for search
     } as PostData;
   }).filter((post): post is PostData => post !== null);
@@ -167,6 +173,12 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
 
   const toc: TocItem[] = [];
 
+  // Combine category into tags
+  const tags = data.tags || [];
+  if (data.category && !tags.includes(data.category)) {
+    tags.push(data.category);
+  }
+
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
     .use(remarkRehype)
@@ -205,7 +217,7 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
     category: data.category,
     summary: data.summary,
     date: dateStr,
-    tags: data.tags,
+    tags: tags,
   };
 }
 

@@ -69,9 +69,11 @@ export function PostList({ posts, readMoreText }: PostListProps) {
                 {post.tags && post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-4">
                     {post.tags.map(tag => (
-                      <span key={tag} className="text-xs bg-muted px-2 py-1 rounded-md text-muted-foreground">
-                        #{tag}
-                      </span>
+                      <Link key={tag} href={`/tags/${tag}`} className="no-underline z-10 relative">
+                        <span className="text-xs bg-muted px-2 py-1 rounded-md text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
+                          #{tag}
+                        </span>
+                      </Link>
                     ))}
                   </div>
                 )}
