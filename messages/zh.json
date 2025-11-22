@@ -27,6 +27,11 @@
     "title": "所有文章",
     "description": "一些技术分享或是生活随笔"
   },
+  "Tags": {
+    "title": "标签",
+    "description": "按标签浏览文章",
+    "count": "{count} 篇文章"
+  },
   "Guestbook": {
     "title": "留言板",
     "description": "欢迎留下你的足迹，使用 GitHub 账号登录即可评论，可能需要几秒钟的加载……"

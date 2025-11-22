@@ -1,3 +1,4 @@
+import { Link } from "@/i18n/routing";
 import { getSortedPostsData, getPostData } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from 'next-intl/server';
@@ -6,6 +7,7 @@ import { FadeIn } from "@/components/visuals/fade-in";
 import { ArticleContent } from "@/components/blog/article-content";
 import { PostBreadcrumb } from "@/components/blog/post-breadcrumb";
 import { ShareButtons } from "@/components/blog/share-buttons";
+import { PostStats } from "@/components/blog/post-stats";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -52,10 +54,24 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
                   </>
                 )}
               </div>
-              <ShareButtons 
-                url={`https://emmmxx.xyz/${locale}/posts/${slug}`} 
-              />
+              <div className="flex items-center gap-4">
+                <PostStats slug={slug} />
+                <ShareButtons 
+                  url={`https://emmmxx.xyz/${locale}/posts/${slug}`} 
+                />
+              </div>
             </div>
+            {post.tags && post.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2 pt-2">
+                {post.tags.map(tag => (
+                  <Link key={tag} href={`/tags/${tag}`} className="no-underline">
+                    <span className="text-sm bg-muted px-2.5 py-0.5 rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
+                      #{tag}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
           
           <ArticleContent 

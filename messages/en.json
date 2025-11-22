@@ -28,6 +28,11 @@
     "title": "All articles",
     "description": "Some technology sharing or life essays"
   },
+  "Tags": {
+    "title": "Tags",
+    "description": "Browse posts by tags",
+    "count": "{count} posts"
+  },
   "Guestbook": {
     "title": "message board",
     "description": "Welcome to leave your footprints. Log in with your GitHub account to comment. It may take a few seconds to load..."

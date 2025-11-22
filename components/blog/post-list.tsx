@@ -66,6 +66,15 @@ export function PostList({ posts, readMoreText }: PostListProps) {
                 <p className="line-clamp-3 text-muted-foreground text-sm">
                   {post.summary}
                 </p>
+                {post.tags && post.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {post.tags.map(tag => (
+                      <span key={tag} className="text-xs bg-muted px-2 py-1 rounded-md text-muted-foreground">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </CardContent>
               <CardFooter>
                 <Button asChild variant="ghost" className="w-full justify-start px-0 hover:bg-transparent hover:text-primary">

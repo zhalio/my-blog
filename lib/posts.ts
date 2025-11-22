@@ -28,6 +28,7 @@ export type PostData = {
   content?: string; // Raw content for search
   toc?: TocItem[];
   readingTime?: string;
+  tags?: string[];
 };
 
 // Helper to extract text from a node
@@ -102,7 +103,7 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
-    const data = matterResult.data as { date: string | Date; title: string; category: string; summary: string };
+    const data = matterResult.data as { date: string | Date; title: string; category: string; summary: string; tags?: string[] };
 
     const stats = readingTime(matterResult.content);
 
@@ -121,6 +122,7 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
       category: data.category,
       summary: data.summary,
       date: dateStr,
+      tags: data.tags,
       content: matterResult.content, // Include raw content for search
     } as PostData;
   }).filter((post): post is PostData => post !== null);
@@ -152,7 +154,7 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
-  const data = matterResult.data as { date: string | Date; title: string; category: string; summary: string };
+  const data = matterResult.data as { date: string | Date; title: string; category: string; summary: string; tags?: string[] };
 
   const stats = readingTime(matterResult.content);
 
@@ -203,6 +205,7 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
     category: data.category,
     summary: data.summary,
     date: dateStr,
+    tags: data.tags,
   };
 }
 
@@ -276,4 +279,23 @@ export async function getPageData(id: string, locale: string = 'zh'): Promise<Po
     summary: data.summary,
     date: dateStr,
   };
+}
+
+export function getAllTags(locale: string = 'zh'): Record<string, number> {
+  const allPosts = getSortedPostsData(locale);
+  const tagsCount: Record<string, number> = {};
+
+  allPosts.forEach((post) => {
+    if (post.tags) {
+      post.tags.forEach((tag) => {
+        if (tagsCount[tag]) {
+          tagsCount[tag]++;
+        } else {
+          tagsCount[tag] = 1;
+        }
+      });
+    }
+  });
+
+  return tagsCount;
 }
