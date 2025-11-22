@@ -21,6 +21,7 @@ summary: 个人简介
   - **图片缩放**: 点击图片查看大图 (Medium Zoom)
   - **代码高亮**: [rehype-pretty-code](https://rehype-pretty.pages.dev/) (支持双主题自动切换，一键复制)
 - **全站搜索**: 客户端模糊搜索 (Fuse.js)，支持快捷键 (⌘K) 唤起
+- **视觉特效**: 集成 [Vanta.js](https://www.vantajs.com/) (3D 动态背景，支持多种效果切换)、[Canvas Confetti](https://github.com/catdad/canvas-confetti) (交互庆典效果)、[Lottie](https://lottiefiles.com/) (404 动画)
 - **动画效果**: [Framer Motion](https://www.framer.com/motion/) (页面过渡、滚动显现、列表交错动画)
 - **交互体验**: 文章侧边栏目录 (TOC)、一键回到顶部、响应式布局
 - **留言板**: 集成 [Giscus](https://giscus.app/) 评论系统
