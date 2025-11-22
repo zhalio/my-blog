@@ -191,9 +191,13 @@ export function CommandMenu() {
                         <HighlightText text={post.title} query={query} />
                       </span>
                       {post.tags && post.tags.length > 0 && (
-                        <span className="text-xs text-muted-foreground">
-                          #<HighlightText text={post.tags[0]} query={query} />
-                        </span>
+                        <div className="flex flex-wrap gap-1 mt-0.5">
+                          {post.tags.map((tag) => (
+                            <span key={tag} className="text-xs text-muted-foreground">
+                              #<HighlightText text={tag} query={query} />
+                            </span>
+                          ))}
+                        </div>
                       )}
                     </div>
                   </CommandItem>
