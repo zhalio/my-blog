@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
 
 interface TextShimmerProps {
   children: React.ReactNode;
@@ -14,8 +13,6 @@ export const TextShimmer = ({
   className,
   shimmerWidth = 200,
 }: TextShimmerProps) => {
-  const { theme } = useTheme();
-
   return (
     <span
       className={cn(
