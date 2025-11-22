@@ -37,9 +37,9 @@ export function CommandMenu() {
           id: 'string',
           title: 'string',
           summary: 'string',
-          category: 'string',
           date: 'string',
           content: 'string', // Add content to schema for full-text search
+          tags: 'string[]',
         },
         components: {
           tokenizer: await createTokenizer(),
@@ -146,7 +146,9 @@ export function CommandMenu() {
                   >
                     <div className="flex flex-col">
                       <span>{post.title}</span>
-                      <span className="text-xs text-muted-foreground">{post.category}</span>
+                      {post.tags && post.tags.length > 0 && (
+                        <span className="text-xs text-muted-foreground">#{post.tags[0]}</span>
+                      )}
                     </div>
                   </CommandItem>
                 ))}
