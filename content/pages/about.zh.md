@@ -1,9 +1,9 @@
 ---
 title: 关于本博客
 date: '2025-11-22'
-summary: 这是emmm的个人博客
+summary: https://emmmxx.xyz
 ---
-# My Blog
+# Emmm's Blog
 
 基于 Next.js 15、Tailwind CSS v4 和 shadcn/ui 构建的个人博客。
 
@@ -61,7 +61,7 @@ tags:
 ---
 ```
 
-## 常用命令 
+## 常用命令
 
 | 命令                | 说明                                                   |
 | :------------------ | :----------------------------------------------------- |
