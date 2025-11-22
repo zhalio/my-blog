@@ -11,6 +11,8 @@ import { routing } from '@/i18n/routing';
 import { VantaProvider } from "@/components/effects/vanta-context";
 import { VantaBackground } from "@/components/effects/vanta-background";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -93,6 +95,8 @@ export default async function LocaleLayout({
                     </main>
                     <ScrollToTopButton />
                   </div>
+                  <SpeedInsights />
+                  <Analytics />
                 </VantaProvider>
             </ThemeProvider>
           </NextIntlClientProvider>
