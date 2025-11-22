@@ -55,7 +55,6 @@ JavaScript 的能力很大程度上取决于它运行的环境。例如，Node.j
 - 获取或设置 cookie，向访问者提出问题或发送消息。
 - 记住客户端的数据（“本地存储”）。
 
-
 ### 浏览器中的 JavaScript 不能做什么？
 
 为了用户的（信息）安全，在浏览器中的 JavaScript 的能力是受限的。目的是防止恶意网页获取用户私人信息或损害用户数据。
@@ -1379,38 +1378,38 @@ button.onclick = function() {
 // <button onclick="handleClick()">点击</button>
 ```
 
-### 4. Fetch
+4. Fetch
 
 用于网络请求
 
-### 5. LocalStorage & SessionStorage
+5. LocalStorage & SessionStorage
 
 本地数据存储
 
-### 6. Geolocation
+6. Geolocation
 
 获取用户地理位置
 
-### 7. Notification
+7. Notification
 
 显示桌面通知
 
-### 8. Canvas
+8. Canvas
 
 绘制图形
 
-### 9. Geolocation
+9. Geolocation
 
 地理定位
 
-### 10. Service Worker
+10. Service Worker
 
 离线支持和后台运行
 
-### 11. Web Storage
+11. Web Storage
 
 本地存储
 
-### 12. Multimedia
+12. Multimedia
 
 音频和视频控制
