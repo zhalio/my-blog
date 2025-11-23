@@ -1,0 +1,127 @@
+import { client } from '@/sanity/lib/client';
+import { remark } from 'remark';
+import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeStringify from 'rehype-stringify';
+import rehypeSlug from 'rehype-slug';
+import { visit } from 'unist-util-visit';
+import readingTime from 'reading-time';
+import { PostData, TocItem } from './posts';
+
+// Helper to extract text from a node (copied from posts.ts)
+interface Node {
+  type: string;
+  value?: string;
+  children?: Node[];
+  tagName?: string;
+  properties?: {
+    id?: string;
+  };
+}
+
+function getNodeText(node: Node): string {
+  if (node.type === 'text') {
+    return node.value || '';
+  }
+  if (node.children) {
+    return node.children.map(getNodeText).join('');
+  }
+  return '';
+}
+
+interface SanityPost {
+  title: string;
+  id: string;
+  date: string;
+  summary: string;
+  tags?: string[];
+  content?: string;
+}
+
+export async function getSanitySortedPostsData(locale: string = 'zh'): Promise<PostData[]> {
+  const query = `*[_type == "post" && language == $locale] | order(date desc) {
+    title,
+    "id": slug.current,
+    date,
+    summary,
+    tags,
+    content
+  }`;
+
+  const posts = await client.fetch<SanityPost[]>(query, { locale });
+
+  return posts.map((post) => {
+    const stats = readingTime(post.content || '');
+    return {
+      id: post.id,
+      title: post.title,
+      date: post.date,
+      summary: post.summary,
+      tags: post.tags || [],
+      readingTime: stats.text,
+      content: post.content, // Raw content
+    };
+  });
+}
+
+export async function getSanityPostData(id: string, locale: string = 'zh'): Promise<PostData | null> {
+  const query = `*[_type == "post" && slug.current == $id && language == $locale][0] {
+    title,
+    "id": slug.current,
+    date,
+    summary,
+    tags,
+    content
+  }`;
+
+  const post = await client.fetch(query, { id, locale });
+
+  if (!post) {
+    return null;
+  }
+
+  const stats = readingTime(post.content || '');
+  const toc: TocItem[] = [];
+
+  // Use remark to convert markdown into HTML string
+  const processedContent = await remark()
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeSlug)
+    .use(() => (tree) => {
+      visit(tree, 'element', (node: unknown) => {
+        const elementNode = node as Node;
+        if (elementNode.tagName && ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(elementNode.tagName)) {
+          const id = elementNode.properties?.id;
+          const text = getNodeText(elementNode);
+          const depth = parseInt(elementNode.tagName.substring(1), 10);
+          if (id && text) {
+            toc.push({ id, text, depth });
+          }
+        }
+      });
+    })
+    .use(rehypePrettyCode, {
+      theme: {
+        dark: 'one-dark-pro',
+        light: 'one-light',
+      },
+      keepBackground: false,
+    })
+    .use(rehypeStringify)
+    .process(post.content || '');
+    
+  const contentHtml = processedContent.toString();
+
+  return {
+    id: post.id,
+    title: post.title,
+    date: post.date,
+    summary: post.summary,
+    tags: post.tags || [],
+    readingTime: stats.text,
+    contentHtml,
+    toc,
+  };
+}
