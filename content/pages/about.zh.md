@@ -1,94 +1,47 @@
 ---
 title: 关于本博客
-date: '2025-11-22'
-summary: 这里是emmm的个人博客
+date: '2025-11-24'
+summary: 这里是emmm的个人博客，记录技术与生活。
 ---
 # [Emmm&#39;s Blog](https://emmmxx.xyz)
 
-基于 Next.js 15、Tailwind CSS v4 和 shadcn/ui 构建的个人博客。
+欢迎来到我的个人博客！这里是我记录技术探索、分享学习心得以及碎碎念的地方。
+本博客基于最新的 Web 技术栈构建，旨在提供极致的性能和流畅的用户体验。
 
-## 技术栈
+## 🌟 核心特性
 
-- **框架**: Next.js 15 (App Router)
-- **样式**: Tailwind CSS v4
-- **UI**: shadcn/ui, Framer Motion
-- **内容**: Markdown (支持 Frontmatter)
-- **国际化**: next-intl (支持 zh, en, fr, ja)
-- **搜索**: Orama (客户端全文搜索)
-- **统计**: Vercel Analytics & Speed Insights
-- **数据库**: Upstash Redis (用于浏览量和点赞)
-- **评论**: Giscus
+- **双模写作体验**: 
+  - 支持传统的本地 Markdown 文件管理。
+  - 集成 **Sanity CMS**，提供强大的在线写作后台，支持移动端编辑和实时云端同步。
+- **沉浸式阅读**: 
+  - 精心设计的排版和代码高亮。
+  - 支持暗色模式，保护视力。
+  - 平滑的页面过渡和交互动画。
+- **全球化**: 
+  - 内置多语言支持 (中文、英语、法语、日语)。
+- **极速体验**: 
+  - 基于 Next.js App Router 架构。
+  - 客户端全文搜索 (Orama)，毫秒级响应。
 
-## 功能特性
+## 🛠️ 技术栈
 
-- **动态内容**: 基于 Markdown 的文章，支持代码高亮 (`rehype-pretty-code`)。
-- **交互 UI**: 3D 卡片、磁力按钮、平滑滚动、暗色模式。
-- **互动**: 实时浏览量、点赞、GitHub 评论。
-- **SEO**: 自动生成 Sitemap、Robots.txt 和 Open Graph 图片。
-- **性能**: 图片优化、字体加载优化、极小的客户端 JS 体积。
+本博客完全开源，主要使用了以下技术：
 
-## 快速开始
+- **核心框架**: [Next.js 15](https://nextjs.org/) (App Router)
+- **编程语言**: TypeScript
+- **样式方案**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **UI 组件库**: [shadcn/ui](https://ui.shadcn.com/), [Framer Motion](https://www.framer.com/motion/)
+- **内容管理**: [Sanity](https://www.sanity.io/) (Headless CMS) + Markdown
+- **国际化**: [next-intl](https://next-intl-docs.vercel.app/)
+- **搜索引擎**: [Orama](https://orama.com/)
+- **数据存储**: [Upstash Redis](https://upstash.com/) (用于统计浏览量和点赞)
+- **评论系统**: [Giscus](https://giscus.app/) (基于 GitHub Discussions)
+- **部署托管**: [Vercel](https://vercel.com/)
 
-1. **安装依赖**
+## 📝 关于作者
 
-```bash
-npm install
-```
+热爱前端技术，喜欢折腾新东西。
+如果你对本博客的源码感兴趣，欢迎访问我的 [GitHub 仓库](https://github.com/zhemmmzh/my-blog)。
 
-2. **启动开发服务器**
-
-```bash
-npm run dev
-```
-
-访问 [http://localhost:3000](http://localhost:3000)。
-
-## 写作指南
-
-在 `content/posts/` 目录下创建一个新的 Markdown 文件。
-文件名格式：`slug.locale.md` (例如 `hello-world.zh.md`)。
-
-**Frontmatter 模板:**
-
-```yaml
 ---
-title: 你的文章标题
-date: 2025-11-22
-summary: 文章的简短摘要。
-tags:
-  - Tech
-  - Next.js
----
-```
-
-## 常用命令
-
-| 命令                | 说明                                                   |
-| :------------------ | :----------------------------------------------------- |
-| `npm run dev`     | 启动本地开发服务器                                     |
-| `npm run build`   | 构建生产版本                                           |
-| `npm run publish` | 一键提交代码并推送到远程仓库 (git add & commit & push) |
-| `npm run lint`    | 运行代码检查                                           |
-
-## 部署
-
-本项目部署在 Vercel 上。
-
-```bash
-npm run build
-```
-
-## 环境变量
-
-请在 `.env.local` 或 Vercel 项目设置中配置以下变量：
-
-- `UPSTASH_REDIS_REST_URL`: Redis URL
-- `UPSTASH_REDIS_REST_TOKEN`: Redis Token
-- `NEXT_PUBLIC_GISCUS_REPO`: Giscus 仓库
-- `NEXT_PUBLIC_GISCUS_REPO_ID`: Giscus 仓库 ID
-- `NEXT_PUBLIC_GISCUS_CATEGORY`: Giscus 分类
-- `NEXT_PUBLIC_GISCUS_CATEGORY_ID`: Giscus 分类 ID
-
-## License
-
-MIT
+*Last updated: 2025-11-24*
