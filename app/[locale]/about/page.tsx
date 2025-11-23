@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
-import { getPageData } from "@/lib/posts";
+import { getSanityPageData } from "@/lib/sanity-posts";
 import { PostLayout } from "@/components/blog/post-layout";
 import { notFound } from "next/navigation";
 import { FadeIn } from "@/components/visuals/fade-in";
@@ -16,9 +16,14 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   setRequestLocale(locale);
 
   let pageData;
+
   try {
-    pageData = await getPageData('about', locale);
-  } catch {
+    pageData = await getSanityPageData('about', locale);
+  } catch (e) {
+    console.error("Failed to fetch from Sanity:", e);
+  }
+
+  if (!pageData) {
     notFound();
   }
 

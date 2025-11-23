@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/routing";
-import { getSortedPostsData, getPostData } from "@/lib/posts";
+import { getSanitySortedPostsData, getSanityPostData } from "@/lib/sanity-posts";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from 'next-intl/server';
 import { PostLayout } from "@/components/blog/post-layout";
@@ -12,9 +12,9 @@ import { PostStats } from "@/components/blog/post-stats";
 const locales = ['zh', 'en', 'fr', 'ja'];
 
 // 生成静态路径 (SSG)
-export function generateStaticParams() {
+export async function generateStaticParams() {
   // We can use 'zh' or any locale to get the list of all slugs
-  const posts = getSortedPostsData('zh');
+  const posts = await getSanitySortedPostsData('zh');
   const params = [];
   for (const locale of locales) {
     for (const post of posts) {
@@ -28,7 +28,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const post = await getPostData(slug, locale);
+  const post = await getSanityPostData(slug, locale);
 
   if (!post) {
     notFound();

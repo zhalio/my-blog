@@ -1,4 +1,4 @@
-import { getSortedPostsData } from "@/lib/posts";
+import { getSanitySortedPostsData } from "@/lib/sanity-posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PostList } from "@/components/blog/post-list";
 
@@ -14,7 +14,7 @@ export default async function PostsPage({ params }: { params: Promise<{ locale: 
   const t = await getTranslations('Posts');
   const tCommon = await getTranslations('Common');
 
-  const posts = getSortedPostsData(locale);
+  const posts = await getSanitySortedPostsData(locale);
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">

@@ -125,3 +125,60 @@ export async function getSanityPostData(id: string, locale: string = 'zh'): Prom
     toc,
   };
 }
+
+export async function getSanityPageData(id: string, locale: string = 'zh'): Promise<PostData | null> {
+  const query = `*[_type == "page" && slug.current == $id && language == $locale][0] {
+    title,
+    "id": slug.current,
+    date,
+    summary,
+    content
+  }`;
+
+  const page = await client.fetch(query, { id, locale });
+
+  if (!page) {
+    return null;
+  }
+
+  const toc: TocItem[] = [];
+
+  // Use remark to convert markdown into HTML string
+  const processedContent = await remark()
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeSlug)
+    .use(() => (tree) => {
+      visit(tree, 'element', (node: unknown) => {
+        const elementNode = node as Node;
+        if (elementNode.tagName && ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(elementNode.tagName)) {
+          const id = elementNode.properties?.id;
+          const text = getNodeText(elementNode);
+          const depth = parseInt(elementNode.tagName.substring(1), 10);
+          if (id && text) {
+            toc.push({ id, text, depth });
+          }
+        }
+      });
+    })
+    .use(rehypePrettyCode, {
+      theme: {
+        dark: 'one-dark-pro',
+        light: 'one-light',
+      },
+      keepBackground: false,
+    })
+    .use(rehypeStringify)
+    .process(page.content || '');
+    
+  const contentHtml = processedContent.toString();
+
+  return {
+    id: page.id,
+    title: page.title,
+    date: page.date,
+    summary: page.summary,
+    contentHtml,
+    toc,
+  };
+}
