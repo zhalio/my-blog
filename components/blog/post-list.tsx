@@ -48,7 +48,11 @@ export function PostList({ posts, readMoreText }: PostListProps) {
           <ThreeDCard className="h-full">
             <Card className="flex flex-col h-full border-none bg-transparent shadow-none">
               <CardHeader>
-                <CardTitle className="line-clamp-2">{post.title}</CardTitle>
+                <CardTitle className="line-clamp-2">
+                  <SafeLink href={`/posts/${post.id}`} className="no-underline">
+                    {post.title}
+                  </SafeLink>
+                </CardTitle>
                 <CardDescription className="flex items-center gap-2">
                   <time dateTime={post.date}>{new Date(post.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
                   {post.readingTime && (
