@@ -113,7 +113,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
             alignItems: 'center',
           }}
         >
-          <span>{post.date}</span>
+          <span>{new Date(post.date).toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
           {post.tags && post.tags.length > 0 && (
             <>
               <span style={{ margin: '0 15px' }}>•</span>

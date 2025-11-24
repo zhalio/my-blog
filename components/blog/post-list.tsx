@@ -50,7 +50,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
               <CardHeader>
                 <CardTitle className="line-clamp-2">{post.title}</CardTitle>
                 <CardDescription className="flex items-center gap-2">
-                  <span>{post.date}</span>
+                  <time dateTime={post.date}>{new Date(post.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
                   {post.readingTime && (
                     <>
                       <span>•</span>
