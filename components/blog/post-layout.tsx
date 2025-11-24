@@ -113,14 +113,12 @@ export function PostLayout({ children, toc }: PostLayoutProps) {
       {/* Sidebar (TOC) */}
       <aside
         className={cn(
-          // On small screens open as a full-width drawer, on larger show as a 16rem sidebar
-          "fixed left-0 top-14 z-40 h-[calc(100vh-3.5rem)] border-r bg-background transition-all duration-300 ease-in-out",
-          isOpen
-            ? "w-full sm:w-64 translate-x-0 shadow-lg lg:shadow-none"
-            : "w-0 -translate-x-full sm:w-0 sm:translate-x-0 sm:border-none"
+          // Sidebar is fixed on the left; on small screens it's hidden by translate-x, on large screens it stays visible
+          "fixed left-0 top-14 z-40 h-[calc(100vh-3.5rem)] border-r bg-background transition-all duration-300 ease-in-out w-64",
+          isOpen ? "translate-x-0 shadow-lg lg:shadow-none" : "-translate-x-full lg:translate-x-0"
         )}
       >
-        <div className={cn("flex h-full flex-col", !isOpen && "invisible")}>
+        <div className={cn("flex h-full flex-col")}>
             {/* Fixed Header in Sidebar */}
             <div className="flex items-center justify-between border-b p-4">
                 <span className="text-sm font-semibold">目录</span>
@@ -176,8 +174,8 @@ export function PostLayout({ children, toc }: PostLayoutProps) {
       </aside>
 
       {/* Toggle Button (Visible when collapsed) */}
-      {!isOpen && (
-        <div className="fixed left-4 top-20 z-40">
+        {!isOpen && (
+          <div className="fixed left-4 top-20 z-40">
             <Button
             variant="outline"
             size="icon"
