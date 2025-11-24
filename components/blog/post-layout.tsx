@@ -134,9 +134,9 @@ export function PostLayout({ children, toc }: PostLayoutProps) {
 
             {/* Scrollable Content */}
             <div 
-                ref={tocRef}
-                className="flex-1 overflow-y-auto p-4 no-scrollbar"
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              ref={tocRef}
+              className="flex-1 overflow-y-auto p-4 no-scrollbar touch-auto pointer-events-auto"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' as any }}
             >
                 <div className="space-y-1">
                     {toc.map((item) => (
