@@ -6,6 +6,7 @@ import { PostLayout } from "@/components/blog/post-layout";
 import { FadeIn } from "@/components/visuals/fade-in";
 import { ArticleContent } from "@/components/blog/article-content";
 import { PostBreadcrumb } from "@/components/blog/post-breadcrumb";
+import { FallbackBanner } from '@/components/blog/fallback-banner';
 import { ShareButtons } from "@/components/blog/share-buttons";
 import { PostStats } from "@/components/blog/post-stats";
 
@@ -51,9 +52,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
         
         <article className="prose dark:prose-invert max-w-none">
           {showFallbackNote && (
-            <div className="mb-4 rounded-md px-3 py-2 text-sm bg-yellow-50 text-amber-800 dark:bg-yellow-900/30 dark:text-amber-300">
-              {fallbackMessage}
-            </div>
+            <FallbackBanner postId={post.id} message={fallbackMessage} />
           )}
           <div className="space-y-4 border-b pb-8">
             <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">{post.title}</h1>
