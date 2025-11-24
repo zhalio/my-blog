@@ -21,7 +21,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   const t = await getTranslations('Home');
   const tCommon = await getTranslations('Common');
-  const posts = await getSanitySortedPostsData(locale);
+  // Content is authored in Chinese. Always fetch Chinese posts regardless of UI locale.
+  const posts = await getSanitySortedPostsData('zh');
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)] overflow-hidden">

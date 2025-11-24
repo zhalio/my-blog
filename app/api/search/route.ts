@@ -7,9 +7,9 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   // 获取所有语言的文章数据
-  const locales = ['zh', 'en', 'fr', 'ja'];
-  const postsByLocale = await Promise.all(locales.map((l) => getSanitySortedPostsData(l)));
-  const allPosts = postsByLocale.flatMap((posts, idx) => posts.map(p => ({ ...p, locale: locales[idx] })));
+  // We only have Chinese articles — return Chinese posts regardless of requested UI locale.
+  const posts = await getSanitySortedPostsData('zh');
+  const allPosts = posts.map(p => ({ ...p, locale: 'zh' }));
 
   return NextResponse.json(allPosts);
 }

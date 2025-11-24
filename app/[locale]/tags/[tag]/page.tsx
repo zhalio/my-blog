@@ -24,7 +24,8 @@ export default async function TagPage({ params }: { params: Promise<{ locale: st
   const tCommon = await getTranslations('Common');
 
   const decodedTag = decodeURIComponent(tag);
-  const allPosts = await getSanitySortedPostsData(locale);
+  // Fetch Chinese posts only — UI locale controls UI strings, not article language
+  const allPosts = await getSanitySortedPostsData('zh');
   const posts = allPosts.filter((post) => post.tags && post.tags.includes(decodedTag));
 
   return (

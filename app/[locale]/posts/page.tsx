@@ -14,7 +14,8 @@ export default async function PostsPage({ params }: { params: Promise<{ locale: 
   const t = await getTranslations('Posts');
   const tCommon = await getTranslations('Common');
 
-  const posts = await getSanitySortedPostsData(locale);
+  // Content is authored in Chinese. Always fetch Chinese posts regardless of UI locale.
+  const posts = await getSanitySortedPostsData('zh');
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
