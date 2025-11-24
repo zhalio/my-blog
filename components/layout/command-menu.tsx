@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { useRouter } from '@/i18n/routing';
 import { Search } from 'lucide-react';
-import { PostData } from '@/lib/posts';
+import { PostData } from '@/lib/types';
 import { create, insertMultiple, search, Orama } from '@orama/orama';
 import { createTokenizer } from '@orama/tokenizers/mandarin';
 import { useLocale, useTranslations } from 'next-intl';

@@ -1,4 +1,4 @@
-import { getAllTags } from "@/lib/posts";
+import { getSanityAllTags } from "@/lib/sanity-posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 
@@ -13,7 +13,7 @@ export default async function TagsPage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const t = await getTranslations('Tags');
 
-  const tags = getAllTags(locale);
+  const tags = await getSanityAllTags(locale);
   const sortedTags = Object.keys(tags).sort((a, b) => tags[b] - tags[a]);
 
   return (

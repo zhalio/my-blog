@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { PostData } from "@/lib/posts";
+import { PostData } from "@/lib/types";
 import { ThreeDCard } from "@/components/visuals/3d-card";
 
 const container = {
