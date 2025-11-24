@@ -56,9 +56,9 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
           )}
           <div className="space-y-4 border-b pb-8">
             <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">{post.title}</h1>
-            <div className="flex items-start justify-between">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-4 text-muted-foreground text-sm">
-                <time dateTime={post.date} className="whitespace-nowrap text-sm">{new Date(post.date).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+            <div className="flex flex-wrap items-start justify-between">
+              <div className="flex-1 min-w-0 flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-4 text-muted-foreground text-sm">
+                <time dateTime={post.date} className="whitespace-nowrap text-sm truncate block min-w-0">{new Date(post.date).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
                 {post.readingTime && (
                   <div className="flex items-center gap-2 text-sm">
                     <span className="hidden sm:inline">•</span>
@@ -66,7 +66,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
                   </div>
                 )}
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 flex-shrink-0">
                 <PostStats slug={slug} />
                 <ShareButtons 
                   url={`https://emmmxx.xyz/${locale}/posts/${slug}`} 
