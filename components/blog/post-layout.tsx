@@ -105,7 +105,7 @@ export function PostLayout({ children, toc }: PostLayoutProps) {
       {/* Mobile Backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 z-20 bg-black/50 lg:hidden"
+          className="fixed inset-0 z-30 bg-black/50 lg:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
@@ -113,8 +113,11 @@ export function PostLayout({ children, toc }: PostLayoutProps) {
       {/* Sidebar (TOC) */}
       <aside
         className={cn(
-          "fixed left-0 top-14 z-30 h-[calc(100vh-3.5rem)] border-r bg-background transition-all duration-300 ease-in-out",
-          isOpen ? "w-64 translate-x-0 shadow-lg lg:shadow-none" : "w-0 -translate-x-full lg:w-0 lg:translate-x-0 lg:border-none"
+          // On small screens open as a full-width drawer, on larger show as a 16rem sidebar
+          "fixed left-0 top-14 z-40 h-[calc(100vh-3.5rem)] border-r bg-background transition-all duration-300 ease-in-out",
+          isOpen
+            ? "w-full sm:w-64 translate-x-0 shadow-lg lg:shadow-none"
+            : "w-0 -translate-x-full sm:w-0 sm:translate-x-0 sm:border-none"
         )}
       >
         <div className={cn("flex h-full flex-col", !isOpen && "invisible")}>
