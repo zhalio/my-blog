@@ -1,13 +1,13 @@
 import { MetadataRoute } from 'next'
-import { getSortedPostsData } from '@/lib/posts'
+import { getSanitySortedPostsData } from '@/lib/sanity-posts'
 
 export const dynamic = 'force-static'
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://emmmxx.xyz'
 const locales = ['zh', 'en', 'fr', 'ja']
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getSortedPostsData('zh') // Get all posts (slugs are same across locales)
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = await getSanitySortedPostsData('zh') // Get all posts (slugs are same across locales)
   
   const routes = [
     '',

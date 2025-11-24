@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/routing";
-import { getSortedPostsData } from "@/lib/posts";
+import { getSanitySortedPostsData } from "@/lib/sanity-posts";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from 'next-intl/server';
 import { PostList } from "@/components/blog/post-list";
@@ -21,7 +21,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   const t = await getTranslations('Home');
   const tCommon = await getTranslations('Common');
-  const posts = getSortedPostsData(locale);
+  const posts = await getSanitySortedPostsData(locale);
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)] overflow-hidden">

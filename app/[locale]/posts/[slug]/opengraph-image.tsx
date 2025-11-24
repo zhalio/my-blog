@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { getPostData, getSortedPostsData } from '@/lib/posts'
+import { getSanityPostData, getSanitySortedPostsData } from '@/lib/sanity-posts'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-static'
@@ -12,8 +12,8 @@ export const contentType = 'image/png'
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
-export function generateStaticParams() {
-  const posts = getSortedPostsData('zh');
+export async function generateStaticParams() {
+  const posts = await getSanitySortedPostsData('zh');
   const params = [];
   for (const locale of locales) {
     for (const post of posts) {
@@ -25,7 +25,28 @@ export function generateStaticParams() {
 
 export default async function Image({ params }: { params: Promise<{ slug: string; locale: string }> }) {
   const { slug, locale } = await params
-  const post = await getPostData(slug, locale)
+  const post = await getSanityPostData(slug, locale)
+
+  if (!post) {
+    return new ImageResponse(
+      (
+        <div style={{
+          fontSize: 48,
+          background: '#09090b',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'white',
+          fontFamily: 'sans-serif',
+        }}>
+          <div style={{ fontSize: 48, fontWeight: 'bold' }}>Post Not Found</div>
+        </div>
+      ),
+      { ...size }
+    );
+  }
 
   return new ImageResponse(
     (

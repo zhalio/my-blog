@@ -2,15 +2,22 @@
 import fs from 'fs';
 import path from 'path';
 import { Feed } from 'feed';
-import matter from 'gray-matter';
-import { fileURLToPath } from 'url';
+import { createClient } from '@sanity/client';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://emmmxx.xyz';
+const publicDirectory = path.join(process.cwd(), 'public');
 
-const postsDirectory = path.join(__dirname, '../content/posts');
-const publicDirectory = path.join(__dirname, '../public');
-const siteUrl = 'https://emmmxx.xyz'; // Replace with your actual site URL
+if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || !process.env.NEXT_PUBLIC_SANITY_DATASET) {
+  console.error('Missing Sanity environment variables. Please set NEXT_PUBLIC_SANITY_PROJECT_ID and NEXT_PUBLIC_SANITY_DATASET.');
+  process.exit(1);
+}
+
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-11-23',
+  useCdn: false,
+});
 
 async function generateRssFeed() {
   const feed = new Feed({
@@ -18,7 +25,7 @@ async function generateRssFeed() {
     description: "A personal blog about technology and life.",
     id: siteUrl,
     link: siteUrl,
-    language: "zh", // Default language
+    language: "zh",
     image: `${siteUrl}/icon.png`,
     favicon: `${siteUrl}/favicon.ico`,
     copyright: `All rights reserved ${new Date().getFullYear()}, Emmm`,
@@ -36,38 +43,9 @@ async function generateRssFeed() {
     },
   });
 
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames
-    .filter((fileName) => fileName.endsWith('.md'))
-    .map((fileName) => {
-      const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const matterResult = matter(fileContents);
-      
-      // Extract locale from filename (e.g., my-post.zh.md)
-      const parts = fileName.split('.');
-      const locale = parts.length > 2 ? parts[parts.length - 2] : 'en';
-      const id = parts.slice(0, parts.length - 2).join('.');
-
-      return {
-        id,
-        locale,
-        ...matterResult.data,
-        content: matterResult.content,
-      };
-    });
-
-  // Filter for default locale (e.g., 'zh') or generate multiple feeds?
-  // For now, let's generate a feed for 'zh' posts as the main feed.
-  const posts = allPostsData
-    .filter((post) => post.locale === 'zh')
-    .sort((a, b) => {
-      if (a.date < b.date) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
+  // Fetch posts from Sanity for zh locale
+  const query = `*[_type == "post" && language == $lang] | order(date desc){title, "id": slug.current, date, summary, content, tags}`;
+  const posts = await client.fetch(query, { lang: 'zh' });
 
   posts.forEach((post) => {
     const url = `${siteUrl}/zh/posts/${post.id}`;
@@ -76,7 +54,7 @@ async function generateRssFeed() {
       id: url,
       link: url,
       description: post.summary,
-      content: post.content, // Optional: include full content
+      content: post.content,
       author: [
         {
           name: "Emmm",
@@ -85,9 +63,12 @@ async function generateRssFeed() {
         },
       ],
       date: new Date(post.date),
-      image: post.image ? `${siteUrl}${post.image}` : undefined,
     });
   });
+
+  if (!fs.existsSync(publicDirectory)) {
+    fs.mkdirSync(publicDirectory, { recursive: true });
+  }
 
   fs.writeFileSync(path.join(publicDirectory, 'rss.xml'), feed.rss2());
   fs.writeFileSync(path.join(publicDirectory, 'atom.xml'), feed.atom1());
@@ -96,4 +77,7 @@ async function generateRssFeed() {
   console.log('RSS feeds generated successfully!');
 }
 
-generateRssFeed();
+generateRssFeed().catch((err) => {
+  console.error('Failed to generate RSS:', err);
+  process.exit(1);
+});
