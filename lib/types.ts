@@ -14,4 +14,5 @@ export type PostData = {
   toc?: TocItem[];
   readingTime?: string;
   tags?: string[];
+  language?: string; // the language of the content as stored in Sanity (e.g. 'zh')
 };

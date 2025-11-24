@@ -37,6 +37,7 @@ interface SanityPost {
   summary: string;
   tags?: string[];
   content?: string;
+  language?: string;
 }
 
 export async function getSanitySortedPostsData(locale: string = 'zh'): Promise<PostData[]> {
@@ -46,7 +47,8 @@ export async function getSanitySortedPostsData(locale: string = 'zh'): Promise<P
     date,
     summary,
     tags,
-    content
+    content,
+    language
   }`;
 
   const posts = await client.fetch<SanityPost[]>(query, { locale });
@@ -61,6 +63,7 @@ export async function getSanitySortedPostsData(locale: string = 'zh'): Promise<P
       tags: post.tags || [],
       readingTime: stats.text,
       content: post.content, // Raw content
+      language: post.language || locale,
     };
   });
 }
@@ -73,14 +76,18 @@ export async function getSanityPostData(id: string, locale: string = 'zh'): Prom
     date,
     summary,
     tags,
-    content
+    content,
+    language
   }`;
 
+  // Try requested locale first
   let post = await client.fetch(baseQuery, { id, locale });
+  let usedLocale = locale;
 
   if (!post && locale !== 'zh') {
     // Fallback to Chinese content if the requested locale has no post
     post = await client.fetch(baseQuery, { id, locale: 'zh' });
+    usedLocale = 'zh';
   }
 
   if (!post) {
@@ -129,6 +136,7 @@ export async function getSanityPostData(id: string, locale: string = 'zh'): Prom
     readingTime: stats.text,
     contentHtml,
     toc,
+    language: post.language || usedLocale,
   };
 }
 
@@ -138,10 +146,16 @@ export async function getSanityPageData(id: string, locale: string = 'zh'): Prom
     "id": slug.current,
     date,
     summary,
-    content
+    content,
+    language
   }`;
 
-  const page = await client.fetch(query, { id, locale });
+  let page = await client.fetch(query, { id, locale });
+  let usedLocale = locale;
+  if (!page && locale !== 'zh') {
+    page = await client.fetch(query, { id, locale: 'zh' });
+    usedLocale = 'zh';
+  }
 
   if (!page) {
     return null;
@@ -186,6 +200,7 @@ export async function getSanityPageData(id: string, locale: string = 'zh'): Prom
     summary: page.summary,
     contentHtml,
     toc,
+    language: page.language || usedLocale,
   };
 }
 
