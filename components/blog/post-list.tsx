@@ -49,9 +49,9 @@ export function PostList({ posts, readMoreText }: PostListProps) {
             <Card className="flex flex-col h-full border-none bg-transparent shadow-none">
               <CardHeader>
                 <CardTitle className="line-clamp-2">
-                  <SafeLink href={`/posts/${post.id}`} className="no-underline">
+                  <Link href={`/posts/${post.id}`} className="no-underline hover:underline">
                     {post.title}
-                  </SafeLink>
+                  </Link>
                 </CardTitle>
                 <CardDescription className="flex items-center gap-2">
                   <time dateTime={post.date}>{new Date(post.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
