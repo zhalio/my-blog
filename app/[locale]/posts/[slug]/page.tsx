@@ -34,12 +34,27 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
     notFound();
   }
 
+  // If the returned post language is different from the UI locale (e.g. fallback to 'zh'),
+  // show a small hint to the user.
+  const showFallbackNote = post.language && post.language !== locale;
+  const fallbackMessage = {
+    zh: '仅有中文版本',
+    en: 'This article is only available in Chinese',
+    fr: 'Cet article est uniquement disponible en chinois',
+    ja: 'この記事は中国語のみ対応しています',
+  }[locale] || 'This article is only available in Chinese';
+
   return (
     <PostLayout toc={post.toc || []}>
       <FadeIn>
         <PostBreadcrumb title={post.title} />
         
         <article className="prose dark:prose-invert max-w-none">
+          {showFallbackNote && (
+            <div className="mb-4 rounded-md px-3 py-2 text-sm bg-yellow-50 text-amber-800 dark:bg-yellow-900/30 dark:text-amber-300">
+              {fallbackMessage}
+            </div>
+          )}
           <div className="space-y-4 border-b pb-8">
             <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">{post.title}</h1>
             <div className="flex items-start justify-between">
