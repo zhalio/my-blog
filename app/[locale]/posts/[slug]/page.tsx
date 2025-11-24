@@ -42,14 +42,14 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
         <article className="prose dark:prose-invert max-w-none">
           <div className="space-y-4 border-b pb-8">
             <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">{post.title}</h1>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4 text-muted-foreground">
-                <time dateTime={post.date}>{new Date(post.date).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+            <div className="flex items-start justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-4 text-muted-foreground text-sm">
+                <time dateTime={post.date} className="whitespace-nowrap text-sm">{new Date(post.date).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
                 {post.readingTime && (
-                  <>
-                    <span>•</span>
-                    <span>{post.readingTime}</span>
-                  </>
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="hidden sm:inline">•</span>
+                    <span className="sm:inline">{post.readingTime}</span>
+                  </div>
                 )}
               </div>
               <div className="flex items-center gap-4">
