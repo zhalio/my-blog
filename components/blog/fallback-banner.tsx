@@ -17,7 +17,7 @@ export function FallbackBanner({ postId, message }: FallbackBannerProps) {
       if (v === 'true') {
         setHidden(true);
       }
-    } catch (e) {
+    } catch {
       // ignore
     }
   }, [storageKey]);
@@ -25,7 +25,7 @@ export function FallbackBanner({ postId, message }: FallbackBannerProps) {
   const onClose = () => {
     try {
       localStorage.setItem(storageKey, 'true');
-    } catch (e) {
+    } catch {
       // ignore
     }
     setHidden(true);
