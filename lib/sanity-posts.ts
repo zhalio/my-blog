@@ -66,7 +66,8 @@ export async function getSanitySortedPostsData(locale: string = 'zh'): Promise<P
 }
 
 export async function getSanityPostData(id: string, locale: string = 'zh'): Promise<PostData | null> {
-  const query = `*[_type == "post" && slug.current == $id && language == $locale][0] {
+  // Try to fetch the post with the requested locale first. If not found, fall back to Chinese ('zh').
+  const baseQuery = `*[_type == "post" && slug.current == $id && language == $locale][0] {
     title,
     "id": slug.current,
     date,
@@ -75,7 +76,12 @@ export async function getSanityPostData(id: string, locale: string = 'zh'): Prom
     content
   }`;
 
-  const post = await client.fetch(query, { id, locale });
+  let post = await client.fetch(baseQuery, { id, locale });
+
+  if (!post && locale !== 'zh') {
+    // Fallback to Chinese content if the requested locale has no post
+    post = await client.fetch(baseQuery, { id, locale: 'zh' });
+  }
 
   if (!post) {
     return null;
