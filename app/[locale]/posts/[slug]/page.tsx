@@ -44,7 +44,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
             <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">{post.title}</h1>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4 text-muted-foreground">
-                <time>{post.date}</time>
+                <time dateTime={post.date}>{new Date(post.date).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
                 {post.readingTime && (
                   <>
                     <span>•</span>
