@@ -8,8 +8,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://emmmxx.xyz';
 const publicDirectory = path.join(process.cwd(), 'public');
 
 if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || !process.env.NEXT_PUBLIC_SANITY_DATASET) {
-  console.error('Missing Sanity environment variables. Please set NEXT_PUBLIC_SANITY_PROJECT_ID and NEXT_PUBLIC_SANITY_DATASET.');
-  process.exit(1);
+  console.warn('Missing Sanity environment variables. Skipping RSS generation.');
+  // Do not fail the build when Sanity env is not provided (e.g., preview deployments).
+  process.exit(0);
 }
 
 const client = createClient({

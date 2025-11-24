@@ -28,6 +28,11 @@
     "title": "Tous les articles",
     "description": "Quelques partages de technologie ou essais de vie"
   },
+  "Tags": {
+    "title": "Étiquettes",
+    "description": "Parcourir les articles par tags",
+    "count": "{count} articles"
+  },
   "Guestbook": {
     "title": "babillard électronique",
     "description": "Bienvenue à laisser vos empreintes. Connectez-vous avec votre compte GitHub pour commenter. Le chargement peut prendre quelques secondes..."
