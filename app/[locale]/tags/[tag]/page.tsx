@@ -1,18 +1,18 @@
-import { getSortedPostsData, getAllTags } from "@/lib/posts";
+import { getSanitySortedPostsData, getSanityAllTags } from "@/lib/sanity-posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PostList } from "@/components/blog/post-list";
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   const params: { locale: string; tag: string }[] = [];
   
-  locales.forEach((locale) => {
-    const tags = getAllTags(locale);
+  for (const locale of locales) {
+    const tags = await getSanityAllTags(locale);
     Object.keys(tags).forEach((tag) => {
       params.push({ locale, tag });
     });
-  });
+  }
 
   return params;
 }
@@ -24,7 +24,7 @@ export default async function TagPage({ params }: { params: Promise<{ locale: st
   const tCommon = await getTranslations('Common');
 
   const decodedTag = decodeURIComponent(tag);
-  const allPosts = getSortedPostsData(locale);
+  const allPosts = await getSanitySortedPostsData(locale);
   const posts = allPosts.filter((post) => post.tags && post.tags.includes(decodedTag));
 
   return (

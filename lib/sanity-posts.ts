@@ -7,7 +7,7 @@ import rehypeStringify from 'rehype-stringify';
 import rehypeSlug from 'rehype-slug';
 import { visit } from 'unist-util-visit';
 import readingTime from 'reading-time';
-import { PostData, TocItem } from './posts';
+import { PostData, TocItem } from './types';
 
 // Helper to extract text from a node (copied from posts.ts)
 interface Node {
@@ -181,4 +181,23 @@ export async function getSanityPageData(id: string, locale: string = 'zh'): Prom
     contentHtml,
     toc,
   };
+}
+
+export async function getSanityAllTags(locale: string = 'zh'): Promise<Record<string, number>> {
+  const posts = await getSanitySortedPostsData(locale);
+  const tagsCount: Record<string, number> = {};
+
+  posts.forEach((post) => {
+    if (post.tags) {
+      post.tags.forEach((tag) => {
+        if (tagsCount[tag]) {
+          tagsCount[tag]++;
+        } else {
+          tagsCount[tag] = 1;
+        }
+      });
+    }
+  });
+
+  return tagsCount;
 }

@@ -3,5 +3,6 @@
   "pasteImage.basePath": "${projectRoot}/public",
   "pasteImage.prefix": "/",
   "pasteImage.forceUnixStyleSeparator": true,
-  "pasteImage.namePrefix": "${currentFileNameWithoutExt}-"
+  "pasteImage.namePrefix": "${currentFileNameWithoutExt}-",
+  "CodeGPT.apiKey": "Anthropic"
 }
