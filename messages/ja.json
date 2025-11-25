@@ -3,7 +3,8 @@
     "home": "フロントページ",
     "about": "について",
     "posts": "記事",
-    "guestbook": "メッセージ"
+    "guestbook": "メッセージ",
+    "mobileNavDescription": "メインナビゲーションメニュー"
   },
   "Common": {
     "language": "言語",

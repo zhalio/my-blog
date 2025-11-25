@@ -3,7 +3,8 @@
     "home": "首页",
     "about": "关于",
     "posts": "文章",
-    "guestbook": "留言"
+    "guestbook": "留言",
+    "mobileNavDescription": "主导航菜单"
   },
   "Common": {
     "language": "语言",

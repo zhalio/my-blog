@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { Menu, Terminal, Home, BookOpen, MessageSquare, User } from "lucide-react"
 import { Link } from "@/i18n/routing"
@@ -30,6 +30,9 @@ export function MobileNav() {
             <Terminal className="h-5 w-5" />
           </Link>
         </SheetTitle>
+        <SheetDescription className="sr-only">
+          {t('mobileNavDescription')}
+        </SheetDescription>
         <Separator className="my-4" />
         <div className="flex flex-col gap-2 px-2">
             <Link

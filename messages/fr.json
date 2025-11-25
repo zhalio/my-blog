@@ -3,7 +3,8 @@
     "home": "première page",
     "about": "à propos",
     "posts": "article",
-    "guestbook": "message"
+    "guestbook": "message",
+    "mobileNavDescription": "Menu de navigation principal"
   },
   "Common": {
     "language": "langue",
