@@ -13,6 +13,11 @@ export function VantaBackground() {
   const { theme } = useTheme()
   const { effect } = useVanta()
   const pathname = usePathname()
+  const [hasMounted, setHasMounted] = useState(false)
+
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
 
   const isArticlePage = pathname && /\/posts\/.+/.test(pathname)
   const isAboutPage = pathname && /\/about$/.test(pathname)
@@ -156,9 +161,9 @@ export function VantaBackground() {
       if (newEffect) newEffect.destroy()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [effect, theme, shouldDisableEffect])
+  }, [effect, theme, shouldDisableEffect, hasMounted])
 
-  if (effect === 'none' || shouldDisableEffect) return null
+  if (!hasMounted || effect === 'none' || shouldDisableEffect) return null
 
   return (
     <div 
