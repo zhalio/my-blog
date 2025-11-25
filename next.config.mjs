@@ -8,6 +8,15 @@ const nextConfig = {
   // images: {
   //   unoptimized: true, // Commented out to enable Image Optimization
   // },
+  async redirects() {
+    return [
+      {
+        source: '/favicon.ico',
+        destination: '/icon',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default withNextIntl(nextConfig);
