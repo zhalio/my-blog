@@ -25,7 +25,7 @@ export function SiteHeader() {
             <Link href="/about" className="transition-colors hover:text-primary">{t('about')}</Link>
           </nav>
         </div>
-        <div className="flex flex-1 items-center justify-end space-x-2">
+        <div className="flex flex-1 items-center justify-end space-x-2 pr-3 md:pr-0">
            <div className="w-full flex-1 md:w-auto md:flex-none">
              <CommandMenu />
            </div>
