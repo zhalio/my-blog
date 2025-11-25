@@ -31,7 +31,7 @@ export function MobileNav() {
           </Link>
         </SheetTitle>
         <SheetDescription className="sr-only">
-          {t('mobileNavDescription')}
+          Navigation menu
         </SheetDescription>
         <Separator className="my-4" />
         <div className="flex flex-col gap-2 px-2">

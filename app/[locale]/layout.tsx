@@ -34,7 +34,11 @@ export async function generateMetadata({
   return {
     metadataBase: new URL('https://emmmxx.xyz'),
     title: t('title'),
-    description: t('description')
+    description: t('description'),
+    icons: {
+      icon: '/icon',
+      shortcut: '/icon',
+    },
   };
 }
 
