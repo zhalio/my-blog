@@ -18,7 +18,7 @@ https://emmmxx.xyz
 
 ## 功能特性
 
-- **双模写作**: 支持本地 Markdown 文件写作，也支持通过 Sanity Studio 在线写作（支持移动端）。
+- **写作**: 通过 Sanity Studio 在线写作（支持移动端）。
 - **实时预览**: 在 Sanity Studio 中编辑时可实时预览文章效果。
 - **动态内容**: 基于 Markdown 的文章，支持代码高亮 (`rehype-pretty-code`)。
 - **交互 UI**: 3D 卡片、磁力按钮、平滑滚动、暗色模式。
@@ -79,9 +79,11 @@ npm run dev
 ## 写作指南
 
 ### 方式一：在线写作 (推荐)
+
 访问 `/studio` 路由，登录后即可创建和编辑文章。文章会自动同步到云端数据库。
 
 ### 方式二：本地写作
+
 在 `content/posts/` 目录下创建一个新的 Markdown 文件。
 文件名格式：`slug.locale.md` (例如 `hello-world.zh.md`)。
 
@@ -120,10 +122,12 @@ npm run build
 请在 `.env.local` 或 Vercel 项目设置中配置以下变量：
 
 ### Sanity CMS (必填)
+
 - `NEXT_PUBLIC_SANITY_PROJECT_ID`: Sanity 项目 ID
 - `NEXT_PUBLIC_SANITY_DATASET`: Sanity 数据集 (通常为 production)
 
 ### 功能支持 (选填)
+
 - `UPSTASH_REDIS_REST_URL`: Redis URL (浏览量统计)
 - `UPSTASH_REDIS_REST_TOKEN`: Redis Token
 - `NEXT_PUBLIC_GISCUS_REPO`: Giscus 仓库 (评论系统)
