@@ -50,12 +50,27 @@ async function generateRssFeed() {
 
   posts.forEach((post) => {
     const url = `${siteUrl}/zh/posts/${post.id}`;
+    const title = typeof post.title === 'string' ? post.title : String(post.title || '');
+    const summary = typeof post.summary === 'string' ? post.summary : String(post.summary || '');
+    let content = '';
+
+    if (typeof post.content === 'string') {
+      content = post.content;
+    } else if (post.content !== undefined && post.content !== null) {
+      // Fallback: avoid breaking RSS when content is not a simple string
+      try {
+        content = JSON.stringify(post.content);
+      } catch {
+        content = '';
+      }
+    }
+
     feed.addItem({
-      title: post.title,
+      title,
       id: url,
       link: url,
-      description: post.summary,
-      content: post.content,
+      description: summary,
+      content,
       author: [
         {
           name: "Emmm",
