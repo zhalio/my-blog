@@ -138,6 +138,13 @@ export function PostLayout({ children, toc }: PostLayoutProps) {
               ref={tocRef}
               className="flex-1 overflow-y-auto p-4 no-scrollbar touch-auto pointer-events-auto"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
+              onWheel={(event) => {
+                // Ensure scrolling affects the TOC container instead of bubbling to the page
+                if (!tocRef.current) return;
+                event.preventDefault();
+                event.stopPropagation();
+                tocRef.current.scrollTop += event.deltaY;
+              }}
             >
                 <div className="space-y-1">
                     {toc.map((item) => (
