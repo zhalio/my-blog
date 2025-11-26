@@ -113,9 +113,9 @@ export function PostLayout({ children, toc }: PostLayoutProps) {
       {/* Sidebar (TOC) */}
       <aside
         className={cn(
-          // Sidebar is fixed on the left; on small screens it's hidden by translate-x, on large screens it stays visible
+          // Sidebar is fixed on the left; hidden by translate-x when closed on all breakpoints
           "fixed left-0 top-14 z-40 h-[calc(100vh-3.5rem)] border-r bg-background transition-all duration-300 ease-in-out w-64",
-          isOpen ? "translate-x-0 shadow-lg lg:shadow-none" : "-translate-x-full lg:translate-x-0"
+          isOpen ? "translate-x-0 shadow-lg lg:shadow-none" : "-translate-x-full"
         )}
       >
         <div className={cn("flex h-full flex-col")}>
