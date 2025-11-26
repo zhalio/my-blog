@@ -24,14 +24,29 @@ interface VantaContextType {
 const VantaContext = createContext<VantaContextType | undefined>(undefined);
 
 export function VantaProvider({ children }: { children: React.ReactNode }) {
-  const [effect, setEffect] = useState<VantaEffectType>('birds');
 
-  // Load saved effect from local storage
+  // Default to desktop preference during SSR / first render
+  const [effect, setEffect] = useState<VantaEffectType>('rings');
+
+  // Load saved effect from local storage or decide default by device type
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const saved = localStorage.getItem('vanta-effect');
     if (saved) {
       setEffect(saved as VantaEffectType);
+      return;
     }
+
+    // Simple mobile detection: userAgent + viewport width
+    const ua = navigator.userAgent || '';
+    const isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+    const isSmallScreen = window.innerWidth < 768;
+    const isMobile = isMobileUA || isSmallScreen;
+
+    const defaultEffect: VantaEffectType = isMobile ? 'globe' : 'rings';
+    setEffect(defaultEffect);
+    localStorage.setItem('vanta-effect', defaultEffect);
   }, []);
 
   const saveEffect = (newEffect: VantaEffectType) => {
