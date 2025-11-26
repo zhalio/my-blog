@@ -170,8 +170,8 @@ export function VantaBackground() {
             if (!isMounted) return
             newEffect = effectModule({
               ...options,
-              backgroundColor: isDark ? 0x0 : 0xffffff,
-              baseColor: isDark ? 0x444444 : 0x222222,
+              backgroundColor: isDark ? 0x0 : 0x1a1a1a, // Needs dark background to be visible
+              baseColor: isDark ? 0x444444 : 0xffffff,  // Brighter halo for light mode
               size: 1.5,
             })
             break
