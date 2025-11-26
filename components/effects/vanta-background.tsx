@@ -26,6 +26,11 @@ export function VantaBackground() {
   useEffect(() => {
     if (!vantaRef.current) return
 
+    // Ensure THREE is available globally for Vanta
+    if (typeof window !== 'undefined' && !(window as any).THREE) {
+      (window as any).THREE = THREE
+    }
+
     // Destroy previous effect
     if (vantaEffect) {
       vantaEffect.destroy()
