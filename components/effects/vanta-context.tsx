@@ -2,7 +2,18 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-type VantaEffectType = 'none' | 'birds' | 'fog' | 'waves' | 'clouds' | 'net';
+type VantaEffectType = 'none' | 'birds' | 'waves' | 'globe' | 'topology' | 'rings' | 'dots' | 'halo';
+
+export const VANTA_EFFECTS: VantaEffectType[] = [
+  'none',
+  'birds', 
+  'waves', 
+  'globe', 
+  'topology', 
+  'rings', 
+  'dots', 
+  'halo'
+];
 
 interface VantaContextType {
   effect: VantaEffectType;
@@ -29,10 +40,9 @@ export function VantaProvider({ children }: { children: React.ReactNode }) {
   };
 
   const nextEffect = () => {
-    const effects: VantaEffectType[] = ['none', 'birds', 'fog', 'waves', 'clouds', 'net'];
-    const currentIndex = effects.indexOf(effect);
-    const nextIndex = (currentIndex + 1) % effects.length;
-    saveEffect(effects[nextIndex]);
+    const currentIndex = VANTA_EFFECTS.indexOf(effect);
+    const nextIndex = (currentIndex + 1) % VANTA_EFFECTS.length;
+    saveEffect(VANTA_EFFECTS[nextIndex]);
   };
 
   return (

@@ -85,21 +85,6 @@ export function VantaBackground() {
               backgroundAlpha: isDark ? 1 : 0
             })
             break
-          case 'fog':
-            // @ts-expect-error - vanta types are missing
-            effectModule = (await import('vanta/dist/vanta.fog.min')).default
-            if (!isMounted) return
-            newEffect = effectModule({
-              ...options,
-              highlightColor: isDark ? 0x666666 : 0x888888, // Brighter highlight in dark mode
-              midtoneColor: isDark ? 0x0 : 0xeeeeee,
-              lowlightColor: isDark ? 0x0 : 0xffffff,
-              baseColor: isDark ? 0x0 : 0xffffff,
-              blurFactor: 0.6,
-              speed: 1.2,
-              zoom: 1.0
-            })
-            break
           case 'waves':
             // @ts-expect-error - vanta types are missing
             effectModule = (await import('vanta/dist/vanta.waves.min')).default
@@ -113,34 +98,58 @@ export function VantaBackground() {
               zoom: 0.8
             })
             break
-          case 'clouds':
+          case 'globe':
             // @ts-expect-error - vanta types are missing
-            effectModule = (await import('vanta/dist/vanta.clouds.min')).default
+            effectModule = (await import('vanta/dist/vanta.globe.min')).default
             if (!isMounted) return
             newEffect = effectModule({
               ...options,
+              color: isDark ? 0x888888 : 0x555555,
+              color2: isDark ? 0xcccccc : 0xaaaaaa,
+              size: 1.00,
               backgroundColor: isDark ? 0x0 : 0xffffff,
-              skyColor: isDark ? 0x0 : 0xaaaaaa,
-              cloudColor: isDark ? 0x444444 : 0x888888, // Brighter clouds in dark mode
-              cloudShadowColor: isDark ? 0x0 : 0x555555,
-              sunColor: isDark ? 0x555555 : 0xffffff, // Brighter sun in dark mode
-              sunGlareColor: isDark ? 0x333333 : 0xffffff,
-              sunlightColor: isDark ? 0x333333 : 0xffffff,
-              speed: 0.8
             })
             break
-          case 'net':
+          case 'topology':
             // @ts-expect-error - vanta types are missing
-            effectModule = (await import('vanta/dist/vanta.net.min')).default
+            effectModule = (await import('vanta/dist/vanta.topology.min')).default
             if (!isMounted) return
             newEffect = effectModule({
               ...options,
-              color: isDark ? 0x888888 : 0xcccccc, // Brighter in dark mode, lighter in light mode
+              color: isDark ? 0x888888 : 0x555555,
               backgroundColor: isDark ? 0x0 : 0xffffff,
-              points: 12.00,
-              maxDistance: 22.00,
-              spacing: 16.00,
-              showDots: true
+            })
+            break
+          case 'rings':
+            // @ts-expect-error - vanta types are missing
+            effectModule = (await import('vanta/dist/vanta.rings.min')).default
+            if (!isMounted) return
+            newEffect = effectModule({
+              ...options,
+              color: isDark ? 0x888888 : 0x555555,
+              backgroundColor: isDark ? 0x0 : 0xffffff,
+            })
+            break
+          case 'dots':
+            // @ts-expect-error - vanta types are missing
+            effectModule = (await import('vanta/dist/vanta.dots.min')).default
+            if (!isMounted) return
+            newEffect = effectModule({
+              ...options,
+              color: isDark ? 0x888888 : 0x555555,
+              color2: isDark ? 0xcccccc : 0xaaaaaa,
+              backgroundColor: isDark ? 0x0 : 0xffffff,
+            })
+            break
+          case 'halo':
+            // @ts-expect-error - vanta types are missing
+            effectModule = (await import('vanta/dist/vanta.halo.min')).default
+            if (!isMounted) return
+            newEffect = effectModule({
+              ...options,
+              backgroundColor: isDark ? 0x0 : 0xffffff,
+              baseColor: isDark ? 0x444444 : 0x222222,
+              size: 1.5,
             })
             break
         }
