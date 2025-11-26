@@ -4,9 +4,11 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
+import remarkMath from 'remark-math';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeStringify from 'rehype-stringify';
 import rehypeSlug from 'rehype-slug';
+import rehypeKatex from 'rehype-katex';
 import { visit } from 'unist-util-visit';
 import readingTime from 'reading-time';
 
@@ -173,7 +175,9 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
     .use(remarkGfm)
-    .use(remarkRehype)
+    .use(remarkMath)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeKatex)
     .use(rehypeSlug)
     .use(() => (tree) => {
       visit(tree, 'element', (node: unknown) => {
@@ -195,7 +199,7 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
       },
       keepBackground: false,
     })
-    .use(rehypeStringify)
+    .use(rehypeStringify, { allowDangerousHtml: true })
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
 

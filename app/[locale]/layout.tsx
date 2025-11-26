@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
+import "katex/dist/katex.min.css";
 import { ThemeProvider } from "@/components/layout/theme-provider"
 import { SiteHeader } from "@/components/layout/site-header"
 import { ScrollToTopButton } from "@/components/layout/scroll-to-top-button"
