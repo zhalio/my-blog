@@ -10,6 +10,9 @@ import { FallbackBanner } from '@/components/blog/fallback-banner';
 import { ShareButtons } from "@/components/blog/share-buttons";
 import { PostStats } from "@/components/blog/post-stats";
 
+// Enable ISR for post detail pages (seconds)
+export const revalidate = 60; // Regenerate at most once per minute
+
 const locales = ['zh', 'en', 'fr', 'ja'];
 
 // 生成静态路径 (SSG)

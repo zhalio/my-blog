@@ -2,6 +2,9 @@ import { getSanitySortedPostsData } from "@/lib/sanity-posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PostList } from "@/components/blog/post-list";
 
+// Enable ISR for posts index page (seconds)
+export const revalidate = 60; // Regenerate at most once per minute
+
 const locales = ['zh', 'en', 'fr', 'ja'];
 
 export function generateStaticParams() {
