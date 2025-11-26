@@ -6,18 +6,20 @@ import { useTheme } from 'next-themes'
 import { usePathname } from 'next/navigation'
 import { useVanta } from './vanta-context'
 
-// Extend Window interface to include THREE
+// Extend Window interface to include THREE and p5
 declare global {
   interface Window {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     THREE: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    p5: any;
   }
 }
 
 export function VantaBackground() {
   const vantaRef = useRef<HTMLDivElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [vantaEffect, setVantaEffect] = useState<any>(null)
+  const vantaEffectRef = useRef<any>(null)
   const { theme } = useTheme()
   const { effect } = useVanta()
   const pathname = usePathname()
@@ -40,9 +42,9 @@ export function VantaBackground() {
     }
 
     // Destroy previous effect
-    if (vantaEffect) {
-      vantaEffect.destroy()
-      setVantaEffect(null)
+    if (vantaEffectRef.current) {
+      vantaEffectRef.current.destroy()
+      vantaEffectRef.current = null
     }
 
     if (effect === 'none' || shouldDisableEffect) return
@@ -62,8 +64,6 @@ export function VantaBackground() {
       scaleMobile: 1.00,
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let newEffect: any = null
     let isMounted = true
 
     const loadEffect = async () => {
@@ -74,8 +74,18 @@ export function VantaBackground() {
           return;
         }
 
+        // Load p5 for effects that need it
+        if (['topology', 'rings', 'dots'].includes(effect)) {
+            if (typeof window !== 'undefined' && !window.p5) {
+                const p5 = (await import('p5')).default
+                window.p5 = p5
+            }
+        }
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let effectModule: any;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let newEffect: any = null;
 
         switch (effect) {
           case 'birds':
@@ -169,7 +179,7 @@ export function VantaBackground() {
 
         
         if (isMounted && newEffect) {
-          setVantaEffect(newEffect)
+          vantaEffectRef.current = newEffect
         }
       } catch (error) {
         console.error("Failed to initialize Vanta effect:", error)
@@ -180,9 +190,11 @@ export function VantaBackground() {
 
     return () => {
       isMounted = false
-      if (newEffect) newEffect.destroy()
+      if (vantaEffectRef.current) {
+        vantaEffectRef.current.destroy()
+        vantaEffectRef.current = null
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [effect, theme, shouldDisableEffect, hasMounted])
 
   if (!hasMounted || effect === 'none' || shouldDisableEffect) return null
