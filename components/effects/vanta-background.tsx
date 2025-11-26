@@ -6,6 +6,14 @@ import { useTheme } from 'next-themes'
 import { usePathname } from 'next/navigation'
 import { useVanta } from './vanta-context'
 
+// Extend Window interface to include THREE
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    THREE: any;
+  }
+}
+
 export function VantaBackground() {
   const vantaRef = useRef<HTMLDivElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -27,8 +35,8 @@ export function VantaBackground() {
     if (!vantaRef.current) return
 
     // Ensure THREE is available globally for Vanta
-    if (typeof window !== 'undefined' && !(window as any).THREE) {
-      (window as any).THREE = THREE
+    if (typeof window !== 'undefined' && !window.THREE) {
+      window.THREE = THREE
     }
 
     // Destroy previous effect
