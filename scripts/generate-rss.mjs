@@ -22,14 +22,14 @@ const client = createClient({
 
 async function generateRssFeed() {
   const feed = new Feed({
-    title: "Emmm's Blog",
+    title: "ZHalio's Blog",
     description: "A personal blog about technology and life.",
     id: siteUrl,
     link: siteUrl,
     language: "zh",
     image: `${siteUrl}/icon.png`,
     favicon: `${siteUrl}/favicon.ico`,
-    copyright: `All rights reserved ${new Date().getFullYear()}, Emmm`,
+    copyright: `All rights reserved ${new Date().getFullYear()}, ZHalio`,
     updated: new Date(),
     generator: "Feed for Node.js",
     feedLinks: {
@@ -38,7 +38,7 @@ async function generateRssFeed() {
       atom: `${siteUrl}/atom.xml`,
     },
     author: {
-      name: "Emmm",
+      name: "ZHalio",
       email: "1992107794@qq.com",
       link: siteUrl,
     },
@@ -73,7 +73,7 @@ async function generateRssFeed() {
       content,
       author: [
         {
-          name: "Emmm",
+          name: "ZHalio",
           email: "1992107794@qq.com",
           link: siteUrl,
         },

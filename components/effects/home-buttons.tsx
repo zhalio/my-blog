@@ -55,7 +55,7 @@ export function HomeButtons({
       </MagneticButton>
       <MagneticButton>
         <Button variant="outline" size="lg" asChild onClick={handleConfetti}>
-          <Link href="https://github.com/zhemmmzh" target="_blank" rel="noreferrer">
+          <Link href="https://github.com/zhalio" target="_blank" rel="noreferrer">
             <Github className="mr-2 size-4" /> GitHub
           </Link>
         </Button>
