@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import { FadeIn } from "@/components/visuals/fade-in";
 import { ArticleContent } from "@/components/blog/article-content";
 
+// Enable ISR for about page (seconds)
+export const revalidate = 60; // Regenerate at most once per minute
+
 const locales = ['zh', 'en', 'fr', 'ja'];
 
 export function generateStaticParams() {
