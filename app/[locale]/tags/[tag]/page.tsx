@@ -2,6 +2,8 @@ import { getSanitySortedPostsData, getSanityAllTags } from "@/lib/sanity-posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PostList } from "@/components/blog/post-list";
 
+export const revalidate = 60;
+
 const locales = ['zh', 'en', 'fr', 'ja'];
 
 export async function generateStaticParams() {

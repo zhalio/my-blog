@@ -8,6 +8,8 @@ import { TypewriterEffect } from "@/components/visuals/typewriter-effect";
 import { TextShimmer } from "@/components/visuals/text-shimmer";
 import { HomeButtons } from "@/components/effects/home-buttons";
 
+export const revalidate = 60;
+
 const locales = ['zh', 'en', 'fr', 'ja'];
 
 export function generateStaticParams() {
