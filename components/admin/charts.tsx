@@ -55,27 +55,24 @@ export function TrafficTrendChart({ data }: { data: any[] }) {
 
 // --- Tag Distribution Chart (Pie Chart) ---
 export function TagPieChart({ data }: { data: any[] }) {
-    // Modern, accessible color palette with better contrast
+    // Softer, muted color palette that works well in dark mode
     const COLORS = [
-        'hsl(200, 95%, 50%)',  // Bright Blue
-        'hsl(280, 70%, 60%)',  // Purple
-        'hsl(340, 75%, 55%)',  // Pink
-        'hsl(30, 90%, 55%)',   // Orange
-        'hsl(45, 90%, 55%)',   // Yellow
-        'hsl(160, 60%, 45%)',  // Teal
-        'hsl(120, 50%, 50%)',  // Green
-        'hsl(260, 60%, 65%)',  // Lavender
+        'hsl(200, 60%, 55%)',  // Soft Blue
+        'hsl(280, 45%, 60%)',  // Muted Purple
+        'hsl(340, 50%, 60%)',  // Soft Pink
+        'hsl(25, 70%, 60%)',   // Soft Orange
+        'hsl(45, 65%, 60%)',   // Soft Yellow
+        'hsl(160, 45%, 50%)',  // Muted Teal
+        'hsl(120, 40%, 55%)',  // Soft Green
+        'hsl(260, 40%, 65%)',  // Soft Lavender
     ];
 
     // Custom label component for better readability
     const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }: any) => {
         const RADIAN = Math.PI / 180;
-        const radius = outerRadius + 30;
+        const radius = outerRadius + 35;
         const x = cx + radius * Math.cos(-midAngle * RADIAN);
         const y = cy + radius * Math.sin(-midAngle * RADIAN);
-        
-        // Only show label if percentage is significant enough
-        if (percent < 0.05) return null;
 
         return (
             <text 
@@ -84,7 +81,8 @@ export function TagPieChart({ data }: { data: any[] }) {
                 fill="hsl(var(--foreground))" 
                 textAnchor={x > cx ? 'start' : 'end'} 
                 dominantBaseline="central"
-                className="text-sm font-medium"
+                className="text-sm font-semibold"
+                style={{ textShadow: '0 0 8px hsl(var(--background)), 0 0 4px hsl(var(--background))' }}
             >
                 {`${name} ${(percent * 100).toFixed(0)}%`}
             </text>

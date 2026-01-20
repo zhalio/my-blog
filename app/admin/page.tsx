@@ -151,14 +151,14 @@ export default function AdminDashboard() {
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         {/* Tag Distribution */}
-        <Card className="col-span-3">
+        <Card className="col-span-3 flex flex-col">
           <CardHeader>
             <CardTitle className="text-lg">内容分布</CardTitle>
             <CardDescription className="text-sm">
               各标签下的文章数量占比
             </CardDescription>
           </CardHeader>
-          <CardContent className="pt-2">
+          <CardContent className="pt-2 flex-1">
             {data.tags && data.tags.length > 0 ? (
                 <TagPieChart data={data.tags} />
             ) : (
@@ -172,8 +172,8 @@ export default function AdminDashboard() {
         {/* Drafts List */}
         <Card className="col-span-4 flex flex-col">
            <CardHeader>
-             <CardTitle>待办事项</CardTitle>
-             <CardDescription>最新草稿</CardDescription>
+             <CardTitle className="text-lg">待办事项</CardTitle>
+             <CardDescription className="text-sm">最新草稿</CardDescription>
            </CardHeader>
            <CardContent className="flex-1 min-h-[300px]">
              {data.drafts && data.drafts.length > 0 ? (
