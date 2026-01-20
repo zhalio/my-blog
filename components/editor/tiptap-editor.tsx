@@ -154,6 +154,7 @@ export function TipTapEditor({
           if (text && looksMarkdown) {
              e.preventDefault()
              ;(async () => {
+               // Strategy 1: Try full parse with Math
                try {
                  const file = await remark()
                    .use(remarkGfm)
@@ -169,11 +170,28 @@ export function TipTapEditor({
                  
                  const html = String(file)
                  editorRef.current?.chain().focus().insertContent(html).run()
+                 return
                } catch (error) {
-                 console.error('Markdown parsing failed, falling back to plain text', error)
-                 // Fallback to inserting plain text
-                 editorRef.current?.chain().focus().insertContent(text).run()
+                 console.warn('Math parsing failed, retrying without math...', error)
                }
+
+               // Strategy 2: Try basic GFM parse (restore previous functionality)
+               try {
+                 const file = await remark()
+                   .use(remarkGfm)
+                   .use(remarkRehype)
+                   .use(rehypeStringify)
+                   .process(text)
+                 
+                 const html = String(file)
+                 editorRef.current?.chain().focus().insertContent(html).run()
+                 return
+               } catch (error) {
+                 console.error('Markdown processing completely failed', error)
+               }
+
+               // Strategy 3: Fallback to plain text
+               editorRef.current?.chain().focus().insertContent(text).run()
              })()
              return true
           }
