@@ -292,9 +292,7 @@ export function TipTapRenderer({ content, className = '', toc = [] }: TipTapRend
     editable: false,
     editorProps: {
       attributes: {
-        class: `prose prose-lg dark:prose-invert max-w-none leading-relaxed font-serif 
-        prose-headings:font-sans prose-headings:font-bold 
-        prose-p:my-4 prose-li:my-1 prose-li:leading-relaxed ${className}`,
+        class: `prose prose-lg dark:prose-invert max-w-none leading-relaxed font-serif prose-headings:font-sans prose-headings:font-bold prose-p:my-4 prose-li:my-1 prose-li:leading-relaxed ${className}`,
       },
     },
   })
