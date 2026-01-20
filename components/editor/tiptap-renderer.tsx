@@ -161,7 +161,7 @@ const CodeBlock = ({ node: { textContent } }: { node: { textContent: string } })
 
   return (
     <NodeViewWrapper 
-      className="code-window my-6 relative group rounded-xl overflow-hidden shadow-sm dark:shadow-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-[#1e1e1e]"
+      className="code-window my-4 relative group rounded-xl overflow-hidden shadow-sm dark:shadow-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-[#1e1e1e]"
       style={{
         fontSize: '14px',
         lineHeight: '1.5',
