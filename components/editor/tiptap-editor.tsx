@@ -161,8 +161,8 @@ export function TipTapEditor({
                    .use(remarkMath)
                    .use(remarkRehype, {
                      handlers: {
-                       math: (h: any, node: any) => h(node, 'div', { 'data-type': 'block-math', 'data-latex': node.value }),
-                       inlineMath: (h: any, node: any) => h(node, 'span', { 'data-type': 'inline-math', 'data-latex': node.value })
+                       math: (h: any, node: any) => h(node, 'div', { 'data-type': 'block-math', 'data-latex': node.value || '' }),
+                       inlineMath: (h: any, node: any) => h(node, 'span', { 'data-type': 'inline-math', 'data-latex': node.value || '' })
                      }
                     })
                    .use(rehypeStringify)
@@ -171,8 +171,10 @@ export function TipTapEditor({
                  const html = String(file)
                  editorRef.current?.chain().focus().insertContent(html).run()
                  return
-               } catch (error) {
+               } catch (error: any) {
                  console.warn('Math parsing failed, retrying without math...', error)
+                 // Temporary debug alert to find out why it fails
+                 alert(`Math parsing error: ${error.message}`)
                }
 
                // Strategy 2: Try basic GFM parse (restore previous functionality)
