@@ -15,6 +15,7 @@ import { CharacterCount } from '@tiptap/extension-character-count'
 import { Color } from '@tiptap/extension-color'
 import { TextStyle } from '@tiptap/extension-text-style'
 import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
+import { Mathematics } from '@tiptap/extension-mathematics'
 import { common, createLowlight } from 'lowlight'
 import { useState } from 'react'
 import { remark } from 'remark'
@@ -95,6 +96,7 @@ export function TipTapEditor({
           class: 'flex items-start gap-2',
         },
       }),
+      Mathematics,
       Placeholder.configure({
         placeholder,
       }),
