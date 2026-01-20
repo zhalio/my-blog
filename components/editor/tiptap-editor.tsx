@@ -22,6 +22,7 @@ import remarkGfm from 'remark-gfm'
 import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import { MenuBar } from './menu-bar'
+import { uploadImage } from '@/lib/upload-image'
 
 const lowlight = createLowlight(common)
 
