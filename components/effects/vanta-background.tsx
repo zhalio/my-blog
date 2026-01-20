@@ -47,9 +47,6 @@ export function VantaBackground() {
       vantaEffectRef.current = null
     }
 
-    // Disable on mobile devices
-    if (window.innerWidth < 768) return
-
     if (effect === 'none' || shouldDisableEffect) return
 
     const isDark = theme === 'dark'
