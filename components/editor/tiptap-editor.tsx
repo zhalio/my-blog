@@ -143,32 +143,37 @@ export function TipTapEditor({
           return true
         }
 
-        //// Include $ to detect latex math
+        // 2. Existing Markdown Support
+        try {
+          const e = event as unknown as ClipboardEvent
+          const text = e.clipboardData?.getData('text/markdown') || e.clipboardData?.getData('text/plain') || ''
+          
+          // Include $ to detect latex math
           const looksMarkdown = /(^|\n)\s{0,3}(#{1,6}\s|[-*+]\s|\d+\.\s|>\s|```|~~|\*\*|__|\$\$?)/.test(text)
           
           if (text && looksMarkdown) {
              e.preventDefault()
              ;(async () => {
-               const file = await remark()
-                 .use(remarkGfm)
-                 .use(remarkMath)
-                 .use(remarkRehype, {
-                   handlers: {
-                     math: (h: any, node: any) => h(node, 'div', { 'data-type': 'block-math', 'data-latex': node.value }),
-                     inlineMath: (h: any, node: any) => h(node, 'span', { 'data-type': 'inline-math', 'data-latex': node.value })
-                   }
-                  })
-                 .use(rehypeStringify)
-                 .process(text)
-               const html = String(file)
-               
-               // Use ref to access editor instance safely inside callback
-               editorRef.currenthtml = String(file)
-               // Note: 'editor' comes from closure, might be safer to use view.props.editor? 
-               // Accessing via view.dom doesn't give Tiptap editor. 
-               // Stick to closure 'editor' as it was before, or use view in some way if possible, 
-               // but 'editor' is available in scope.
-               editor?.chain().focus().insertContent(html).run()
+               try {
+                 const file = await remark()
+                   .use(remarkGfm)
+                   .use(remarkMath)
+                   .use(remarkRehype, {
+                     handlers: {
+                       math: (h: any, node: any) => h(node, 'div', { 'data-type': 'block-math', 'data-latex': node.value }),
+                       inlineMath: (h: any, node: any) => h(node, 'span', { 'data-type': 'inline-math', 'data-latex': node.value })
+                     }
+                    })
+                   .use(rehypeStringify)
+                   .process(text)
+                 
+                 const html = String(file)
+                 editorRef.current?.chain().focus().insertContent(html).run()
+               } catch (error) {
+                 console.error('Markdown parsing failed, falling back to plain text', error)
+                 // Fallback to inserting plain text
+                 editorRef.current?.chain().focus().insertContent(text).run()
+               }
              })()
              return true
           }
