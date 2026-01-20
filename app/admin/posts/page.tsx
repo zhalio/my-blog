@@ -230,13 +230,14 @@ export default function AdminPostsPage() {
       const updateData: any = {
         title: editForm.title,
         featured: editForm.featured,
+        tags: editForm.tags,
       }
 
       let newPublishedAtISO: string | undefined
       if (editForm.published_at) {
         newPublishedAtISO = new Date(editForm.published_at).toISOString()
         updateData.published_at = newPublishedAtISO
-      }, tags: editForm.tags
+      }
 
       const res = await fetch(`/api/admin/posts/${editingPost.id}`, {
         method: 'PUT',
