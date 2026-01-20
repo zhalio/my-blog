@@ -117,7 +117,10 @@ export default function NewPostPage() {
     } finally {
       setSaving(false)
     }
-  }// 使用 pinyin-pro 将标题转换为拼音
+  }
+
+  const generateSlug = () => {
+    // 使用 pinyin-pro 将标题转换为拼音
     const slug = pinyin(formData.title, { 
       toneType: 'none', 
       type: 'array',
@@ -127,10 +130,7 @@ export default function NewPostPage() {
     .toLowerCase()
     .trim()
     .replace(/[^\w-]/g, '')
-    .replace(/-+/g, '-
-      .replace(/[\s\u4e00-\u9fa5]+/g, '-')
-      .replace(/^-+|-+$/g, '')
-      .replace(/[^\w-]/g, '')
+    .replace(/-+/g, '-')
 
     setFormData({ ...formData, slug })
   }

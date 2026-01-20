@@ -213,8 +213,7 @@ export default function AdminPostsPage() {
     if (tag && !editForm.tags.includes(tag)) {
       setEditForm({ ...editForm, tags: [...editForm.tags, tag] })
       setPreviewTag('')
-    }  tags: editForm.tags,
-      
+    }
   }
 
   const handleRemoveTag = (tagToRemove: string) => {
