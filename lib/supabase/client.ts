@@ -1,27 +1,37 @@
 import { createClient } from '@supabase/supabase-js'
 import type { Database as SupabaseDB } from './types'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  // throw new Error('Missing Supabase environment variables')
-  console.warn('Missing Supabase environment variables')
+let supabaseClient: ReturnType<typeof createClient<SupabaseDB>> | null = null
+
+function getSupabaseClient() {
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('Missing Supabase environment variables: NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY')
+  }
+
+  if (!supabaseClient) {
+    supabaseClient = createClient<SupabaseDB>(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: false,
+      },
+    })
+  }
+
+  return supabaseClient
 }
 
-export const supabase = createClient<SupabaseDB>(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    persistSession: false,
+// Lazy-loaded singleton for better build-time compatibility
+export const supabase = new Proxy({} as ReturnType<typeof createClient<SupabaseDB>>, {
+  get(target, prop) {
+    return getSupabaseClient()[prop as keyof typeof getSupabaseClient()]
   },
 })
 
 // 用于服务端的客户端（如果需要）
 export const createServerClient = () => {
-  return createClient<SupabaseDB>(supabaseUrl, supabaseAnonKey, {
-    auth: {
-      persistSession: false,
-    },
-  })
+  return getSupabaseClient()
 }
 
 export type Database = {

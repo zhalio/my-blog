@@ -12,30 +12,35 @@ export function generateStaticParams() {
 }
 
 async function getPosts(locale: string) {
-  const { data, error } = await supabase
-    .from('posts')
-    .select('*')
-    .eq('locale', locale)
-    .eq('published', true)
-    .order('published_at', { ascending: false });
+  try {
+    const { data, error } = await supabase
+      .from('posts')
+      .select('*')
+      .eq('locale', locale)
+      .eq('published', true)
+      .order('published_at', { ascending: false });
 
-  if (error) {
-    console.error('Failed to fetch posts:', error);
+    if (error) {
+      console.error('Failed to fetch posts:', error);
+      return [];
+    }
+
+    return data.map((post: any) => ({
+      id: post.id,
+      slug: post.slug,
+      title: post.title,
+      date: post.published_at || post.created_at,
+      summary: post.description,
+      excerpt: post.description,
+      tags: post.tags,
+      readingTime: post.reading_time ? `${post.reading_time} 分钟` : undefined,
+      coverImage: post.cover_image,
+      locale: post.locale,
+    }));
+  } catch (error) {
+    console.error('Error fetching posts (this is expected during build if Supabase env vars are not set):', error);
     return [];
   }
-
-  return data.map((post: any) => ({
-    id: post.id,
-    slug: post.slug,
-    title: post.title,
-    date: post.published_at || post.created_at,
-    summary: post.description,
-    excerpt: post.description,
-    tags: post.tags,
-    readingTime: post.reading_time ? `${post.reading_time} 分钟` : undefined,
-    coverImage: post.cover_image,
-    locale: post.locale,
-  }));
 }
 
 export default async function PostsPage({ params }: { params: Promise<{ locale: string }> }) {

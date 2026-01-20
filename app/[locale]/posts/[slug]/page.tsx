@@ -43,35 +43,45 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 type Post = Database['public']['Tables']['posts']['Row'];
 
 async function getPost(slug: string, locale: string): Promise<Post | null> {
-  const { data, error } = await supabase
-    .from('posts')
-    .select('*')
-    .eq('slug', slug)
-    .eq('locale', locale)
-    .eq('published', true)
-    .single();
+  try {
+    const { data, error } = await supabase
+      .from('posts')
+      .select('*')
+      .eq('slug', slug)
+      .eq('locale', locale)
+      .eq('published', true)
+      .single();
 
-  if (error) {
-    console.error('Failed to fetch post:', error);
+    if (error) {
+      console.error('Failed to fetch post:', error);
+      return null;
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Error fetching post (this is expected during build if Supabase env vars are not set):', error);
     return null;
   }
-
-  return data;
 }
 
 async function getAllPosts(locale: string) {
-  const { data, error } = await supabase
-    .from('posts')
-    .select('slug')
-    .eq('locale', locale)
-    .eq('published', true);
+  try {
+    const { data, error } = await supabase
+      .from('posts')
+      .select('slug')
+      .eq('locale', locale)
+      .eq('published', true);
 
-  if (error) {
-    console.error('Failed to fetch posts:', error);
+    if (error) {
+      console.error('Failed to fetch posts:', error);
+      return [];
+    }
+
+    return data as { slug: string }[];
+  } catch (error) {
+    console.error('Error fetching posts (this is expected during build if Supabase env vars are not set):', error);
     return [];
   }
-
-  return data as { slug: string }[];
 }
 
 // 生成静态路径 (SSG)
