@@ -352,12 +352,12 @@ export default function NewPostPage() {
                           ...formData,
                           published: checked,
                           published_at:
-                            checked && !formData.published设定发布时间? nowLocalInput() : formData.published_at,
+                            checked && !formData.published_at ? nowLocalInput() : formData.published_at,
                         })
                       }}
                       className="h-4 w-4 rounded"
                     />
-                    <span className="text-sm font-medium">立即发布</span>
+                    <span className="text-sm font-medium">设定发布时间</span>
                   </label>
                 </div>
                 
