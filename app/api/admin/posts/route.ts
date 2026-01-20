@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
+import { Redis } from '@upstash/redis'
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || process.env.STORAGE_URL || '',
+  token: process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || process.env.STORAGE_TOKEN || '',
+});
 
 // GET - 获取所有文章列表（需要认证）
 export async function GET(request: NextRequest) {
@@ -36,6 +42,25 @@ export async function GET(request: NextRequest) {
     if (error) {
       console.error('Error fetching posts:', error)
       return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    // 从 Redis 获取每篇文章的实时浏览量
+    if (data && data.length > 0) {
+      try {
+        const keys = data.map((post: any) => `views:${post.slug}`)
+        // 批量获取浏览量
+        const views = await redis.mget(keys)
+        
+        // 将浏览量合并到文章数据中
+        data.forEach((post: any, index: number) => {
+          // Redis 返回的可能是 string 或 number，或者 null
+          const viewCount = views[index]
+          post.views = viewCount ? Number(viewCount) : 0
+        })
+      } catch (redisError) {
+        console.error('Failed to fetch views from Redis:', redisError)
+        // 即使 Redis 失败，也返回文章列表，只是浏览量可能不准确（默认为数据库中的值或0）
+      }
     }
 
     return NextResponse.json({ posts: data })
