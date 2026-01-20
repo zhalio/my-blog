@@ -4,7 +4,7 @@ import type { Database as SupabaseDB } from './types'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-let supabaseClient: ReturnType<typeof createClient<SupabaseDB>> | null = null
+let supabaseClient: any = null
 
 function getSupabaseClient() {
   if (!supabaseUrl || !supabaseAnonKey) {
@@ -23,9 +23,14 @@ function getSupabaseClient() {
 }
 
 // Lazy-loaded singleton for better build-time compatibility
-export const supabase = new Proxy({} as ReturnType<typeof createClient<SupabaseDB>>, {
-  get(target, prop) {
-    return getSupabaseClient()[prop as keyof typeof getSupabaseClient()]
+export const supabase: any = new Proxy({}, {
+  get(target: any, prop: string | symbol) {
+    try {
+      return getSupabaseClient()[prop]
+    } catch (error) {
+      console.error('Supabase client error:', error)
+      return undefined
+    }
   },
 })
 
