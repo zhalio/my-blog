@@ -20,6 +20,7 @@ import { common, createLowlight } from 'lowlight'
 import { useState } from 'react'
 import { remark } from 'remark'
 import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
 import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import { MenuBar } from './menu-bar'
@@ -147,7 +148,17 @@ export function TipTapEditor({
           if (text && looksMarkdown) {
              e.preventDefault()
              ;(async () => {
-               const file = await remark().use(remarkGfm).use(remarkRehype).use(rehypeStringify).process(text)
+               const file = await remark()
+                 .use(remarkGfm)
+                 .use(remarkMath)
+                 .use(remarkRehype, {
+                   handlers: {
+                     math: (h: any, node: any) => h(node, 'div', { 'data-type': 'block-math', 'data-latex': node.value }),
+                     inlineMath: (h: any, node: any) => h(node, 'span', { 'data-type': 'inline-math', 'data-latex': node.value })
+                   }
+                  })
+                 .use(rehypeStringify)
+                 .process(text)
                const html = String(file)
                // Note: 'editor' comes from closure, might be safer to use view.props.editor? 
                // Accessing via view.dom doesn't give Tiptap editor. 
