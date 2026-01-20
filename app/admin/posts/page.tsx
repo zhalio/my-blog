@@ -389,59 +389,66 @@ export default function AdminPostsPage() {
           </div>
 
           {/* 筛选和排序 */}
-          <div className="flex gap-3 flex-wrap items-center justify-between">
-            <div className="flex gap-3 flex-wrap items-center">
-              <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">筛选：</span>
-              <div className="flex gap-2">
-                {(['all', 'published', 'draft'] as const).map((status) => (
-                <Button
-                  key={status}
-                  variant={filterStatus === status ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setFilterStatus(status)}
-                  className={filterStatus === status ? '' : 'text-zinc-600 dark:text-zinc-300'}
-                >
-                  {status === 'all' && '全部'}
-                  {status === 'published' && '已发布'}
-                  {status === 'draft' && '草稿'}
-                </Button>
-              ))}
-            </div>
-
-            <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">排序：</span>
-            <div className="flex gap-2">
-              {(['newest', 'oldest', 'modified'] as const).map((sort) => (
-                <Button
-                  key={sort}
-                  variant={sortBy === sort ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setSortBy(sort)}
-                  className={sortBy === sort ? '' : 'text-zinc-600 dark:text-zinc-300'}
-                >
-                  {sort === 'newest' && '最新'}
-                  {sort === 'oldest' && '最早'}
-                  {sort === 'modified' && '最近修改'}
-                </Button>
-              ))}
-            </div>
-            <div className="flex gap-2 items-center">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={toggleSelectAll}
-                className="text-zinc-600 dark:text-zinc-300 gap-2"
-              >
-                <div className={`w-3.5 h-3.5 rounded border ${
-                    selectedPosts.length > 0 && selectedPosts.length === filteredPosts.length 
-                      ? 'bg-primary border-primary' 
-                      : 'border-zinc-400'
-                  } flex items-center justify-center`}>
-                  {selectedPosts.length > 0 && selectedPosts.length === filteredPosts.length && (
-                    <CheckCircle2 className="w-3 h-3 text-white" />
-                  )}
+          <div className="flex flex-col gap-4">
+            {/* 移动端：水平滚动容器 */}
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <div className="flex gap-2 items-center flex-wrap">
+                <span className="hidden md:inline text-sm text-zinc-500 dark:text-zinc-400 font-medium">筛选：</span>
+                <div className="flex gap-2 overflow-x-auto pb-1 md:pb-0 no-scrollbar">
+                  {(['all', 'published', 'draft'] as const).map((status) => (
+                    <Button
+                      key={status}
+                      variant={filterStatus === status ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setFilterStatus(status)}
+                      className={`whitespace-nowrap ${filterStatus === status ? '' : 'text-zinc-600 dark:text-zinc-300'}`}
+                    >
+                      {status === 'all' && '全部'}
+                      {status === 'published' && '已发布'}
+                      {status === 'draft' && '草稿'}
+                    </Button>
+                  ))}
                 </div>
-                {selectedPosts.length === filteredPosts.length && filteredPosts.length > 0 ? '取消全选' : '全选'}
-              </Button>
+              </div>
+
+              <div className="flex gap-2 items-center flex-wrap">
+                <span className="hidden md:inline text-sm text-zinc-500 dark:text-zinc-400 font-medium">排序：</span>
+                <div className="flex gap-2 overflow-x-auto pb-1 md:pb-0 no-scrollbar">
+                  {(['newest', 'oldest', 'modified'] as const).map((sort) => (
+                    <Button
+                      key={sort}
+                      variant={sortBy === sort ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setSortBy(sort)}
+                      className={`whitespace-nowrap ${sortBy === sort ? '' : 'text-zinc-600 dark:text-zinc-300'}`}
+                    >
+                      {sort === 'newest' && '最新'}
+                      {sort === 'oldest' && '最早'}
+                      {sort === 'modified' && '最近修改'}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex gap-2 items-center pt-2 md:pt-0 border-t md:border-t-0 border-zinc-100 dark:border-zinc-800">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={toggleSelectAll}
+                  className="w-full md:w-auto text-zinc-600 dark:text-zinc-300 gap-2"
+                >
+                  <div className={`w-3.5 h-3.5 rounded border ${
+                      selectedPosts.length > 0 && selectedPosts.length === filteredPosts.length 
+                        ? 'bg-primary border-primary' 
+                        : 'border-zinc-400'
+                    } flex items-center justify-center`}>
+                    {selectedPosts.length > 0 && selectedPosts.length === filteredPosts.length && (
+                      <CheckCircle2 className="w-3 h-3 text-white" />
+                    )}
+                  </div>
+                  {selectedPosts.length === filteredPosts.length && filteredPosts.length > 0 ? '取消全选' : '全选'}
+                </Button>
+              </div>
             </div>
           </div>
         </div>

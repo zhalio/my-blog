@@ -14,6 +14,7 @@ import { TaskItem } from '@tiptap/extension-task-item'
 import { Color } from '@tiptap/extension-color'
 import { TextStyle } from '@tiptap/extension-text-style'
 import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
+import { Mathematics } from '@tiptap/extension-mathematics'
 import { common, createLowlight } from 'lowlight'
 import { Check, Copy } from 'lucide-react'
 
@@ -284,6 +285,9 @@ export function TipTapRenderer({ content, className = '', toc = [] }: TipTapRend
         HTMLAttributes: {
           class: 'flex items-start gap-2',
         },
+      }),
+      Mathematics.configure({
+        regex: /\$\$([\s\S]*?)\$\$|\$((?:\\.|[^$])*)\$/gi,
       }),
       Color,
       TextStyle,
