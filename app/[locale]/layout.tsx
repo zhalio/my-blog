@@ -1,4 +1,5 @@
 // import { Geist, Geist_Mono } from "next/font/google";
+// import { Lora } from 'next/font/google';
 
 import "../globals.css";
 import "katex/dist/katex.min.css";
@@ -29,6 +30,13 @@ import { getSiteSettings } from "@/lib/site-settings";
 const geistSans = { variable: "font-sans" };
 const geistMono = { variable: "font-mono" };
 
+/*
+const lora = Lora({
+  subsets: ['latin'],
+  variable: '--font-lora',
+  display: 'swap',
+});
+*/
 
 export async function generateMetadata({
   params

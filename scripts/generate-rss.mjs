@@ -2,6 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import { Feed } from 'feed';
 import { createClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env.local
+dotenv.config({ path: '.env.local' });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://emmmxx.xyz';
 const publicDirectory = path.join(process.cwd(), 'public');

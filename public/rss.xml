@@ -1,35 +1,2640 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>Emmm's Blog</title>
+        <title>ZHalio's Blog</title>
         <link>https://emmmxx.xyz</link>
         <description>A personal blog about technology and life.</description>
-        <lastBuildDate>Sat, 22 Nov 2025 10:22:09 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 20 Jan 2026 14:44:08 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for Node.js</generator>
         <language>zh</language>
         <image>
-            <title>Emmm's Blog</title>
+            <title>ZHalio's Blog</title>
             <url>https://emmmxx.xyz/icon.png</url>
             <link>https://emmmxx.xyz</link>
         </image>
-        <copyright>All rights reserved 2025, Emmm</copyright>
+        <copyright>All rights reserved 2026, ZHalio</copyright>
         <item>
-            <title><![CDATA[js语法基础/认识浏览器API]]></title>
-            <link>https://emmmxx.xyz/zh/posts/js-learning</link>
-            <guid isPermaLink="false">https://emmmxx.xyz/zh/posts/js-learning</guid>
-            <pubDate>Thu, 20 Nov 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[前端组第三次授课文档]]></description>
-            <content:encoded><![CDATA[## JavaScript 简介
+            <title><![CDATA[关于]]></title>
+            <link>https://emmmxx.xyz/zh/posts/about</link>
+            <guid isPermaLink="false">https://emmmxx.xyz/zh/posts/about</guid>
+            <pubDate>Tue, 20 Jan 2026 08:06:00 GMT</pubDate>
+            <content:encoded><![CDATA[基于 Next.js 16 + React 19 + TypeScript 的多语言个人博客与作品集，集成 Supabase 后台、Orama 搜索、TipTap 富文本、Giscus 评论和多种视觉效果。
 
-### 什么是 JavaScript？
+技术栈
+
+应用：Next.js 16（App Router，Turbopack），React 19，TypeScript样式与组件：Tailwind CSS v4，Radix UI，shadcn 风格组件，styled-components，class-variance-authority，tailwind-merge内容与编辑：TipTap 3，remark/rehype 管线，Shiki + rehype-pretty-code，KaTeX，medium-zoom数据与后台：Supabase（Auth/Storage/SSR），Upstash Redis 统计，Orama + Fuse.js 搜索，Zustand 状态管理国际化与体验：next-intl（zh/en/fr/ja），framer-motion，Lenis，Vanta.js，Lottie，canvas-confetti分析与部署：@vercel/analytics，@vercel/speed-insights，Vercel 部署
+
+]]></content:encoded>
+            <author>1992107794@qq.com (Admin)</author>
+        </item>
+        <item>
+            <title><![CDATA[综合英语第三版增强版3期末复习]]></title>
+            <link>https://emmmxx.xyz/zh/posts/zongheyingyudisanbanzengqiangban3qimofuxi</link>
+            <guid isPermaLink="false">https://emmmxx.xyz/zh/posts/zongheyingyudisanbanzengqiangban3qimofuxi</guid>
+            <pubDate>Sun, 18 Jan 2026 04:00:00 GMT</pubDate>
+            <description><![CDATA[综英期末复习]]></description>
+            <content:encoded><![CDATA[
+
+
+
+Unit 1
+
+Ⅱ Fill in the blank in each sentence with a word taken from the box in its appropriate form. Note that two are extra.
+
+pose, curse, clutch, slink, maneuver, malicious, shackle, deliberation, preoccupation, distress
+
+Her knowledge of the truth of the matter caused her more distress than pleasure.She clutched her purse tightly, threading her way through the throng.I liked the photo very much as it is the only photo that shows me in a natural relaxed pose.The burglar was trying to slink into the shop by the back door.Malicious gossip is really annoying.It is extremely hard to break the shackles of convention.Loneliness in old age is the curse of modern society.They employed some diplomatic maneuvers to reach an agreement.
+
+
+
+Ⅲ Fill in the blanks with the appropriate forms of the given words.
+
+Who can assure me that I’m mistaken? (assurance)His dignity was hurt; he had never felt so humiliated in all his life. (humiliation)You have been under strain for too long; you need some relaxation badly. (relax)He deliberately kept his employees at a distance, for he felt that familiarity breeds contempt. (familiar)We should map out a global strategy to develop our markets. (strategically)I felt greatly amused when I saw our manager’s embarrassment at the failure to remember the name of that distinguished guest. (embarrass)The problem is that this law is often given a wide interpretation in practice by the authorities. (interpret)There have been many complaints about the young coach’s immaturity and lack of judgment. (mature)
+
+
+
+Unit 2
+
+Ⅱ Fill in the blank in each sentence with a word taken from the box in its appropriate form. Note that two are extra.
+
+board, classic, conceivably, deceased, discreetly, executive, grab, lineup, survive, workaholic
+
+The woman survived her husband by nine years.From the very beginning the movie grabbed the attention of its viewers.Not wanting to draw any attention, Roy went discreetly into the lecture hall.We learned about her deceased father by reading his obituary in the local newspaper.The doctor assured him that the operation will conceivably result in at least a partial recovery of his severely damaged brain.We are very close friends. We boarded together for about two years while in Harvard as visiting scholars about eight years ago.Upper-intermediate English learners are often encouraged to read the classics of English literature.He is really a workaholic, for he has a never-dying passion for work.
+
+
+
+Ⅲ Fill in the blanks with the appropriate forms of the given words.
+
+Gordon lives near his widowed father and they are very close. (widow)Her poignant style got on her boss’s nerves. (nervous)A real perfectionist, Miss Evans does not allow the slightest mistakes in her student’s compositions. (precise)She resigned for the reason that she couldn’t stand the competitiveness and unfriendliness in the office. (compete)All of our suppliers are supposed to ensure prompt execution of orders. (execute)The symposium will be presided over by a famous scholar. (president)Their marital problems started soon after they adopted the child. (marry)The movie is rated PG, so children under 15 who want to see it had better be accompanied by their parents. (company)
+
+
+
+Unit 3
+
+Ⅱ Fill in the blank in each sentence with a word taken from the box in its appropriate form. Note that two are extra.
+
+aroma, claim, involve, epic, evolve, lyrics, pound, squalid, vulnerable, veritable
+
+The Odyssey is a(n) epic of ancient Greece.They were involved in a rather squalid battle as to who controlled the party.Her garden had become a veritable jungle by the time she came back from holiday.Two hurricanes in a month pounded the Caribbean country.I love nothing better than the wonderful aroma of freshly baked bread.The amateur acting group eventually evolved into a theatrical company.Paul Simon writes the lyrics for most of his own songs.An unknown terrorist group has claimed responsibility for this morning’s bomb attack.
+
+
+
+Ⅲ Fill in the blanks with the appropriate forms of the given words.
+
+There are too many imponderables for an overall prediction. (ponder)Many young women have poetic ideas about marriage. (poetry)A special locking system means the door cannot be opened accidentally. (accident)Frankly, I am quite annoyed at all that unsought advice. (seek)My little nephew is adorable — the cuddliest child I have ever seen. (cuddle)The readers are completely enthralled by his latest juicy mystery novel. (juice)It’s very easy to get disorientated because all the streets look the same. (orientate)Professor Howard is more versed in the economics of taxes than the politics of taxes. (verse)
+
+
+
+Unit 4
+
+Ⅱ Fill in the blank in each sentence with a word taken from the box in its appropriate form. Note that two are extra.
+
+arduous, vulnerable, glamorous, clutter, commit, gusto, humanity, solitary, bohemian, transaction
+
+His works are characterized by a rich sense of transaction between the writer and the reader.The car park will soon be cluttered up with vehicles.The border dispute between the two African countries worsened into a long, arduous, and exhausting war.The nurses were praised for their standards of humanity and care.The young man held his tongue and committed his thoughts to paper only.The freshmen embrace with gusto their new life on the university campus.With the advancement of age, old people have become particularly vulnerable members of our society.The writer formed the habit of taking long solitary walks during the holidays.
+
+
+
+Ⅲ Fill in the blanks with the appropriate forms of the given words.
+
+Paying sufficient attention to detail is the hallmark of a fine craftsman. (craft)Uncirculated coins are released to the public but not intended to be used for money, and available through a mint or through a local coin dealer. (circulate)The volunteers are trying their best to help the teenagers from slum districts stay away from crime, riots, drug use and other asocial behavior. (social)Since the tragic accident, he has been suffering from acute depression. (depressed)On this hot day the sea is irresistibly inviting. (resist)They offer a month-long intensive course in teaching English to speakers of other languages. (intense)Having been separated for years, they hugged each other with exclamations of delight. (exclaim)Mark Twain drew on his own experiences and used dialect and common speech instead of literary language. (literature)
+
+
+
+Unit 5
+
+Ⅱ Fill in the blank in each sentence with a word taken from the box in its appropriate form. Note that two are extra.
+
+clog, crave, mirror, growl, gulp, heft, rough, mirage, sunken
+
+The way the little boy emptied the glass at one gulp amused everyone present at the dinner party.Thunder growls without warning from a summer sky.During the rush hour, heavy traffic will clog nearly every main street in this metropolis.Hefting more than seventy pounds, the woman moved the stone alone.Electoral victory is often a mirage on the political horizon.Oliver’s cheeks are sunken from hunger.The foreign refugees are craving for sympathy.
+
+
+
+Ⅲ Fill in the blanks with the appropriate forms of the given words.
+
+Some local officials are under the illusion that the new pollution control measures might paralyze economic activity. (paralysis)The brutalities of the war are realistically depicted in the Russian film. (brutal)Rescue workers had to cut her free from the wreckage of the car. (wreck)Jennifer pleads with her boyfriend to stop being so judgmental and take her as she is. (judge)The rumor about her divorce can be disadvantageous to her as she is climbing the corporate ladder. (advantage)The beach town is swarming with a(n) uncountable number of tourists every summer. (count)It’s the hottest day of the year, a real scorcher. (scorch)The head of the ballet school has such a commanding voice that everyone there obeys her. (command)
+
+
+
+Unit 6
+
+Ⅱ Fill in the blank in each sentence with a word taken from the box in its appropriate form. Note that two are extra.
+
+astound, falter, feign, perceive, lubricant, prevarication, spin, undermine, volunteer, coarsen
+
+The minister shrugged, feigning nonchalance.The spokesman spun the story to make himself less embarrassed.All her attempts to question the authorities on the subject have been met by evasion and prevarication.I love the idea that sweat is the lubricant of success.The continued fighting threatens to undermine efforts to negotiate an agreement.The soldiers have never faltered in their determination.A hard life as a social underdog has coarsened his ideals a great deal.The doctor who had volunteered to settle down in the poor village became the chief fable of the villagers.
+
+
+
+Ⅲ Fill in the blanks with the appropriate forms of the given words.
+
+It is generally considered unethical for physicians to advertize. (ethics)Young adults are normally preoccupied with their career, success and initial accumulation in almost everything. (preoccupation)We must be unsparing in our criticism of the arms trade. (spare)I feel it simply painful to work with him, for he is chronically cynical. (cynicism)Most shops are shut down during this confoundedly hot spell. (confound)Accused of letting fakes proliferate, Alibaba has launched a severe crackdown on fakes on its platforms. (proliferation)The ropes were entangled, so Johnny was not able to untie the parcel. (tangle)Willful people cannot tolerate the slightest frustration of their wishes. (will)
+
+课后词组 词汇练习IV VI题
+
+U1 IV
+
+They lived up to the true spirit of sportsmanship throughout the games.整场比赛中，他们践行了体育精神的真谛。（lived up to：不辜负；践行）We started off at dawn and headed for the sea for surfing.我们天一亮就出发，前往海边冲浪。（headed for：前往；朝…… 走去）I felt very lonely when my parents drove off.父母开车离开后，我感到非常孤单。（drove off：驾车离去）Upon seeing the snake, she broke out in a cold sweat.一看到蛇，她就惊出了一身冷汗。（broke out：突然出现；爆发）She groped her way across the pitch-dark room for the door handle.她在漆黑的房间里摸索着走向门把手。（groped for：摸索着寻找）I warned him repeatedly that it was no good trying that kind of tricks on me.我一再警告他，对我耍这种花招根本没用。（trying...on sb.：对某人耍花招）Our heartfelt sympathy goes out to the families of the earthquake victims.我们向地震遇难者家属致以诚挚的慰问。（goes out to：向…… 表达（同情、祝福））The drug traffickers were arrested after the police were tipped off by local residents.当地居民向警方通风报信后，毒贩们被逮捕了。（tipped off：向…… 告密；通风报信）
+
+U1 VI
+
+At first, many people did not like that kind of music, but after a while, it caught on.起初很多人不喜欢这种音乐，但没过多久，它就流行起来了。（caught on：流行起来；被接受）Dr. Brown is someone all the students look up to.布朗博士是所有学生都尊敬的人。（look up to：尊敬；敬仰）If you persist in this reckless behavior you'll risk losing everything.如果你执意做出这种鲁莽的行为，你可能会失去一切。（persist in：坚持；执意）I predict that the experiment will result in complete disaster for us all.我预测这个实验会给我们所有人带来彻底的灾难。（result in：导致；造成）I can't figure out why she left home so suddenly.我弄不明白她为什么突然离家。（figure out：弄清楚；理解）They exhibited all the satisfaction of someone who has just hit upon a method of causing water to flow uphill.他们脸上洋溢着得意的神情，就像有人刚想出让水往高处流的方法一样。（hit upon：偶然想到；突然发现）She had to draw on her money to settle the matter.她不得不动用自己的钱来解决这件事。（draw on：动用；利用）The publisher plans to kick off the promotional tour with a press conference for the author.出版商计划为这位作家举办一场新闻发布会，以此拉开宣传之旅的序幕。（kick off：开启；拉开序幕）
+
+U2 IV
+
+The severe acute respiratory syndrome (SARS) is a fatal disease. Thousands of people in Asia died of it in 2003.严重急性呼吸综合征（非典）是一种致命疾病，2003 年亚洲有数千人死于这种病。（died of：死于（疾病、衰老等内因））Chinese fans often have to stay up to watch the live transmission of European football matches.中国球迷经常要熬夜看欧洲足球比赛的直播。（stay up：熬夜；不睡觉）Sometimes I don't understand Jeremy; he seems to have hurt the feelings of everyone who cares for him including his wife.有时候我真不理解杰里米，他似乎伤害了所有关心他的人，包括他的妻子。（cares for：关心；照顾）I doubt that they are able to get the problems straightened out before the deadline.我怀疑他们能否在截止日期前把问题解决好。（straightened out：解决；理清）It was curious that the children should have picked out their grandparents easily from the old photographs.奇怪的是，孩子们居然能从老照片里轻易认出他们的祖父母。（picked out：辨认出；挑出）The doctors had virtually given up on him after his heart attack, but he eventually recovered.他心脏病发作后，医生几乎已经放弃救治他了，但他最终康复了。（given up：放弃；停止尝试）Mrs. Kim was thrilled to learn that her daughter grabbed at the opportunity of going abroad.金太太得知女儿抓住了出国的机会，欣喜若狂。（grabbed at：抓住；争取）She is being considered for the position of editor-in-chief.她正在被考虑出任总编辑一职。（considered for：被考虑担任（某职位））
+
+U2 VI
+
+It's understandable that people feel let down by a government that said it would not bring taxes down.人们对一个承诺不降税的政府感到失望，这是可以理解的。（let down：使失望；辜负）Tell them to hold on a few seconds until we get the rest of the cartons unpacked.让他们稍等几秒，等我们把剩下的纸箱拆开。（hold on：稍等；坚持）The smallest details can be insisted upon in a formal contract.正式合同中可以坚持要求包含最细微的细节。（insisted upon：坚持；坚决要求）For guidance on grammar, refer to the appendices at the back of the book.想要语法方面的指导，可以参考书后的附录。（refer to：参考；查阅）Do you know what he was driving at when he said he suspected some people were being disloyal?他说怀疑有些人不忠诚，你知道他想说什么吗？（was driving at：意指；想要表达）He breezed along as if he didn't have a care in the world.他悠然自得地走着，仿佛世上没有任何烦心事。（breezed along：轻松前行；悠然自得）No wonder the film is a huge success. It builds up to a thrilling climax.难怪这部电影大获成功，它逐步推向一个惊心动魄的高潮。（注：手写为 works up，works up：逐步发展；酝酿出）The students have been researching tribes and tribal customs that died out centuries ago.学生们一直在研究几个世纪前就灭绝了的部落及其习俗。（died out：灭绝；消失）
+
+U3 IV
+
+The sound of the pipes conjures up images of misty Highland glens and men in kilts.风笛的声音使人想起雾气弥漫的苏格兰高地峡谷和身着方格呢裙的男子。（conjures up：使…… 浮现于脑海；唤起）The High Commissioner said the agreement would allow other vital problems to be dealt with.高级专员表示，该协议将使其他重要问题得以解决。（dealt with：处理；解决）I decided to go to the library to seek out some information on the Roman Conquest.我决定去图书馆查找一些关于罗马征服的资料。（seek out：寻找；找出）She just can't think of any reason why her son should do that.她怎么也想不出儿子会那么做的任何理由。（think of：想到；想出）The evening ended with a dramatic display of fireworks.夜晚以一场壮观的烟火表演结束。Tanks are strongly built. It is a complicated and difficult process to break them up.坦克造得很坚固，要拆解它们是个复杂又困难的过程。The social change within the city relates to wider developments in the country as a whole.这座城市里的社会变革关乎整个国家更广泛的发展。Faced with insurmountable linguistic problems, translators negotiated the boundaries between languages and came up with a compromise.面对难以克服的语言问题，译者们在不同语言的边界间权衡，想出了一个折中方案。
+
+
+
+U3 VI
+
+Caffeine is a stimulant which acts on the nervous system.咖啡因是一种会作用于神经系统的兴奋剂。Recent polls show the Democrats are gaining on the Republicans.最近的民调显示民主党正逐渐追上共和党。He was insistent that he had never participated in their illegal activities.他坚称自己从未参与他们的非法活动。There's something distinctly odd about Joe, but it's difficult to nail down precisely what it is.乔身上明显有些不对劲，但很难确切指出到底是什么。The Labor leader hadn't actually ruled out proposals on electoral reform.工党领袖实际上并没有排除选举改革的提案。It is important to get across our ideas in negotiation.在谈判中传达清楚我们的想法很重要。He went after several jobs but didn't succeed in getting any of them.他应聘了好几个工作，但一个也没成功。When he reflected on his marriage he had to acknowledge to himself that it was a great mistake.当他反思自己的婚姻时，不得不承认那是个巨大的错误。
+
+
+
+U4 IV
+
+In spite of the snowstorm, we will stick to our plan to leave early.尽管有暴风雪，我们仍会坚持原计划早点出发。The reporter was accused of fiddling with the facts.这名记者被指控篡改事实。The twin sisters took up synchronized swimming at the age of seven.这对双胞胎姐妹在七岁时开始从事花样游泳。"No need to worry," she comforted us with a smile. "Let it all hang out."“别担心，” 她笑着安慰我们，“把一切都摊开来说。”Although released from prison, Duncan has an inclination to run away from the police.虽然已出狱，邓肯还是有躲避警察的倾向。Following the election, the Democrats were demoralized, discredited, and worst of all, going broke.选举之后，民主党人士气低落、信誉扫地，最糟的是还濒临破产。Ms. Blair is expected to bring along with her many years of experience to the new post.布莱尔女士预计会带着她多年的经验到新岗位上。The cellist told us his story of being taken to concerts and drawn into music as a child.这位大提琴手告诉我们，他小时候被带去听音乐会，并被吸引到音乐中。
+
+
+
+U4 VI
+
+I'll need to brush up my Shakespeare before the course starts.课程开始前，我得重温一下莎士比亚的作品。Shall we take in the concert in the park this evening?我们今晚去欣赏公园里的音乐会好吗？Although the cost of living was high, the family managed to get by on fifty pounds a week.虽然生活成本很高，这家人还是靠每周五十英镑勉强维持。If they start terror tactics, the entire army will have to answer for his actions.如果他们开始使用恐怖手段，整个军队都要为他的行为负责。The neighbors often remark on Judy's likeness to Tyson's mother.邻居们经常评论朱迪和泰森妈妈长得像。I'd like to clear up a few minor points before we sign the contract.签合同前，我想澄清几个小问题。Mrs. Perkins is so nosy that she can't stop hanging in others' conversations.珀金斯太太太爱管闲事了，总忍不住插嘴别人的谈话。We caught a brief glimpse of the mountains before the fog closed in again and they were gone from view.我们刚瞥见群山，雾气就再次弥漫过来，它们就从视野中消失了。
+
+
+
+U5 IV
+
+I find it almost impossible not to give in to the children's repeated requests.我发现几乎无法不屈服于孩子们一再的请求。"Come on, lazybones. Do something! You can't sleep away your entire life like this."“快点，懒骨头。做点事！你不能这样虚度一生。”The urban planners seemed to hold out no hope of renovating the abbey before Christmas.城市规划者似乎对圣诞节前修复修道院不抱任何希望。Introverted people are more likely to hold off from strangers who try to strike up a conversation with them.内向的人更可能回避试图和他们搭话的陌生人。After three hours of strenuous training, the young footballer keeled over and fell flat on his back, exhausted.经过三小时的高强度训练，年轻的足球运动员倒下了，仰面朝天躺在地上，筋疲力尽。It is reported that the military are threatening to take over if the civil unrest continues.据报道，如果内乱持续，军方威胁要接管。At breakfast, he looked forward to a difficult day. There was still so much to do.早餐时，他预料到这会是艰难的一天，还有很多事要做。The American film industry and automobile industry used to largely prop up the entire country's economy.美国的电影业和汽车业过去在很大程度上支撑着整个国家的经济。
+
+
+
+U5 VI
+
+I know that it has become harder and harder for a teenager to stand up against the popularity wave and to go his or her own way.我知道，对青少年来说，抵制流行浪潮、走自己的路变得越来越难。I am a resolute man. Once I set up a goal, I won't give it up easily.我是个坚定的人。一旦我设定目标，就不会轻易放弃。I'm sorry this signature doesn't correspond to the one on your credit card.抱歉，这个签名和你信用卡上的不符。A new service caters to the needs of disabled people who want to go on living in their own homes.一项新服务满足了那些想继续住在自己家里的残疾人的需求。It's no use the Minister trying to gloss over his department's mistakes.部长试图掩盖他部门的错误是没用的。The government was determined to iron out the nation's economic problem by the end of the year.政府决心在年底前解决国家的经济问题。We mustn't hold against him that he has been in prison.我们不能因为他坐过牢而对他有偏见。The federal government made every effort to black out the news issuing from the rebel provinces.联邦政府尽一切努力封锁叛乱省份发出的消息。
+
+
+
+U6 IV
+
+The governor is trying hard to cover up the scandal.州长正努力掩盖这起丑闻。Samantha was amazed when late one evening, Adam blurted out that he loved her.一天深夜，亚当脱口而出说他爱她，萨曼莎很惊讶。He claimed that he had been set up after drugs were discovered in his suitcase.他的行李箱里发现毒品后，他声称自己是被陷害的。Did you ever find out why the man deserted his wife and four children?你有没有弄清楚那个男人为什么抛弃他的妻子和四个孩子？Wind and water slowly wear down the mountain's jagged edges.风和水慢慢侵蚀着山峰的棱角。They are going to a restaurant which specializes in Mexican food.他们要去一家专门经营墨西哥菜的餐厅。A modest scholar never professes to have exhausted his subject.谦虚的学者从不声称自己已经穷尽了研究的课题。The press complimented them on their breakthroughs in the research into the causes of cancer.媒体赞扬他们在癌症病因研究上的突破。
+
+
+
+U6 VI
+
+The outdoor concert was called off due to the weather.由于天气原因，户外音乐会被取消了。The expanded vocabulary, as well as the improved reading speed and accuracy, will be a record that can encourage you to get over the boredom.扩大的词汇量，以及提高的阅读速度和准确性，将成为一项记录，能鼓励你克服无聊。They knew that any failure to abide by the terms of the treaty would bring international condemnation.他们知道，任何不遵守条约条款的行为都会招致国际谴责。He was reduced to begging in the streets of Manhattan.他沦落到在曼哈顿街头乞讨。The plain fact is that they are giving me the sack, however they try to dress it up.事实很明显，他们要解雇我，不管他们怎么粉饰。The secret is not to brood over your failures, but to accept them as inevitable.秘诀不是耿耿于怀你的失败，而是接受它们是不可避免的。The option of increasing investment has been ruled out.增加投资的选项已被排除。It is wise to set by food and money in case of a future emergency.为未来的紧急情况储备食物和金钱是明智的。
+
+U1
+
+听到他屡遭失败的消息，我感到很难过。(distress)
+
+他总是摆出一副高人一等的样子，同事们都不喜欢他。(assume)
+
+格列佛 (Gulliver) 经历了冒险奇遇，见到了各色奇异的人物。(assortment)
+
+如果你再犯同样的错误，他会很生你气的。(furious)
+
+我们都被他坦率的观点、幽默的语言和亲切的态度所深深吸引。(draw)
+
+等到欢呼的掌声平息下来，那位诺贝尔奖获得者开始演讲。(die down)
+
+他天生有一种特别的洞察力和预见力，因此，他很少随大流。(run with the crowd)
+
+我发现现实毕竟是非常严酷的，一个人难以完全按照自己的理想去生活。(live up to)
+
+U2
+
+我的顶头上司是典型的工作狂，一年 365 天每天工作 10 小时以上。(workaholic)
+
+校长十分注重课外活动，他认为课外活动有助于培养学生对外部世界的浓厚兴趣。(extracurricular)
+
+星期一早上，他总是快速冲个澡，胡乱吃块三明治，拦辆出租车去上班。(grab)
+
+既然你要离开公司了，你要在本周内清算账目。(straighten out)
+
+为了按时完成博士论文，他经常熬夜。(stay up)
+
+没有什么能够取代内心深处最深切的爱。(replace)
+
+他被认为是总裁职位的当然人选，因为他已经出色地做了近 10 年副总裁。(natural n.)
+
+他实在太普通了，人堆里根本找不着。(pick out)
+
+U3
+
+有时，我们不得不做出选择，因为没有中间路可走。(middle ground)
+
+他脑海里经常浮现过去的景象：那时的他无忧无虑，没有生活的重压。(conjure up)
+
+当他有倦意的时候，经常喝杯浓浓的清咖啡提提神。(refresh)
+
+他挤过一群醉鬼和讨价还价的女人，穿过灯火闪耀 (flaring) 的街市。(thrust)
+
+老道的译者虽然理论不多，但可以凭借经验将一种语言转换成另一种语言。(rule of thumb)
+
+人们普遍认为外长此行的主要目的是打破两国关系的僵局。(break the ice)
+
+读好书、交好友可以提升境界。(elevate)
+
+鲜花和彩灯为古老的小镇平添了节日的喜气。(lend)
+
+U4
+
+这些现代主义艺术家看上去有点放浪不羁。(bohemian)
+
+不要搞错啊，他并不是你以为的什么纯洁的孩子。(fool oneself)
+
+他经常光顾一些以外国人为主要消费对象的时尚别致的咖啡馆和酒吧。(chic)
+
+他津津有味地叙述他在非洲的冒险经历。(with gusto)
+
+他的人生目标之一是将自己的职业与爱好结合起来。(avocation)
+
+老年人很容易受到不诚实的推销员的欺骗。(vulnerable)
+
+这份杂志的封面经常是富于魅力的女演员。(glamorous)
+
+我对电视广告噱头真的感到厌烦。(gimmick)
+
+U5
+
+一个生活在恐惧边缘的人是不可能感到快乐的。(close quarters)
+
+他心里感到很不舒畅，因为他刚刚出版的书中许多页面上都有明显的印刷错误。(glare)
+
+一个工于心计的人喜欢玩诡计，但往往没有大智慧。(calculating)
+
+老人感到纳闷，为什么这么多姑娘想当流行歌曲明星。(crave)
+
+我认为抓住别人的错误不放是一种不厚道的行为。(jump upon)
+
+他经常用一种傲慢的口吻嘲笑他的兄弟，说他是一个无知的懦夫。(taunt)
+
+在酷暑中，那个身体虚弱的姑娘突然晕倒了。(keel over)
+
+在过去的 5 年中，城市不断地朝四周无序蔓延。(sprawl)
+
+U6
+
+当哈姆雷特拿不定主意该采取什么行动时，他就装疯。(feign)
+
+搪塞推诿是这生意人的惯用伎俩。(prevarication)
+
+真理之光有时太刺目，于是善意的谎话随处可见。(ubiquitous)
+
+美国许多妇女声称她们对自己二等公民的地位感到不满。(profess)
+
+一时冲动之下，他失言抖出了秘密。(blurt out)
+
+你应该摆脱偏见，抵制诱惑，不让任何东西扭曲你的判断。(warp)
+
+他是一个过于敏感和富于想象力的人，经常在头脑里编织一张复杂的网络。(a tangled web)
+
+他在伙伴中很受欢迎，因为他尽量不给别人添麻烦。(spare)]]></content:encoded>
+            <author>1992107794@qq.com (Admin)</author>
+        </item>
+        <item>
+            <title><![CDATA[英汉翻译教程期末复习]]></title>
+            <link>https://emmmxx.xyz/zh/posts/yinghanfanyijiaochengqimofuxi</link>
+            <guid isPermaLink="false">https://emmmxx.xyz/zh/posts/yinghanfanyijiaochengqimofuxi</guid>
+            <pubDate>Wed, 14 Jan 2026 04:00:00 GMT</pubDate>
+            <description><![CDATA[英汉翻译教程期末复习]]></description>
+            <content:encoded><![CDATA[英汉翻译教程期末复习
+
+第一部分：简答题（翻译史与理论）
+
+第一章 翻译史简介
+
+1. 我国翻译事业的历史有多久？谁是我国古代佛经三大翻译家？
+
+历史时长：我国翻译事业有约两千年的光辉历史。
+依据：起源于西汉哀帝时期伊存口传佛经，但正式的翻译活动始于东汉桓帝建和二年（公元184年）安世高译经。古代佛经三大翻译家：
+鸠摩罗什 (Kumarajiva) —— 后秦时期真谛 (Paramartha) —— 南朝梁/陈时期玄奘 (Xuanzang) —— 唐代
+
+2. 玄奘对我国翻译事业有些什么贡献？
+玄奘的贡献是巨大的，主要体现在以下几个方面：
+
+数量与质量双高：他在十九年间译出佛经75部，共1335卷。其译文质量极高，在组织制度方面比过去更健全。文化交流（双向翻译）：他不仅把大量梵文佛经译成汉文，还把老子的著作（《道德经》）的一部分译成梵文，是第一个把汉文著作向国外介绍的中国人。翻译理论：他提出了著名的翻译标准 “既须求真，又须喻俗”。
+解释：“求真”即忠实于原文，“喻俗”即译文要通顺通俗，让百姓能懂。这也就是后世所说的“忠实、通顺”。建立了完备的译场：玄奘主持的译场分工明确，程序严谨，标志着中国古代翻译事业的高度成熟。
+
+3. 如何理解严复的“信、达、雅”翻译标准？
+严复在《天演论》卷首的《译例言》中提出了“译事三难：信、达、雅”。
+
+原始含义：
+信 (Faithfulness)：意义不倍（背）本文，即忠实于原文的内容和意义。达 (Expressiveness)：不拘泥于原文形式，尽译文语言的能事以求原意明显，即通顺流畅。雅 (Elegance)：（这是争议点）严复当时主张的“雅”是指脱离原文而片面追求译文本身的“古雅”，即使用“汉以前字法句法”（上等的文言文）。原文评价与现代理解：
+原文指出：严复对“雅”的解释（追求古文言）在今天看来是不足取的，因为这会导致译文艰深难懂，甚至不忠实于原文（类似改编）。补充理解：现代翻译界虽然仍沿用这三个字，但赋予了新的内容。现在的“雅”不再指用古文，而是指 “保存原作的风格”（Style），即译文要有文采，符合目标语的审美规范。
+
+4. “五四”时期翻译工作的特点是什么？
+“五四”是我国近代翻译史的分水岭，其主要特点包括：
+
+内容上的转变：从翻译资产阶级学术名著，转向介绍马列主义经典著作和无产阶级文学作品（如《共产党宣言》的翻译）。形式上的变革：白话文代替了文言文。这是最显著的表现，使翻译作品更加普及，更有利于思想的传播。文化影响：东西方各国优秀文学作品（特别是俄国和苏联作品）被大量介绍进来，鲁迅、瞿秋白等是这一时期的卓越先驱。
+
+5. 鲁迅、瞿秋白对翻译工作提出了有些什么看法？
+鲁迅和瞿秋白极其重视翻译，主要观点如下：
+
+鲁迅的“宁信而不顺”：
+鲁迅针对当时胡乱翻译（“胡译”、“乱译”）和为了通顺而随意篡改原文的现象，提出了 “宁信而不顺” 的原则。注意：这不是说不要通顺，而是在“信”与“顺”不可兼得时，宁可保留原文的语法结构和异国情调（洋气），以输入新的表达方式来丰富汉语，也不要为了讨好读者的阅读习惯而牺牲原文的真实性。兼顾两面：鲁迅认为翻译必须兼顾两面：一当然力求其易解，一则保存着原作的丰姿。反对“硬译”与“死译”：虽然鲁迅主张直译，但他和瞿秋白都反对把直译变成让人看不懂的“死译”，他们主张的是在保持原作风貌基础上的直译。
+
+6. 新中国成立后的翻译工作有哪些特点？
+1949年新中国成立后，翻译工作进入了新阶段：
+
+有组织、有计划：改变了过去抢译、乱译和重复浪费的现象，翻译工作在党的领导下系统进行。质量提高：逐渐克服了粗枝大叶、不负责任的现象，译文质量大大提高。服务目的明确：翻译工作更好地为社会主义建设服务。任务双向化：翻译工作者不仅肩负着“外译汉”（介绍外国科技、文化）的任务，还肩负了 “汉译外” 的任务（介绍我国社会主义革命经验和优秀文化遗产）。标准趋向统一：对翻译标准的认识日趋统一，有效地推动了翻译工作。
+
+7. 为什么翻译工作者需要知道一些我国翻译史？
+
+总结经验，批判吸收：约两千年的翻译历史积累了一份宝贵的文化遗产。我们需要认真总结前人的翻译经验，批判地吸收前人从实践中总结出来的理论、方法。继往开来：只有了解历史，才能继承优良传统，继续提高我们的翻译水平，发展翻译事业。简言之，就是“以史为鉴，指导实践”。
+
+8. 当前我国翻译事业有哪些问题值得思考？
+
+量与质的矛盾：随着翻译事业繁荣，客观上翻译需求成倍增长，但合格的翻译人才供不应求。水平参差不齐：翻译水平差距较大，市场上出现了一些质量低劣的翻译作品。人才培养迫切：翻译人才的培养亟待加强，以解决供需矛盾和质量问题。
+
+
+
+第二部分：词义选择与引申
+
+一、like 一词多义翻译示例
+
+He likes mathematics more than physics.
+他喜欢数学甚于喜欢物理学。In the sunbeam passing through the window there are fine grains of dust shining like gold.
+在射入窗内的阳光里，细微的尘埃像金子一般在闪闪发亮。Like knows like.
+英雄识英雄。
+
+二、last 形容词不同语境翻译示例
+
+He is the last man to come.
+他是最后来的。He is the last man to do it.
+他决不会干那件事。He is the last person for such a job.
+他最不配干这个工作。He should be the last (man) to blame.
+怎么也不该怪他。He is the last man to consult.
+根本不宜找他商量。This is the last place where I expected to meet you.
+我怎么也没料到会在这个地方见到你。
+
+三、take (off) 动词翻译示例
+
+To take off her boots or to put them on was an agony to her, and it had been an agony for years.
+脱鞋或穿鞋对她是一种痛苦，但这已是多年以来的痛苦了。An area the size of the Hornet’s flight deck was marked off on an airstrip and they practiced taking off time after time from this restricted space.
+在机场上标出了与大黄蜂号甲板一样大小的一块地方，他们（机组人员）一次又一次地练习从这样一块有限的面积上起飞。He always sits on the very edge of his chair when he is working, as though about to take off.
+他工作的时候，总是坐在椅子边上，好像随时都会跳起身来的样子。Their first major design was a pleated denim jean with external pockets dubbed “baggies” that took off in high schools and colleges and soon was imitated by other apparel manufacturers.
+他们的头一项重要设计是一种打褶的、缝上明袋的蓝色斜纹粗布裤，这种裤子人们称为“袋子”，在中学和大学中首先流行，接着别的服装制造商也都很快仿制起来。
+
+四、词义抽象化引申翻译示例
+
+There is a mixture of the tiger and the ape in the character of the imperialists.
+帝国主义者的性格既残暴，又狡猾。Every life has its roses and thorns.
+每个人的生活都有甜有苦。In fact, the Bavarian environment was so charged with Nazi sentiment throughout the 1920s that Hitler’s storm troops goosestepped into power in Furth in 1930...
+事实上，在整个二十世纪二十年代，纳粹党在巴伐利亚一带已博得公众好感，以至于在一九三〇年，希特勒的冲锋队员就耀武扬威地夺取了菲尔特镇的权力。See-sawing between partly good and faintly ominous, the news for the next four weeks was never distinct.
+在那以后的四个星期内，消息时而部分有所好转，时而又有点不妙，两种情况不断地交替出现，一直没有明朗化。As the Politburo gave the go-ahead to Brezhnev, Nixon and Kissinger were meeting in the President’s Kremlin apartment, prepared to accept a setback on SALT.
+在政治局向勃列日涅夫开放绿灯时，尼克松和基辛格正在克里姆林宫的总统下榻处开会，准备承受限制战略武器会谈失败的挫折。Vietnam was his entrée to the new Administration, his third incarnation as a foreign policy consultant.
+越南战争成了他进入新政府的敲门砖。他担任政府的对外政策顾问，那是第三次了。The car in front of me stalled and I missed the green.
+我前头的那辆车停住了，我错过了绿灯。Jewish-owned shops were shut down. Swastikas replaced six-pointed stars. The walls of anti-Semitism were closing in.
+犹太人的铺子关闭了。卐字旗取代了六角星旗。反犹太主义的包围圈一天紧似一天。
+
+五、词义褒贬翻译示例
+
+He was a man of high renown (fame).
+他是位有名望的人。（褒）His notoriety as a rake did not come until his death.
+他作为流氓的恶名是他死后才传开来的。（贬）The tasks carried out by them are praiseworthy.
+他们进行的事业是值得赞扬的。（褒）Henry keeps boasting that he has talked to the President.
+亨利总是吹嘘说他曾同总统谈过话。（贬）“He was polite and always gave advice willingly,” she recalled.
+她回忆说：“他彬彬有礼，总是诲人不倦。”（褒）We were shocked by his coarse manners.
+我们对他的粗暴态度感到震惊。（贬）Once, early in 1974, while driving along the San Diego Freeway from Clemente to Los Angeles, he was asked to reflect on his hopes and ambitions.
+一九七四年初，有人同他一起驱车从克利门蒂沿圣地亚哥公路去洛杉矶，途中请他谈了他的希望和抱负。“After all,” counseled Sonnenfeldt, “you’re the only Republican I know with the proper academic credentials.” Kissinger demurred. Such an offer, he said, was highly unlikely.
+索南费尔特劝他说：“共和党里我知道只有你一个人具有这样的学术资历。”基辛格免不了谦虚一番，说恐怕不大可能给他这样的职位吧。The two politicians talked for no more than five minutes, at a significant moment in their careers.
+两位政治家交谈了仅仅五分钟。这次谈话是在他们一生事业的重大时刻进行的。He was a man of integrity, but unfortunately he had a certain reputation. I believe the reputation was not deserved.
+他是一个正直诚实的人，但不幸有某种坏名声。我相信他这个坏名声是强加于他的。Then, just as Chinese friends arrived who might secure my journey, the Russians arrested me as a “spy” and sent me out through Poland. (A. L. Strong)
+后来，就在那些可能为我安排旅行的中国朋友刚刚到达的时候，俄国人把我当作“间谍”逮捕了我，并把我驱逐出境，取道波兰。He had lied to me and made me the tool of his wicked deeds.
+他欺骗了我，使我成了他进行罪恶勾当的工具。As a demanding boss, he expected total loyalty and dedication from his employees.
+他是个苛刻的老板，要求手下的人对他忠心耿耿，鞠躬尽瘁。Those who do not remember the past are condemned to relive it.
+凡是忘掉过去的人注定要重蹈覆辙。
+
+
+
+第三部分：课后习题与词义判定
+
+一、根据 right 的词类确定词义
+
+It is not right for children to sit up late.
+孩子晚睡是不对的。The plane was right above our heads.
+飞机就正好在我们头顶正上方。In the negative, right and left, and black and white are reversed.
+在底片上，右和左、黑和白都是颠倒的。She tried her best to right her husband from the charge of robbery.
+她尽全力为丈夫洗清抢劫罪的指控，还他清白。
+
+二、根据搭配关系确定词义
+
+(1) account for
+
+He is ill; that accounts for his absence.
+他生病了，这就是他缺席的原因。In this battle he accounted for five of the enemy.
+在这场战斗中，他干掉了五个敌人。I want you to account for every cent you spent.
+我要你把花的每一分钱都交代清楚。
+
+(2) make up
+
+If the stove isn't made up, it will go out.
+如果不添煤，炉子就会熄灭。There isn't any girl called Clementine. He's just made her up.
+根本没有叫克莱门汀的女孩，是他编造出来的。Half the roads in the region are still to be made up.
+该地区有一半的道路仍需铺设。Society is made up of people with widely differing abilities.
+社会是由能力各异的人组成的。It took Laurence Oliver more than an hour to make up for the part of "Othello".
+劳伦斯·奥利弗花了一个多小时才化好妆，准备扮演“奥赛罗”。They made up a bed on the sofa for the unexpected visitor.
+他们为不速之客在沙发上临时搭了一张床。We have to drive fast to make up the hour we lost in Boston.
+我们得开快点，好弥补在波士顿耽误的那一个小时。
+
+(3) figure
+
+The foreign trade has risen to unprecedented figures.
+外贸额已攀升至前所未有的数字。Dr. Eliot was one of the most revered figures in the world of learning.
+艾略特博士是学术界最受尊敬的人物之一。On the desk there was a bronze figure of Plato.
+书桌上有一尊柏拉图的青铜雕像。He saw dim figures moving towards him.
+他看到几个模糊的人影朝他走来。June was good at figure skating.
+琼擅长花样滑冰。
+
+三、根据逻辑关系作进一步引申
+
+There was no provocation for such an angry letter.
+对方并没有挑衅，他却写了一封如此愤怒的信。Fatty's Restaurant had become an institution in his life in the last seven years.
+在过去的七年里，“胖子餐厅”已经成了他生活中不可或缺的老地方。The trunk was big and awkward and loaded with books. But his case was a different proposition.
+那个箱子又大又笨重，装满了书。但他的手提箱就另当别论了。The wedding, which Heyward still remembered with pride, was attended by a Who's Who of Boston Society.
+海沃德仍骄傲地记得那场婚礼，波士顿社交界的名流悉数到场。The invention of machinery had brought into the world a new era — the Industrial Age. Money had become King.
+机器的发明为世界带来了一个新纪元——工业时代。金钱成了主宰。
+
+四、根据上下文确定词的褒贬
+
+It was mid-August and the subject for discussion was the future of Rommel and his Africa Corps.
+当时是八月中旬，讨论的话题是隆美尔及其非洲军团的前途。（中性）They predicted the youth would have a bright future.
+他们预言这个年轻人会有一个光明的前途。（褒义）John was an aggressive salesman who did his job quite well.
+约翰是个积极进取的销售员，工作干得相当出色。（褒义）Hitler pursued an aggressive policy after he seized power.
+希特勒掌权后推行了侵略性的政策。（贬义）Hans was too obviously flattering the gentleman by saying he was the most courageous man he had ever seen.
+汉斯说那位先生是他见过最勇敢的人，这奉承也太露骨了。（贬义）Mr. Brown felt greatly flattered when he received the invitation to deliver a lecture.
+收到演讲邀请时，布朗先生感到非常荣幸。（褒义）
+
+
+
+第四部分：翻译方法和技巧 —— 词类转译
+
+一、派生名词转译成动词
+
+An acquaintance of world history is helpful to the study of current affairs.
+熟悉世界历史有助于研究当代事务。His very appearance at any affair proclaims it a triumph.
+他只要出现在任何场合，就意味着那件事会取得成功。Alloy steels are formed by the addition of one or more of the following elements: nickel, tungsten, silicon and small amounts of other alloying elements.
+合金钢是通过添加镍、钨、硅以及少量其他合金元素中的一种或多种制成的。He urged upon citizens of the country the necessity of persisting in participation in political controversies.
+他敦促该国公民坚持参与政治争论。
+
+二、动作名词转译成动词
+
+On the walk through the city they saw breadlines.
+在穿过城市的路上，他们看到了排队领救济面包的队伍。A view of Mt. Fuji can be obtained from here.
+从这里能看到富士山的景色。At the thought of the mishap his legs stiffened under him and couldn’t move a step further.
+一想到那场不幸的事故，他的腿就僵住了，一步也挪不动。After an impatient oath or two, she got her hair away from her eyes, sufficiently to obtain a sight of him.
+不耐烦地咒骂了一两句后，她把头发从眼前拨开，终于看清了他。
+
+三、后缀-er(-or)构成的名词转译成动词
+
+He is no smoker, but his father is a chain-smoker.
+他不抽烟，但他父亲抽起烟来一根接一根。He was a regular visitor.
+他经常来拜访。She is a lover of Chinese painting.
+她喜爱中国画。There were various possible players for the role.
+有好几个人都可能出演这个角色。
+
+四、固定动词+名词短语转译成动词
+
+He has already made mention of the matter in his speech.
+他已经在演讲中提到了这件事。He showed with his eyes that he heard, but made no sign of assent or dissent.
+他用眼神表示自己听到了，却没有表示同意或反对。The Party branch secretary showed great concern for the students’ health.
+党支部书记十分关心学生们的健康。She had high praise for Dr. Higpan, although she complained about his strictness.
+尽管她抱怨希格潘博士要求严格，但仍对他大加赞赏。
+
+五、前置词转译成动词
+
+Up the street they went, past stores, across a broad square, and then entered a huge building.
+他们沿街往前走，经过几家商店，穿过一个宽阔的广场，然后走进了一座大楼。We drove home a bit after midnight, over the river and through the lovely old sleeping town.
+午夜过后，我们驱车回家，越过河流，穿过这座静谧古朴的小镇。The judge sat in the dining-room amid his morning mail.
+法官坐在餐厅里，处理着早上的邮件。
+
+六、形容词转译成动词
+
+We are quite sure that the socialist system will replace the capitalist system in the end.
+我们坚信，社会主义制度最终会取代资本主义制度。They were not content with their present achievements.
+他们不满足于现有的成就。They were suspicious and resentful of him.
+他们怀疑他，也怨恨他。If we were ignorant of the structure of the atom, it would be impossible for us to study nuclear physics.
+如果我们不了解原子的结构，就无法研究核物理。
+
+七、副词转译成动词
+
+The successful fishermen of that day were already in.
+那天满载而归的渔民们已经回来了。When he went back, the radio was still on, for he had forgotten to turn it off when he left.
+他回去时，收音机还开着，因为他走的时候忘了关。“Please do let me in! They are searching for me,” he begged.
+“求求你让我进去！他们正在搜我呢。”他哀求道。I would usually first overfly Cyprus, with cameras on to see if a fleet was being assembled there.
+我通常会先飞越塞浦路斯，同时打开摄像机，查看那里是否在集结舰队。
+
+八、动词转译成名词
+
+The landing was designed to cut the peninsula in two.
+这次登陆的目的是把半岛一分为二。The navy is now positioned to safeguard both the Pacific and Atlantic Oceans.
+海军目前的部署是为了保卫太平洋和大西洋。On that day they were escorted to the Great Wall of China.
+那天他们被陪同着去了中国长城。Because he had struck a boss, he was blacklisted and lost his job at the fertilizer works.
+因为他打了老板，被列入了黑名单，丢了化肥厂的工作。A well-dressed man, who looked and talked like an American, got into the car.
+一个穿着讲究的男人上了车，他的外表和谈吐都像美国人。They signed two agreements that served to warm up the atmosphere of their relations.
+他们签署了两项协议，起到了缓和双方关系氛围的作用。
+
+九、动词转译成带“遭”“受”“得”等的名词
+
+And he warned that the improvement in bilateral relations might be “jeopardized” by a continuation of the war.
+他警告说，战争的持续可能会让双边关系的改善遭受损害。His image as a good student was badly tarnished.
+他的好学生形象受到了严重损害。He was snuffed by the top-ranking officials there.
+他遭到了当地高级官员的冷落。
+
+十、形容词转译成名词
+
+They are going to build a school for the blind and the deaf.
+他们打算建一所盲聋哑学校。M. Gorky had deep sympathy for the insulted and the injured.
+高尔基对受侮辱、受损害的人抱有深切的同情。All the wounded were sent to the hospital right away.
+所有伤员都立刻被送往了医院。
+
+十一、名词转译成形容词
+
+I recognized the absurdity of dealing with them through intermediaries.
+我意识到通过中间人跟他们打交道是荒谬的。He was still more surprised at the singularity of the stranger’s appearance.
+对那个陌生人奇特的外貌感到更加惊讶。We found difficulty in solving this complicated problem.
+我们觉得解决这个复杂的问题很困难。She promptly shepherded them out of the crowded living room and into the privacy of the library.
+她立刻把他们领出拥挤的客厅，带到安静的图书馆里。So the rehabilitation of the cabin became a necessity.
+因此，修复小木屋成了一件必要的事。The garden-party is a great success.
+这场游园会办得非常成功。
+
+十二、形容词转译成副词
+
+(一)
+
+Warm discussions arose on every corner as to his achievements.
+到处都在热烈地讨论他的成就。We place the highest value on our friendly relations with developing countries.
+我们高度重视同发展中国家的友好关系。“Yes,” he said with a slow nod or two.
+“是的。”他缓缓地点了一两下头说。
+
+(二)
+
+I’ve often wondered, in the years since, whether I made the right choice.
+从那以后的这些年里，我常常想自己当初的选择是否正确。They regarded him as a potential adversary.
+他们把他视为潜在的对手。He didn’t succeed in ringing her up, for he dialed the wrong number.
+他没能打通她的电话，因为拨错了号码。At last, he whispered a hurried good-bye to his host and darted toward the door.
+最后，他匆匆地向主人低声道别，就冲向了门口。
+
+十三、副词转译成形容词
+
+The sun rose thinly from the sea.
+太阳从海面上微弱地升起。He was deeply impressed by what they did in the critical moment.
+他们在关键时刻的所作所为给他留下了深刻的印象。“I suppose boys think differently from girls,” he said.
+“我觉得男孩子的想法和女孩子不一样。”他说。
+
+十四、名词转译成副词
+
+He had the kindness to show me the way.
+他好心地为我指路。I had the fortune to meet him.
+我有幸见到了他。I have the honour to inform you that …
+我荣幸地通知你……
+
+
+
+第五部分：翻译方法——增词法
+
+一、斜体名词前后增加动词
+
+They talked for almost eight hours, through dinner and well into the night.
+他们谈了将近八个小时，吃了晚饭还继续谈，一直谈到深夜。He favored the efforts to improve relations with all peace-loving countries.
+他支持为改善同所有爱好和平国家的关系而做出的努力。“Nobody could count on his restraint or rationality,” he said.
+他说：“没人能指望他会克制自己、保持理智。”My work, my family, my friends were more than enough to fill my time.
+我的工作、家庭和朋友，这些事就足够让我忙个不停了。
+
+二、斜体名词前增加形容词
+
+“This is grasping at straws, I know,” said the helpless man.
+“我知道，这不过是抓救命稻草罢了。”这个无助的男人说。
+
+三、斜体动词前增加副词
+
+Now and then his boots shone.
+他的靴子时不时地闪着光。A seagull saw the light from my window and darted up to it.
+一只海鸥看到我窗口的灯光，猛地朝窗口飞来。They lingered long over his letter.
+他们对着他的信久久不肯放下。He turned a chair around and straddled it, resting his chin on the back.
+他把椅子转过来，跨坐在上面，下巴搁在椅背上。
+
+四、斜体不及物动词后增加名词
+
+He began to see things and to understand.
+他开始看清事情的真相，也明白了其中的道理。He ate and drank, for he was exhausted.
+他吃了点东西，喝了点水，因为他太累了。The invading troops looted and raped wherever they went.
+侵略军所到之处，大肆抢劫财物，奸淫妇女。
+
+五、斜体形容词前增加名词
+
+He was wrinkled and black, with scant gray hair.
+他满脸皱纹，皮肤黝黑，头发花白且稀疏。They, weary but game, decided to take a break.
+他们虽然疲惫但斗志仍在，决定休息一下。Stephen came out of the hot mill into the damp wind and cold wet streets, haggard and worn.
+斯蒂芬从闷热的工厂出来，走进潮湿的风里和冰冷湿滑的街道上，面容憔悴，身心俱疲。
+
+六、斜体名词前增加表复数的词
+
+Very acute problems exist among them.
+他们之间存在着诸多尖锐的问题。The U.S. had a brief period of regional feudalism during the period of slavery in the southern states.
+在美国南部各州的奴隶制时期，曾出现过一段短暂的地方封建割据状态。They drove in a black limousine, past groves of birch trees and endless rows of identical new buildings.
+他们乘坐黑色豪华轿车，驶过一片片桦树林和一排排一模一样的新建楼房。
+
+七、斜体动词需要增加表时间的词
+
+I knew it quite well as I know it now.
+我当初就像现在一样，对这件事了解得一清二楚。Mother insisted to this day that she thought I was just joking.
+母亲直到今天还坚持说，她当时以为我只是在开玩笑。They had always been able to control things. Now control was getting away from all of them.
+他们以前总能掌控一切，可现在却渐渐失去了对所有事情的控制。Stephen looked older than his age, for he had had a hard life.
+斯蒂芬看起来比实际年龄苍老，因为他一直过着艰苦的生活。
+
+八、斜体数词后增加量词
+
+This too was a complete lie.
+这也纯属一派谎言。He squeezed his sister too and gave her a gentle push.
+他也抱了抱妹妹，然后轻轻推了她一下。You might just take a look at my coat before this afternoon. See if it wants pressing.
+你不妨在下午之前看一眼我的外套，看看要不要熨一下。
+
+九、斜体部分需要增加适当的语气助词
+
+“All that made this Christmas Day was my knowing it was.”
+“我知道是这么回事，这才让这个圣诞节有了意义嘛。”The little boy had brought with him knife, scissors and what not, tinkling in his pocket.
+小男孩随身带了小刀、剪刀之类的东西，在口袋里叮叮当当地响呢。It was mostly small talk, but I’d had very little of that Family news. Messages from sisters, nephews, nieces.
+多半都是些闲聊，可我却没怎么听到家里的消息，比如姐妹们、侄子侄女们的近况呀。
+
+十、补充增词练习
+
+“How shall I do it?” — “Just as you wish.”
+“我该怎么做呢？”——“你想怎么做就怎么做吧。”Sometimes their faces froze, sometimes their feet and their hands.
+有时候他们的脸冻僵了，有时候他们的手脚也冻僵了。
+
+十一、其他增词法
+
+一
+
+They show skill in their sneak attacks and ferocity when cornered.
+他们的偷袭手段很老练，走投无路时又异常凶狠。
+
+二、增词表示含蓄条件句
+
+Any leak, even at this late date, could have tremendous international repercussions.
+哪怕到了现在这个阶段，一旦消息泄露，也可能产生巨大的国际影响。They would not have done such a thing without government approval.
+如果没有政府的批准，他们是不会做这种事的。The bridge was painted a dull green color. Under any other circumstances I probably would have found it ugly.
+这座桥被漆成了暗绿色，要是在别的情况下，我或许会觉得它很难看。
+
+三、增词表达 do 的意义
+
+He did not really represent their opinions to the higher-ups, although he claimed he did.
+他并没有真正向上级反映他们的意见，尽管他声称自己反映了。The guard inside the prison had no guns. But those in the towers did.
+监狱里的看守没有枪，但塔楼里的看守有。I tried not to draw too much hope from the incident, but despite my resolve, I did.
+我努力不让自己从这件事中抱太大希望，可尽管我下定决心，还是抱了希望。
+
+四、增词使抽象名词具体化
+
+His arrogance made everyone dislike him.
+他的傲慢态度让所有人都讨厌他。Now birth control became a possibility.
+如今计划生育已经成为可能实现的事了。The vague restlessness since boyhood remained.
+从小就有的那种莫名的烦躁感依然存在。There had been an ease of international tension.
+国际紧张局势有所缓和。Preparations for the conference had been plagued by many problems.
+会议的筹备工作遇到了诸多问题的困扰。
+
+五、增加概括词
+
+They talked about inflation, unemployment and environmental pollution.
+他们谈论了通货膨胀、失业和环境污染等一系列问题。Thus he grew in body and soul.
+就这样，他的身体和精神都得到了成长。All the facts concerning Mr. Powers’ family background, his upbringing, his personal experience, his social connections and his occupation have been subjected to intensive study.
+关于鲍尔斯先生的家庭背景、成长经历、个人阅历、社会关系以及职业状况，所有这些事实都经过了深入研究。
+
+六、增加承上启下的词
+
+He stepped to the platform and paused: a little dingy station, a small crowd of travelers.
+他走到站台边，顿了顿：眼前是个又小又脏的车站，还有一小群旅客。Border formalities, the French officials were polite and efficient, the Nazi authorities aloof and superior.
+至于边境检查手续，法国官员的态度彬彬有礼且办事高效，而纳粹当局则显得冷漠又傲慢。
+
+
+
+第六部分：翻译方法——重复法
+
+一、重复斜体的名词
+
+We should learn how to analyze and solve problems.
+我们应该学会如何分析问题和解决问题。It is our duty to rebuild and defend our homeland.
+重建祖国、保卫祖国是我们的职责。A good play serves to educate and inspire the people.
+一部好的戏剧能教育人民，也能鼓舞人民。It was he who first repudiated and breached the understanding.
+是他首先否定了这份共识，又违背了这份共识。They would be very reluctant to postpone or cancel the meeting.
+他们极不愿意推迟这次会议，也不愿意取消这次会议。
+
+二、重复斜体前置词前的名词
+
+We caught a glimpse of the leading horses and of a horseman vanishing through the rain.
+我们瞥见了领头的几匹马，也瞥见了一个骑马人在雨中渐渐消失。The prisoners often got into argument with each other or with the guard.
+囚犯们常常彼此之间发生争执，也常常和看守发生争执。Ignorance is the mother of fear as well as of admiration.
+无知是恐惧的根源，也是敬畏的根源。The use of poison gas is a clear violation of international law — in particular of the Geneva Convention.
+使用毒气显然违反了国际法，尤其违反了**《日内瓦公约》**。He broke all connections with his past, and with the old society in every way.
+他断绝了与自己过去的一切联系，也在各方面断绝了与旧社会的一切联系。
+
+三、重复斜体的动词
+
+People forget your face first, then your name.
+人们先是忘记你的容貌，接着又忘记你的名字。This requires care and, for difficult problems, great experience.
+这需要细心，而对于疑难问题，还需要丰富的经验。I owned a town house, a summer lodge in the mountains, a winter cabin in the desert, a car and a driver’s license to take myself about.
+我拥有一栋城里的房子，拥有一栋山间的避暑小屋，拥有一间沙漠里的冬日小屋，拥有一辆汽车，还拥有一张能让自己出行的驾照。They were starting from scratch and needed men, guns, training.
+他们白手起家，需要人手，需要枪支，也需要训练。He wore zippered black boots and a tailored suit.
+他穿着一双带拉链的黑靴子，也穿着一套量身定制的西装。
+
+四、重复斜体前置词前的动词
+
+Then he spoke of the rise of charity and popular education, and particularly of the spread of wealth and work.
+接着他谈到了慈善事业的兴起，谈到了大众教育的兴起，尤其谈到了财富的普及，谈到了就业机会的普及。Grammar deals with the structure of language, English grammar with the structure of English, French grammar with the structure of French, etc.
+语法研究语言的结构，英语语法研究英语的结构，法语语法研究法语的结构，依此类推。They talked of things they longed for — of meat and of hot soup and of the richness of butter.
+他们谈论起自己渴望的东西——谈论起肉，谈论起热汤，也谈论起香浓的黄油。They had prepared for this campaign as carefully as they had for larger ones.
+他们为这次战役做准备，做得和为更大规模的战役做准备一样细致。
+
+五、重复斜体代词所代表的名词
+
+Ignoring a problem does not solve it.
+忽视问题并不能解决问题。Smith seemed ill at ease with power, Ball sought it.
+史密斯面对权力显得局促不安，鲍尔却一心追求权力。But there are clues, and they seem to bear out my earlier suspicion.
+但有一些线索，这些线索似乎印证了我早先的怀疑。When her eyes looked up, they were very large, odd, and attractive.
+当她抬起双眼时，这双眼睛显得很大，很特别，也很迷人。
+
+六、对斜体的代词运用重复手段
+
+Big families had their own difficulties.
+大家庭有大家庭的难处。Each had his own business to handle.
+每个人都有每个人要处理的事务。Some were playing football, others were playing volleyball.
+一些人在踢足球，另一些人在打排球。Whoever works hard will be respected.
+谁努力工作，谁就会受到尊重。
+
+七、重复手段与句式转换
+
+一、保持原文的重复手段
+
+It is impossible to live in society and be independent of society.
+生活在社会中，却又脱离社会，这是不可能的。This town is a small town, looking much like other towns of its size, but few towns enjoy so many natural advantages.
+这是一座小镇，看起来和其他同规模的小镇没什么两样，但拥有这么多自然优势的小镇却寥寥无几。Dead is the monarch, dead the servant who cringed before him, dead the city in which they dwelt.
+君主死了，在他面前卑躬屈膝的仆人死了，他们居住的城市也死了。If once virtue is lost, all is lost.
+一旦美德丧失，一切都将丧失。Year after year and century after century the moon goes through its cycles.
+年复一年，世纪复一世纪，月亮始终遵循着它的运行周期。
+
+二、用同义词表达原文中重复的词
+
+Easy come, easy go.
+来得容易，去得快。No pains, no gains.
+不劳则无获。During their stay in Peking, they visited some old friends of theirs, visited Peking University and visited the Great Wall.
+在北京逗留期间，他们拜访了几位老友，参观了北京大学，还游览了长城。She loved giving orders to the servants and they loved obeying her.
+她喜欢对仆人发号施令，仆人们则乐意听从她的吩咐。
+
+三、用意义互补的四字词组表达斜体词
+
+He showed himself calm in an emergency situation.
+他在危急关头表现得镇定自若、处变不惊。The questions were evidently unexpected to the slow-witted spokesman, who instantly found himself tongue-tied.
+这些问题显然让这位头脑迟钝的发言人始料未及，他立刻变得张口结舌、无言以对。Instead we continued to embellish the cover story, walking blindly into his trap.
+可我们却继续粉饰这个幌子，糊里糊涂地落入了他的圈套。With what seemed my last hope frustrated, I slipped into a deep lethargy.
+最后的希望似乎破灭了，我陷入了无精打采、萎靡不振的状态。
+
+四、用四字重叠词组表达斜体词
+
+The toasts were flat.
+祝酒辞说得平平淡淡。I wasn’t evasive in my reply.
+我的回答没有遮遮掩掩。A slanting sunlight dappled the grass.
+斜阳照在草地上，斑斑驳驳。The farm buildings and the wheel-house were all dim and bluish.
+农场的建筑和舵手室都显得朦朦胧胧，泛着淡淡的蓝色。
+
+五、用四字对偶词组表达斜体词
+
+The trial, in his opinion, was absolutely fair.
+在他看来，这场审判绝对公平合理、不偏不倚。She is an awful fool of a woman.
+她这个女人，蠢笨至极、一无是处。Sue told him of Johnsy’s fancy.
+休把琼西的奇思妙想、异想天开告诉了他。But at that time, she was the only woman there.
+可在那时，她是那里唯一的女性，独一无二、别无他人。
+
+六、用同义词重复斜体词的含义
+
+Sam in the parlour, his boss was at lunch on chop and wine.
+山姆在客厅里，而他的老板正在吃午饭，大口吃着排骨，大口喝着酒。His folks ate up everything he had.
+他的家人把他所有的东西都吃了个精光、一扫而空。They might very well be preparing an attack against the country.
+他们很可能正在筹备对这个国家的进攻，策划着一场袭击。
+
+
+
+第七部分：翻译方法——省略法
+
+一、省略作主语的斜体人称代词
+
+I am 78 years old; I have been confined to my room with a paralytic stroke for the past 14 months.
+**（省略）**今年78岁，过去14个月因中风瘫痪，一直待在房间里。Like his friend he had many wonderful ideas, but he only put a few into practice.
+和朋友一样**（省略）**有很多绝妙的想法，却只把少数想法付诸实践。We can measure the amount of water in a pot, but we can’t measure its heat. We haven’t an instrument for that.
+我们能测量锅里的水量，却测不出水的温度，因为没有对应的仪器。The Grand Dukes always liked new ideas, and later they were good friends of Galileo.
+大公们向来喜欢新思想，后来还成了伽利略的好友。（省略“他们”）
+
+二、省略作宾语的斜体代词
+
+I’ve received your letter and read it with delight.
+收到了你的信，读了**（省略）**之后满心欢喜。If you have read these stories, tell them in your own words.
+如果你读过这些故事，就用自己的话讲**（省略）**出来。You must excuse me, I shall not speak of the matter again.
+请你原谅，这件事我不会再提**（省略）**了。In fact he showed quite clearly that the Copernican ideas were correct. But he did not say openly that he accepted them.
+事实上，他已经明确表明哥白尼的学说正确，却没有公开表示认同**（省略）**。
+
+三、省略斜体的物主代词
+
+He put up his hand in a salute.
+他抬手敬了个礼。（省略“他的”）In my childhood I learned a great deal about Russia.
+小时候我学了很多关于俄罗斯的知识。（省略“我的”）He sat, cursing himself, till his tea was stewed.
+他坐着咒骂自己，直到茶都煮糊了。Her dark hair waved untidy across her broad forehead, her face was short, her upper lip short, showing a glint of teeth, her brows were straight and dark, her lashes long and dark, her nose straight.
+**（省略）**她乌黑的头发凌乱地披在宽阔的额头上，脸型偏短，上唇也短，露出一点牙齿；眉毛直而黑，睫毛长而密，鼻子笔直。
+
+四、省译非人称it和强调用it
+
+It was a cold, dark day, the sky overcast.
+**（省略）**天冷阴沉，天空布满乌云。It is only shallow people who judge by appearances.
+只有浅薄的人才会以貌取人。It is in the plant that we work together with the workers.
+（省略）我们就在工厂里和工人们一起工作。Reading furnishes the mind only with materials of knowledge; it is thinking that makes what we read ours.
+阅读只为头脑提供知识素材，思考才能让读过的内容真正成为自己的东西。
+
+五、省译并列连接词
+
+The door was opened, and they came in.
+门开了，**（省略）**他们走了进来。I can do it, and so can you.
+我能做到，**（省略）**你也能。His telescope and his experiments were always bringing him new surprises, and he made notes of his work every day.
+他的望远镜和实验总能给他带来新的惊喜，**（省略）**他也每天记录自己的研究成果。He studied in college for two years, and then he went to join the army.
+他在大学读了两年，之后**（省略）**就参军了。
+
+六、省略从属连接词
+
+When the board was spinning slowly, you could see all the different colours.
+转盘慢慢转动时，能看到所有不同的颜色。If it should rain tomorrow, I shall stay at home.
+明天要是下雨，我就待在家里。（省略“如果”）As the temperature increases, the volume of water becomes greater.
+温度升高，水的体积就会变大。（省略“随着”）“Now, if we put this sofa against the wall and move everything out of the room except the chairs, don’t you think it all right?”
+“现在咱们把沙发靠墙放，把椅子之外的东西都搬出房间，你看这样行吗？”
+
+七、省略前置词
+
+And on June 5, 1985, we’ll celebrate our victory.
+1985年6月5日，我们将庆祝胜利。（省略“在”）On the thirteenth of May, 1956, I became a civilian again.
+1956年5月13日，我重新成为平民。（省略“在”）Smoking is not allowed in the store-house.仓库内禁止吸烟。Many new factories have been set up since liberation in their hometown.
+解放后，他们的家乡建起了许多新工厂。
+
+八、省略斜体的冠词
+
+I saw a boy and a girl on my way home. The boy had a book and the girl a doll.
+回家路上看到一个男孩和一个女孩，男孩拿着一本书，女孩抱着一个洋娃娃。（省略“一个”、“那个”）When I got to the wharf, the steamer had already started.
+到码头时，轮船已经开了。（省略“那”）A boy is always a boy.
+孩子终究是孩子。（省略“一个”）Milk is sold by the pound.
+牛奶按磅售卖。
+
+
+
+第八部分：翻译方法——反面表达法
+
+一、处理斜体动词
+
+The ache that had persisted in his chest had turned to severe pain.
+他胸口的隐痛一直没消失，后来变成了剧痛。“If we lose our lives, then you’ll lose yours!” she said with a laugh.
+“我们要是丢了性命，你也活不成！”她大笑着说。If he had kept his temper, the negotiation would probably have been a success.
+他当时要是没发脾气，谈判或许就成功了。I have failed to convince him of his error.
+我没能让他认识到自己的错误。The two teams tied.
+两队比赛未分胜负。
+
+二、处理斜体形容词
+
+She said simply, “They are all bad.”
+她淡淡地说：“他们都不怎么样。”Appearances are deceptive.
+外表具有迷惑性（外表并不可信）。The teacher found some of the pupils absent.
+老师发现有几个学生没来上课。Her face had a strange, lost look.
+她脸上带着一种奇怪的、茫然失措的神情。I’m terribly sorry to have given you such a lot of trouble.
+给你添了这么多麻烦，我实在过意不去。
+
+三、处理斜体前置词
+
+But that’s very extraordinary. It seems against nature.
+可这太反常了，似乎有悖常理。Never mind, we can manage without help.
+没关系，没人帮忙我们也能应付。His answer is beside the mark.
+他的回答离题了。Under fifty people were there.
+到场的人不足五十。
+
+四、处理斜体名词
+
+Her abstraction was not because of the tea party.
+她心不在焉并非因为茶会。He did not want to hurt her, but an itch to dominate pushed him on to say...
+他不想伤害她，可一股想要掌控一切的冲动却让他忍不住说……She was politely acquiescent in what was evidently Greek to her.
+对于那些明显一窍不通的事，她只是客气地表示默许。Silence reigned all over for a while.
+一时间，到处都静悄悄的，没有一点声音。
+
+五、处理斜体副词
+
+He said idly, “Well, what does it matter?”
+他漫不经心地说：“唉，这有什么关系呢？”They resumed their seats moodily.
+他们闷闷不乐地回到座位上。She always seemed too busy in the house.
+她在家里似乎总也闲不下来。Slowly he pulled the letter out of the envelope, and unfolded it.
+他不紧不慢地把信从信封里抽出来，展开信纸。
+
+六、处理斜体连接词
+
+The stranger had already gone before he hurried to the hotel.
+他赶到酒店时，那个陌生人已经走了。
+
+七、处理斜体短语
+
+“We should abstain from any exaggerations and void phrase-making,” said he.
+他说：“我们应当避免任何夸大其词的表述，也不要说空洞的套话。”His explanation is far from being satisfactory.
+他的解释根本不能让人满意。You should seize the opportunity moment to put in a good word for me.
+你得抓住这个时机，帮我说句好话。The news of the assassination of President Lincoln spread like wildfire.
+林肯总统遇刺的消息像野火一样迅速传开。The pioneers made light of difficulties and dangers.
+开拓者们对艰难险阻都毫不在意。Miss Fairlie kept to her room all day.
+费尔利小姐一整天都待在自己的房间里，没有出门。
+
+八、处理斜体从句或句子
+
+Let bygones be bygones.
+过去的事就让它过去吧。As was expected, the enemy walked right into the trap.
+不出所料，敌人径直落入了圈套。It had been six or seven hours since I had had anything to eat, drink or smoke.我已经六七个小时没吃、没喝、没抽烟了。(Keeping their arms off with his left arm) “Be careful! Mind my right arm!” he said.
+（用左臂挡开他们的手）他说：“小心点！别碰到我的右臂！”Mr. Will was a short and skinny white man with dark hair and gray eyes, and a smile that seemed to be frozen on his face and everybody knew it was anything else but a genuine smile.
+威尔先生是个矮小瘦削的白人，头发黝黑，眼睛灰白，脸上挂着一抹仿佛凝固的笑容，所有人都知道那绝不是真心的笑容。Haste makes waste.
+急于求成只会适得其反。
+
+九、正面表达法处理斜体部分
+
+“Don’t unstring your shoes, Roody, ” she said.
+“鲁迪，别解开鞋带。”她说。“I don’t know if I ought to have come, ” she said breathlessly, grasping Phyl’s arm.
+“我不知道自己该不该来。”她喘着气说，紧紧抓住菲尔的胳膊。For him the wheel of slumber was wont to turn noiseless and slick and swift.
+对他来说，睡眠的车轮总是悄无声息、顺畅又快速地转动。
+
+十、补充反面表达法
+
+Generally she accepted the family life in all its crowded inadequacy.
+总的来说，她接受了这种拥挤又不尽如人意的家庭生活。Jim was no end upset because he couldn’t go swimming.
+吉姆因为不能去游泳，心里郁闷极了。Sir Percival’s (珀西瓦尔) spies were not going to lose sight of me.
+珀西瓦尔爵士的密探一直紧紧盯着我，不会让我从他们的视线里消失。
+
+
+
+第九部分：单词/短语/句子拆分与合并翻译
+
+一、斜体单词译成汉语句子
+
+He wished he were at home. Ordinarily, he would have been there three hours ago.
+他真希望自己在家。按平时的情况，他三个小时前就该到那儿了。Illogically, she had expected some kind of miracle solution.
+她不合情理地期待着某种奇迹般的解决办法。换个说法就是，她盼着有什么妙招能一下子解决问题。But, occasionally, through haste or carelessness, mistakes were made, so that at the end of the business day one teller would be short on cash, the other long.
+但偶尔会因为仓促或疏忽出些差错，结果到营业结束时，一个出纳的现金会短缺，另一个则会多出一些。Characteristically, Mr. Harold concealed his feelings and watched and learned.
+哈罗德先生向来如此，他会隐藏自己的情绪，一边观察，一边学习。He stalked away, but with a gnawing uncertainty in his breast.
+他昂首阔步地走开了，可心里却有种挥之不去的疑虑在折磨着他。The inside of each tent depended on the personality of its occupants.
+每个帐篷的内部布置都各不相同，这取决于住在里面的人的性格。
+
+二、斜体短语译成汉语句子
+
+He was lying on his side watching her.
+他侧躺着，目光一直落在她身上。Doctors and men both talked about a miracle drug constantly almost with awe.
+医生和其他人都在不停地谈论一种神药，说起它时几乎带着敬畏的神情。But they had become nomads of the desert, living on the ground and under the sky, and they loved it.
+但他们已经成了沙漠里的游牧者，以地为席，以天为被，而且他们很喜欢这样的生活。The hospital was already spreading a fame for its food.
+这家医院的伙食早已名声在外，很多人都知道这儿的饭好吃。The answer had been there all of the time just out of reach.
+答案一直就在那里，可偏偏就是够不着。Mr. Myles still smiled but his voice had a little bit of irritation in it, unusual to Rob.
+迈尔斯先生脸上依然挂着笑容，可声音里却带着一丝怒气，这在罗布看来很不寻常。
+
+三、斜体句子分成两个以上汉语句子
+
+The ample yard in back is dominated by heavily bearing fruit trees.屋后有一片宽敞的院子。院子里种着几棵果树，树上结满了沉甸甸的果子，成了院子里最显眼的景致。David opened the door, and Arthus went out into the rain.大卫打开了门。阿瑟斯走了出去，一头扎进了雨里。He wanted to tell John how surprised he was at his knowledge but embarrassment made him hold his peace.
+他想告诉约翰，自己对他的学识有多惊讶。可碍于情面，他最终还是没说出口。Strange enough they were the same age to the day.说来也怪，他们的年龄居然一模一样，连生日都在同一天。Out of sheer joy she waved.她欣喜若狂，不停地挥手。
+
+四、两个（或以上）简单句合并译成一个汉语单句（或复句）
+
+It was half past ten. Sarie watched the path anxiously.十点半了，莎丽焦急地望着小路。That was long ago. A very long time ago. Almost 30 years ago.那是很久以前的事了，差不多三十年了。He would miss many things and many people. He would miss Celia.他会想念很多人和事，尤其是西莉亚。The four men huddled there and said nothing. They dared not smoke. They would not move.那四个人挤在那里，一言不发，既不敢抽烟，也不敢挪动半步。Home after seven years. Home. The word had meant so much to him.七年之后终于回家了，“家”这个字对他来说意义非凡。And as she thought, it became more involved. Harder to understand.她越想，事情就变得越复杂，也越难琢磨。
+
+五、主从复合句译成一个汉语单句
+
+He stood on the curb till a car shot by.他站在路边，直到一辆汽车疾驰而过。While he washed, he heard the doorbell.他洗漱时听到了门铃响。When I came to the summit, I became very excited.我登上山顶，心里激动不已。If we do a thing, we should do it well.做事就要把它做好。
+
+六、并列句译为一个汉语单句
+
+It was 1953, and I had just come from Kilkelly, Ireland, to seek my fortune.1953年，我刚从爱尔兰的基尔凯利来这里闯荡。It was an LST, and it was already nearly loaded with trucks and armored cars.这是一艘坦克登陆舰，舰上几乎装满了卡车和装甲车。It was in mid-August, and the repair section operated under the blazing sun.八月中旬，维修组在烈日下作业。
+
+]]></content:encoded>
+            <author>1992107794@qq.com (Admin)</author>
+        </item>
+        <item>
+            <title><![CDATA[南京邮电大学评教自动化脚本]]></title>
+            <link>https://emmmxx.xyz/zh/posts/nanjingyoudiandaxuepingjiaozidonghuajiaoben</link>
+            <guid isPermaLink="false">https://emmmxx.xyz/zh/posts/nanjingyoudiandaxuepingjiaozidonghuajiaoben</guid>
+            <pubDate>Fri, 12 Dec 2025 12:05:00 GMT</pubDate>
+            <description><![CDATA[评教脚本]]></description>
+            <content:encoded><![CDATA[相应页面右键检查或f12打开控制台，复制以下代码粘贴回车运行
+
+课程评价
+
+var obj = frames['iframeautoheight'].contentDocument.getElementById("pjkc")
+var length = obj.options.length
+console.log("你有", length, "门课程需要进行课程评价")
+var finished = 0;
+var task = window.setInterval(function () {
+    // 结束条件
+    if (finished >= length) {
+        window.clearInterval(task);
+        console.log("所有评价已完成");
+        return;
+    }
+  
+    var allselects = frames['iframeautoheight'].contentDocument.getElementsByTagName("select");
+  
+    // 生成一个随机索引，范围从 1 到 allselects.length - 1
+    // 这样做是为了避开下标 0 (通常是课程选择下拉框)，并在剩下的选项中随机选一个
+    var randomTarget = Math.floor(Math.random() * (allselects.length - 1)) + 1;
+
+    for (var j = 1; j < allselects.length; j++) {
+        // 如果当前下标等于随机生成的下标，设为相对认同，否则完全认同
+        if (j == randomTarget) {
+            allselects[j].value = "相对认同";
+        } else {
+            allselects[j].value = "完全认同";
+        }
+    }
+  
+    finished++;
+  
+    // 防止最后一次溢出报错，加个判断
+    var btn = frames['iframeautoheight'].contentDocument.getElementById("Button1");
+    if(btn) btn.click();
+  
+    console.log("任务进度：", finished, " / ", length, " 门课");
+}, 1000);
+
+
+教学质量评价
+
+var obj = frames['iframeautoheight'].contentDocument.getElementById("pjkc")
+var length = obj.options.length
+console.log("你有", length, "门课程需要进行教学质量")
+var finished = 0;
+var task = window.setInterval(function () {
+    // 结束条件优化，防止溢出
+    if (finished >= length) {
+        window.clearInterval(task)
+        console.log("评价全部完成！");
+        return;
+    }
+  
+    var allselects = frames['iframeautoheight'].contentDocument.getElementsByTagName("select");
+  
+    // 生成一个随机目标索引，范围从 1 到 最后一个下拉框
+    // 这里的 1 是为了跳过课程选择本身的下拉框
+    var randomTarget = Math.floor(Math.random() * (allselects.length - 1)) + 1;
+
+    for (var j = 1; j < allselects.length; j++) {
+        // 如果当前是随机选中的那个，就填"较好"，否则填"好"
+        if (j == randomTarget) {
+            allselects[j].value = "较好"; 
+        } else {
+            allselects[j].value = "好";
+        }
+    }
+  
+    finished++;
+  
+    // 获取按钮并点击
+    var btn = frames['iframeautoheight'].contentDocument.getElementById("Button1");
+    if(btn) btn.click();
+  
+    console.log("任务进度：", finished, " / ", length, " 门课")
+}, 1000);
+
+
+]]></content:encoded>
+            <author>1992107794@qq.com (Admin)</author>
+        </item>
+        <item>
+            <title><![CDATA[数据结构学习笔记-树与二叉树]]></title>
+            <link>https://emmmxx.xyz/zh/posts/shujujiegouxuexibiji-shuyuerchashu</link>
+            <guid isPermaLink="false">https://emmmxx.xyz/zh/posts/shujujiegouxuexibiji-shuyuerchashu</guid>
+            <pubDate>Mon, 01 Dec 2025 06:47:00 GMT</pubDate>
+            <description><![CDATA[数据结构学习笔记-树与二叉树]]></description>
+            <content:encoded><![CDATA[树
+
+树是一个或多个节点的有限集合，其中有一个特殊的节点称为根节点，其他节点可以分为若干个互不相交的子集，每个子集本身又是一个树，称为子树。
+示意图如下：
+
+        A
+       / \
+      B   C
+     / \   \
+    D   E   F
+
+
+在这个示意图中，A 是根节点，B 和 C 是 A 的子节点，D 和 E 是 B 的子节点，F 是 C 的子节点。
+
+结点：树中的每一个元素称为结点（Node）。结点的度：一个结点的度是指该结点的子结点的个数。树的度：树的度是指树中所有结点的度的最大值。叶子：叶子结点是指没有子结点的结点。度为0的结点称为叶子结点。非终端结点：非终端结点是指至少有一个子结点的结点。度大于0的结点称为非终端结点。双亲和孩子：在树中，直接连接到某个结点的上一级结点称为该结点的双亲（Parent），而直接连接到某个结点的下一级结点称为该结点的孩子（Child）。兄弟：具有相同双亲的结点互为兄弟（Sibling）。层次：树中结点所在的层次称为该结点的层次（Level）。根节点所在的层次为0，其子节点所在的层次为1，依此类推。高度：树的高度是指树中结点的最大层次。森林：森林是由多棵互不相交的树组成的集合。
+
+树的基本性质
+
+性质一：树中所有结点数等于所有结点的度数之和加1。
+性质二：对于度为m的树，第i层最多有$ m^(i-1) $个结点（i≥1）。
+性质三：对于度为m且高度为h的树，最多有$ \frac{m^h-1}{m-1} $个结点（m>1）。
+
+二叉树
+
+二叉树是每个结点最多有两个子结点的树。二叉树的每个结点最多有两个孩子，分别称为左孩子和右孩子。
+示意图如下：
+
+        A
+       / \
+      B   C
+     / \   \
+    D   E   F
+
+
+在这个示意图中，A 是根节点，B 和 C 是 A 的左孩子和右孩子，D 和 E 是 B 的左孩子和右孩子，F 是 C 的右孩子。
+
+二叉树的基本性质
+
+性质一：二叉树的第i层最多有$ 2^(i-1) $个结点（i≥1）。
+性质二：深度为k的二叉树最多有$ 2^k - 1 $个结点（k≥1）。
+性质三：对于任意一棵二叉树，设叶子结点数为n0，度为2的结点数为n2，则有：$ n0 = n2 + 1 $。
+性质四：具有n个结点的完全二叉树的高度为$ \lfloor log_2 n \rfloor + 1 $。
+
+特殊二叉树--满二叉树与完全二叉树
+
+满二叉树是指每个结点要么是叶子结点，要么有两个子结点的二叉树。完全二叉树是指除最后一层外，每一层的结点数都达到最大，并且最后一层的结点都集中在左侧的二叉树。
+示意图如下：
+
+满二叉树：
+        A
+       / \
+      B   C
+     / \ / \
+    D  E F  G
+
+
+完全二叉树：
+(没有左子树，不能有右子树，上一层没铺满，不能有下一层)
+        A
+       / \
+      B   C
+     / \  /
+    D  E F
+
+
+二叉树的存储结构
+
+顺序存储
+
+顺序存储是将二叉树的结点按层次顺序存储在一维数组中。对于一个结点在数组中的下标为i，则其左孩子的下标为2i+1，右孩子的下标为2i+2，父节点的下标为$ \lfloor (i-1)/2 \rfloor $。
+
+链式存储
+
+链式存储是为每个结点创建一个结构体，包含结点的数据域和两个指针域，分别指向左孩子和右孩子。
+
+typedef struct BiTNode {
+    int data; // 数据域
+    struct BiTNode *lchild; // 指向左孩子的指针
+    struct BiTNode *rchild; // 指向右孩子的指针
+} BiTNode, *BiTree;
+
+
+二叉树的遍历
+
+二叉树的遍历是指按照一定的顺序访问二叉树中的每个结点。常见的遍历方式有三种：前序遍历、中序遍历和后序遍历。
+
+前序遍历：先访问根结点，然后遍历左子树，最后遍历右子树。中序遍历：先遍历左子树，然后访问根结点，最后遍历右子树。后序遍历：先遍历左子树，然后遍历右子树，最后访问根结点。
+
+void PreOrder(BiTree T) {// 前序遍历
+    if (T != NULL) {// 判断结点是否为空
+        printf("%d ", T->data); // 访问根结点
+        PreOrder(T->lchild); // 遍历左子树
+        PreOrder(T->rchild); // 遍历右子树
+    }
+}
+void InOrder(BiTree T) {// 中序遍历
+    if (T != NULL) {
+        InOrder(T->lchild); // 遍历左子树
+        printf("%d ", T->data); // 访问根结点
+        InOrder(T->rchild); // 遍历右子树
+    }
+}
+void PostOrder(BiTree T) {// 后序遍历
+    if (T != NULL) {
+        PostOrder(T->lchild); // 遍历左子树
+        PostOrder(T->rchild); // 遍历右子树
+        printf("%d ", T->data); // 访问根结点
+    }
+}
+
+
+线索二叉树
+
+线索二叉树是一种特殊的二叉树，其中的空指针被用来指向结点的前驱或后继结点，从而方便遍历操作。线索二叉树分为前序线索二叉树、中序线索二叉树和后序线索二叉树。
+
+typedef struct ThreadNode {
+    int data; // 数据域
+    struct ThreadNode *lchild; // 指向左孩子的指针
+    struct ThreadNode *rchild; // 指向右孩子的指针
+    int ltag; // 左标志，0表示指向孩子，1表示指向前驱
+    int rtag; // 右标志，0表示指向孩子，1表示指向后继
+} ThreadNode, *ThreadTree;
+
+
+]]></content:encoded>
+            <author>1992107794@qq.com (Admin)</author>
+        </item>
+        <item>
+            <title><![CDATA[数据结构学习笔记-栈与队列]]></title>
+            <link>https://emmmxx.xyz/zh/posts/shujujiegouxuexibiji-zhanyuduilie</link>
+            <guid isPermaLink="false">https://emmmxx.xyz/zh/posts/shujujiegouxuexibiji-zhanyuduilie</guid>
+            <pubDate>Mon, 01 Dec 2025 05:00:00 GMT</pubDate>
+            <description><![CDATA[数据结构学习笔记-栈与队列]]></description>
+            <content:encoded><![CDATA[栈
+
+栈(stack)是限定仅在表尾进行插入和删除操作的线性表，表尾端称为栈顶，表头端称为栈底。不含元素的空表称为空栈，栈遵循“后进先出”(LIFO, Last In First Out)的原则。
+栈的基本操作包括入栈(push)、出栈(pop)和获取栈顶元素(peek)。
+示意图：
+
+|     |
+进栈  |  C  |  <-- 栈顶 (Top)
+ |    |-----|
+ v    |  B  |
+      |-----|
+出栈  |  A  |  <-- 栈底 (Bottom)
+ ^    +-----+
+ |
+
+
+栈的顺序结构-初始化
+
+#define MAXSIZE 100
+typedef struct {
+    int data[MAXSIZE]; // 存储栈元素的数组
+    int top;           // 栈顶指针
+} SqStack;
+// 初始化栈
+void InitStack(SqStack *S) {
+    S->top = -1; // 栈顶指针初始化为-1，表示栈为空
+}
+
+
+栈的链式结构-初始化
+
+typedef struct StackNode {
+    int data;                 // 栈元素
+    struct StackNode *next;   // 指向下一个节点的指针
+} StackNode;
+typedef struct {
+    StackNode *top; // 栈顶指针
+} LinkStack;
+// 初始化栈
+void InitStack(LinkStack *S) {
+    S->top = NULL; // 栈顶指针初始化为NULL，表示栈为空
+}
+
+
+栈的基本操作
+
+入栈(push)
+
+// 顺序栈入栈
+int Push(SqStack *S, int e) {
+    if (S->top == MAXSIZE - 1) return 0; // 栈满，无法入栈
+    S->data[++(S->top)] = e; // 元素入栈
+    return 1; // 入栈成功
+}
+// 链式栈入栈
+int Push(LinkStack *S, int e) {
+    StackNode *newNode = (StackNode *)malloc(sizeof(StackNode));
+    if (!newNode) return 0; // 内存分配失败
+    newNode->data = e; // 设置新节点的数据
+    newNode->next = S->top; // 新节点指向当前栈顶
+    S->top = newNode; // 更新栈顶指针
+    return 1; // 入栈成功
+}
+
+
+出栈(pop)
+
+// 顺序栈出栈
+int Pop(SqStack *S, int *e) {
+    if (S->top == -1) return 0; // 栈空，无法出栈
+    *e = S->data[(S->top)--]; // 元素出栈
+    return 1; // 出栈成功
+}
+// 链式栈出栈
+int Pop(LinkStack *S, int *e) {
+    if (S->top == NULL) return 0; // 栈空，无法出栈
+    StackNode *temp = S->top; // 临时保存栈顶节点
+    *e = temp->data; // 获取栈顶元素
+    S->top = S->top->next; // 更新栈顶指针
+    free(temp); // 释放出栈节点的内存
+    return 1; // 出栈成功
+}
+
+
+获取栈顶元素(peek)
+
+// 顺序栈获取栈顶元素
+int Peek(SqStack *S, int *e) {
+    if (S->top == -1) return 0; // 栈空，无法获取栈顶元素
+    *e = S->data[S->top]; // 获取栈顶元素，数组访问，S->data[ S->top ] 翻译过来就是 S指向的数组[ S指向的下标 ]
+    return 1; // 获取成功
+}
+// 链式栈获取栈顶元素
+int Peek(LinkStack *S, int *e) {
+    if (S->top == NULL) return 0; // 栈空，无法获取栈顶元素
+    *e = S->top->data; // 获取栈顶元素
+    return 1; // 获取成功
+}
+
+
+队列
+
+队列(queue)是限定仅在表的前端进行删除操作，而在表的后端进行插入操作的线性表。队列遵循“先进先出”(FIFO, First In First Out)的原则。
+队列的基本操作包括入队(enqueue)、出队(dequeue)和获取队头元素(front)。
+示意图：
+
+入队 (Enqueue)                     出队 (Dequeue)
+           |                                   ^
+           v                                   |
+    +---------------------------------------------+
+    |  元素 D  |  元素 C  |  元素 B  |  元素 A    |
+    +---------------------------------------------+
+       ^                                   ^
+       |                                   |
+   队尾 (Rear)                         队头 (Front)
+
+
+队列的顺序结构-初始化
+
+#define MAXSIZE 100
+typedef struct {
+    int data[MAXSIZE]; // 存储队列元素的数组
+    int front;         // 队头下标
+    int rear;          // 队尾下标，指向下一个待插入位置
+} SqQueue;
+
+// 初始化队列
+void InitQueue(SqQueue *Q) {
+    Q->front = 0; 
+    Q->rear = 0;  // 初始时队列为空，front == rear
+}
+
+
+队列的链式结构-初始化
+
+typedef struct QNode {
+    int data;               // 队列元素
+    struct QNode *next;     // 指向下一个节点的指针
+} QNode;
+typedef struct {
+    QNode *front; // 队头指针
+    QNode *rear;  // 队尾指针
+} LinkQueue;
+// 初始化队列
+void InitQueue(LinkQueue *Q) {
+    Q->front = Q->rear = NULL; // 队头和队尾指针初始化为NULL，表示队列为空
+}
+
+
+队列的基本操作
+
+入队(enqueue)
+
+// 顺序队列入队
+int Enqueue(SqQueue *Q, int e) {
+    if ((Q->rear + 1) % MAXSIZE == Q->front) return 0; // 队列满，无法入队
+    Q->data[Q->rear] = e; // 元素入队
+    Q->rear = (Q->rear + 1) % MAXSIZE; // 更新队尾指针
+    return 1; // 入队成功
+}
+// 链式队列入队
+int Enqueue(LinkQueue *Q, int e) {
+    QNode *newNode = (QNode *)malloc(sizeof(QNode));
+    if (!newNode) return 0; // 内存分配失败
+    newNode->data = e; // 设置新节点的数据
+    newNode->next = NULL; // 新节点的下一个指针为NULL
+    if (Q->rear) {
+        Q->rear->next = newNode; // 将新节点链接到队尾
+    } else {
+        Q->front = newNode; // 队列为空时，更新队头指针
+    }
+    Q->rear = newNode; // 更新队尾指针
+    return 1; // 入队成功
+}
+
+
+出队(dequeue)
+
+// 顺序队列出队
+int Dequeue(SqQueue *Q, int *e) {
+    if (Q->front == Q->rear) return 0; // 队列空，无法出队
+    *e = Q->data[Q->front]; // 元素出队
+    Q->front = (Q->front + 1) % MAXSIZE; // 更新队头指针
+    return 1; // 出队成功
+}
+// 链式队列出队
+int Dequeue(LinkQueue *Q, int *e) {
+    if (Q->front == NULL) return 0; // 队列空，无法出队
+    QNode *temp = Q->front; // 临时保存队头节点
+    *e = temp->data; // 获取队头元素
+    Q->front = Q->front->next; // 更新队头指针
+    if (Q->front == NULL) {
+        Q->rear = NULL; // 队列为空时，更新队尾指针
+    }
+    free(temp); // 释放出队节点的内存
+    return 1; // 出队成功
+}
+
+
+获取队头元素(front)
+
+// 顺序队列获取队头元素
+int Front(SqQueue *Q, int *e) {
+    if (Q->front == Q->rear) return 0; // 队列空，无法获取队头元素
+    *e = Q->data[Q->front]; // 获取队头元素
+    return 1; // 获取成功
+}
+// 链式队列获取队头元素
+int Front(LinkQueue *Q, int *e) {
+    if (Q->front == NULL) return 0; // 队列空，无法获取队头元素
+    *e = Q->front->data; // 获取队头元素
+    return 1; // 获取成功
+}
+
+
+队列动态内存分配示例
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAXSIZE 100
+typedef struct {
+    int *data; // 动态分配的数组
+    int front; // 队头下标
+    int rear;  // 队尾下标
+    int capacity; // 队列容量
+} DynamicSqQueue;
+// 初始化动态队列
+void InitDynamicQueue(DynamicSqQueue *Q, int capacity) {
+    Q->data = (int *)malloc(capacity * sizeof(int));
+    Q->front = 0;
+    Q->rear = 0;
+    Q->capacity = capacity;
+}
+// 释放动态队列内存
+void FreeDynamicQueue(DynamicSqQueue *Q) {
+    free(Q->data);
+}
+
+
+队列的顺序结构-循环队列
+
+#define MAXSIZE 100
+typedef struct {
+    int data[MAXSIZE]; // 存储队列元素的数组
+    int front;         // 队头下标
+    int rear;          // 队尾下标，指向下一个待插入位置
+} CircularQueue;
+// 初始化循环队列
+void InitCircularQueue(CircularQueue *Q) {
+    Q->front = 0; 
+    Q->rear = 0;  // 初始时队列为空，front == rear
+}
+
+
+循环队列入队(enqueue)
+
+int Enqueue(CircularQueue *Q, int e) {
+    if ((Q->rear + 1) % MAXSIZE == Q->front) return 0; // 队列满，无法入队
+    Q->data[Q->rear] = e; // 元素入队
+    Q->rear = (Q->rear + 1) % MAXSIZE; // 更新队尾指针
+    return 1; // 入队成功
+}
+
+
+循环队列出队(dequeue)
+
+int Dequeue(CircularQueue *Q, int *e) {
+    if (Q->front == Q->rear) return 0; // 队列空，无法出队
+    *e = Q->data[Q->front]; // 元素出队
+    Q->front = (Q->front + 1) % MAXSIZE; // 更新队头指针
+    return 1; // 出队成功
+}
+
+
+双端队列
+
+双端队列(deque, double-ended queue)是一种允许在两端进行插入和删除操作的线性表。双端队列可以在队头和队尾进行入队和出队操作。]]></content:encoded>
+            <author>1992107794@qq.com (Admin)</author>
+        </item>
+        <item>
+            <title><![CDATA[数据结构学习笔记-线性表]]></title>
+            <link>https://emmmxx.xyz/zh/posts/shujujiegouxuexibiji-xianxingbiao</link>
+            <guid isPermaLink="false">https://emmmxx.xyz/zh/posts/shujujiegouxuexibiji-xianxingbiao</guid>
+            <pubDate>Mon, 01 Dec 2025 04:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[线性表
+
+由n个数据特性相同的元素组成的有限序列
+线性表中的元素个数n称为线性表的长度，n=0时称为空表
+
+顺序表
+
+线性表的一种存储结构，采用一段地址连续的存储单元依次存放线性表的各个元素
+
+顺序表初始化
+
+#include <stdio.h>
+typedef int ElemType; //假设线性表存储的数据类型为整型
+#define MAXSIZE 20 //顺序表的最大长度
+typedef struct {
+    ElemType data[MAXSIZE]; //存储空间
+    int length; //当前长度
+}SqList;
+//顺序表初始化
+void initList(SqList *L){
+    L->length = 0;
+}
+
+int main(){
+    SqList List;
+    initList(&List);
+    printf("线性表初始化完成，当前长度为%d\n", List.length);
+    return 0;
+}
+
+
+顺序表在尾部插入元素
+
+int insertAtEnd(SqList *L, ElemType e){
+    if(L->length >= MAXSIZE){
+        return 0; //顺序表已满，插入失败
+    }
+    L->data[L->length] = e; //在末尾插入元素，当顺序表为空时，L->length为0，插入在data[0]
+    L->length++; //长度加1
+    return 1; //插入成功
+}
+
+
+顺序表遍历
+
+void traverseList(SqList L){
+    for(int i = 0; i < L.length; i++){
+        printf("%d ", L.data[i]);
+    }
+    printf("\n");
+}
+
+
+顺序表在指定位置插入元素
+
+int insertAtPosition(SqList *L, int pos, ElemType e){//e为要插入的元素
+    if(L->length >= MAXSIZE || pos < 1 || pos > L->length + 1){
+        return 0; //顺序表已满或位置不合法，插入失败，pos用来表示插入位置，范围为1到L->length+1
+    }
+    for(int i = L->length; i >= pos; i--){//从后向前遍历
+        L->data[i] = L->data[i - 1]; //将插入位置及其后的元素后移
+    }
+    L->data[pos - 1] = e; //插入元素
+    L->length++; //长度加1
+    return 1; //插入成功
+}
+
+
+顺序表插入数据最好的时间复杂度
+
+O(1)，在表尾插入元素时不需要移动其他元素
+
+顺序表插入数据最坏的时间复杂度
+
+O(n)，在表头插入元素时需要移动所有元素
+
+顺序表删除指定位置元素
+
+int deleteAtPosition(SqList *L, int pos, ElemType *e){//*e用来返回删除的元素值
+    if(L->length == 0 || pos < 1 || pos > L->length){
+        return 0; //顺序表为空或位置不合法，删除失败
+    }
+    *e = L->data[pos - 1]; //保存被删除的元素，*e用来返回删除的元素值
+    for(int i = pos; i < L->length; i++){//从删除位置后一个元素开始遍历
+        L->data[i - 1] = L->data[i]; //将删除位置后的元素前移
+    }
+    L->length--; //长度减1
+    return 1; //删除成功
+}
+
+
+顺序表按值查找元素
+
+int findByValue(SqList L, ElemType e){
+    for(int i = 0; i < L.length; i++){
+        if(L.data[i] == e){
+            return i + 1; //返回元素位置，位置从1开始
+        }
+    }
+    return -1; //未找到元素
+}
+
+
+顺序表按位置查找元素
+
+int findByPosition(SqList L, int pos, ElemType *e){
+    if(pos < 1 || pos > L.length){
+        return 0; //位置不合法，查找失败
+    }
+    *e = L.data[pos - 1]; //返回元素值
+    return 1; //查找成功
+}
+
+
+顺序表动态分配内地址初始化
+
+#include <stdio.h>
+#include <stdlib.h>
+typedef int ElemType; //假设线性表存储的数据类型为整型
+typedef struct {
+    ElemType *data; //存储空间
+    int length; //当前长度
+    int capacity; //当前分配的存储容量
+}SqList;
+//顺序表初始化
+void initList(SqList *L, int initialCapacity){//initialCapacity为初始容量,SqList* L表示顺序表的指针
+    L->data = (ElemType *)malloc(initialCapacity * sizeof(ElemType)); //动态分配存储空间
+    L->length = 0; //当前长度为0
+    L->capacity = initialCapacity; //设置初始容量
+}
+int main(){
+    SqList List;
+    initList(&List, 10); //初始化顺序表，初始容量为10
+    printf("线性表初始化完成，当前长度为%d，容量为%d\n", List.length, List.capacity);
+    free(List.data); //释放动态分配的内存
+    return 0;
+}
+
+
+清空顺序表
+
+void clearList(SqList *L){
+    L->length = 0; //将长度设为0，逻辑上清空顺序表
+}
+
+
+销毁顺序表
+
+void destroyList(SqList *L){
+    free(L->data); //释放动态分配的存储空间
+    L->data = NULL; //将指针置为NULL，防止悬空指针
+    L->length = 0; //将长度设为0
+    L->capacity = 0; //将容量设为0
+}
+
+
+顺序表的优缺点
+
+优点：
+
+支持随机访问，可以通过下标快速访问任意位置的元素，时间复杂度为O(1)
+
+缺点：
+
+插入和删除操作效率较低，尤其是在表头或中间位置插
+入或删除元素时，需要移动大量元素，时间复杂度为O(n)需要预先分配连续的存储空间，可能导致内存浪费或内存不足的问题
+
+链表
+
+链表是一种线性表的存储结构，由一系列节点组成，每个节点包含数据域和指针域，指针域指向下一个节点
+示意图：
+
+NULL <- [Data|Next] -> [Data|Next] -> [Data|Next] -> NULL
+
+
+单链表
+
+单链表节点定义
+
+typedef struct Node {
+    ElemType data; //数据域
+    struct Node* next; //指针域，指向下一个节点
+} Node;
+
+
+单链表初始化
+
+#include <stdio.h>
+#include <stdlib.h>
+typedef int ElemType; //假设线性表存储的数据类型为整型
+typedef struct Node {
+    ElemType data; //数据域
+    struct Node* next; //指针域，指向下一个节点
+} Node;
+typedef struct {
+    Node* head; //头指针
+} LinkedList;
+//单链表初始化
+void initList(LinkedList* L){
+    L->head = NULL; //头指针初始化为NULL
+}
+int main(){
+    LinkedList List;
+    initList(&List);
+    printf("单链表初始化完成，头指针为%p\n", (void*)List.head);
+    return 0;
+}
+
+
+单链表头插法
+
+int insertAtHead(LinkedList* L, ElemType e){
+    Node* newNode = (Node*)malloc(sizeof(Node)); //创建新节点
+    if(newNode == NULL){
+        return 0; //内存分配失败，插入失败
+    }
+    newNode->data = e; //设置新节点的数据域
+    newNode->next = L->head; //新节点指向当前头节点
+    L->head = newNode; //更新头指针指向新节点
+    return 1; //插入成功
+}
+
+
+单链表尾插法
+
+int insertAtEnd(LinkedList* L, ElemType e){
+    Node* newNode = (Node*)malloc(sizeof(Node)); //创建新节点
+    if(newNode == NULL){
+        return 0; //内存分配失败，插入失败
+    }
+    newNode->data = e; //设置新节点的数据域
+    newNode->next = NULL; //新节点的下一个节点为NULL
+    if(L->head == NULL){
+        L->head = newNode; //如果链表为空，新节点成为头节点
+    } else {
+        Node* current = L->head;
+        while(current->next != NULL){
+            current = current->next; //遍历到链表的最后一个节点
+        }
+        current->next = newNode; //将最后一个节点的next指向新节点
+    }
+    return 1; //插入成功
+}
+
+
+单链表遍历
+
+void traverseList(LinkedList L){
+    Node* current = L.head; //从头节点开始遍历
+    while(current != NULL){
+        printf("%d ", current->data); //打印当前节点的数据域
+        current = current->next; //移动到下一个节点
+    }
+    printf("\n");
+}
+
+
+单链表在指定位置插入元素
+
+int insertAtPosition(LinkedList* L, int pos, ElemType e){//pos表示插入位置，范围从1开始
+    if(pos < 1){
+        return 0; //位置不合法，插入失败
+    }
+    if(pos == 1){
+        return insertAtHead(L, e); //在头部插入
+    }
+    Node* current = L->head;
+    for(int i = 1; i < pos - 1 && current != NULL; i++){
+        current = current->next; //移动到插入位置的前一个节点
+    }
+    if(current == NULL){
+        return 0; //位置超出链表长度，插入失败
+    }
+    Node* newNode = (Node*)malloc(sizeof(Node)); //创建新节点
+    if(newNode == NULL){
+        return 0; //内存分配失败，插入失败
+    }
+    newNode->data = e; //设置新节点的数据域
+    newNode->next = current->next; //新节点指向当前节点的下一个节点
+    current->next = newNode; //当前节点指向新节点
+    return 1; //插入成功
+}
+
+
+单链表删除指定位置元素
+
+int deleteAtPosition(LinkedList* L, int pos, ElemType* e){//*e用来返回删除的元素值
+    if(pos < 1 || L->head == NULL){
+        return 0; //位置不合法或链表为空，删除失败
+    }
+    Node* current = L->head;//current是用来遍历链表的指针，初始指向头节点
+    if(pos == 1){
+        *e = current->data; //保存被删除的元素
+        L->head = current->next; //更新头指针
+        free(current); //释放被删除节点的内存
+        return 1; //删除成功
+    }
+    for(int i = 1; i < pos - 1 && current != NULL; i++){
+        current = current->next; //移动到删除位置的前一个节点
+    }
+    if(current == NULL || current->next == NULL){
+        return 0; //位置超出链表长度，删除失败
+    }
+    Node* temp = current->next; //待删除节点
+    *e = temp->data; //保存被删除的元素
+    current->next = temp->next; //前一个节点指向待删除节点的下一个节点
+    free(temp); //释放被删除节点的内存
+    return 1; //删除成功
+}
+
+
+获取单链表长度
+
+int getListLength(LinkedList L){
+    int length = 0;
+    Node* current = L.head; //从头节点开始遍历
+    while(current != NULL){
+        length++; //长度加1
+        current = current->next; //移动到下一个节点
+    }
+    return length; //返回链表长度
+}
+
+
+单链表按值查找元素
+
+int findByValue(LinkedList L, ElemType e){
+    Node* current = L.head; //从头节点开始遍历
+    int pos = 1; //位置从1开始
+    while(current != NULL){
+        if(current->data == e){
+            return pos; //返回元素位置
+        }
+        current = current->next; //移动到下一个节点
+        pos++;
+    }
+    return -1; //未找到元素
+}
+
+
+单链表按位置查找元素
+
+int findByPosition(LinkedList L, int pos, ElemType* e){
+    if(pos < 1){
+        return 0; //位置不合法，查找失败
+    }
+    Node* current = L.head;
+    for(int i = 1; i < pos && current != NULL; i++){
+        current = current->next; //移动到指定位置的节点
+    }
+    if(current == NULL){
+        return 0; //位置超出链表长度，查找失败
+    }
+    *e = current->data; //返回元素值
+    return 1; //查找成功
+}
+
+
+清空单链表
+
+void clearList(LinkedList* L){
+    Node* current = L->head;//从头节点开始遍历
+    Node* temp;//用来保存当前节点的指针
+    while(current != NULL){//遍历链表
+        temp = current;//保存当前节点
+        current = current->next;//移动到下一个节点
+        free(temp); //释放每个节点的内存
+    }
+    L->head = NULL; //将头指针置为NULL
+}
+
+
+销毁单链表
+
+void destroyList(LinkedList* L){
+    clearList(L); //清空链表
+    L->head = NULL; //将头指针置为NULL
+}
+
+
+单链表应用-反转链表
+
+void reverseList(LinkedList* L){ 
+    Node* prev = NULL; //前一个节点初始化为NULL
+    Node* current = L->head; //当前节点初始化为头节点
+    Node* next = NULL; //下一个节点初始化为NULL
+    while(current != NULL){
+        next = current->next; //保存下一个节点
+        current->next = prev; //将当前节点的next指向前一个节点
+        prev = current; //移动前一个节点到当前节点
+        current = next; //移动当前节点到下一个节点
+    }
+    L->head = prev; //更新头指针指向新的头节点
+}
+
+
+示意图：
+
+初始链表:  head -> 1 -> 2 -> 3 -> NULL
+反转过程:
+1. prev=NULL, current=1, next=2
+   head -> 1 -> NULL
+          ^
+          |
+         prev
+2. prev=1, current=2, next=3
+   head -> 2 -> 1 -> NULL
+            ^
+            |
+             prev
+3. prev=2, current=3, next=NULL
+   head -> 3 -> 2 -> 1 -> NULL
+最终链表: head -> 3 -> 2 -> 1 -> NULL
+
+
+单链表应用-删除链表中间节点
+
+void deleteMiddleNode(LinkedList* L){
+    if(L->head == NULL || L->head->next == NULL){
+        return; //链表为空或只有一个节点，无法删除中间节点
+    }
+    Node* slow = L->head; //慢指针初始化为头节点
+    Node* fast = L->head; //快指针初始化为头节点
+    Node* prev = NULL; //前一个节点初始化为NULL
+
+    while(fast != NULL && fast->next != NULL){
+        prev = slow; //保存慢指针的前一个节点
+        slow = slow->next; //慢指针移动一步
+        fast = fast->next->next; //快指针移动两步
+    }
+    //此时慢指针指向中间节点，prev指向中间节点的前一个节点
+    prev->next = slow->next; //将前一个节点的next指向中间节点的下一个节点
+    free(slow); //释放中间节点的内存
+}
+
+
+单链表应用-判断链表是否有环
+
+int hasCycle(LinkedList L){
+    Node* slow = L.head; //慢指针初始化为头节点
+    Node* fast = L.head; //快指针初始化为头节点
+
+    while(fast != NULL && fast->next != NULL){
+        slow = slow->next; //慢指针移动一步
+        fast = fast->next->next; //快指针移动两步
+        if(slow == fast){
+            return 1; //链表有环
+        }
+    }
+    return 0; //链表无环
+}
+
+
+原理：如果链表有环，快慢指针最终会在环内相遇；如果链表无环，快指针会先到达链表末尾。
+
+判断环的入口
+
+Node* detectCycle(LinkedList L){
+    Node* slow = L.head; //慢指针初始化为头节点
+    Node* fast = L.head; //快指针初始化为头节点
+
+    //首先判断链表是否有环
+    while(fast != NULL && fast->next != NULL){
+        slow = slow->next; //慢指针移动一步
+        fast = fast->next->next; //快指针移动两步
+        if(slow == fast){
+            break; //链表有环，跳出循环
+        }
+    }
+    if(fast == NULL || fast->next == NULL){
+        return NULL; //链表无环，返回NULL
+    }
+    //链表有环，找到环的入口
+    slow = L.head; //将慢指针重新指向头节点
+    while(slow != fast){
+        slow = slow->next; //慢指针移动一步
+        fast = fast->next; //快指针移动一步
+    }
+    return slow; //返回环的入口节点
+}
+
+
+原理：当快慢指针相遇时，将慢指针重新指向头节点，然后两个指针每次移动一步，最终会在环的入口节点相遇。
+
+双向链表
+
+为克服单链表只能单向遍历的缺点，双向链表在每个节点中增加一个指向前驱节点的指针，实现双向遍历。
+双向链表是一种线性表的存储结构，由一系列节点组成，每个节点包含数据域、前驱指针域和后继指针域。
+示意图：
+
+NULL <- [Prev|Data|Next] <-> [Prev|Data|Next] <-> [Prev|Data|Next] -> NULL
+
+
+双向链表节点定义
+
+typedef struct DNode {
+    ElemType data; //数据域
+    struct DNode* prev; //前驱指针域，指向前一个节点
+    struct DNode* next; //后继指针域，指向下一个节点
+} DNode;
+
+
+双向链表初始化
+
+#include <stdio.h>
+#include <stdlib.h>
+typedef int ElemType; //假设线性表存储的数据类型为整型
+typedef struct DNode {
+    ElemType data; //数据域
+    struct DNode* prev; //前驱指针域，指向前一个节点
+    struct DNode* next; //后继指针域，指向下一个节点
+} DNode;
+typedef struct {
+    DNode* head; //头指针
+    DNode* tail; //尾指针
+} DoublyLinkedList;
+//双向链表初始化
+void initList(DoublyLinkedList* L){
+    L->head = NULL; //头指针初始化为NULL
+    L->tail = NULL; //尾指针初始化为NULL
+}
+int main(){
+    DoublyLinkedList List;
+    initList(&List);
+    printf("双向链表初始化完成，头指针为%p，尾指针为%p\n", (void*)List.head, (void*)List.tail);
+    return 0;
+}
+
+
+双向链表尾插法
+
+int insertAtEnd(DoublyLinkedList* L, ElemType e){
+    DNode* newNode = (DNode*)malloc(sizeof(DNode)); //创建新节点
+    if(newNode == NULL){
+        return 0; //内存分配失败，插入失败
+    }
+    newNode->data = e; //设置新节点的数据域
+    newNode->next = NULL; //新节点的下一个节点为NULL
+    if(L->tail == NULL){
+        newNode->prev = NULL; //如果链表为空，新节点的前驱指针为NULL
+        L->head = newNode; //新节点成为头节点
+        L->tail = newNode; //新节点成为尾节点
+    } else {
+        newNode->prev = L->tail; //新节点的前驱指针指向当前尾节点
+        L->tail->next = newNode; //当前尾节点的next指向新节点
+        L->tail = newNode; //更新尾指针指向新节点
+    }
+    return 1; //插入成功
+}
+
+
+双向链表头插法
+
+int insertAtHead(DoublyLinkedList* L, ElemType e){
+    DNode* newNode = (DNode*)malloc(sizeof(DNode)); //创建新节点
+    if(newNode == NULL){
+        return 0; //内存分配失败，插入失败
+    }
+    newNode->data = e; //设置新节点的数据域
+    newNode->prev = NULL; //新节点的前驱指针为NULL
+    if(L->head == NULL){
+        newNode->next = NULL; //如果链表为空，新节点的下一个节点为NULL
+        L->head = newNode; //新节点成为头节点
+        L->tail = newNode; //新节点成为尾节点
+    } else {
+        newNode->next = L->head; //新节点的next指向当前头节点
+        L->head->prev = newNode; //当前头节点的prev指向新节点
+        L->head = newNode; //更新头指针指向新节点
+    }
+    return 1; //插入成功
+}
+
+
+双向链表删除节点
+
+int deleteNode(DoublyLinkedList* L, DNode* node, ElemType* e){//*e用来返回删除的元素值
+    if(node == NULL){
+        return 0; //节点为空，删除失败
+    }
+    *e = node->data; //保存被删除的元素
+    if(node->prev != NULL){
+        node->prev->next = node->next; //前驱节点的next指向后继节点
+    } else {
+        L->head = node->next; //如果删除的是头节点，更新头指针
+    }
+    if(node->next != NULL){
+        node->next->prev = node->prev; //后继节点的prev指向前驱节点
+    } else {
+        L->tail = node->prev; //如果删除的是尾节点，更新尾指针
+    }
+    free(node); //释放被删除节点的内存
+    return 1; //删除成功
+}
+
+
+双向链表遍历
+
+void traverseList(DoublyLinkedList L){
+    DNode* current = L.head; //从头节点开始遍历
+    while(current != NULL){
+        printf("%d ", current->data); //打印当前节点的数据域
+        current = current->next; //移动到下一个节点
+    }
+    printf("\n");
+}
+
+
+链表和顺序表的比较
+
+特性顺序表链表存储结构连续存储空间非连续存储空间存储密度不用为表示节点间的逻辑关系而增加额外的存储，存储密度等于1需要为每个节点增加指针域，存储密度小于1存储元素随机存取，按位置访问元素的时间复杂度为O(1)只能顺序存取，按位置访问元素的时间复杂度为O(n)访问方式支持随机访问，时间复杂度O(1)只能顺序访问，时间复杂度O(n)插入和删除需要移动元素，时间复杂度O(n)只需修改指针，时间复杂度O(1)内存利用率可能浪费内存或内存不足适用场景1.表长变化不大，且能事先确定变化的范围 <br>2.很少进行插入和删除操作，经常按元素位置序号访问数据元素1.表长变化较大，无法事先确定变化范围 <br>2.经常进行插入和删除操作
+
+双指针
+
+双指针是一种常用的算法技巧，通常用于遍历和处理线性数据结构（如数组和链表）。双指针技术通过使用两个指针同时遍历数据结构，可以有效地解决一些问题，如查找、排序和合并等。
+双指针的基本思想是使用两个指针分别指向数据结构中的不同位置，通过移动这两个指针来实现特定的操作。根据指针的移动方式，双指针技术可以分为以下几种类型：
+
+对撞指针（Two-pointer technique）：两个指针分别从数据结构的两端开始向中间移动，常用于查找满足特定条件的元素对。例如，在有序数组中查找两个数之和等于目标值的问题。快慢指针（Fast and slow pointer）：一个指针以较快的速度移动，另一个指针以较慢的速度移动，常用于检测链表中的环或找到链表的中间节点。例如，在链表中检测是否存在环的问题。滑动窗口（Sliding window）：使用两个指针定义一个窗口，在数据结构中滑动该窗口以满足特定条件，常用于解决子数组或子串的问题。例如，在字符串中查找最长无重复字符的子串的问题。
+
+]]></content:encoded>
+            <author>1992107794@qq.com (Admin)</author>
+        </item>
+        <item>
+            <title><![CDATA[数据结构学习笔记-前置]]></title>
+            <link>https://emmmxx.xyz/zh/posts/shujujiegouxuexibiji-qianzhi</link>
+            <guid isPermaLink="false">https://emmmxx.xyz/zh/posts/shujujiegouxuexibiji-qianzhi</guid>
+            <pubDate>Mon, 01 Dec 2025 04:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[数组与sizeof运算符
+
+#include <stdio.h>
+int main() {
+    int a[]={1,2,3,4,5};
+    for(int i=0;i<sizeof(a)/sizeof(a[0]);i++) {
+        printf("%d\n ",a[i]);
+    }
+}
+printf("%zu\n",sizeof(a)); //20
+printf("%zu\n",sizeof(a[0])); //4
+
+
+在C语言中，数组名代表整个数组，因此使用 sizeof运算符时，返回的是整个数组所占的字节数，而不是指针的大小。通过将数组的总大小除以单个元素的大小，可以计算出数组中的元素数量。
+
+指针
+
+指针的定义
+
+指针是用来存放地址的变量，指针变量存放的是另一个变量的地址，通过指针可以间接访问和操作该变量的值。
+
+int a; //定义一个整型变量a
+int *p; //定义一个整型指针变量p
+int* p; //定义一个整型指针变量p
+int * p; //定义一个整型指针变量p
+
+
+使用指针
+
+int a = 5;
+int *p = &a; //将变量a的地址赋值给指针p
+printf("%d\n", *p); //通过指针访问变量a的值，输出5
+printf("p的值是:%p\n", p); //输出指针p存储的地址
+printf("a的地址是:%p\n", &a); //输出变量a的地址
+
+
+间接引用操作符*
+
+间接引用操作符 *用于访问指针所指向的变量的值。通过在指针前加上 *，可以获取或修改该变量的值。
+通常叫做“解引用指针”
+
+int a =5;
+int* p = &a; //将变量a的地址赋值给指针p
+printf("%d\n", *p); //通过指针访问变量a的值，输出5
+*p = 10; //通过指针修改变量a的值
+printf("%d\n", a); //输出修改后的变量a的值，输出10
+
+
+指针与函数
+
+设计一个函数，通过指针参数交换两个整数的值。
+
+#include <stdio.h>
+void swap(int* x, int* y) {
+    int temp = *x; //保存x指向的值
+    *x = *y; //将y指向的值赋给x指向的值
+    *y = temp; //将temp的值赋给y指向的值
+}
+
+int main() {
+    int a = 5;
+    int b = 10;
+    printf("交换前:a=%d, b=%d\n", a, b);//交换前:a=5, b=10
+    swap(&a, &b); //传递变量a和b的地址
+    printf("交换后:a=%d, b=%d\n", a, b);//交换后:a=10, b=5
+    return 0;
+}
+
+
+指针与数组
+
+数组名本质上是一个指向数组第一个元素的指针，因此可以通过指针来访问和操作数组元素。
+
+#include <stdio.h>
+int main() {
+    int a[] = {1, 2, 3, 4, 5};
+    int* p = a; //将数组名赋值给指针p
+
+    printf("%d\n",a); //输出数组a的首地址
+    printf("%p\n", p); //输出指针p的值，即数组a的首地址
+    printf("%d\n", *p); //通过指针访问第一个元素，输出1
+}
+
+
+通过指针运算，可以遍历数组元素：
+
+#include <stdio.h>
+int main() {
+    int a[] = {1, 2, 3, 4, 5};
+    int* p = a; //将数组名赋值给指针p
+
+    for(int i = 0; i < sizeof(a)/sizeof(a[0]); i++) {
+        printf("%d\n", *(p + i)); //通过指针运算访问数组元素
+    }
+}
+
+
+给指针加上一个整数，实际上加的是该类型所占的字节数乘以这个整数。
+
+结构体
+
+结构体是一种用户自定义的数据类型，用于将不同类型的数据组合在一起，形成一个整体。结构体可以包含多个成员变量，每个成员变量可以是不同的数据类型。
+
+结构体的定义
+
+struct Person {
+    char name[50]; //姓名
+    int age; //年龄
+    float height; //身高
+};
+
+
+结构体变量的定义与初始化
+
+struct Person person1; //定义一个结构体变量person1
+struct Person person2 = {"Alice", 30, 5.5}; //定义并初始化结构体变量person2
+
+
+结构体与指针
+
+#include <stdio.h>
+struct point* pp;
+(*pp).x = 10; //通过解引用操作符访问结构体成员
+pp->y = 20; //通过箭头操作符访问结构体成员
+
+
+类型定义
+
+使用 typedef关键字为结构体定义一个新的类型名称，简化结构体变量的定义。
+
+typedef struct {
+    char name[50];
+    int age;
+    float height;
+} Person;
+Person person1; //定义一个结构体变量person1
+Person person2 = {"Bob", 25, 6.0}; //定义并初始化结构体变量person2
+
+
+结构体作为函数参数
+
+#include <stdio.h>
+typedef struct {
+    char name[50];
+    int age;
+} Person;
+
+void printPerson(Person p) {
+    printf("Name: %s, Age: %d\n", p.name, p.age);
+}
+
+int main() {
+    Person person = {"Charlie", 28};
+    printPerson(person); //传递结构体变量作为参数，结果输出: Name: Charlie, Age: 28
+    return 0;
+}
+
+
+结构体指针作为函数参数
+
+#include <stdio.h>
+typedef struct {
+    char name[50];
+    int age;
+} Person;
+
+void printPerson(Person* p) {
+    printf("Name: %s, Age: %d\n", p->name, p->age);
+}
+
+int main() {
+    Person person = {"Diana", 32};
+    printPerson(&person); //传递结构体变量的地址作为参数，结果输出: Name: Diana, Age: 32
+    return 0;
+}
+
+
+内存
+
+内存分类
+
+静态内存：在程序编译时分配，生命周期贯穿整个程序运行期间。包括全局变量、静态变量和常量。自动内存（栈内存）：在函数调用时分配，函数返回时释放。用于存储局部变量和函数参数。动态内存（堆内存）：在程序运行时动态分配，需要手动释放。
+
+动态内存分配
+
+动态内存分配允许在程序运行时根据需要分配和释放内存。
+使用 malloc、calloc、realloc和 free函数进行动态内存管理。
+malloc（memory allocate）：分配指定字节数的内存，返回指向该内存块的指针。
+void* malloc(size_t size);
+
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc, char* argv[]) {//argc参数表示命令行参数的数量，argv参数是一个字符串数组，存储命令行参数的具体内容
+    int* p =(int*)malloc(sizeof(int)); //(int*)强制类型转换,(sizeof(int))分配一个整数大小的内存
+    if(p == NULL) {//检查内存分配是否成功
+        printf("内存分配失败\n");
+        return 1;
+    }
+    *p = 42;
+    printf("分配的整数值: %d\n", *p);
+    free(p); //释放内存
+    return 0;
+}
+
+
+字符串数组
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main() {
+    char* str = (char*)malloc(100 * sizeof(char)); //分配100个字符的内存
+    if(str == NULL) {
+        printf("内存分配失败\n");
+        return 1;
+    }
+    strcpy(str, "Hello, World!");
+    printf("%s\n", str);
+    free(str); //释放内存
+    return 0;
+}
+
+
+结构体
+
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct {
+    char name[50];
+    int age;
+} Person;
+
+int main() {
+    Person* p = (Person*)malloc(sizeof(Person)); //分配一个Person结构体的内存
+    if(p == NULL) {
+        printf("内存分配失败\n");
+        return 1;
+    }
+    strcpy(p->name, "Eve");//strcpy函数用于将字符串复制到结构体的name成员中
+    p->age = 29;
+    printf("Name: %s, Age: %d\n", p->name, p->age);
+    free(p); //释放内存
+    return 0;
+}
+
+
+算法分析
+
+算法分析是评估算法在执行过程中所需资源（如时间和空间）的过程。常用的时间复杂度表示法有大O符号（Big O notation），用于描述算法的增长率。
+算法+数据结构=程序
+
+时间复杂度
+
+时间复杂度表示算法执行所需时间与输入规模之间的关系。常见的时间复杂度有：
+
+O(1)：常数时间复杂度，表示算法的执行时间不随输入规模变化而变化。O(log n)：对数时间复杂度，表示算法的执行时间随着输入规模的增加而以对数速度增长。O(n)：线性时间复杂度，表示算法的执行时间与输入规模成正比。O(n log n)：线性对数时间复杂度，常见于高效的排序算法，如快速排序和归并排序。O(n^2)：平方时间复杂度，表示算法的执行时间与输入规模的平方成正比，常见于简单的排序算法，如冒泡排序和选择排序。O(2^n)：指数时间复杂度，表示算法的执行时间随着输入规模的增加呈指数增长，通常用于解决组合问题。
+
+计算时间复杂度
+
+计算时间复杂度通常通过分析算法中的基本操作执行次数来完成。
+
+循环结构：分析循环的执行次数。例如，一个简单的for循环执行n次，其时间复杂度为O(n)。
+
+for(int i = 0; i < n; i++) {
+    //基本操作
+}
+
+
+时间复杂度为O(n)。
+
+嵌套循环：分析嵌套循环的执行次数。例如，一个嵌套的for循环，每个循环都执行n次，其时间复杂度为O(n^2)。
+
+for(int i = 0; i < n; i++) {
+    for(int j = 0; j < n; j++) {
+        //基本操作
+    }
+}
+
+
+时间复杂度为O(n^2)。
+
+条件语句：分析条件语句中的执行路径。例如，一个if-else语句，其时间复杂度取决于最长的执行路径。
+
+if(condition) {
+    //基本操作1
+} else {
+    //基本操作2
+}
+
+
+时间复杂度为O(1)。
+
+函数调用：分析函数调用的时间复杂度。例如，如果一个函数调用的时间复杂度为O(f(n))，那么调用该函数的时间复杂度也为O(f(n))。
+
+void func(int n) {
+    //基本操作
+}
+func(n);
+
+
+时间复杂度为O(f(n))。
+
+O(1) < O(log n) < O(n) < O(n log n) < O(n^2) < O(2^n)
+
+[2011] 设 n 是描述问题规模的非负整数，下面程序片段的时间复杂度是______。
+
+x = 2;
+while (x < n/2)
+    x = 2 * x;
+
+
+选项：
+
+A. 
+B. 
+C. 
+D. 
+
+解析与推导：
+
+次数1234...tx...
+
+根据循环终止条件  ：
+
+
+
+
+
+
+
+
+
+
+
+结论：
+
+
+
+(正确答案：A)
+
+
+
+[2017] 下列函数的时间复杂度是______。
+
+int fun(int n) {
+    int i = 0, sum = 0;
+    while (sum < n) sum += ++i;
+    return i;
+}
+
+
+选项：
+
+A. 
+B. 
+C. 
+D. 
+
+解析与推导：
+
+次数1234...ti1234...tsum13610...
+
+根据循环终止条件 sum < n，当 sum >= n 时停止：
+
+
+
+
+
+
+
+
+
+
+
+结论：
+
+
+
+(正确答案：B)
+
+
+
+[2019] 设 n 是描述问题规模的非负整数，下列程序的时间复杂度是______。
+
+x = 0;
+while (n >= (x+1)*(x+1))
+    x = x + 1;
+
+
+选项：
+
+A. 
+B. 
+C. 
+D. 
+
+解析与推导：
+循环条件为：
+
+
+
+两边开方：
+
+
+
+
+
+即  从 0 开始自增，直到接近 。
+
+结论：
+
+
+
+(正确答案：B)
+
+
+
+[2022] 下列程序的时间复杂度是______。
+
+int sum = 0;
+for (int i=1; i<n; i*=2)
+    for (int j=0; j<i; j++)
+        sum++;
+
+
+选项：
+
+A. 
+B. 
+C. 
+D. 
+
+解析与推导：
+
+次数1234...ti...内层次数...
+
+总执行次数为等比数列求和：
+
+
+
+根据等比数列求和公式：
+
+
+
+由于外层循环条件是 ，最后一次循环时 ，即 。
+
+结论：
+
+
+
+(正确答案：B)
+
+空间复杂度
+
+空间复杂度表示算法在执行过程中所需内存空间与输入规模之间的关系。
+
+抽象数据类型ADT
+
+抽象数据类型（Abstract Data Type，ADT）是一种数学模型，用于定义数据及其相关操作，而不涉及具体的实现细节。ADT强调数据的逻辑结构和行为，使得程序员可以专注于数据的使用，而不必关心其底层实现。]]></content:encoded>
+            <author>1992107794@qq.com (Admin)</author>
+        </item>
+        <item>
+            <title><![CDATA[前端组授课文档-javascript]]></title>
+            <link>https://emmmxx.xyz/zh/posts/qianduanzushoukewendang-javascript</link>
+            <guid isPermaLink="false">https://emmmxx.xyz/zh/posts/qianduanzushoukewendang-javascript</guid>
+            <pubDate>Sat, 22 Nov 2025 10:00:00 GMT</pubDate>
+            <description><![CDATA[SAST软研部前端组第三次授课]]></description>
+            <content:encoded><![CDATA[JavaScript 简介
+
+什么是 JavaScript？
 
 JavaScript 最初被创建的目的是“使网页更生动”。
-这种编程语言写出来的程序被称为 **脚本**。它们可以被直接写在网页的 HTML 中，在页面加载的时候自动执行。
+这种编程语言写出来的程序被称为 脚本。它们可以被直接写在网页的 HTML 中，在页面加载的时候自动执行。
 脚本被以纯文本的形式提供和执行。它们不需要特殊的准备或编译即可运行。
 这方面，JavaScript 和 Java 有很大的区别。
 
-### 为什么叫 JavaScript？
+为什么叫 JavaScript？
 
 JavaScript 在刚诞生的时候，它的名字叫 “LiveScript”。但是因为当时 Java 很流行，所以决定将一种新语言定位为 Java 的“弟弟”会有助于它的流行。
 随着 JavaScript 的发展，它已经成为了一门完全独立的语言，并且也拥有了自己的语言规范 ECMAScript。现在，它和 Java 之间没有任何关系。
@@ -38,23 +2643,19 @@ JavaScript 在刚诞生的时候，它的名字叫 “LiveScript”。但是因�
 浏览器中嵌入了 JavaScript 引擎，有时也称作“JavaScript 虚拟机”。
 不同的引擎有不同的“代号”，例如：
 
-- V8 —— Chrome、Opera 和 Edge 中的 JavaScript 引擎。
-- SpiderMonkey —— Firefox 中的 JavaScript 引擎。
-- ……还有其他一些代号，像 “Chakra” 用于 IE，“JavaScriptCore”、“Nitro” 和 “SquirrelFish” 用于 Safari，等等。
+V8 —— Chrome、Opera 和 Edge 中的 JavaScript 引擎。SpiderMonkey —— Firefox 中的 JavaScript 引擎。……还有其他一些代号，像 “Chakra” 用于 IE，“JavaScriptCore”、“Nitro” 和 “SquirrelFish” 用于 Safari，等等。
 
 上面这些术语很容易记住，因为它们经常出现在开发者的文章中。我们也会用到这些术语。例如，如果“V8 支持某个功能”，那么我们可以认为这个功能大概能在 Chrome、Opera 和 Edge 中正常运行。
 
-### 引擎是如何工作的？
+引擎是如何工作的？
 
 引擎很复杂，但是基本原理很简单。
 
-1. 引擎（如果是浏览器，则引擎被嵌入在其中）读取（“解析”）脚本。
-2. 然后，引擎将脚本转化（“编译”）为机器语言。
-3. 然后，机器代码快速地执行。
+引擎（如果是浏览器，则引擎被嵌入在其中）读取（“解析”）脚本。然后，引擎将脚本转化（“编译”）为机器语言。然后，机器代码快速地执行。
 
 引擎会对流程中的每个阶段都进行优化。它甚至可以在编译的脚本运行时监视它，分析流经该脚本的数据，并根据获得的信息进一步优化机器代码。
 
-### 浏览器中的 JavaScript 能做什么？
+浏览器中的 JavaScript 能做什么？
 
 现代的 JavaScript 是一种“安全的”编程语言。它不提供对内存或 CPU 的底层访问，因为它最初是为浏览器创建的，不需要这些功能。
 JavaScript 的能力很大程度上取决于它运行的环境。例如，Node.js 支持允许 JavaScript 读取/写入任意文件，执行网络请求等的函数。
@@ -62,66 +2663,47 @@ JavaScript 的能力很大程度上取决于它运行的环境。例如，Node.j
 
 例如，浏览器中的 JavaScript 可以做下面这些事：
 
-- 在网页中添加新的 HTML，修改网页已有内容和网页的样式。
-- 响应用户的行为，响应鼠标的点击，指针的移动，按键的按动。
-- 向远程服务器发送网络请求，下载和上传文件（所谓的 AJAX 和 COMET 技术）。
-- 获取或设置 cookie，向访问者提出问题或发送消息。
-- 记住客户端的数据（“本地存储”）。
+在网页中添加新的 HTML，修改网页已有内容和网页的样式。响应用户的行为，响应鼠标的点击，指针的移动，按键的按动。向远程服务器发送网络请求，下载和上传文件（所谓的 AJAX 和 COMET 技术）。获取或设置 cookie，向访问者提出问题或发送消息。记住客户端的数据（“本地存储”）。
 
-
-### 浏览器中的 JavaScript 不能做什么？
+浏览器中的 JavaScript 不能做什么？
 
 为了用户的（信息）安全，在浏览器中的 JavaScript 的能力是受限的。目的是防止恶意网页获取用户私人信息或损害用户数据。
 此类限制的例子包括：
 
-- 网页中的 JavaScript 不能读、写、复制和执行硬盘上的任意文件。它没有直接访问操作系统的功能。
-- 现代浏览器允许 JavaScript 做一些文件相关的操作，但是这个操作是受到限制的。仅当用户做出特定的行为，JavaScript 才能操作这个文件。例如，用户把文件“拖放”到浏览器中，或者通过 `<input>` 标签选择了文件。
-- 有很多与相机/麦克风和其它设备进行交互的方式，但是这些都需要获得用户的明确许可。因此，启用了 JavaScript 的网页应该不会偷偷地启动网络摄像头观察你，并把你的信息发送到 美国国家安全局。
-- 不同的标签页/窗口之间通常互不了解。有时候，也会有一些联系，例如一个标签页通过 JavaScript 打开的另外一个标签页。但即使在这种情况下，如果两个标签页打开的不是同一个网站（域名、协议或者端口任一不相同的网站），它们都不能相互通信。
-- 这就是所谓的“同源策略”。为了解决“同源策略”问题，两个标签页必须 **都** 包含一些处理这个问题的特定的 JavaScript 代码，并均允许数据交换。本教程会讲到这部分相关的知识。
-- 这个限制也是为了用户的信息安全。例如，用户打开的 `https://www.google.com/` 网页必须不能访问 `http://gmail.com`（另外一个标签页打开的网页）也不能从那里窃取信息。
-- JavaScript 可以轻松地通过互联网与当前页面所在的服务器进行通信。但是从其他网站/域的服务器中接收数据的能力被削弱了。尽管可以，但是需要来自远程服务器的明确协议（在 HTTP header 中）。这也是为了用户的信息安全。
+网页中的 JavaScript 不能读、写、复制和执行硬盘上的任意文件。它没有直接访问操作系统的功能。现代浏览器允许 JavaScript 做一些文件相关的操作，但是这个操作是受到限制的。仅当用户做出特定的行为，JavaScript 才能操作这个文件。例如，用户把文件“拖放”到浏览器中，或者通过 <input> 标签选择了文件。有很多与相机/麦克风和其它设备进行交互的方式，但是这些都需要获得用户的明确许可。因此，启用了 JavaScript 的网页应该不会偷偷地启动网络摄像头观察你，并把你的信息发送到 美国国家安全局。不同的标签页/窗口之间通常互不了解。有时候，也会有一些联系，例如一个标签页通过 JavaScript 打开的另外一个标签页。但即使在这种情况下，如果两个标签页打开的不是同一个网站（域名、协议或者端口任一不相同的网站），它们都不能相互通信。这就是所谓的“同源策略”。为了解决“同源策略”问题，两个标签页必须 都 包含一些处理这个问题的特定的 JavaScript 代码，并均允许数据交换。本教程会讲到这部分相关的知识。这个限制也是为了用户的信息安全。例如，用户打开的 https://www.google.com/ 网页必须不能访问 http://gmail.com（另外一个标签页打开的网页）也不能从那里窃取信息。JavaScript 可以轻松地通过互联网与当前页面所在的服务器进行通信。但是从其他网站/域的服务器中接收数据的能力被削弱了。尽管可以，但是需要来自远程服务器的明确协议（在 HTTP header 中）。这也是为了用户的信息安全。
 
 如果在浏览器环境外（例如在服务器上）使用 JavaScript，则不存在此类限制。现代浏览器还允许安装可能会要求扩展权限的插件/扩展。
 
-### 是什么使得 JavaScript 与众不同？
+是什么使得 JavaScript 与众不同？
 
 至少有 3 件事值得一提：
 
-- 与 HTML/CSS 完全集成。
-- 简单的事，简单地完成。
-- 被所有的主流浏览器支持，并且默认开启。
+与 HTML/CSS 完全集成。简单的事，简单地完成。被所有的主流浏览器支持，并且默认开启。
 
 JavaScript 是将这三件事结合在一起的唯一的浏览器技术。
 这就是为什么 JavaScript 与众不同。这也是为什么它是用于创建浏览器界面的使用最广泛的工具。
 此外，JavaScript 还可用于创建服务器和移动端应用程序等。
 
-### JavaScript “上层”语言
+JavaScript “上层”语言
 
 不同的人想要不同的功能。JavaScript 的语法也不能满足所有人的需求。
 这是正常的，因为每个人的项目和需求都不一样。
-因此，最近出现了许多新语言，这些语言在浏览器中执行之前，都会被 **编译**（转化）成 JavaScript。
+因此，最近出现了许多新语言，这些语言在浏览器中执行之前，都会被 编译（转化）成 JavaScript。
 现代化的工具使得编译速度非常快且透明，实际上允许开发者使用另一种语言编写代码并会将其“自动转换”为 JavaScript。
 
 此类语言的示例有：
 
-- **CoffeeScript** 是 JavaScript 的一种语法糖。它引入了更加简短的语法，使我们可以编写更清晰简洁的代码。通常，Ruby 开发者喜欢它。
-- **TypeScript** 专注于添加“严格的数据类型”以简化开发，以更好地支持复杂系统的开发。由微软开发。
-- **Flow** 也添加了数据类型，但是以一种不同的方式。由 Facebook 开发。
-- **Dart** 是一门独立的语言。它拥有自己的引擎，该引擎可以在非浏览器环境中运行（例如手机应用），它也可以被编译成 JavaScript。由 Google 开发。
-- **Brython** 是一个 Python 到 JavaScript 的转译器，让我们可以在不使用 JavaScript 的情况下，以纯 Python 编写应用程序。
-- **Kotlin** 是一个现代、简洁且安全的编程语言，编写出的应用程序可以在浏览器和 Node 环境中运行。
+CoffeeScript 是 JavaScript 的一种语法糖。它引入了更加简短的语法，使我们可以编写更清晰简洁的代码。通常，Ruby 开发者喜欢它。TypeScript 专注于添加“严格的数据类型”以简化开发，以更好地支持复杂系统的开发。由微软开发。Flow 也添加了数据类型，但是以一种不同的方式。由 Facebook 开发。Dart 是一门独立的语言。它拥有自己的引擎，该引擎可以在非浏览器环境中运行（例如手机应用），它也可以被编译成 JavaScript。由 Google 开发。Brython 是一个 Python 到 JavaScript 的转译器，让我们可以在不使用 JavaScript 的情况下，以纯 Python 编写应用程序。Kotlin 是一个现代、简洁且安全的编程语言，编写出的应用程序可以在浏览器和 Node 环境中运行。
 
 这样的语言还有很多。当然，即使我们在使用此类编译语言，我们也需要了解 JavaScript。因为了解 JavaScript 才能让我们真正明白我们在做什么。
 
-## JavaScript 入门
+JavaScript 入门
 
-### “script” 标签
+“script” 标签
 
-我们几乎可以使用 `<script>` 标签将 JavaScript 程序插入到 HTML 文档的任何位置。
+我们几乎可以使用 <script> 标签将 JavaScript 程序插入到 HTML 文档的任何位置。
 比如：
 
-```html
 <!DOCTYPE HTML>
 <html>
 <body>
@@ -130,33 +2712,30 @@ JavaScript 是将这三件事结合在一起的唯一的浏览器技术。
   <p>...script 标签之后</p>
 </body>
 </html>
-```
 
-`<script>` 标签中包裹了 JavaScript 代码，当浏览器遇到 `<script>` 标签，代码会自动运行。
 
-### 外部脚本
+<script> 标签中包裹了 JavaScript 代码，当浏览器遇到 <script> 标签，代码会自动运行。
+
+外部脚本
 
 如果你有大量的 JavaScript 代码，我们可以将它放入一个单独的文件。
-脚本文件可以通过 `src` 特性添加到 HTML 文件中。
+脚本文件可以通过 src 特性添加到 HTML 文件中。
 
-```html
 <script src="/path/to/script.js"></script>
-```
 
-这里，`/path/to/script.js` 是脚本文件从网站根目录开始的绝对路径。当然也可以提供当前页面的相对路径。例如，`src="script.js"`，就像 `src="./script.js"`，表示当前文件夹中的 "script.js" 文件。
+
+这里，/path/to/script.js 是脚本文件从网站根目录开始的绝对路径。当然也可以提供当前页面的相对路径。例如，src="script.js"，就像 src="./script.js"，表示当前文件夹中的 "script.js" 文件。
 
 我们也可以提供一个完整的 URL 地址，例如：
 
-```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
-```
+
 
 要附加多个脚本，请使用多个标签：
 
-```html
 <script src="/js/script1.js"></script>
 <script src="/js/script2.js"></script>
-```
+
 
 …
 请注意：
@@ -165,54 +2744,48 @@ JavaScript 是将这三件事结合在一起的唯一的浏览器技术。
 之后，其他页面想要相同的脚本就会从缓存中获取，而不是下载它。所以文件实际上只会下载一次。
 这可以节省流量，并使得页面（加载）更快。
 
-如果设置了 `src` 特性，script 标签内容将会被忽略。
-一个单独的 `<script>` 标签不能同时有 `src` 特性和内部包裹的代码。
+如果设置了 src 特性，script 标签内容将会被忽略。
+一个单独的 <script> 标签不能同时有 src 特性和内部包裹的代码。
 这将不会工作：
 
-```html
 <script src="file.js">
     alert(1); // 此内容会被忽略，因为设定了 src
 </script>
-```
 
-我们必须进行选择，要么使用外部的 `<script src="…">`，要么使用正常包裹代码的 `<script>`。
-为了让上面的例子工作，我们可以将它分成两个 `<script>` 标签。
 
-```html
+我们必须进行选择，要么使用外部的 <script src="…">，要么使用正常包裹代码的 <script>。
+为了让上面的例子工作，我们可以将它分成两个 <script> 标签。
+
 <script src="file.js"></script>
 <script>
     alert(1);
 </script>
-```
 
-## JavaScript 特性
 
-### 代码结构
+JavaScript 特性
+
+代码结构
 
 语句用分号分隔：
 
-```javascript
 alert('Hello'); alert('World');
-```
+
 
 通常，换行符也被视为分隔符，因此下面的例子也能正常运行：
 
-```javascript
 alert('Hello')
 alert('World')
-```
+
 
 这就是所谓的「自动分号插入」。但有时它不起作用，例如：
 
-```javascript
 alert("There will be an error after this message")
 [1, 2].forEach(alert)
-```
+
 
 大多数代码风格指南都认为我们应该在每个语句后面都加上分号。
-在代码块 `{...}` 后以及有代码块的语法结构（例如循环）后不需要加分号：
+在代码块 {...} 后以及有代码块的语法结构（例如循环）后不需要加分号：
 
-```javascript
 function f() {
   // 函数声明后不需要加分号
 }
@@ -220,110 +2793,92 @@ function f() {
 for(;;) {
   // 循环语句后不需要加分号
 }
-```
+
 
 ……但即使我们在某处添加了「额外的」分号，这也不是错误。分号会被忽略的。
 
-### 严格模式
+严格模式
 
-为了完全启用现代 JavaScript 的所有特性，我们应该在脚本顶部写上 `"use strict"` 指令。
+为了完全启用现代 JavaScript 的所有特性，我们应该在脚本顶部写上 "use strict" 指令。
 
-```javascript
 'use strict';
 ...
-```
+
 
 该指令必须位于 JavaScript 脚本的顶部或函数体的开头。
-如果没有 `"use strict"`，所有东西仍可以正常工作，但某些功能将以老式的“兼容”方式运行。我们通常更喜欢现代的方式。
+如果没有 "use strict"，所有东西仍可以正常工作，但某些功能将以老式的“兼容”方式运行。我们通常更喜欢现代的方式。
 
-### 变量
+变量
 
 可以使用以下方式声明变量：
 
-- `let`
-- `const`（不变的，不能被改变）
-- `var`（旧式的）
+letconst（不变的，不能被改变）var（旧式的）
 
 一个变量名可以由以下组成：
 
-- 字母和数字，但是第一个字符不能是数字。
-- 字符 `$` 和 `_` 是允许的，用法同字母。
-- 非拉丁字母和象形文字也是允许的，但通常不会使用。
+字母和数字，但是第一个字符不能是数字。字符 $ 和 _ 是允许的，用法同字母。非拉丁字母和象形文字也是允许的，但通常不会使用。
 
 变量是动态类型的，它们可以存储任何值：
 
-```javascript
 let x = 5;
 x = "John";
-```
+
 
 有 8 种数据类型：
 
-- `number` — 可以是浮点数，也可以是整数，
-- `bigint` — 用于任意长度的整数，
-- `string` — 字符串类型，
-- `boolean` — 逻辑值：`true`/`false`，
-- `null` — 具有单个值 `null` 的类型，表示“空”或“不存在”，
-- `undefined` — 具有单个值 `undefined` 的类型，表示“未分配（未定义）”，
-- `object` 和 `symbol` — 对于复杂的数据结构和唯一标识符，我们目前还没学习这个类型。
+number — 可以是浮点数，也可以是整数，bigint — 用于任意长度的整数，string — 字符串类型，boolean — 逻辑值：true/false，null — 具有单个值 null 的类型，表示“空”或“不存在”，undefined — 具有单个值 undefined 的类型，表示“未分配（未定义）”，object 和 symbol — 对于复杂的数据结构和唯一标识符，我们目前还没学习这个类型。
 
-`typeof` 运算符返回值的类型，但有两个例外：
+typeof 运算符返回值的类型，但有两个例外：
 
-```javascript
 typeof null == "object" // JavaScript 编程语言的设计错误
 typeof function(){} == "function" // 函数被特殊对待
-```
 
-### 交互
+
+交互
 
 我们使用浏览器作为工作环境，所以基本的 UI 功能将是：
 
-- `prompt(question[, default])` 提出一个问题 `question`，并返回访问者输入的内容，如果他按下「取消」则返回 `null`。
-- `confirm(question)` 提出一个问题 `question`，并建议用户在“确定”和“取消”之间进行选择。选择结果以 `true`/`false` 形式返回。
-- `alert(message)` 输出一个消息 `message`。
+prompt(question[, default]) 提出一个问题 question，并返回访问者输入的内容，如果他按下「取消」则返回 null。confirm(question) 提出一个问题 question，并建议用户在“确定”和“取消”之间进行选择。选择结果以 true/false 形式返回。alert(message) 输出一个消息 message。
 
-这些函数都会产生 **模态框**，它们会暂停代码执行并阻止访问者与页面的其他部分进行交互，直到用户做出回答为止。
+这些函数都会产生 模态框，它们会暂停代码执行并阻止访问者与页面的其他部分进行交互，直到用户做出回答为止。
 举个例子：
 
-```javascript
 let userName = prompt("Your name?", "Alice");
 let isTeaWanted = confirm("Do you want some tea?");
 
 alert( "Visitor: " + userName ); // Alice
 alert( "Tea wanted: " + isTeaWanted ); // true
-```
 
-### 运算符
+
+运算符
 
 JavaScript 支持以下运算符：
 
-#### 算数运算符
+算数运算符
 
-常规的：`+` `-` `*` `/`（加减乘除），取余运算符 `%` 和幂运算符 `**`。
-二进制加号 `+` 可以连接字符串。如果任何一个操作数是一个字符串，那么另一个操作数也将被转换为字符串：
+常规的：+ - * /（加减乘除），取余运算符 % 和幂运算符 **。
+二进制加号 + 可以连接字符串。如果任何一个操作数是一个字符串，那么另一个操作数也将被转换为字符串：
 
-```javascript
 alert( '1' + 2 ); // '12'，字符串
 alert( 1 + '2' ); // '12'，字符串
 alert(2 + 2 + '1' ); // "41"，不是 "221"
 alert('1' + 2 + 2); // "122"，不是 "14"
-```
 
-#### 赋值
 
-简单的赋值：`a = b` 和合并了其他操作的赋值：`a *= 2`。
+赋值
 
-#### 按位运算符
+简单的赋值：a = b 和合并了其他操作的赋值：a *= 2。
+
+按位运算符
 
 按位运算符在最低位级上操作 32 位的整数
 
-#### 三元运算符
+三元运算符
 
-唯一具有三个参数的操作：`cond ? resultA : resultB`。如果 `cond` 为真，则返回 `resultA`，否则返回 `resultB`。
+唯一具有三个参数的操作：cond ? resultA : resultB。如果 cond 为真，则返回 resultA，否则返回 resultB。
 有时我们需要根据一个条件去赋值一个变量。
 如下所示：
 
-```javascript
 let accessAllowed;
 let age = prompt('How old are you?', '');
 
@@ -334,47 +2889,42 @@ if (age > 18) {
 }
 
 alert(accessAllowed);
-```
+
 
 所谓的“条件”或“问号”运算符让我们可以更简短地达到目的。
-这个运算符通过问号 `?` 表示。有时它被称为三元运算符，被称为“三元”是因为该运算符中有三个操作数。实际上它是 JavaScript 中唯一一个有这么多操作数的运算符。
+这个运算符通过问号 ? 表示。有时它被称为三元运算符，被称为“三元”是因为该运算符中有三个操作数。实际上它是 JavaScript 中唯一一个有这么多操作数的运算符。
 语法：
 
-```javascript
 let result = condition ? value1 : value2;
-```
 
-计算条件结果，如果结果为真，则返回 `value1`，否则返回 `value2`。
+
+计算条件结果，如果结果为真，则返回 value1，否则返回 value2。
 例如：
 
-```javascript
 let accessAllowed = (age > 18) ? true : false;
-```
 
-技术上讲，我们可以省略 `age > 18` 外面的括号。问号运算符的优先级较低，所以它会在比较运算符 `>` 后执行。
+
+技术上讲，我们可以省略 age > 18 外面的括号。问号运算符的优先级较低，所以它会在比较运算符 > 后执行。
 下面这个示例会执行和前面那个示例相同的操作：
 
-```javascript
 // 比较运算符 "age > 18" 首先执行
 //（不需要将其包含在括号中）
 let accessAllowed = age > 18 ? true : false;
-```
+
 
 但括号可以使代码可读性更强，所以我们建议使用它们。
 请注意：
-在上面的例子中，你可以不使用问号运算符，因为比较本身就返回 `true`/`false`：
+在上面的例子中，你可以不使用问号运算符，因为比较本身就返回 true/false：
 
-```javascript
 // 下面代码同样可以实现
 let accessAllowed = age > 18;
-```
 
-#### 多个 ‘?’
 
-使用一系列问号 `?` 运算符可以返回一个取决于多个条件的值。
+多个 ‘?’
+
+使用一系列问号 ? 运算符可以返回一个取决于多个条件的值。
 例如：
 
-```javascript
 let age = prompt('age?', 18);
 
 let message = (age < 3) ? 'Hi, baby!' :
@@ -383,18 +2933,14 @@ let message = (age < 3) ? 'Hi, baby!' :
   'What an unusual age!';
 
 alert( message );
-```
+
 
 可能很难一下子看出发生了什么。但经过仔细观察，我们可以看到它只是一个普通的检查序列。
 
-1. 第一个问号检查 `age < 3`。
-2. 如果为真 — 返回 `'Hi, baby!'`。否则，会继续执行冒号 `:` 后的表达式，检查 `age < 18`。
-3. 如果为真 — 返回 `'Hello!'`。否则，会继续执行下一个冒号 `:` 后的表达式，检查 `age < 100`。
-4. 如果为真 — 返回 `'Greetings!'`。否则，会继续执行最后一个冒号 `:` 后面的表达式，返回 `'What an unusual age!'`。
+第一个问号检查 age < 3。如果为真 — 返回 'Hi, baby!'。否则，会继续执行冒号 : 后的表达式，检查 age < 18。如果为真 — 返回 'Hello!'。否则，会继续执行下一个冒号 : 后的表达式，检查 age < 100。如果为真 — 返回 'Greetings!'。否则，会继续执行最后一个冒号 : 后面的表达式，返回 'What an unusual age!'。
 
-这是使用 `if..else` 实现上面的逻辑的写法：
+这是使用 if..else 实现上面的逻辑的写法：
 
-```javascript
 if (age < 3) {
   message = 'Hi, baby!';
 } else if (age < 18) {
@@ -404,25 +2950,23 @@ if (age < 3) {
 } else {
   message = 'What an unusual age!';
 }
-```
 
-#### ‘?’ 的非常规使用
 
-有时可以使用问号 `?` 来代替 `if` 语句：
+‘?’ 的非常规使用
 
-```javascript
+有时可以使用问号 ? 来代替 if 语句：
+
 let company = prompt('Which company created JavaScript?', '');
 
 (company == 'Netscape') ?alert('Right!') : alert('Wrong.');
-```
 
-根据条件 `company =='Netscape'`，要么执行 `?` 后面的第一个表达式并显示对应内容，要么执行第二个表达式并显示对应内容。
+
+根据条件 company =='Netscape'，要么执行 ? 后面的第一个表达式并显示对应内容，要么执行第二个表达式并显示对应内容。
 在这里我们不是把结果赋值给变量。而是根据条件执行不同的代码。
-**不建议这样使用问号运算符。**
-这种写法比 `if` 语句更短，对一些程序员很有吸引力。但它的可读性差。
-下面是使用 `if` 语句实现相同功能的代码，进行下比较：
+不建议这样使用问号运算符。
+这种写法比 if 语句更短，对一些程序员很有吸引力。但它的可读性差。
+下面是使用 if 语句实现相同功能的代码，进行下比较：
 
-```javascript
 let company = prompt('Which company created JavaScript?', '');
 
 if (company == 'Netscape') {
@@ -430,55 +2974,51 @@ if (company == 'Netscape') {
 } else {
     alert('Wrong.');
 }
-```
+
 
 因为我们的眼睛垂直扫描代码。所以，跨越几行的代码块比长而水平的代码更易于理解。
-问号 `?` 的作用是根据条件返回其中一个值。请正确使用它。当需要执行不同的代码分支时，请使用 `if`。
+问号 ? 的作用是根据条件返回其中一个值。请正确使用它。当需要执行不同的代码分支时，请使用 if。
 
-#### 逻辑运算符
+逻辑运算符
 
-逻辑与 `&&` 和或 `||` 执行短路运算，然后返回运算停止处的值（`true`/`false` 不是必须的）。逻辑非 `!` 将操作数转换为布尔值并返回其相反的值。
+逻辑与 && 和或 || 执行短路运算，然后返回运算停止处的值（true/false 不是必须的）。逻辑非 ! 将操作数转换为布尔值并返回其相反的值。
 
-#### 空值合并运算符
+空值合并运算符
 
-`a ?? b` 的结果是：
+a ?? b 的结果是：
 
-- 如果 `a` 是已定义的，则结果为 `a`，
-- 如果 `a` 不是已定义的，则结果为 `b`。
+如果 a 是已定义的，则结果为 a，如果 a 不是已定义的，则结果为 b。
 
-换句话说，如果第一个参数不是 `null`/`undefined`，则 `??` 返回第一个参数。否则，返回第二个参数。
+换句话说，如果第一个参数不是 null/undefined，则 ?? 返回第一个参数。否则，返回第二个参数。
 
-```javascript
 let user;
 
 alert(user ?? "匿名"); // 匿名（user 未定义）
-```
 
-`??` 运算符从一列变量中，选取值为已定义的值（defined value）的变量。`a ?? b` 的结果是 `a`，除非 `a` 为 `null`/`undefined`，这时结果是 `b`。
 
-#### 比较运算符
+?? 运算符从一列变量中，选取值为已定义的值（defined value）的变量。a ?? b 的结果是 a，除非 a 为 null/undefined，这时结果是 b。
 
-对不同类型的值进行相等检查时，运算符 `==` 会将不同类型的值转换为数字（除了 `null` 和 `undefined`，它们彼此相等而没有其他情况），所以下面的例子是相等的：
+比较运算符
 
-```javascript
+对不同类型的值进行相等检查时，运算符 == 会将不同类型的值转换为数字（除了 null 和 undefined，它们彼此相等而没有其他情况），所以下面的例子是相等的：
+
 alert( 0 == false ); // true
 alert( 0 == '' ); // true
-```
+
 
 其他比较也将转换为数字。
-严格相等运算符 `===` 不会进行转换：不同的类型总是指不同的值。
-值 `null` 和 `undefined` 是特殊的：它们只在 `==` 下相等，且不相等于其他任何值。
+严格相等运算符 === 不会进行转换：不同的类型总是指不同的值。
+值 null 和 undefined 是特殊的：它们只在 == 下相等，且不相等于其他任何值。
 大于/小于比较，在比较字符串时，会按照字符顺序逐个字符地进行比较。其他类型则被转换为数字。
 
-#### 其他运算符
+其他运算符
 
 还有很少一部分其他运算符，如逗号运算符。
 
-### 循环
+循环
 
-- 我们涵盖了 3 种类型的循环：
+我们涵盖了 3 种类型的循环：
 
-```javascript
 // 1
 while (condition) {
   ...
@@ -493,17 +3033,15 @@ do {
 for(let i = 0; i < 10; i++) {
   ...
 }
-```
 
-- 在 `for(let...)` 循环内部声明的变量，只在该循环内可见。但我们也可以省略 `let` 并重用已有的变量。
-- 指令 `break`/`continue` 允许退出整个循环/当前迭代。使用标签来打破嵌套循环。
 
-### “switch” 结构
+在 for(let...) 循环内部声明的变量，只在该循环内可见。但我们也可以省略 let 并重用已有的变量。指令 break/continue 允许退出整个循环/当前迭代。使用标签来打破嵌套循环。
 
-“switch” 结构可以替代多个 `if` 检查。它内部使用 `===`（严格相等）进行比较。
+“switch” 结构
+
+“switch” 结构可以替代多个 if 检查。它内部使用 ===（严格相等）进行比较。
 例如：
 
-```javascript
 let age = prompt('Your age?', 18);
 
 switch (age) {
@@ -518,70 +3056,65 @@ switch (age) {
   default:
     alert("Any value not equal to one above");
 }
-```
 
-## 函数
 
-### 函数表达式 vs 函数声明
+函数
 
-- **函数声明**：在主代码流中声明为单独的语句的函数：
+函数表达式 vs 函数声明
 
-```javascript
+函数声明：在主代码流中声明为单独的语句的函数：
+
 // 函数声明
 function sum(a, b) {
     return a + b;
 }
-```
 
-- **函数表达式**：在一个表达式中或另一个语法结构中创建的函数。下面这个函数是在赋值表达式 `=` 右侧创建的：
 
-```javascript
+函数表达式：在一个表达式中或另一个语法结构中创建的函数。下面这个函数是在赋值表达式 = 右侧创建的：
+
 // 函数表达式
 let sum = function(a, b) {
     return a + b;
 };
-```
 
-更细微的差别是，JavaScript 引擎会在 **什么时候** 创建函数。
+
+更细微的差别是，JavaScript 引擎会在 什么时候 创建函数。
 函数表达式是在代码执行到达时被创建，并且仅从那一刻起可用。
-一旦代码执行到赋值表达式 `let sum = function…` 的右侧，此时就会开始创建该函数，并且可以从现在开始使用（分配，调用等）。
+一旦代码执行到赋值表达式 let sum = function… 的右侧，此时就会开始创建该函数，并且可以从现在开始使用（分配，调用等）。
 
 函数声明则不同。
 在函数声明被定义之前，它就可以被调用。
 例如，一个全局函数声明对整个脚本来说都是可见的，无论它被写在这个脚本的哪个位置。
-这是内部算法的缘故。当 JavaScript 准备 **运行脚本**时，首先会在脚本中寻找全局函数声明，并创建这些函数。我们可以将其视为“初始化阶段”。
+这是内部算法的缘故。当 JavaScript 准备 运行脚本时，首先会在脚本中寻找全局函数声明，并创建这些函数。我们可以将其视为“初始化阶段”。
 在处理完所有函数声明后，代码才被执行。所以运行时能够使用这些函数。
 
 例如下面的代码会正常工作：
 
-```javascript
 sayHi("John"); // Hello, John
 
 function sayHi(name) {
   alert( `Hello, ${name}` );
 }
-```
 
-函数声明 `sayHi` 是在 JavaScript 准备运行脚本时被创建的，在这个脚本的任何位置都可见。
+
+函数声明 sayHi 是在 JavaScript 准备运行脚本时被创建的，在这个脚本的任何位置都可见。
 
 ……如果它是一个函数表达式，它就不会工作：
 
-```javascript
 sayHi("John"); // error!
 
 let sayHi = function(name) {  // (*) no magic any more
   alert( `Hello, ${name}` );
 };
-```
 
-函数表达式在代码执行到它时才会被创建。只会发生在 `(*)` 行。为时已晚。
+
+函数表达式在代码执行到它时才会被创建。只会发生在 (*) 行。为时已晚。
 
 函数声明的另外一个特殊的功能是它们的块级作用域。
 严格模式下，当一个函数声明在一个代码块内时，它在该代码块内的任何位置都是可见的。但在代码块外不可见。
-例如，想象一下我们需要依赖于在代码运行过程中获得的变量 `age` 声明一个函数 `welcome()`。并且我们计划在之后的某个时间使用它。
+例如，想象一下我们需要依赖于在代码运行过程中获得的变量 age 声明一个函数 welcome()。并且我们计划在之后的某个时间使用它。
 如果我们使用函数声明，则以下代码无法像预期那样工作：
 
-```javascript
 let age = prompt("What is your age?", 18);
 
 // 有条件地声明一个函数
@@ -601,12 +3134,11 @@ if (age < 18) {
 
 // ……稍后使用
 welcome(); // Error: welcome is not defined
-```
+
 
 这是因为函数声明只在它所在的代码块中可见。
 下面是另一个例子：
 
-```javascript
 let age = 16; // 拿 16 作为例子
 
 if (age < 18) {
@@ -629,13 +3161,12 @@ if (age < 18) {
 
 
 welcome(); // Error: welcome is not defined
-```
 
-我们怎么才能让 `welcome` 在 `if` 外可见呢？
-正确的做法是使用函数表达式，并将 `welcome` 赋值给在 `if` 外声明的变量，并具有正确的可见性。
+
+我们怎么才能让 welcome 在 if 外可见呢？
+正确的做法是使用函数表达式，并将 welcome 赋值给在 if 外声明的变量，并具有正确的可见性。
 下面的代码可以如愿运行：
 
-```javascript
 let age = prompt("What is your age?", 18);
 
 let welcome;
@@ -655,11 +3186,10 @@ if (age < 18) {
 }
 
 welcome(); // 现在可以了
-```
 
-或者我们可以使用问号运算符 `?` 来进一步对代码进行简化：
 
-```javascript
+或者我们可以使用问号运算符 ? 来进一步对代码进行简化：
+
 let age = prompt("What is your age?", 18);
 
 let welcome = (age < 18) ?
@@ -667,35 +3197,32 @@ let welcome = (age < 18) ?
   function() { alert("Greetings!"); };
 
 welcome(); // 现在可以了
-```
 
-### 什么时候选择函数声明与函数表达式？
+
+什么时候选择函数声明与函数表达式？
 
 根据经验，当我们需要声明一个函数时，首先考虑函数声明语法。它能够为组织代码提供更多的灵活性。因为我们可以在声明这些函数之前调用这些函数。
-这对代码可读性也更好，因为在代码中查找 `function f(…) {…}` 比 `let f = function(…) {…}` 更容易。函数声明更“醒目”。
+这对代码可读性也更好，因为在代码中查找 function f(…) {…} 比 let f = function(…) {…} 更容易。函数声明更“醒目”。
 ……但是，如果由于某种原因而导致函数声明不适合我们（我们刚刚看过上面的例子），那么应该使用函数表达式。
 
-### 箭头函数
+箭头函数
 
 创建函数还有另外一种非常简单的语法，并且这种方法通常比函数表达式更好。
 它被称为“箭头函数”，因为它看起来像这样：
 
-```javascript
 let func = (arg1, arg2, ..., argN) => expression;
-```
 
-这里创建了一个函数 `func`，它接受参数 `arg1..argN`，然后使用参数对右侧的 `expression` 求值并返回其结果。
+
+这里创建了一个函数 func，它接受参数 arg1..argN，然后使用参数对右侧的 expression 求值并返回其结果。
 换句话说，它是下面这段代码的更短的版本：
 
-```javascript
 let func = function(arg1, arg2, ..., argN) {
     return expression;
 };
-```
+
 
 让我们来看一个具体的例子：
 
-```javascript
 let sum = (a, b) => a + b;
 
 /* 这个箭头函数是下面这个函数的更短的版本：
@@ -706,30 +3233,26 @@ let sum = function(a, b) {
 */
 
 alert( sum(1, 2) ); // 3
-```
 
-可以看到 `(a, b) => a + b` 表示一个函数接受两个名为 `a` 和 `b` 的参数。在执行时，它将对表达式 `a + b` 求值，并返回计算结果。
 
-- 如果我们只有一个参数，还可以省略掉参数外的圆括号，使代码更短。
-- 例如：
+可以看到 (a, b) => a + b 表示一个函数接受两个名为 a 和 b 的参数。在执行时，它将对表达式 a + b 求值，并返回计算结果。
 
-```javascript
+如果我们只有一个参数，还可以省略掉参数外的圆括号，使代码更短。例如：
+
 let double = n => n * 2;// 差不多等同于：let double = function(n) { return n * 2 }
 
 alert( double(3) ); // 6
-```
 
-- 如果没有参数，括号则是空的（但括号必须保留）：
 
-```javascript
+如果没有参数，括号则是空的（但括号必须保留）：
+
 let sayHi = () => alert("Hello!");
 sayHi();
-```
+
 
 箭头函数可以像函数表达式一样使用。
 例如，动态创建一个函数：
 
-```javascript
 let age = prompt("What is your age?", 18);
 
 let welcome = (age < 18) ?
@@ -737,29 +3260,27 @@ let welcome = (age < 18) ?
   () => alert("Greetings!");
 
 welcome();
-```
+
 
 一开始，箭头函数可能看起来并不熟悉，也不容易读懂，但一旦我们看习惯了之后，这种情况很快就会改变。
 箭头函数对于简单的单行行为（action）来说非常方便，尤其是当我们懒得打太多字的时候。
 
-### 多行的箭头函数
+多行的箭头函数
 
-到目前为止，我们看到的箭头函数非常简单。它们从 `=>` 的左侧获取参数，计算并返回右侧表达式的计算结果。
-有时我们需要更复杂一点的函数，比如带有多行的表达式或语句。在这种情况下，我们可以使用花括号将它们括起来。主要区别在于，用花括号括起来之后，需要包含 `return` 才能返回值（就像常规函数一样）。
+到目前为止，我们看到的箭头函数非常简单。它们从 => 的左侧获取参数，计算并返回右侧表达式的计算结果。
+有时我们需要更复杂一点的函数，比如带有多行的表达式或语句。在这种情况下，我们可以使用花括号将它们括起来。主要区别在于，用花括号括起来之后，需要包含 return 才能返回值（就像常规函数一样）。
 就像这样：
 
-```javascript
 let sum = (a, b) => {  // 花括号表示开始一个多行函数
   let result = a + b;
   return result; // 如果我们使用了花括号，那么我们需要一个显式的 “return”
 };
 
 alert( sum(1, 2) ); // 3
-```
 
-### 作用域
 
-```javascript
+作用域
+
 // 全局作用域
 let globalVar = "我是全局变量";
 
@@ -780,15 +3301,14 @@ if (true) {
   console.log(blockVar);  // ✅
 }
 // console.log(blockVar);  // ❌ 报错！
-```
 
-## 对象
 
-### 什么是对象？
+对象
+
+什么是对象？
 
 对象是键值对的集合，用于存储和组织相关的数据和功能。
 
-```javascript
 // 创建对象的几种方式
 
 //1. 对象字面量（最常用）
@@ -813,11 +3333,10 @@ const user = new Person("李四", 30);
 // 4. 使用 Object.create()
 const proto = { greeting: "Hello" };
 const obj = Object.create(proto);
-```
 
-### 访问对象属性
 
-```javascript
+访问对象属性
+
 const student = {
   name: "小明",
   age: 18,
@@ -834,11 +3353,10 @@ console.log(student["favorite color"]);  // "blue"
 // 动态访问
 const key = "name";
 console.log(student[key]);  // "小明"
-```
 
-### 对象的常用操作
 
-```javascript
+对象的常用操作
+
 const book = {
   title: "JavaScript 权威指南",
   author: "David Flanagan",
@@ -870,13 +3388,12 @@ console.log(Object.values(book));  // ["JavaScript 权威指南", "David Flanaga
 // 获取键值对数组
 console.log(Object.entries(book));  
 // [["title", "JavaScript 权威指南"], ["author", "David Flanagan"], ["pages", 1096]
-```
 
-## 类
 
-### 基本语法
+类
 
-```javascript
+基本语法
+
 class MyClass {
   // class 方法
   constructor() { ... }
@@ -885,13 +3402,12 @@ class MyClass {
   method3() { ... }
   ...
 }
-```
 
-然后使用 `new MyClass()` 来创建具有上述列出的所有方法的新对象。
-`new` 会自动调用 `constructor()` 方法，因此我们可以在 `constructor()` 中初始化对象。
+
+然后使用 new MyClass() 来创建具有上述列出的所有方法的新对象。
+new 会自动调用 constructor() 方法，因此我们可以在 constructor() 中初始化对象。
 例如：
 
-```javascript
 class User {
 
   constructor(name) {
@@ -907,17 +3423,15 @@ class User {
 // 用法：
 let user = new User("John");
 user.sayHi();
-```
 
-当 `new User("John")` 被调用：
 
-1. 一个新对象被创建。
-2. `constructor` 使用给定的参数运行，并将其赋值给 `this.name`。
-   ……然后我们就可以调用对象方法了，例如 `user.sayHi`。
+当 new User("John") 被调用：
 
-### 什么是 class
+一个新对象被创建。constructor 使用给定的参数运行，并将其赋值给 this.name。
+……然后我们就可以调用对象方法了，例如 user.sayHi。
 
-```javascript
+什么是 class
+
 class User {
   constructor(name) { this.name = name; }
   sayHi() { alert(this.name); }
@@ -934,16 +3448,14 @@ alert(User.prototype.sayHi); // sayHi 方法的代码
 
 // 在原型中实际上有两个方法
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
-```
 
-`class User {...}` 构造实际上做了如下的事儿：
 
-1. 创建一个名为 `User` 的函数，该函数成为类声明的结果。该函数的代码来自于 `constructor` 方法（如果我们不编写这种方法，那么它就被假定为空）。
-2. 存储类中的方法，例如 `User.prototype` 中的 `sayHi`。
+class User {...} 构造实际上做了如下的事儿：
 
-### 类表达式
+创建一个名为 User 的函数，该函数成为类声明的结果。该函数的代码来自于 constructor 方法（如果我们不编写这种方法，那么它就被假定为空）。存储类中的方法，例如 User.prototype 中的 sayHi。
 
-```javascript
+类表达式
+
 // “命名类表达式（Named Class Expression）”
 // (规范中没有这样的术语，但是它和命名函数表达式类似)
 let User = class MyClass {
@@ -955,11 +3467,10 @@ let User = class MyClass {
 new User().sayHi(); // 正常运行，显示 MyClass 中定义的内容
 
 alert(MyClass); // error，MyClass 在外部不可见
-```
 
-### getter 和 setter
 
-```javascript
+getter 和 setter
+
 class User {
 
   constructor(name) {
@@ -985,15 +3496,14 @@ let user = new User("John");
 alert(user.name); // John
 
 user = new User(""); // Name is too short.
-```
 
-类声明可以通过在 `User.prototype` 中创建 getters 和 setters 来实现。
 
-## 面向对象
+类声明可以通过在 User.prototype 中创建 getters 和 setters 来实现。
 
-### 简单类比
+面向对象
 
-```javascript
+简单类比
+
 // 把"人"这个概念变成代码中的对象
 
 class Person {
@@ -1017,15 +3527,14 @@ class Person {
 const xm = new Person('xm', 20);
 xm.introduce();  // 大家好，我是 xm，今年 20 岁
 xm.speak('你好！'); // xm 说: 你好！
-```
 
-### 核心概念
 
-#### 封装
+核心概念
+
+封装
 
 把数据和方法包在一起，隐藏细节
 
-```javascript
 class Phone {
   #battery = 100;  // 私有属性，外部看不到
   
@@ -1038,13 +3547,12 @@ class Phone {
 const myPhone = new Phone();
 myPhone.useBattery();  // 剩余电量: 90%
 // myPhone.#battery = 100;  // ❌ 错误！无法直接修改
-```
 
-#### 继承
+
+继承
 
 子类继承父类的属性和方法
 
-```javascript
 // 父类
 class Animal {
   eat() {
@@ -1062,13 +3570,12 @@ class Dog extends Animal {
 const dog = new Dog();
 dog.eat();   // 正在吃东西... (继承自父类)
 dog.bark();  // 汪汪汪！(自己的方法)
-```
 
-#### 多态
+
+多态
 
 同一个方法，不同对象有不同表现
 
-```javascript
 class Animal {
   makeSound() {
     console.log('动物发出声音');
@@ -1092,11 +3599,10 @@ const cat = new Cat();
 
 dog.makeSound();  // 汪汪汪！
 cat.makeSound();  // 喵喵喵！(同一个方法，不同表现)
-```
 
-### 为什么要用面向对象
 
-```javascript
+为什么要用面向对象
+
 let dog1Name = '旺财';
 let dog1Age = 3;
 
@@ -1126,17 +3632,16 @@ const dog2 = new Dog('大黄', 5);
 
 dog1.bark();  // 旺财 在叫
 dog2.bark();  // 大黄 在叫
-```
 
-## 认识浏览器 API
+
+认识浏览器 API
 
 浏览器 API（Browser APIs）是由浏览器提供的一组接口和功能，允许 JavaScript 代码与浏览器和用户的计算机进行交互。这些 API 让网页应用能够访问系统资源、处理用户交互等。
 
-### DOM （文档对象模型）
+DOM （文档对象模型）
 
-#### 选择元素
+选择元素
 
-```javascript
 // 1. 通过 ID 选择（返回单个元素）
 const header = document.getElementById('header');
 
@@ -1159,13 +3664,12 @@ const allParas = document.querySelectorAll('p');
 document.body;           // 获取 body 元素
 document.head;           // 获取 head 元素
 document.documentElement; // 获取 html 元素
-```
 
-推荐使用： `querySelector` 和 `querySelectorAll`（更灵活强大）
 
-#### 操作元素内容
+推荐使用： querySelector 和 querySelectorAll（更灵活强大）
 
-```javascript
+操作元素内容
+
 const div = document.querySelector('#myDiv');
 
 // 1. textContent - 纯文本内容
@@ -1189,11 +3693,10 @@ example.innerHTML = `
     <li>项目 2</li>
   </ul>
 `;
-```
 
-#### 操作元素属性
 
-```javascript
+操作元素属性
+
 const img = document.querySelector('img');
 const link = document.querySelector('a');
 
@@ -1223,11 +3726,10 @@ const div = document.querySelector('div');
 console.log(div.dataset.userId);  // "123"
 console.log(div.dataset.role);    // "admin"
 div.dataset.newAttr = 'value';    // 设置 data-new-attr="value"
-```
 
-#### 操作 css 样式
 
-```javascript
+操作 css 样式
+
 const box = document.querySelector('.box');
 
 // 1. 直接修改行内样式
@@ -1262,11 +3764,10 @@ box.classList.replace('old', 'new');   // 替换类
 // 老方法（不推荐）
 box.className = 'box active';          // 直接设置（会覆盖）
 box.className += ' new-class';         // 添加类
-```
 
-#### 创建和插入元素
 
-```javascript
+创建和插入元素
+
 // 1. 创建元素
 const div = document.createElement('div');
 const p = document.createElement('p');
@@ -1312,11 +3813,10 @@ items.forEach(item => {
 });
 
 document.body.appendChild(ul);
-```
 
-#### 删除和替换元素
 
-```javascript
+删除和替换元素
+
 const element = document.querySelector('#myElement');
 const parent = document.querySelector('#parent');
 
@@ -1335,13 +3835,12 @@ parent.innerHTML = '';  // 方法 1
 while (parent.firstChild) {  // 方法 2（更安全）
   parent.removeChild(parent.firstChild);
 }
-```
 
-### BOM（浏览器对象模型）
+
+BOM（浏览器对象模型）
 
 用于与浏览器窗口交互
 
-```javascript
 // 窗口对象
 window.alert('提示')
 window.confirm('确认?')
@@ -1354,13 +3853,12 @@ setInterval(() => { console.log('循环执行') }, 1000)
 // 浏览器历史
 window.history.back()
 window.history.forward()
-```
 
-### 事件
+
+事件
 
 处理用户交互事件
 
-```javascript
 const button = document.querySelector('#myButton');
 
 // 1. addEventListener（推荐）
@@ -1390,45 +3888,44 @@ button.onclick = function() {
 
 // 5. HTML 属性（不推荐）
 // <button onclick="handleClick()">点击</button>
-```
 
-### 4. Fetch
+
+Fetch
 
 用于网络请求
 
-### 5. LocalStorage & SessionStorage
+LocalStorage & SessionStorage
 
 本地数据存储
 
-### 6. Geolocation
+Geolocation
 
 获取用户地理位置
 
-### 7. Notification
+Notification
 
 显示桌面通知
 
-### 8. Canvas
+Canvas
 
 绘制图形
 
-### 9. Geolocation
+Geolocation
 
 地理定位
 
-### 10. Service Worker
+Service Worker
 
 离线支持和后台运行
 
-### 11. Web Storage
+Web Storage
 
 本地存储
 
-### 12. Multimedia
+Multimedia
 
-音频和视频控制
-]]></content:encoded>
-            <author>contact@emmmxx.xyz (Emmm)</author>
+音频和视频控制]]></content:encoded>
+            <author>1992107794@qq.com (Admin)</author>
         </item>
     </channel>
 </rss>

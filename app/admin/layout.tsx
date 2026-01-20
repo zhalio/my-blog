@@ -3,6 +3,12 @@ import { AdminProtector } from "@/components/admin-protector"
 import { AdminHeader } from "@/components/admin-header"
 import { ThemeProvider } from "@/components/layout/theme-provider"
 
+export const metadata = {
+  metadataBase: new URL('https://emmmxx.xyz'),
+  title: 'Blog Admin',
+  description: 'Manage your blog content',
+}
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh" suppressHydrationWarning>
