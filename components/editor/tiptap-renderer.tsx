@@ -170,7 +170,7 @@ const CodeBlock = ({ node: { textContent } }: { node: { textContent: string } })
     >
       {/* Header / Title Bar */}
       <div 
-        className="flex items-center justify-between px-4 py-1.5 border-b border-zinc-200 dark:border-white/5 bg-white dark:bg-[#1e1e1e]"
+        className="flex items-center justify-between px-4 py-1.5 bg-white dark:bg-[#1e1e1e]"
       >
         <div className="flex gap-2">
           <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
@@ -193,7 +193,7 @@ const CodeBlock = ({ node: { textContent } }: { node: { textContent: string } })
       <div className="relative flex overflow-x-auto pt-1 pb-4">
         {/* Line Numbers */}
         <div 
-          className="flex-shrink-0 flex flex-col items-end pr-4 pl-2 select-none text-[#237893] dark:text-[#858585] border-r border-zinc-200 dark:border-white/5 min-w-[3.5rem]"
+          className="flex-shrink-0 flex flex-col items-end pr-4 pl-2 select-none text-[#237893] dark:text-[#858585] min-w-[3.5rem]"
           aria-hidden="true"
           style={{ fontFamily: 'inherit', fontSize: 'inherit', lineHeight: 'inherit' }}
         >
