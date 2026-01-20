@@ -190,7 +190,7 @@ const CodeBlock = ({ node: { textContent } }: { node: { textContent: string } })
         </button>
       </div>
 
-      <div className="relative flex overflow-x-auto pt-1 pb-4">
+      <div className="relative flex overflow-x-auto pt-1 pb-1">
         {/* Line Numbers */}
         <div 
           className="flex-shrink-0 flex flex-col items-end pr-4 pl-2 select-none text-[#237893] dark:text-[#858585] min-w-[3.5rem]"
