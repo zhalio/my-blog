@@ -47,7 +47,7 @@ export async function getPublishedPosts(locale: string = 'zh'): Promise<PostList
       summary: post.description || '',
       excerpt: post.description || '',
       tags: post.tags || [],
-      readingTime: post.reading_time ? `${post.reading_time} 分钟` : undefined,
+      readingTime: post.reading_time ? `${post.reading_time} 字` : undefined,
       coverImage: post.cover_image,
       locale: post.locale,
     }))
@@ -146,7 +146,7 @@ export async function getPostsByTag(tag: string, locale: string = 'zh'): Promise
       summary: post.description || '',
       excerpt: post.description || '',
       tags: post.tags || [],
-      readingTime: post.reading_time ? `${post.reading_time} 分钟` : undefined,
+      readingTime: post.reading_time ? `${post.reading_time} 字` : undefined,
       coverImage: post.cover_image,
       locale: post.locale,
     }))

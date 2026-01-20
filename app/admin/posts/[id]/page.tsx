@@ -112,7 +112,7 @@ export default function EditPostPage() {
       type: 'array',
       v: true 
     })
-    .join('-')
+    .join('')
     .toLowerCase()
     .trim()
     .replace(/[^\w-]/g, '')
@@ -121,13 +121,12 @@ export default function EditPostPage() {
     setFormData({ ...formData, slug })
   }
 
-  const calculateReadingTime = () => {
+  const calculateWordCount = () => {
     if (!formData.content) return 0
     // 获取文本内容
     const text = JSON.stringify(formData.content)
-    // 假设平均阅读速度为 300 字/分钟
-    const wordCount = text.length
-    return Math.ceil(wordCount / 300)
+    // 粗略统计字数
+    return text.length
   }
 
   const handleAddTag = () => {
@@ -178,7 +177,7 @@ export default function EditPostPage() {
         content: formData.content,
         published,
         featured: formData.featured,
-        reading_time: calculateReadingTime(),
+        reading_time: calculateWordCount(),
         locale: formData.locale,
         seo_title: formData.seo_title,
         seo_description: formData.seo_description,
@@ -473,8 +472,8 @@ export default function EditPostPage() {
               <h3 className="text-lg font-semibold mb-4">文章信息</h3>
               <div className="space-y-3 text-sm text-muted-foreground">
                 <div>
-                  <span className="font-medium">阅读时间</span>
-                  <p>{calculateReadingTime()} 分钟</p>
+                  <span className="font-medium">字数统计</span>
+                  <p>{calculateWordCount()} 字</p>
                 </div>
                 <Separator />
                 <div>

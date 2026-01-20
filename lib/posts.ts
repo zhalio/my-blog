@@ -121,7 +121,7 @@ export function getSortedPostsData(locale: string = 'zh'): PostData[] {
     // Combine the data with the id
     return {
       id,
-      readingTime: stats.text,
+      readingTime: `${stats.words} 字`,
       title: data.title,
       summary: data.summary,
       date: dateStr,
@@ -208,7 +208,7 @@ export async function getPostData(id: string, locale: string = 'zh'): Promise<Po
     id,
     contentHtml,
     toc,
-    readingTime: stats.text,
+    readingTime: `${stats.words} 字`,
     title: data.title,
     summary: data.summary,
     date: dateStr,

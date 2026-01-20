@@ -118,7 +118,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
 
   // Calculate reading time from content
   const readingTime = post.reading_time 
-    ? `${post.reading_time} 分钟阅读` 
+    ? `${post.reading_time} 字` 
     : null;
 
   // 生成目录

@@ -33,7 +33,7 @@ async function getPosts(locale: string) {
       summary: post.description,
       excerpt: post.description,
       tags: post.tags,
-      readingTime: post.reading_time ? `${post.reading_time} 分钟` : undefined,
+      readingTime: post.reading_time ? `${post.reading_time} 字` : undefined,
       coverImage: post.cover_image,
       locale: post.locale,
     }));

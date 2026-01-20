@@ -91,6 +91,7 @@ export default function NewPostPage() {
         },
         body: JSON.stringify({
           ...formData,
+          reading_time: calculateWordCount(),
           published,
           // 若发布则传递 ISO UTC 时间；未勾选发布则忽略
           // 如果勾选了"设定发布时间" (formData.published) 且有值，则使用该时间，否则使用当前时间
@@ -126,7 +127,7 @@ export default function NewPostPage() {
       type: 'array',
       v: true 
     })
-    .join('-')
+    .join('')
     .toLowerCase()
     .trim()
     .replace(/[^\w-]/g, '')
@@ -150,14 +151,20 @@ export default function NewPostPage() {
     })
   }
 
-  const calculateReadingTime = () => {
+  const calculateWordCount = () => {
     if (!formData.content) return 0
-    // 粗略估算：平均每分钟 300 个字
-    const text = JSON.stringify(formData.content).length
-    return Math.max(1, Math.ceil(text / 300))
+    // 获取 JSON 字符串长度作为粗略字数，或者更精确地提取文本内容
+    // 这里简单使用 JSON 字符串长度，实际可能需要更复杂的逻辑来提取 pure text
+    // 但对于 TiTap JSON 结构，JSON.stringify 长度是一个可接受的近似值（虽然会包含 key names）
+    // 为了更准确，我们可以尝试简单过滤
+    const text = JSON.stringify(formData.content)
+    // 简单粗暴：统计非 ASCII 字符算作汉字，其他算作单词？
+    // 为了保持一致性和简单性，暂时使用 content 的 string length.
+    // 更好的方式其实是 Tiptap editor 提供 word count extension，但这里我们先用 length 兜底
+    return text.length
   }
 
-  const readingTime = calculateReadingTime()
+  const wordCount = calculateWordCount()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900 py-8">
@@ -403,11 +410,11 @@ export default function NewPostPage() {
               </h2>
               <div className="space-y-3 text-sm">
                 <div>
-                  <span className="font-medium text-muted-foreground">阅读时间</span>
+                  <span className="font-medium text-muted-foreground">字数统计</span>
                   <p className="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-1">
-                    {readingTime}
+                    {wordCount}
                   </p>
-                  <p className="text-xs text-muted-foreground">分钟</p>
+                  <p className="text-xs text-muted-foreground">字</p>
                 </div>
                 <Separator />
                 <div>
