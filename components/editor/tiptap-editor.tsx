@@ -1,6 +1,6 @@
 'use client'
 
-import { EditorContent, useEditor } from '@tiptap/react'
+import { EditorContent, useEditor, Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { Link } from '@tiptap/extension-link'
 import { Image } from '@tiptap/extension-image'
@@ -17,7 +17,7 @@ import { TextStyle } from '@tiptap/extension-text-style'
 import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
 import { Mathematics } from '@tiptap/extension-mathematics'
 import { common, createLowlight } from 'lowlight'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { remark } from 'remark'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
@@ -42,8 +42,13 @@ export function TipTapEditor({
   editable = true,
 }: TipTapEditorProps) {
   const [isUploading, setIsUploading] = useState(false)
+  const editorRef = useRef<Editor | null>(null)
+
   const editor = useEditor({
     immediatelyRender: false,
+    onCreate({ editor }) {
+      editorRef.current = editor
+    },
     extensions: [
       StarterKit.configure({
         codeBlock: false, // 使用 CodeBlockLowlight 替代
@@ -138,12 +143,8 @@ export function TipTapEditor({
           return true
         }
 
-        // 2. Existing Markdown Support
-        try {
-          const e = event as unknown as ClipboardEvent
-          const text = e.clipboardData?.getData('text/markdown') || e.clipboardData?.getData('text/plain') || ''
-          // 简单启发式：包含 Markdown 特征再拦截
-          const looksMarkdown = /(^|\n)\s{0,3}(#{1,6}\s|[-*+]\s|\d+\.\s|>\s|```|~~|\*\*|__)/.test(text)
+        //// Include $ to detect latex math
+          const looksMarkdown = /(^|\n)\s{0,3}(#{1,6}\s|[-*+]\s|\d+\.\s|>\s|```|~~|\*\*|__|\$\$?)/.test(text)
           
           if (text && looksMarkdown) {
              e.preventDefault()
@@ -160,6 +161,9 @@ export function TipTapEditor({
                  .use(rehypeStringify)
                  .process(text)
                const html = String(file)
+               
+               // Use ref to access editor instance safely inside callback
+               editorRef.currenthtml = String(file)
                // Note: 'editor' comes from closure, might be safer to use view.props.editor? 
                // Accessing via view.dom doesn't give Tiptap editor. 
                // Stick to closure 'editor' as it was before, or use view in some way if possible, 
