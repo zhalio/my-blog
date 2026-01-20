@@ -53,6 +53,7 @@ export function TipTapEditor({
       Image.configure({
         HTMLAttributes: {
           class: 'rounded-lg max-w-full h-auto',
+          referrerPolicy: 'no-referrer',
         },
       }),
       CodeBlockLowlight.configure({

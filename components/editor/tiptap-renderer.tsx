@@ -244,8 +244,7 @@ export function TipTapRenderer({ content, className = '', toc = [] }: TipTapRend
       }),
       Image.configure({
         HTMLAttributes: {
-          class: 'rounded-lg max-w-full h-auto my-4',
-        },
+          class: 'rounded-lg max-w-full h-auto my-4',          referrerPolicy: 'no-referrer',        },
       }),
       CodeBlockLowlight.configure({
         lowlight,
