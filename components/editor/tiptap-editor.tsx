@@ -39,6 +39,7 @@ export function TipTapEditor({
   placeholder = '开始编写内容...',
   editable = true,
 }: TipTapEditorProps) {
+  const [isUploading, setIsUploading] = useState(false)
   const editor = useEditor({
     immediatelyRender: false,
     extensions: [
@@ -117,13 +118,18 @@ export function TipTapEditor({
           event.preventDefault()
           const file = item.getAsFile()
           if (file) {
+            setIsUploading(true)
             uploadImage(file).then((url) => {
               if (url) {
                 const { schema } = view.state
                 const node = schema.nodes.image.create({ src: url })
                 const transaction = view.state.tr.replaceSelectionWith(node)
                 view.dispatch(transaction)
+              } else {
+                alert('图片上传失败，请检查 Supabase Storage 设置')
               }
+            }).finally(() => {
+              setIsUploading(false)
             })
           }
           return true
@@ -160,6 +166,7 @@ export function TipTapEditor({
           if (file.type.indexOf('image') === 0) {
             event.preventDefault()
             
+            setIsUploading(true)
             uploadImage(file).then((url) => {
               if (url) {
                 const { schema } = view.state
@@ -169,12 +176,21 @@ export function TipTapEditor({
                    const transaction = view.state.tr.insert(coordinates.pos, node)
                    view.dispatch(transaction)
                 }
+              } else {
+                alert('图片上传失败，请检查 Supabase Storage 设置')
               }
+            }).finally(() => {
+              setIsUploading(false)
             })
             return true
           }
         }
-        return false
+        return false relative">
+      {isUploading && (
+        <div className="absolute inset-0 z-50 bg-background/50 backdrop-blur-sm flex items-center justify-center">
+            <div className="animate-pulse text-primary font-medium">图片上传中...</div>
+        </div>
+      )}
       },
     },
   })
