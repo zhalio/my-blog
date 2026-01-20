@@ -1,7 +1,9 @@
 'use client'
 
+import { useRef, useState } from 'react'
 import { Editor } from '@tiptap/react'
 import { Button } from '@/components/ui/button'
+import { uploadImage } from '@/lib/upload-image'
 import {
   Bold,
   Italic,
@@ -21,6 +23,7 @@ import {
   CheckSquare,
   CodeSquare,
   Minus,
+  Loader2,
 } from 'lucide-react'
 
 interface MenuBarProps {
@@ -28,11 +31,29 @@ interface MenuBarProps {
 }
 
 export function MenuBar({ editor }: MenuBarProps) {
-  const addImage = () => {
-    const url = window.prompt('图片 URL:')
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run()
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [isUploading, setIsUploading] = useState(false)
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+        setIsUploading(true)
+        uploadImage(file).then((url) => {
+            if (url) {
+                editor.chain().focus().setImage({ src: url }).run()
+            } else {
+                alert('图片上传失败，请确保 Supabase Storage 已配置 Policies 允许上传。')
+            }
+        }).finally(() => {
+            setIsUploading(false)
+            // Reset input so valid change events trigger even if same file is selected again
+            if (fileInputRef.current) fileInputRef.current.value = ''
+        })
     }
+  }
+
+  const addImage = () => {
+    fileInputRef.current?.click()
   }
 
   const setLink = () => {
@@ -61,6 +82,13 @@ export function MenuBar({ editor }: MenuBarProps) {
 
   return (
     <div className="border-b border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 p-2 flex flex-wrap gap-1 sticky top-0 z-10">
+      <input 
+        type="file" 
+        ref={fileInputRef} 
+        onChange={handleImageUpload} 
+        accept="image/*" 
+        className="hidden" 
+      />
       {/* 文本格式 */}
       <Button
         variant="ghost"
@@ -185,8 +213,14 @@ export function MenuBar({ editor }: MenuBarProps) {
       <Button variant="ghost" size="sm" onClick={setLink} className="hover:bg-gray-200 dark:hover:bg-zinc-800">
         <LinkIcon className="h-4 w-4" />
       </Button>
-      <Button variant="ghost" size="sm" onClick={addImage} className="hover:bg-gray-200 dark:hover:bg-zinc-800">
-        <ImageIcon className="h-4 w-4" />
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={addImage}
+        disabled={isUploading}
+        className="hover:bg-gray-200 dark:hover:bg-zinc-800"
+      >
+        {isUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <ImageIcon className="h-4 w-4" />}
       </Button>
       <Button variant="ghost" size="sm" onClick={insertTable} className="hover:bg-gray-200 dark:hover:bg-zinc-800">
         <Table className="h-4 w-4" />
