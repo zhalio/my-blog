@@ -55,16 +55,16 @@ export function TrafficTrendChart({ data }: { data: any[] }) {
 
 // --- Tag Distribution Chart (Pie Chart) ---
 export function TagPieChart({ data }: { data: any[] }) {
-    // Softer, muted color palette that works well in dark mode
+    // Minimalist grayscale palette for a clean, professional look
     const COLORS = [
-        'hsl(200, 60%, 55%)',  // Soft Blue
-        'hsl(280, 45%, 60%)',  // Muted Purple
-        'hsl(340, 50%, 60%)',  // Soft Pink
-        'hsl(25, 70%, 60%)',   // Soft Orange
-        'hsl(45, 65%, 60%)',   // Soft Yellow
-        'hsl(160, 45%, 50%)',  // Muted Teal
-        'hsl(120, 40%, 55%)',  // Soft Green
-        'hsl(260, 40%, 65%)',  // Soft Lavender
+        'hsl(220, 15%, 65%)',  // Blue Gray
+        'hsl(220, 15%, 55%)',  // Medium Gray
+        'hsl(220, 15%, 45%)',  // Dark Gray
+        'hsl(220, 12%, 70%)',  // Light Gray
+        'hsl(220, 12%, 50%)',  // Steel Gray
+        'hsl(220, 18%, 60%)',  // Slate Gray
+        'hsl(220, 10%, 40%)',  // Charcoal
+        'hsl(220, 13%, 75%)',  // Soft Gray
     ];
 
     // Custom label component for better readability
@@ -135,7 +135,8 @@ export function TagPieChart({ data }: { data: any[] }) {
                     align="center"
                     wrapperStyle={{ 
                         paddingTop: '30px',
-                        fontSize: '13px'
+                        fontSize: '13px',
+                        color: 'hsl(var(--foreground))'
                     }}
                     iconType="circle"
                     iconSize={8}

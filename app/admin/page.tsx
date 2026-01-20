@@ -149,9 +149,9 @@ export default function AdminDashboard() {
         </CardContent>
       </Card>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+      <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-7">
         {/* Tag Distribution */}
-        <Card className="col-span-3 flex flex-col">
+        <Card className="col-span-full lg:col-span-3 flex flex-col">
           <CardHeader>
             <CardTitle className="text-lg">内容分布</CardTitle>
             <CardDescription className="text-sm">
@@ -170,7 +170,7 @@ export default function AdminDashboard() {
         </Card>
 
         {/* Drafts List */}
-        <Card className="col-span-4 flex flex-col">
+        <Card className="col-span-full lg:col-span-4 flex flex-col">
            <CardHeader>
              <CardTitle className="text-lg">待办事项</CardTitle>
              <CardDescription className="text-sm">最新草稿</CardDescription>
