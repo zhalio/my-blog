@@ -286,9 +286,7 @@ export function TipTapRenderer({ content, className = '', toc = [] }: TipTapRend
           class: 'flex items-start gap-2',
         },
       }),
-      Mathematics.configure({
-        regex: /\$\$([\s\S]*?)\$\$|\$((?:\\.|[^$])*)\$/gi,
-      }),
+      Mathematics,
       Color,
       TextStyle,
     ],
