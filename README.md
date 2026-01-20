@@ -2,7 +2,7 @@
 
 基于 Next.js 16、Tailwind CSS v4、TipTap 和 Supabase 构建的现代化个人博客与轻量作品集。
 
-**在线访问**: [https://emmmxx.xyz](https://emmmxx.xyz)  
+**在线访问**: [https://emmmxx.xyz](https://emmmxx.xyz)
 **用途定位**: 个人技术博客 + 简历/作品集补充，集中展示项目案例、工程化思路与可运行 Demo。
 
 ---
@@ -10,11 +10,13 @@
 ## 技术栈
 
 ### 核心框架与语言
+
 - **Next.js 16** (App Router, Turbopack) - React 全栈框架
 - **React 19** - UI 库
 - **TypeScript** - 类型安全
 
 ### 样式与 UI
+
 - **Tailwind CSS v4** - 原子化 CSS 框架
 - **@tailwindcss/typography** - 排版插件
 - **shadcn/ui** - 可组合 UI 组件库
@@ -24,6 +26,7 @@
 - **tailwind-merge** - 类名合并工具
 
 ### 动画与视觉特效
+
 - **Framer Motion** - React 动画库
 - **Vanta.js** - WebGL 3D 背景特效（Three.js 驱动）
 - **Lottie React** - 矢量动画（404 页面）
@@ -32,6 +35,7 @@
 - **medium-zoom** - 图片放大预览
 
 ### 内容管理
+
 - **TipTap 3** - 富文本编辑器（基于 ProseMirror）
   - 支持扩展：代码块、表格、任务列表、字数统计、排版优化等
 - **lowlight** - 代码高亮（集成到 TipTap）
@@ -39,6 +43,7 @@
 - **rehype-pretty-code** - Markdown 代码美化
 
 ### 后端与数据
+
 - **Supabase** - BaaS 平台
   - PostgreSQL 数据库
   - Auth 身份验证
@@ -48,6 +53,7 @@
 - **Zustand** - 轻量状态管理
 
 ### 内容处理
+
 - **gray-matter** - Markdown Frontmatter 解析
 - **remark** / **rehype** - Markdown/HTML 处理管道
   - remark-gfm (GitHub Flavored Markdown)
@@ -57,23 +63,28 @@
 - **pinyin-pro** - 中文转拼音（自动生成 URL slug）
 
 ### 国际化与搜索
+
 - **next-intl** - Next.js 多语言方案（支持 zh, en, fr, ja）
 - **@orama/orama** - 客户端全文搜索引擎
 - **fuse.js** - 模糊搜索库
 
 ### 数据可视化
+
 - **Recharts** - React 图表库（管理后台数据看板）
 - **date-fns** - 日期处理库（支持本地化）
 
 ### 评论与社交
+
 - **Giscus** - GitHub Discussions 评论系统
 - **feed** - RSS/Atom 订阅源生成
 
 ### 分析与监控
+
 - **@vercel/analytics** - Vercel Web Analytics
 - **@vercel/speed-insights** - 性能监控
 
 ### 开发工具
+
 - **ESLint 9** - 代码检查
 - **PostCSS** - CSS 处理
 - **undici** - 高性能 HTTP 客户端
@@ -83,6 +94,7 @@
 ## 核心特性
 
 ### 🎨 沉浸式用户体验
+
 - **3D 悬浮卡片**：基于 Framer Motion 的交互式卡片动效
 - **磁力按钮**：鼠标靠近时按钮元素跟随磁吸效果
 - **平滑滚动**：Lenis 驱动的流畅滚动体验
@@ -90,6 +102,7 @@
 - **Lottie 动画**：404 页面使用矢量动画增强趣味性
 
 ### 📝 强大的内容管理系统
+
 - **TipTap 富文本编辑器**：
   - 拖拽图片上传（Supabase Storage）
   - 代码高亮（支持 100+ 语言）
@@ -103,16 +116,19 @@
 - **实时预览**：编辑时同步渲染 Markdown 效果
 
 ### 🛡️ 数据自主与安全
+
 - **Supabase 托管**：完整数据所有权，支持自建部署
 - **Row Level Security (RLS)**：数据库级权限控制
 - **边缘缓存**：Upstash Redis 提供毫秒级读写
 
 ### 🌍 国际化支持
+
 - **路由级多语言**：`/zh/posts`, `/en/posts` 等独立路径
 - **fallback 机制**：缺失翻译时自动回退到中文
 - **SEO 友好**：hreflang 标签自动生成
 
 ### 🚀 极致性能
+
 - **Turbopack**：Next.js 16 开发构建提速 700%
 - **ISR**：Incremental Static Regeneration，按需重新生成静态页面
 - **图片优化**：Next.js Image 自动 WebP 转换、响应式加载
@@ -120,11 +136,13 @@
 - **代码分割**：路由级按需加载，减小初始包体积
 
 ### 📈 多维统计
+
 - **Vercel Analytics**：流量分析、地理分布、设备占比
 - **自建阅读量系统**：基于 Upstash Redis 的实时计数
 - **管理后台可视化**：Recharts 驱动的数据图表
 
 ### 📄 About 页作为可编辑文章
+
 - 从后台 `slug=about` 文章读取内容
 - 可在管理端编辑/发布，不出现在前台文章列表
 - 支持多语言，自动回退到中文版本
@@ -144,6 +162,7 @@
 ### 功能亮点
 
 #### 数据看板
+
 - **创作活跃度热力图**：GitHub 风格的 52 周活跃度可视化（Recharts）
 - **待办事项**：快速访问未完成的草稿
 - **实时统计卡片**：
@@ -152,6 +171,7 @@
   - 累计阅读量（来自 Upstash Redis）
 
 #### 文章管理
+
 - **完整 CRUD**：创建、编辑、删除、发布/取消发布
 - **多语言支持**：每篇文章可独立设置语言（zh, en, fr, ja）
 - **自定义 Slug**：手动指定 URL 路径或自动生成（中文自动转拼音）
@@ -160,6 +180,7 @@
 - **标签管理**：多标签支持，自动聚合统计
 
 #### 系统设置
+
 - 站点名称、描述、关键词
 - Favicon 配置
 - 页脚文案自定义
@@ -179,6 +200,7 @@ pnpm install
 复制 `.env.local.example` 为 `.env.local` 并填入以下服务的 Key：
 
 #### Supabase (必填)
+
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your-project-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
@@ -186,12 +208,14 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ```
 
 #### Upstash Redis (选填，用于浏览量统计)
+
 ```env
 UPSTASH_REDIS_REST_URL=your-redis-url
 UPSTASH_REDIS_REST_TOKEN=your-redis-token
 ```
 
 #### Giscus (选填，评论系统)
+
 ```env
 NEXT_PUBLIC_GISCUS_REPO=your-github-repo
 NEXT_PUBLIC_GISCUS_REPO_ID=your-repo-id
@@ -202,6 +226,7 @@ NEXT_PUBLIC_GISCUS_CATEGORY_ID=your-category-id
 ### 3. 初始化数据库
 
 访问 Supabase 控制台，在 SQL Editor 中运行 `supabase/schema.sql` 创建表结构：
+
 - `posts` 表：文章存储
 - `tags` 表：标签聚合
 - `site_settings` 表：站点配置
@@ -268,13 +293,13 @@ pnpm dev
 
 ## 常用命令
 
-| 命令                | 说明                                                   |
-| ------------------- | ------------------------------------------------------ |
-| `pnpm dev`        | 启动本地开发服务器（Turbopack 加速）                  |
-| `pnpm build`      | 构建生产版本并生成 RSS/Sitemap                         |
-| `pnpm start`      | 启动生产服务器                                         |
-| `pnpm lint`       | 运行 ESLint 代码检查                                   |
-| `pnpm publish`    | 快捷发布命令（git add + commit + push）               |
+| 命令             | 说明                                    |
+| ---------------- | --------------------------------------- |
+| `pnpm dev`     | 启动本地开发服务器（Turbopack 加速）    |
+| `pnpm build`   | 构建生产版本并生成 RSS/Sitemap          |
+| `pnpm start`   | 启动生产服务器                          |
+| `pnpm lint`    | 运行 ESLint 代码检查                    |
+| `pnpm publish` | 快捷发布命令（git add + commit + push） |
 
 ---
 
@@ -287,6 +312,7 @@ git push origin main
 ```
 
 ### 注意事项
+
 - **环境变量**：确保在 Vercel 项目设置中配置所有必需的环境变量
 - **数据库迁移**：Supabase 数据库需预先运行 `supabase/schema.sql`
 - **Storage Bucket**：在 Supabase 控制台创建 `images` bucket 用于图片上传
@@ -297,15 +323,18 @@ git push origin main
 ## 环境变量完整列表
 
 ### Supabase (必填)
+
 - `NEXT_PUBLIC_SUPABASE_URL`: Supabase 项目 URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Supabase 匿名密钥（公开安全）
 - `SUPABASE_SERVICE_ROLE_KEY`: Supabase 服务角色密钥（服务端使用，勿泄露）
 
 ### Upstash Redis (选填)
+
 - `UPSTASH_REDIS_REST_URL`: Redis REST API URL
 - `UPSTASH_REDIS_REST_TOKEN`: Redis 访问令牌
 
 ### Giscus 评论系统 (选填)
+
 - `NEXT_PUBLIC_GISCUS_REPO`: GitHub 仓库（格式：`owner/repo`）
 - `NEXT_PUBLIC_GISCUS_REPO_ID`: 仓库 ID（在 Giscus 网站获取）
 - `NEXT_PUBLIC_GISCUS_CATEGORY`: Discussions 分类名称
@@ -316,6 +345,7 @@ git push origin main
 ## 主要功能演示
 
 ### 富文本编辑
+
 - **拖拽上传**：直接拖拽图片到编辑器自动上传到 Supabase Storage
 - **代码高亮**：支持 100+ 编程语言，亮/暗双主题
 - **表格编辑**：可视化表格工具栏，支持行列增删
@@ -323,16 +353,19 @@ git push origin main
 - **字数统计**：实时显示字数与预估阅读时长
 
 ### 国际化路由
+
 - 访问 `/zh/posts` 查看中文文章列表
 - 访问 `/en/posts` 查看英文文章列表
 - 自动语言检测与 fallback
 
 ### 全文搜索
+
 - 快捷键 `Cmd/Ctrl + K` 唤起搜索框
 - 支持中英文分词与模糊匹配
 - 搜索结果高亮显示
 
 ### SEO 优化
+
 - 自动生成 `sitemap.xml` 和 `robots.txt`
 - 结构化数据（JSON-LD）
 - Open Graph 和 Twitter Card 元标签
@@ -343,6 +376,7 @@ git push origin main
 ## 文档
 
 更多详细信息请参考：
+
 - [TipTap + Supabase 设置指南](docs/TIPTAP_SUPABASE_SETUP.md)
 
 ---

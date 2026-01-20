@@ -171,6 +171,8 @@ export function PostLayout({ children, toc = [] }: PostLayoutProps) {
                         item.depth === 2 && "pl-4",
                         item.depth === 3 && "pl-8",
                         item.depth === 4 && "pl-12",
+                        item.depth === 5 && "pl-16",
+                        item.depth >= 6 && "pl-20",
                         activeId === item.id
                             ? "border-primary font-medium text-primary bg-accent/10"
                             : "border-transparent text-muted-foreground hover:border-muted-foreground/50"
