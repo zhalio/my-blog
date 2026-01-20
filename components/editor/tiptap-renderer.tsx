@@ -190,7 +190,7 @@ const CodeBlock = ({ node: { textContent } }: { node: { textContent: string } })
         </button>
       </div>
 
-      <div className="relative flex overflow-x-auto pt-1 pb-1">
+      <div className="relative flex overflow-x-auto pt-1 pb-0">
         {/* Line Numbers */}
         <div 
           className="flex-shrink-0 flex flex-col items-end pr-4 pl-2 select-none text-[#237893] dark:text-[#858585] min-w-[3.5rem]"
@@ -204,7 +204,7 @@ const CodeBlock = ({ node: { textContent } }: { node: { textContent: string } })
 
         {/* Code Content */}
         <pre 
-          className="flex-1 pl-6 pr-4 !m-0 !bg-transparent overflow-visible scrollbar-hide !text-[#24292e] dark:!text-[#d4d4d4]"
+          className="flex-1 pl-6 pr-4 pb-0 !m-0 !bg-transparent overflow-visible scrollbar-hide !text-[#24292e] dark:!text-[#d4d4d4]"
           style={{ fontFamily: 'inherit', fontSize: 'inherit', lineHeight: 'inherit' }}
         >
           <NodeViewContent as={"code" as any} className="!bg-transparent !p-0 !whitespace-pre !font-inherit !text-inherit" />
