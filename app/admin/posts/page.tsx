@@ -62,7 +62,9 @@ export default function AdminPostsPage() {
     title: '',
     featured: false,
     published_at: '',
+    tags: [] as string[],
   })
+  const [previewTag, setPreviewTag] = useState('')
   
   // 批量操作状态
   const [selectedPosts, setSelectedPosts] = useState<string[]>([])
@@ -201,6 +203,24 @@ export default function AdminPostsPage() {
       title: post.title,
       featured: post.featured,
       published_at: publishedAtValue,
+      tags: post.tags || [],
+    })
+    setPreviewTag('')
+  }
+
+  const handleAddTag = () => {
+    const tag = previewTag.trim()
+    if (tag && !editForm.tags.includes(tag)) {
+      setEditForm({ ...editForm, tags: [...editForm.tags, tag] })
+      setPreviewTag('')
+    }  tags: editForm.tags,
+      
+  }
+
+  const handleRemoveTag = (tagToRemove: string) => {
+    setEditForm({
+      ...editForm,
+      tags: editForm.tags.filter((t) => t !== tagToRemove),
     })
   }
 
@@ -217,7 +237,7 @@ export default function AdminPostsPage() {
       if (editForm.published_at) {
         newPublishedAtISO = new Date(editForm.published_at).toISOString()
         updateData.published_at = newPublishedAtISO
-      }
+      }, tags: editForm.tags
 
       const res = await fetch(`/api/admin/posts/${editingPost.id}`, {
         method: 'PUT',
@@ -711,6 +731,48 @@ export default function AdminPostsPage() {
                   value={editForm.published_at}
                   onChange={(e) => setEditForm({ ...editForm, published_at: e.target.value })}
                 />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium">标签</label>
+                <div className="flex gap-2">
+                  <Input
+                    value={previewTag}
+                    onChange={(e) => setPreviewTag(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault()
+                        handleAddTag()
+                      }
+                    }}
+                    placeholder="输入标签..."
+                  />
+                  <Button
+                    type="button"
+                    onClick={handleAddTag}
+                    size="sm"
+                    variant="outline"
+                  >
+                    添加
+                  </Button>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {editForm.tags.map((tag) => (
+                    <div
+                      key={tag}
+                      className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300 px-3 py-1 rounded-full text-sm"
+                    >
+                      {tag}
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveTag(tag)}
+                        className="hover:text-red-600"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="flex items-center gap-3">

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSupabaseAuthStore } from '@/lib/supabase-auth-store'
+import { pinyin } from 'pinyin-pro'
 import { TipTapEditor } from '@/components/editor/tiptap-editor'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -92,8 +93,11 @@ export default function NewPostPage() {
           ...formData,
           published,
           // 若发布则传递 ISO UTC 时间；未勾选发布则忽略
+          // 如果勾选了"设定发布时间" (formData.published) 且有值，则使用该时间，否则使用当前时间
           published_at: published
-            ? new Date(formData.published_at || new Date().toISOString()).toISOString()
+            ? (formData.published && formData.published_at
+                ? new Date(formData.published_at).toISOString()
+                : new Date().toISOString())
             : null,
         }),
       })
@@ -113,12 +117,17 @@ export default function NewPostPage() {
     } finally {
       setSaving(false)
     }
-  }
-
-  const generateSlug = () => {
-    const slug = formData.title
-      .toLowerCase()
-      .trim()
+  }// 使用 pinyin-pro 将标题转换为拼音
+    const slug = pinyin(formData.title, { 
+      toneType: 'none', 
+      type: 'array',
+      v: true 
+    })
+    .join('-')
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w-]/g, '')
+    .replace(/-+/g, '-
       .replace(/[\s\u4e00-\u9fa5]+/g, '-')
       .replace(/^-+|-+$/g, '')
       .replace(/[^\w-]/g, '')
@@ -343,7 +352,7 @@ export default function NewPostPage() {
                           ...formData,
                           published: checked,
                           published_at:
-                            checked && !formData.published_at ? nowLocalInput() : formData.published_at,
+                            checked && !formData.published设定发布时间? nowLocalInput() : formData.published_at,
                         })
                       }}
                       className="h-4 w-4 rounded"

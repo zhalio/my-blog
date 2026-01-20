@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useSupabaseAuthStore } from '@/lib/supabase-auth-store'
+import { pinyin } from 'pinyin-pro'
 import { TipTapEditor } from '@/components/editor/tiptap-editor'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -106,12 +107,16 @@ export default function EditPostPage() {
   }
 
   const generateSlug = () => {
-    const slug = formData.title
-      .toLowerCase()
-      .trim()
-      .replace(/[\s\u4e00-\u9fa5]+/g, '-')
-      .replace(/^-+|-+$/g, '')
-      .replace(/[^\w-]/g, '')
+    const slug = pinyin(formData.title, { 
+      toneType: 'none', 
+      type: 'array',
+      v: true 
+    })
+    .join('-')
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w-]/g, '')
+    .replace(/-+/g, '-')
 
     setFormData({ ...formData, slug })
   }
@@ -180,8 +185,10 @@ export default function EditPostPage() {
       }
 
       // 如果发布，设置发布时间
-      if (published && formData.published_at) {
-        submitData.published_at = new Date(formData.published_at).toISOString()
+      if (published) {
+        submitData.published_at = (formData.published && formData.published_at
+          ? new Date(formData.published_at).toISOString()
+          : new Date().toISOString())
       }
 
       const res = await fetch(`/api/admin/posts/${params.id}`, {
@@ -418,7 +425,7 @@ export default function EditPostPage() {
                             checked && !formData.published_at ? nowLocalInput() : formData.published_at,
                         })
                       }}
-                      className="rounded"
+                      className="rounded"设定发布时间
                     />
                     <span className="text-sm font-medium">已发布</span>
                   </label>
