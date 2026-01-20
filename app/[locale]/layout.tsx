@@ -13,6 +13,8 @@ import { VantaProvider } from "@/components/effects/vanta-context";
 import { VantaBackground } from "@/components/effects/vanta-background";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
+import { getSiteSettings } from "@/lib/site-settings";
+// import { SiteFooter } from "@/components/layout/site-footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,15 +33,20 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({locale, namespace: 'Home'});
+  const settings = await getSiteSettings();
  
   return {
     metadataBase: new URL('https://emmmxx.xyz'),
-    title: t('title'),
-    description: t('description'),
-    icons: {
-      icon: '/icon',
-      shortcut: '/icon',
+    title: {
+      default: settings.site_title || t('title'),
+      template: `%s | ${settings.site_title || t('title')}`
     },
+    description: settings.site_description || t('description'),
+    icons: {
+      icon: settings.favicon_url || '/icon',
+      shortcut: settings.favicon_url || '/icon',
+    },
+    keywords: settings.site_keywords
   };
 }
 
@@ -55,6 +62,7 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const settings = await getSiteSettings();
 
   // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
@@ -92,6 +100,7 @@ export default async function LocaleLayout({
                     <main className="flex-1">
                       {children}
                     </main>
+                    {/* <SiteFooter text={settings.footer_text || '© 2026 My Blog'} /> */}
                     <ScrollToTopButton />
                   </div>
                   <SpeedInsights />

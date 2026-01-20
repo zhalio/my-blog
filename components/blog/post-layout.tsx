@@ -14,10 +14,10 @@ interface TocItem {
 
 interface PostLayoutProps {
   children: React.ReactNode;
-  toc: TocItem[];
+  toc?: TocItem[];
 }
 
-export function PostLayout({ children, toc }: PostLayoutProps) {
+export function PostLayout({ children, toc = [] }: PostLayoutProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeId, setActiveId] = React.useState<string>("");
   const tocRef = React.useRef<HTMLDivElement>(null);
@@ -153,13 +153,17 @@ export function PostLayout({ children, toc }: PostLayoutProps) {
                         key={item.id}
                         href={`#${item.id}`}
                         onClick={(e) => {
-                            e.preventDefault();
-                            document.getElementById(item.id)?.scrollIntoView({
-                                behavior: "smooth",
-                            });
-                            if (window.innerWidth < 1024) {
-                                setIsOpen(false);
-                            }
+                          e.preventDefault();
+                          const target = document.getElementById(item.id);
+                          if (target) {
+                            const headerOffset = 80; // 与滚动监听 offset 保持一致
+                            const rect = target.getBoundingClientRect();
+                            const y = rect.top + window.pageYOffset - headerOffset;
+                            window.scrollTo({ top: y, behavior: 'smooth' });
+                          }
+                          if (window.innerWidth < 1024) {
+                            setIsOpen(false);
+                          }
                         }}
                         className={cn(
                         "block text-sm transition-colors hover:text-primary py-1.5 border-l-2 pl-4 -ml-4",

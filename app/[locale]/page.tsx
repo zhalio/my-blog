@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/routing";
-import { getSanitySortedPostsData } from "@/lib/sanity-posts";
+import { getPublishedPosts } from "@/lib/supabase-posts";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from 'next-intl/server';
 import { PostList } from "@/components/blog/post-list";
@@ -24,7 +24,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const t = await getTranslations('Home');
   const tCommon = await getTranslations('Common');
   // Content is authored in Chinese. Always fetch Chinese posts regardless of UI locale.
-  const posts = await getSanitySortedPostsData('zh');
+  const posts = await getPublishedPosts('zh');
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)] overflow-hidden">

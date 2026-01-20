@@ -59,6 +59,7 @@
   to { background-position: 200% center; }
 }
 
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -159,70 +160,85 @@
   content: "";
 }
 
-/* 2. 代码块容器样式 (pre) */
-.prose pre {
-  background-color: #fafafa; /* One Light 背景色 */
+/* Code Block Figure Container */
+.prose figure[data-rehype-pretty-code-figure] {
+  background-color: #1e1e1e;
   border-radius: 0.5rem;
-  border: 1px solid var(--border);
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.dark .prose figure[data-rehype-pretty-code-figure] {
+  background-color: #1e1e1e;
+}
+
+/* Code Block Styling */
+.prose pre {
+  background-color: transparent !important;
+  padding: 0 0 1.5rem 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
   position: relative;
-  padding-top: 2.5rem;
   overflow-x: auto;
 }
 
+/* Scrollbar styling for pre */
+.prose pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.prose pre::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+  background-color: #404040;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.prose pre::-webkit-scrollbar-thumb:hover {
+  background-color: #505050;
+}
+
 .dark .prose pre {
-  background-color: #282c34; /* One Dark Pro 背景色 */
+  background-color: transparent !important;
 }
 
-/* Mac 窗口风格圆点 */
-.prose pre::before {
-  content: "";
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  background-color: #ff5f56;
-  box-shadow: 1.25rem 0 0 #ffbd2e, 2.5rem 0 0 #27c93f;
-}
-
-/* 3. 代码块内部样式 (code) */
 .prose pre code {
   background-color: transparent;
   border: none;
   padding: 0;
-  color: inherit;
-  font-size: 0.9em;
-  display: grid; /* 开启 Grid 布局以支持行号 */
-  counter-reset: line;
+  color: inherit; /* This makes code color inherit from parent pre, fixing light/dark mode switch */
+  font-size: inherit;
+  display: block;
 }
 
-/* 4. 行号支持 */
-.prose pre code > [data-line]::before {
-  counter-increment: line;
-  content: counter(line);
-  display: inline-block;
-  width: 1rem;
-  margin-right: 1rem;
-  text-align: right;
-  color: #6e7781;
-  font-size: 0.875rem;
-  user-select: none;
+/* Sugar High Syntax Highlighting CSS Variables */
+:root {
+  --sh-class: #4ec9b0;
+  --sh-identifier: #9cdcfe;
+  --sh-sign: #d4d4d4;
+  --sh-string: #ce9178;
+  --sh-keyword: #c586c0;
+  --sh-comment: #6a9955;
+  --sh-jsxliterals: #4fc1ff;
+  --sh-property: #9cdcfe;
+  --sh-entity: #4ec9b0;
 }
 
-.dark .prose pre code > [data-line]::before {
-  color: #8b949e;
+.dark {
+  --sh-class: #4ec9b0;
+  --sh-identifier: #9cdcfe;
+  --sh-sign: #d4d4d4;
+  --sh-string: #ce9178;
+  --sh-keyword: #c586c0;
+  --sh-comment: #6a9955;
+  --sh-jsxliterals: #4fc1ff;
+  --sh-property: #9cdcfe;
+  --sh-entity: #4ec9b0;
 }
 
-/* 5. 多主题切换支持 (CSS Variables) */
-code[data-theme],
-code[data-theme] span {
-  color: var(--shiki-light);
-  background-color: var(--shiki-light-bg);
-}
 
-.dark code[data-theme],
-.dark code[data-theme] span {
-  color: var(--shiki-dark);
-  background-color: var(--shiki-dark-bg);
-}
+

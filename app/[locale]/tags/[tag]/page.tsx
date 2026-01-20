@@ -1,4 +1,4 @@
-import { getSanitySortedPostsData, getSanityAllTags } from "@/lib/sanity-posts";
+import { getPostsByTag, getAllTags } from "@/lib/supabase-posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PostList } from "@/components/blog/post-list";
 
@@ -10,9 +10,9 @@ export async function generateStaticParams() {
   const params: { locale: string; tag: string }[] = [];
   
   for (const locale of locales) {
-    const tags = await getSanityAllTags(locale);
-    Object.keys(tags).forEach((tag) => {
-      params.push({ locale, tag });
+    const tags = await getAllTags(locale);
+    tags.forEach((tag) => {
+      params.push({ locale, tag: tag.name });
     });
   }
 
@@ -27,8 +27,7 @@ export default async function TagPage({ params }: { params: Promise<{ locale: st
 
   const decodedTag = decodeURIComponent(tag);
   // Fetch Chinese posts only — UI locale controls UI strings, not article language
-  const allPosts = await getSanitySortedPostsData('zh');
-  const posts = allPosts.filter((post) => post.tags && post.tags.includes(decodedTag));
+  const posts = await getPostsByTag(decodedTag, 'zh');
 
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">

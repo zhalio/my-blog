@@ -62,29 +62,36 @@ export function ArticleContent({ html, className }: { html: string; className?: 
       // Determine the target container for the button
       // If pre is inside a figure created by rehype-pretty-code, use that figure
       const parent = pre.parentElement;
-      let container: HTMLElement = pre;
+      let target: HTMLElement = pre;
       
       if (parent && parent.tagName === 'FIGURE' && parent.hasAttribute('data-rehype-pretty-code-figure')) {
-        container = parent;
-      } else {
-        // Otherwise wrap pre in a relative div
-        const wrapper = document.createElement('div');
-        wrapper.className = 'relative group';
-        pre.parentNode?.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
-        container = wrapper;
+        target = parent;
       }
 
-      // Ensure container is relative so we can position the button
-      container.classList.add('relative', 'group');
+      // Create the Mac window style wrapper
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-window group relative my-6';
+      
+      // Insert wrapper before target
+      target.parentNode?.insertBefore(wrapper, target);
+
+      // Create controls (red/yellow/green dots)
+      const controls = document.createElement('div');
+      controls.className = 'code-window-controls';
+      ['red', 'yellow', 'green'].forEach((color) => {
+        const dot = document.createElement('div');
+        dot.className = `dot ${color}`;
+        controls.appendChild(dot);
+      });
+      wrapper.appendChild(controls);
+      
+      // Move target into wrapper
+      wrapper.appendChild(target);
 
       // Create button container
       const buttonContainer = document.createElement('div');
-      // Position it top-right. Adjust top/right as needed.
-      // rehype-pretty-code figures might have titles, so top-2 might overlap.
-      // Usually code blocks have some padding.
-      buttonContainer.className = 'absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity z-10';
-      container.appendChild(buttonContainer);
+      buttonContainer.className = 'absolute right-3 top-3 opacity-0 group-hover:opacity-100 transition-opacity z-10';
+      wrapper.appendChild(buttonContainer);
 
       // Get text content to copy
       // We want the raw text, not the HTML with spans.

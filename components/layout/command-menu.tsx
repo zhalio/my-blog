@@ -183,7 +183,7 @@ export function CommandMenu() {
                     key={post.id}
                     value={post.title}
                     onSelect={() => {
-                      runCommand(() => router.push(`/posts/${post.id}`));
+                      runCommand(() => router.push(`/posts/${post.slug}`));
                     }}
                   >
                     <div className="flex flex-col">

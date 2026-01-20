@@ -1,4 +1,4 @@
-import { getSanitySortedPostsData } from '@/lib/sanity-posts';
+import { getPublishedPosts } from '@/lib/supabase-posts';
 import { NextResponse } from 'next/server';
 
 export const revalidate = 60;
@@ -10,7 +10,7 @@ export const revalidate = 60;
 export async function GET() {
   // 获取所有语言的文章数据
   // We only have Chinese articles — return Chinese posts regardless of requested UI locale.
-  const posts = await getSanitySortedPostsData('zh');
+  const posts = await getPublishedPosts('zh');
   const allPosts = posts.map(p => ({ ...p, locale: 'zh' }));
 
   return NextResponse.json(allPosts);

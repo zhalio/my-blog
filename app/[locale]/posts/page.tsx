@@ -1,6 +1,6 @@
-import { getSanitySortedPostsData } from "@/lib/sanity-posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PostList } from "@/components/blog/post-list";
+import { supabase } from '@/lib/supabase/client';
 
 // Enable ISR for posts index page (seconds)
 export const revalidate = 60; // Regenerate at most once per minute
@@ -11,6 +11,33 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+async function getPosts(locale: string) {
+  const { data, error } = await supabase
+    .from('posts')
+    .select('*')
+    .eq('locale', locale)
+    .eq('published', true)
+    .order('published_at', { ascending: false });
+
+  if (error) {
+    console.error('Failed to fetch posts:', error);
+    return [];
+  }
+
+  return data.map((post: any) => ({
+    id: post.id,
+    slug: post.slug,
+    title: post.title,
+    date: post.published_at || post.created_at,
+    summary: post.description,
+    excerpt: post.description,
+    tags: post.tags,
+    readingTime: post.reading_time ? `${post.reading_time} 分钟` : undefined,
+    coverImage: post.cover_image,
+    locale: post.locale,
+  }));
+}
+
 export default async function PostsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -18,7 +45,7 @@ export default async function PostsPage({ params }: { params: Promise<{ locale: 
   const tCommon = await getTranslations('Common');
 
   // Content is authored in Chinese. Always fetch Chinese posts regardless of UI locale.
-  const posts = await getSanitySortedPostsData('zh');
+  const posts = await getPosts('zh');
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">

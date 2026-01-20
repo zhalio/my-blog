@@ -1,24 +1,20 @@
-
 import fs from 'fs';
 import path from 'path';
 import { Feed } from 'feed';
-import { createClient } from '@sanity/client';
+import { createClient } from '@supabase/supabase-js';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://emmmxx.xyz';
 const publicDirectory = path.join(process.cwd(), 'public');
 
-if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || !process.env.NEXT_PUBLIC_SANITY_DATASET) {
-  console.warn('Missing Sanity environment variables. Skipping RSS generation.');
-  // Do not fail the build when Sanity env is not provided (e.g., preview deployments).
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  console.warn('Missing Supabase environment variables. Skipping RSS generation.');
   process.exit(0);
 }
 
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-11-23',
-  useCdn: false,
-});
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 async function generateRssFeed() {
   const feed = new Feed({
@@ -44,41 +40,54 @@ async function generateRssFeed() {
     },
   });
 
-  // Fetch posts from Sanity for zh locale
-  const query = `*[_type == "post" && language == $lang] | order(date desc){title, "id": slug.current, date, summary, content, tags}`;
-  const posts = await client.fetch(query, { lang: 'zh' });
+  // Fetch published posts from Supabase for zh locale
+  const { data: posts, error } = await supabase
+    .from('posts')
+    .select('*')
+    .eq('locale', 'zh')
+    .eq('published', true)
+    .order('published_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching posts:', error);
+    process.exit(1);
+  }
 
   posts.forEach((post) => {
-    const url = `${siteUrl}/zh/posts/${post.id}`;
-    const title = typeof post.title === 'string' ? post.title : String(post.title || '');
-    const summary = typeof post.summary === 'string' ? post.summary : String(post.summary || '');
+    const url = `${siteUrl}/zh/posts/${post.slug}`;
+    
+    // Extract plain text from TipTap JSON content
     let content = '';
-
-    if (typeof post.content === 'string') {
-      content = post.content;
-    } else if (post.content !== undefined && post.content !== null) {
-      // Fallback: avoid breaking RSS when content is not a simple string
-      try {
-        content = JSON.stringify(post.content);
-      } catch {
-        content = '';
+    if (post.content && typeof post.content === 'object') {
+      const extractText = (node) => {
+        if (node.type === 'text') {
+          return node.text || '';
+        }
+        if (node.content && Array.isArray(node.content)) {
+          return node.content.map(extractText).join('');
+        }
+        return '';
+      };
+      
+      if (post.content.content && Array.isArray(post.content.content)) {
+        content = post.content.content.map(extractText).join('\n\n');
       }
     }
 
     feed.addItem({
-      title,
+      title: post.title,
       id: url,
       link: url,
-      description: summary,
+      description: post.description || '',
       content,
       author: [
         {
-          name: "ZHalio",
+          name: post.author || "ZHalio",
           email: "1992107794@qq.com",
           link: siteUrl,
         },
       ],
-      date: new Date(post.date),
+      date: new Date(post.published_at || post.created_at),
     });
   });
 
@@ -91,6 +100,12 @@ async function generateRssFeed() {
   fs.writeFileSync(path.join(publicDirectory, 'rss.json'), feed.json1());
 
   console.log('RSS feeds generated successfully!');
+}
+
+generateRssFeed().catch((err) => {
+  console.error('Error generating RSS feed:', err);
+  process.exit(1);
+});
 }
 
 generateRssFeed().catch((err) => {

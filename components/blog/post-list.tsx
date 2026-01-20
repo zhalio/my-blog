@@ -49,7 +49,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
             <Card className="flex flex-col h-full border-none bg-transparent shadow-none">
               <CardHeader>
                 <CardTitle className="line-clamp-2">
-                  <Link href={`/posts/${post.id}`} className="no-underline hover:underline">
+                  <Link href={`/posts/${post.slug}`} className="no-underline hover:underline">
                     {post.title}
                   </Link>
                 </CardTitle>
@@ -65,7 +65,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
               </CardHeader>
               <CardContent className="flex-1">
                 <p className="line-clamp-3 text-muted-foreground text-sm">
-                  {post.summary}
+                  {post.summary || post.excerpt}
                 </p>
                 {post.tags && post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-4">
@@ -81,7 +81,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
               </CardContent>
               <CardFooter>
                 <Button asChild variant="ghost" className="w-full justify-start px-0 hover:bg-transparent hover:text-primary">
-                  <Link href={`/posts/${post.id}`} className="flex items-center">
+                  <Link href={`/posts/${post.slug}`} className="flex items-center">
                     {readMoreText} <ArrowRight className="ml-2 size-4" />
                   </Link>
                 </Button>

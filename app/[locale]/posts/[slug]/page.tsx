@@ -1,28 +1,83 @@
 import { Link } from "@/i18n/routing";
-import { getSanitySortedPostsData, getSanityPostData } from "@/lib/sanity-posts";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from 'next-intl/server';
 import { PostLayout } from "@/components/blog/post-layout";
 import { FadeIn } from "@/components/visuals/fade-in";
-import { ArticleContent } from "@/components/blog/article-content";
+import { TipTapRenderer } from "@/components/editor/tiptap-renderer";
 import { PostBreadcrumb } from "@/components/blog/post-breadcrumb";
 import { FallbackBanner } from '@/components/blog/fallback-banner';
 import { ShareButtons } from "@/components/blog/share-buttons";
 import { PostStats } from "@/components/blog/post-stats";
+import { supabase } from '@/lib/supabase/client';
 
 // Enable ISR for post detail pages (seconds)
 export const revalidate = 60; // Regenerate at most once per minute
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
+// 添加 Metadata 生成
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+  const { slug, locale } = await params;
+  const post = await getPost(slug, locale);
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    };
+  }
+
+  return {
+    title: post.seo_title || post.title,
+    description: post.seo_description || post.description || post.title,
+    openGraph: {
+      title: post.seo_title || post.title,
+      description: post.seo_description || post.description || post.title,
+      type: 'article',
+      publishedTime: post.published_at,
+      images: post.cover_image ? [post.cover_image] : [],
+    },
+  };
+}
+
+async function getPost(slug: string, locale: string) {
+  const { data, error } = await supabase
+    .from('posts')
+    .select('*')
+    .eq('slug', slug)
+    .eq('locale', locale)
+    .eq('published', true)
+    .single();
+
+  if (error) {
+    console.error('Failed to fetch post:', error);
+    return null;
+  }
+
+  return data;
+}
+
+async function getAllPosts(locale: string) {
+  const { data, error } = await supabase
+    .from('posts')
+    .select('slug')
+    .eq('locale', locale)
+    .eq('published', true);
+
+  if (error) {
+    console.error('Failed to fetch posts:', error);
+    return [];
+  }
+
+  return data;
+}
+
 // 生成静态路径 (SSG)
 export async function generateStaticParams() {
-  // We can use 'zh' or any locale to get the list of all slugs
-  const posts = await getSanitySortedPostsData('zh');
+  const posts = await getAllPosts('zh');
   const params = [];
   for (const locale of locales) {
     for (const post of posts) {
-      params.push({ locale, slug: post.id });
+      params.push({ locale, slug: post.slug });
     }
   }
   return params;
@@ -32,7 +87,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const post = await getSanityPostData(slug, locale);
+  const post = await getPost(slug, locale);
 
   if (!post) {
     notFound();
@@ -40,7 +95,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
 
   // If the returned post language is different from the UI locale (e.g. fallback to 'zh'),
   // show a small hint to the user.
-  const showFallbackNote = post.language && post.language !== locale;
+  const showFallbackNote = post.locale && post.locale !== locale;
   const fallbackMessage = {
     zh: '仅有中文版本',
     en: 'This article is only available in Chinese',
@@ -48,8 +103,16 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
     ja: 'この記事は中国語のみ対応しています',
   }[locale] || 'This article is only available in Chinese';
 
+  // Calculate reading time from content
+  const readingTime = post.reading_time 
+    ? `${post.reading_time} 分钟阅读` 
+    : null;
+
+  // 生成目录
+  const toc = buildToc(post.content)
+
   return (
-    <PostLayout toc={post.toc || []}>
+    <PostLayout toc={toc}>
       <FadeIn>
         <PostBreadcrumb title={post.title} />
         
@@ -61,11 +124,13 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
             <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">{post.title}</h1>
             <div className="flex flex-wrap items-start justify-between">
               <div className="flex-1 min-w-0 flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-4 text-muted-foreground text-sm">
-                <time dateTime={post.date} className="whitespace-nowrap text-sm truncate block min-w-0">{new Date(post.date).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-                {post.readingTime && (
+                <time dateTime={post.published_at || post.created_at} className="whitespace-nowrap text-sm truncate block min-w-0">
+                  {new Date(post.published_at || post.created_at).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                {readingTime && (
                   <div className="flex items-center gap-2 text-sm">
                     <span className="hidden sm:inline">•</span>
-                    <span className="sm:inline">{post.readingTime}</span>
+                    <span className="sm:inline">{readingTime}</span>
                   </div>
                 )}
               </div>
@@ -78,7 +143,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
             </div>
             {post.tags && post.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 pt-2">
-                {post.tags.map(tag => (
+                {post.tags.map((tag: string) => (
                   <Link key={tag} href={`/tags/${tag}`} className="no-underline">
                     <span className="text-sm bg-muted px-2.5 py-0.5 rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
                       #{tag}
@@ -89,12 +154,72 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
             )}
           </div>
           
-          <ArticleContent 
+          <TipTapRenderer 
             className="mt-8 leading-7 text-base md:text-lg"
-            html={post.contentHtml || ''} 
+            content={post.content} 
+            toc={toc}
           />
         </article>
       </FadeIn>
     </PostLayout>
   );
+}
+
+type TocItem = {
+  id: string
+  text: string
+  depth: number
+}
+
+function buildToc(content: any): TocItem[] {
+  const toc: TocItem[] = []
+  const idCount: Record<string, number> = {}
+
+  const slugify = (text: string) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\u4e00-\u9fa5\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+
+  const walk = (node: any) => {
+    if (!node) return
+    if (Array.isArray(node)) {
+      node.forEach(walk)
+      return
+    }
+
+    if (node.type === 'heading' && node.attrs?.level) {
+      const text = extractText(node)
+      if (text) {
+        let base = slugify(text)
+        if (!base) base = 'section'
+        let unique = base
+        if (idCount[base] != null) {
+          idCount[base] += 1
+          unique = `${base}-${idCount[base]}`
+        } else {
+          idCount[base] = 0
+        }
+        toc.push({ id: unique, text, depth: node.attrs.level })
+      }
+    }
+
+    if (node.content) {
+      walk(node.content)
+    }
+  }
+
+  walk(content)
+  return toc
+}
+
+function extractText(node: any): string {
+  if (!node) return ''
+  if (node.text) return node.text
+  if (node.content) {
+    return node.content.map(extractText).join('')
+  }
+  return ''
 }

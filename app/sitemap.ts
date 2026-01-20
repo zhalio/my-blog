@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getSanitySortedPostsData } from '@/lib/sanity-posts'
+import { getPublishedPosts } from '@/lib/supabase-posts'
 
 export const dynamic = 'force-static'
 
@@ -7,7 +7,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://emmmxx.xyz'
 const locales = ['zh', 'en', 'fr', 'ja']
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = await getSanitySortedPostsData('zh') // Get all posts (slugs are same across locales)
+  const posts = await getPublishedPosts('zh') // Get all posts (slugs are same across locales)
   
   const routes = [
     '',
@@ -34,8 +34,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const post of posts) {
     for (const locale of locales) {
       sitemapEntries.push({
-        url: `${baseUrl}/${locale}/posts/${post.id}`,
-        lastModified: new Date(post.date),
+        url: `${baseUrl}/${locale}/posts/${post.slug}`,
+        lastModified: new Date(post.publishedAt || post.createdAt),
         changeFrequency: 'weekly',
         priority: 0.6,
       })

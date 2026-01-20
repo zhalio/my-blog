@@ -4,10 +4,18 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: "export", // Commented out to enable API routes (Resend) and Image Optimization
+  // output: "export", // Commented out to enable API routes and Image Optimization
   // images: {
   //   unoptimized: true, // Commented out to enable Image Optimization
   // },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'clpmxrgdzhsitzjlmkhf.supabase.co',
+      },
+    ],
+  },
   async redirects() {
     return [
       {

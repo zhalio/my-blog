@@ -33,6 +33,12 @@
     "description": "按标签浏览文章",
     "count": "{count} 篇文章"
   },
+  "About": {
+    "title": "关于",
+    "description": "关于我和这个博客",
+    "intro": "你好！欢迎来到我的个人博客。",
+    "content": "这里记录了我的技术学习、项目经验和生活感悟。希望这些内容对你有所帮助。"
+  },
   "Guestbook": {
     "title": "留言板",
     "description": "欢迎留下你的足迹，使用 GitHub 账号登录即可评论，可能需要几秒钟的加载……"

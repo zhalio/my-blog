@@ -1,4 +1,4 @@
-import { getSanityAllTags } from "@/lib/sanity-posts";
+import { getAllTags } from "@/lib/supabase-posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 
@@ -13,8 +13,8 @@ export default async function TagsPage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const t = await getTranslations('Tags');
 
-  const tags = await getSanityAllTags(locale);
-  const sortedTags = Object.keys(tags).sort((a, b) => tags[b] - tags[a]);
+  const tags = await getAllTags(locale);
+  const sortedTags = tags.sort((a, b) => b.count - a.count);
 
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">
@@ -29,11 +29,11 @@ export default async function TagsPage({ params }: { params: Promise<{ locale: s
       <hr className="my-8" />
       <div className="flex flex-wrap gap-4">
         {sortedTags.map((tag) => (
-          <Link key={tag} href={`/tags/${tag}`} className="no-underline">
+          <Link key={tag.name} href={`/tags/${tag.name}`} className="no-underline">
             <div className="flex items-center gap-2 rounded-lg border p-3 hover:bg-muted transition-colors">
-              <span className="text-lg font-medium">#{tag}</span>
+              <span className="text-lg font-medium">#{tag.name}</span>
               <span className="text-sm text-muted-foreground bg-muted-foreground/10 px-2 py-0.5 rounded-full">
-                {tags[tag]}
+                {tag.count}
               </span>
             </div>
           </Link>
