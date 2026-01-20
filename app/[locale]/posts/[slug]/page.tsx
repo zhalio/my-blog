@@ -70,7 +70,8 @@ async function getAllPosts(locale: string) {
       .from('posts')
       .select('slug')
       .eq('locale', locale)
-      .eq('published', true);
+      .eq('published', true)
+      .neq('slug', 'about');
 
     if (error) {
       console.error('Failed to fetch posts:', error);

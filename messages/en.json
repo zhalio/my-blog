@@ -38,6 +38,12 @@
     "title": "message board",
     "description": "Welcome to leave your footprints. Log in with your GitHub account to comment. It may take a few seconds to load..."
   },
+  "About": {
+    "title": "About this site",
+    "description": "A personal tech blog and portfolio for hiring and collaboration",
+    "intro": "Hi, I'm ZHalio. This is my personal blog and lightweight portfolio.",
+    "content": "I focus on web/full-stack work (Next.js, React, Supabase, Tailwind) and share hands-on notes about engineering quality, performance, and maintainability. This site also extends my resume: it gathers project cases, technical articles, and runnable demos so you can quickly see how I build and ship products."
+  },
   "NotFound": {
     "title": "Page not found",
     "description": "Sorry, we can't find the page you're looking for. It may have been moved or deleted.",

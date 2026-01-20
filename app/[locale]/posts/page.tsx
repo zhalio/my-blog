@@ -18,6 +18,7 @@ async function getPosts(locale: string) {
       .select('*')
       .eq('locale', locale)
       .eq('published', true)
+      .neq('slug', 'about')
       .order('published_at', { ascending: false });
 
     if (error) {

@@ -15,6 +15,10 @@ interface DashboardStats {
     draftsCount: number
     totalViews: number
   }
+  drafts: {
+    id: string
+    title: string
+    updated_at: string
   }[]
   activity: {
     created_at: string

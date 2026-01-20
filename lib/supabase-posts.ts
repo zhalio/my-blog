@@ -30,6 +30,7 @@ export async function getPublishedPosts(locale: string = 'zh'): Promise<PostList
       .select('*')
       .eq('locale', locale)
       .eq('published', true)
+      .neq('slug', 'about')
       .order('published_at', { ascending: false })
 
     if (error) {
@@ -128,6 +129,7 @@ export async function getPostsByTag(tag: string, locale: string = 'zh'): Promise
       .select('*')
       .eq('locale', locale)
       .eq('published', true)
+      .neq('slug', 'about')
       .contains('tags', [tag])
       .order('published_at', { ascending: false })
 
