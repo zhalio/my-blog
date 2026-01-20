@@ -167,7 +167,7 @@ export default function NewPostPage() {
   const wordCount = calculateWordCount()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900 py-8">
+    <div className="min-h-screen bg-background py-8">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* 页头 */}
         <div className="flex items-center justify-between mb-8">
@@ -187,7 +187,7 @@ export default function NewPostPage() {
           )}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* 主编辑区域 */}
           <div className="lg:col-span-2 space-y-6">
             {/* 错误提示 */}
@@ -203,8 +203,8 @@ export default function NewPostPage() {
 
             {/* 基础信息卡片 */}
             <Card className="p-6">
-              <h2 className="text-lg font-semibold mb-6">基础信息</h2>
-              <div className="space-y-4">
+              <h2 className="text-base font-semibold mb-5 text-foreground">基础信息</h2>
+              <div className="space-y-5">
                 {/* 标题 */}
                 <div>
                   <label className="block text-sm font-medium mb-2">
@@ -266,11 +266,11 @@ export default function NewPostPage() {
 
             {/* SEO 设置 */}
             <Card className="p-6">
-              <h2 className="text-lg font-semibold mb-6 flex items-center gap-2">
-                <Search className="h-5 w-5" />
+              <h2 className="text-base font-semibold mb-5 flex items-center gap-2 text-foreground">
+                <Search className="h-4 w-4" />
                 SEO 优化
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <div>
                   <label className="block text-sm font-medium mb-2">SEO 标题</label>
                   <Input
@@ -300,8 +300,8 @@ export default function NewPostPage() {
 
             {/* 封面图片 */}
             <Card className="p-6">
-              <h2 className="text-lg font-semibold mb-6 flex items-center gap-2">
-                <ImageIcon className="h-5 w-5" />
+              <h2 className="text-base font-semibold mb-5 flex items-center gap-2 text-foreground">
+                <ImageIcon className="h-4 w-4" />
                 封面图片
               </h2>
               <div className="space-y-4">
@@ -330,7 +330,7 @@ export default function NewPostPage() {
 
             {/* 内容编辑器 */}
             <Card className="p-6">
-              <h2 className="text-lg font-semibold mb-6">内容 <span className="text-red-500">*</span></h2>
+              <h2 className="text-base font-semibold mb-5 text-foreground">内容 <span className="text-red-500">*</span></h2>
               <TipTapEditor
                 content={formData.content}
                 onChange={(content) => setFormData({ ...formData, content })}
@@ -343,8 +343,8 @@ export default function NewPostPage() {
           <div className="space-y-6">
             {/* 发布设置 */}
             <Card className="p-6">
-              <h2 className="text-lg font-semibold mb-6 flex items-center gap-2">
-                <Eye className="h-5 w-5" />
+              <h2 className="text-base font-semibold mb-4 flex items-center gap-2 text-foreground">
+                <Eye className="h-4 w-4" />
                 发布设置
               </h2>
               <div className="space-y-4">
@@ -404,8 +404,8 @@ export default function NewPostPage() {
 
             {/* 文章信息 */}
             <Card className="p-6">
-              <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <Clock className="h-5 w-5" />
+              <h2 className="text-base font-semibold mb-4 flex items-center gap-2 text-foreground">
+                <Clock className="h-4 w-4" />
                 文章信息
               </h2>
               <div className="space-y-3 text-sm">
@@ -437,8 +437,8 @@ export default function NewPostPage() {
 
             {/* 标签管理 */}
             <Card className="p-6">
-              <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <Tag className="h-5 w-5" />
+              <h2 className="text-base font-semibold mb-4 flex items-center gap-2 text-foreground">
+                <Tag className="h-4 w-4" />
                 标签 <span className="text-red-500">*</span>
               </h2>
               <div className="space-y-3">
