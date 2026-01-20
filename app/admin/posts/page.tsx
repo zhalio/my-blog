@@ -605,40 +605,66 @@ export default function AdminPostsPage() {
                   </div>
 
                   {/* Right: Actions */}
-                  <div className="flex items-center gap-2 mt-2 md:mt-0 md:self-center md:ml-4 border-t md:border-t-0 md:border-l border-zinc-100 dark:border-zinc-800 pt-3 md:pt-0 md:pl-4">
+                  <div className="flex items-center gap-2 mt-2 md:mt-0 md:self-center md:ml-4 border-t md:border-t-0 md:border-l border-zinc-100 dark:border-zinc-800 pt-3 md:pt-0 md:pl-4 min-w-fit">
                      <Link href={`/admin/posts/${post.id}`} className="flex-1 md:flex-none">
-                        <Button size="sm" variant="outline" className="w-full md:w-auto h-8 shadow-sm bg-white dark:bg-zinc-800">
-                           <Edit className="w-3.5 h-3.5 mr-2" />
-                           编辑
+                        <Button size="sm" variant="default" className="w-full md:w-auto h-8 shadow-sm text-xs gap-1.5 px-3 bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-300">
+                           <Edit className="w-3.5 h-3.5" />
+                           <span className="md:inline">编辑</span>
                         </Button>
                      </Link>
+
+                     <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => togglePublish(post.id, post.published)}
+                        className={`h-8 px-2 md:px-3 text-xs gap-1.5 transition-colors ${
+                           post.published 
+                              ? 'text-zinc-500 hover:text-amber-600 hover:border-amber-200 hover:bg-amber-50 dark:hover:bg-amber-900/20 dark:text-zinc-400 dark:hover:text-amber-400' 
+                              : 'text-emerald-600 border-emerald-200/50 bg-emerald-50/50 hover:bg-emerald-100 hover:border-emerald-300 dark:text-emerald-400 dark:bg-emerald-900/10 dark:hover:bg-emerald-900/30'
+                        }`}
+                        title={post.published ? "转为草稿" : "发布文章"}
+                     >
+                        {publishing === post.id ? (
+                           <span className="w-3.5 h-3.5 rounded-full border-2 border-current border-t-transparent animate-spin" />
+                        ) : post.published ? (
+                           <>
+                              <Circle className="w-3.5 h-3.5" />
+                              <span className="hidden md:inline">转草稿</span>
+                           </>
+                        ) : (
+                           <>
+                              <CheckCircle2 className="w-3.5 h-3.5" />
+                              <span className="hidden md:inline">发布</span>
+                           </>
+                        )}
+                     </Button>
                      
-                     <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                           <Button variant="ghost" size="icon" className="h-8 w-8 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 ring-offset-transparent">
-                              <MoreHorizontal className="w-4 h-4" />
-                           </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="w-40">
-                           <DropdownMenuItem onClick={() => togglePublish(post.id, post.published)}>
-                              {post.published ? (
-                                 <><Circle className="w-4 h-4 mr-2 text-zinc-400" /> 取消发布</>
-                              ) : (
-                                 <><CheckCircle2 className="w-4 h-4 mr-2 text-emerald-500" /> 发布文章</>
-                              )}
-                           </DropdownMenuItem>
-                           <DropdownMenuItem onClick={() => openEditModal(post)}>
-                              <Settings className="w-4 h-4 mr-2 text-zinc-400" /> 属性设置
-                           </DropdownMenuItem>
-                           <DropdownMenuSeparator />
-                           <DropdownMenuItem 
-                             onClick={() => deletePost(post.id, post.title)}
-                             className="text-red-600 focus:text-red-600 focus:bg-red-50 dark:focus:bg-red-950/20"
-                           >
-                              <Trash2 className="w-4 h-4 mr-2" /> 删除文章
-                           </DropdownMenuItem>
-                        </DropdownMenuContent>
-                     </DropdownMenu>
+                     <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => openEditModal(post)}
+                        className="h-8 w-8 px-0 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+                        title="属性设置"
+                     >
+                        <Settings className="w-4 h-4" />
+                     </Button>
+
+                     <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-800 mx-1 hidden md:block" />
+
+                     <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => deletePost(post.id, post.title)}
+                        disabled={deleting === post.id}
+                        className="h-8 w-8 px-0 text-zinc-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"
+                        title="删除文章"
+                     >
+                        {deleting === post.id ? (
+                           <span className="w-3.5 h-3.5 rounded-full border-2 border-current border-t-transparent animate-spin" />
+                        ) : (
+                           <Trash2 className="w-4 h-4" />
+                        )}
+                     </Button>
                   </div>
                 </div>
               </Card>
