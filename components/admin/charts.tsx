@@ -90,7 +90,7 @@ export function TagPieChart({ data }: { data: any[] }) {
     };
 
     return (
-        <ResponsiveContainer width="100%" height={400}>
+        <ResponsiveContainer width="100%" height={500}>
             <PieChart>
                 <Pie
                     data={data}
@@ -135,11 +135,11 @@ export function TagPieChart({ data }: { data: any[] }) {
                     align="center"
                     wrapperStyle={{ 
                         paddingTop: '30px',
-                        fontSize: '13px',
-                        color: 'hsl(var(--foreground))'
+                        fontSize: '14px'
                     }}
                     iconType="circle"
                     iconSize={8}
+                    formatter={(value) => <span className="text-foreground font-medium">{value}</span>}
                 />
             </PieChart>
         </ResponsiveContainer>
