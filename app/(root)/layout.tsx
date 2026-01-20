@@ -1,5 +1,9 @@
 import "../globals.css";
 
+export const metadata = {
+  metadataBase: new URL('https://emmmxx.xyz'),
+};
+
 export default function RootLayout({
   children,
 }: {
