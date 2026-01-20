@@ -181,9 +181,15 @@ export default function AdminPostsPage() {
     })
     .sort((a, b) => {
       if (sortBy === 'newest') {
-        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        // 按发布时间从新到旧，没有发布时间的放在最后
+        const aTime = a.published_at ? new Date(a.published_at).getTime() : 0
+        const bTime = b.published_at ? new Date(b.published_at).getTime() : 0
+        return bTime - aTime
       } else if (sortBy === 'oldest') {
-        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+        // 按发布时间从旧到新
+        const aTime = a.published_at ? new Date(a.published_at).getTime() : Infinity
+        const bTime = b.published_at ? new Date(b.published_at).getTime() : Infinity
+        return aTime - bTime
       } else {
         return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
       }
