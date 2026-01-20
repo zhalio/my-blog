@@ -14,6 +14,14 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog'
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import {
   PlusCircle,
   Edit,
   Trash2,
@@ -28,6 +36,8 @@ import {
   Circle,
   X,
   Star,
+  Settings,
+  MoreHorizontal,
 } from 'lucide-react'
 
 interface Post {
@@ -515,154 +525,120 @@ export default function AdminPostsPage() {
                 className={`group relative overflow-hidden transition-all duration-300 ${
                   selectedPosts.includes(post.id) 
                     ? 'border-primary/50 shadow-[0_0_0_1px_rgba(var(--primary),0.5)] bg-primary/5 dark:bg-primary/5' 
-                    : 'border-zinc-200/60 dark:border-zinc-800/60 bg-white/80 dark:bg-zinc-900/60 hover:bg-white dark:hover:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-lg dark:hover:shadow-zinc-900/50'
+                    : 'border-zinc-200/60 dark:border-zinc-800/60 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-lg dark:hover:shadow-zinc-900/50'
                 }`}
               >
                 {/* 装饰性背景 */}
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-zinc-50/50 dark:to-zinc-800/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-zinc-50/50 dark:to-zinc-800/20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-                <div className="relative p-5 flex gap-5">
-                  <div className="pt-1.5 flex flex-col items-center gap-4">
+                <div className="relative p-4 md:p-5 flex flex-col md:flex-row gap-4">
+                  {/* Left: Checkbox */}
+                  <div className="flex-none pt-1">
                     <input 
                       type="checkbox"
                       checked={selectedPosts.includes(post.id)}
                       onChange={() => toggleSelectPost(post.id)}
                       className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-600 text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer transition-colors"
                     />
-                    
-                    {/* 垂直连线装饰 (可选) */}
-                    {/* <div className="w-px h-full bg-zinc-100 dark:bg-zinc-800" /> */}
                   </div>
                   
-                  <div className="flex flex-col md:flex-row justify-between items-stretch gap-6 flex-1 min-w-0">
-                    <div className="flex-1 min-w-0 space-y-3">
-                      {/* 顶部标签栏 */}
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span
-                          className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm ${
-                            post.published
-                              ? 'bg-emerald-100/80 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400 border border-emerald-200/50 dark:border-emerald-500/20'
-                              : 'bg-amber-100/80 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400 border border-amber-200/50 dark:border-amber-500/20'
-                          }`}
-                        >
-                          <span className={`w-1.5 h-1.5 rounded-full ${post.published ? 'bg-emerald-500' : 'bg-amber-500'} animate-pulse`} />
-                          {post.published ? 'Published' : 'Draft'}
+                  {/* Middle: Content */}
+                  <div className="flex-1 min-w-0 space-y-2">
+                    {/* Header: Status Badges */}
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      {post.published ? (
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-500/10 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20">
+                           已发布
                         </span>
-                        
-                        {post.featured && (
-                          <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100/80 text-purple-700 dark:bg-purple-500/15 dark:text-purple-400 border border-purple-200/50 dark:border-purple-500/20 shadow-sm">
-                            <Star className="h-2.5 w-2.5 fill-current" />
-                            Featured
-                          </span>
-                        )}
-                      </div>
-
-                      {/* 标题 */}
-                      <div className="space-y-1.5">
-                        <Link href={`/admin/posts/${post.id}`} className="group/title block">
-                          <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 leading-tight group-hover/title:text-primary transition-colors line-clamp-2">
-                            {post.title}
-                          </h2>
-                        </Link>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed h-[2.5em]">
-                          {post.description || <span className="italic opacity-50">暂无摘要...</span>}
-                        </p>
-                      </div>
-
-                      {/* 底部信息栏 */}
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-zinc-400 dark:text-zinc-500 pt-1">
-                        <div className="flex items-center gap-1.5" title="发布时间">
-                          <Calendar className="h-3.5 w-3.5" />
-                          <span>
-                            {(post.published && post.published_at ? new Date(post.published_at) : new Date(post.created_at)).toLocaleDateString('zh-CN')}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1.5" title="浏览量">
-                          <Eye className="h-3.5 w-3.5" />
-                          <span>{post.views.toLocaleString()}</span>
-                        </div>
-                        
-                        {post.tags.length > 0 && (
-                          <div className="flex items-center gap-2 pl-2 border-l border-zinc-200 dark:border-zinc-800">
-                             {post.tags.slice(0, 3).map(tag => (
-                               <span key={tag} className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
-                                 # {tag}
-                               </span>
-                             ))}
-                             {post.tags.length > 3 && (
-                               <span className="text-[10px] text-zinc-400">+{post.tags.length - 3}</span>
-                             )}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* 右侧操作区 - 桌面端为纵向/网格布局，移动端为底部横向 */}
-                    <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-start gap-2 pt-2 md:pt-0 border-t md:border-t-0 md:border-l border-zinc-100 dark:border-zinc-800 md:pl-6 md:min-w-[140px]">
+                      ) : (
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-amber-100 text-amber-800 dark:bg-amber-500/10 dark:text-amber-400 border border-amber-200 dark:border-amber-500/20">
+                           草稿
+                        </span>
+                      )}
                       
-                      {/* 主要操作 */}
-                      <div className="flex flex-row md:flex-col gap-2 w-full">
-                         <Link href={`/admin/posts/${post.id}`} className="flex-1 md:flex-none w-full">
-                          <Button 
-                            variant="default"
-                            size="sm" 
-                            className="w-full h-8 gap-2 bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-200 shadow-sm"
-                          >
-                            <FileText className="h-3.5 w-3.5" />
-                            <span className="text-xs">编辑</span>
-                          </Button>
-                        </Link>
-                        
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => togglePublish(post.id, post.published)}
-                          disabled={publishing === post.id}
-                          className={`w-full h-8 gap-2 text-xs justify-center ${
-                             post.published 
-                              ? 'hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400'
-                              : 'hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400'
-                          }`}
-                        >
-                          {publishing === post.id ? (
-                            <span className="opacity-50">...</span>
-                          ) : post.published ? (
-                            <>
-                              <Circle className="h-3.5 w-3.5" />
-                              <span>下架</span>
-                            </>
-                          ) : (
-                            <>
-                              <CheckCircle2 className="h-3.5 w-3.5" />
-                              <span>发布</span>
-                            </>
-                          )}
-                        </Button>
-                      </div>
-
-                      {/* 次要操作 */}
-                      <div className="flex items-center gap-1 mt-auto md:pt-4 ml-auto md:ml-0">
-                         <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => openEditModal(post)}
-                          className="h-8 w-8 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                          title="快速属性设置"
-                        >
-                          <Edit className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => deletePost(post.id, post.title)}
-                          disabled={deleting === post.id}
-                          className="h-8 w-8 text-zinc-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
-                          title="删除文章"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
+                      {post.featured && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded bg-purple-100 text-purple-700 dark:bg-purple-500/10 dark:text-purple-400 border border-purple-200 dark:border-purple-500/20">
+                          <Star className="w-3 h-3 fill-current" />
+                          Featured
+                        </span>
+                      )}
                     </div>
+
+                    {/* Title */}
+                    <Link href={`/admin/posts/${post.id}`} className="group/title block">
+                      <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 leading-tight group-hover/title:text-primary transition-colors line-clamp-1">
+                        {post.title}
+                      </h2>
+                    </Link>
+                    
+                    {/* Description */}
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 md:line-clamp-1 h-auto min-h-[1.5em]">
+                      {post.description || <span className="italic opacity-50">暂无摘要...</span>}
+                    </p>
+
+                    {/* Bottom: Meta Info */}
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-zinc-400 dark:text-zinc-500 pt-1">
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="h-3.5 w-3.5" />
+                        <span>
+                          {(post.published && post.published_at ? new Date(post.published_at) : new Date(post.created_at)).toLocaleDateString('zh-CN')}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Eye className="h-3.5 w-3.5" />
+                        <span>{post.views.toLocaleString()}</span>
+                      </div>
+                      
+                      {post.tags.length > 0 && (
+                        <div className="flex items-center gap-2 pl-2 border-l border-zinc-200 dark:border-zinc-800">
+                           {post.tags.slice(0, 3).map(tag => (
+                             <span key={tag} className="text-zinc-500 dark:text-zinc-400">
+                               # {tag}
+                             </span>
+                           ))}
+                           {post.tags.length > 3 && (
+                             <span>+{post.tags.length - 3}</span>
+                           )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Right: Actions */}
+                  <div className="flex items-center gap-2 mt-2 md:mt-0 md:self-center md:ml-4 border-t md:border-t-0 md:border-l border-zinc-100 dark:border-zinc-800 pt-3 md:pt-0 md:pl-4">
+                     <Link href={`/admin/posts/${post.id}`} className="flex-1 md:flex-none">
+                        <Button size="sm" variant="outline" className="w-full md:w-auto h-8 shadow-sm bg-white dark:bg-zinc-800">
+                           <Edit className="w-3.5 h-3.5 mr-2" />
+                           编辑
+                        </Button>
+                     </Link>
+                     
+                     <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                           <Button variant="ghost" size="icon" className="h-8 w-8 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 ring-offset-transparent">
+                              <MoreHorizontal className="w-4 h-4" />
+                           </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-40">
+                           <DropdownMenuItem onClick={() => togglePublish(post.id, post.published)}>
+                              {post.published ? (
+                                 <><Circle className="w-4 h-4 mr-2 text-zinc-400" /> 取消发布</>
+                              ) : (
+                                 <><CheckCircle2 className="w-4 h-4 mr-2 text-emerald-500" /> 发布文章</>
+                              )}
+                           </DropdownMenuItem>
+                           <DropdownMenuItem onClick={() => openEditModal(post)}>
+                              <Settings className="w-4 h-4 mr-2 text-zinc-400" /> 属性设置
+                           </DropdownMenuItem>
+                           <DropdownMenuSeparator />
+                           <DropdownMenuItem 
+                             onClick={() => deletePost(post.id, post.title)}
+                             className="text-red-600 focus:text-red-600 focus:bg-red-50 dark:focus:bg-red-950/20"
+                           >
+                              <Trash2 className="w-4 h-4 mr-2" /> 删除文章
+                           </DropdownMenuItem>
+                        </DropdownMenuContent>
+                     </DropdownMenu>
                   </div>
                 </div>
               </Card>
