@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Transform data to include public URL
-    const files = data.map(file => {
+    const files = data.map((file: any) => {
       const { data: { publicUrl } } = supabase
         .storage
         .from('images')
