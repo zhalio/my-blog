@@ -7,7 +7,7 @@
     "build": "next build && node scripts/generate-rss.mjs",
     "start": "next start",
     "lint": "eslint",
-    "publish": "git add . && git commit -m \"content: update posts\" && git push"
+    "publish": "git add . && git commit -m \"chore: update project\" && git push"
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
