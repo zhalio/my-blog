@@ -1,47 +1,61 @@
 # ZHalio's Blog
 
-基于 Next.js 16、Tailwind CSS v4、TipTap 和 Supabase 构建的个人博客。
+基于 Next.js 16、Tailwind CSS v4、TipTap 和 Supabase 构建的现代化个人博客。
 
 https://emmmxx.xyz
 
 ## 技术栈
 
-- **框架**: Next.js 16 
-- **样式**: Tailwind CSS v4
-- **UI**: shadcn/ui, Framer Motion
-- **内容管理**: TipTap 富文本编辑器 + Supabase PostgreSQL
+- **核心框架**: Next.js 16 (App Router) + TypeScript
+- **样式方案**: Tailwind CSS v4
+- **UI 组件**: shadcn/ui, Radix UI, Lucide React
+- **动画特效**: Framer Motion, Vanta.js (WebGL 背景特效), Lottie (404 动画)
+- **数据可视化**: Recharts (仪表盘图表)
+- **内容管理**: TipTap 富文本编辑器 (Block-based)
+- **后端服务**: Supabase (PostgreSQL 数据库, Auth 鉴权, Storage)
+- **缓存/计数**: Upstash Redis (浏览量/点赞)
 - **国际化**: next-intl (支持 zh, en, fr, ja)
-- **搜索**: Orama (客户端全文搜索)
-- **统计**: Vercel Analytics & Speed Insights
-- **数据库**: Upstash Redis (用于浏览量和点赞) + Supabase (文章存储)
-- **评论**: Giscus
+- **全文搜索**: Orama (纯客户端高性能搜索)
+- **部署托管**: Vercel (Edge Network)
+- **评论系统**: Giscus (GitHub Discussions)
 
-## 功能特性
+## 核心特性
 
-- **写作**: 强大的 TipTap 富文本编辑器（支持代码块、表格、任务列表等）
-- **完全控制**: 基于 Supabase 的自托管数据库，完整的数据所有权
-- **实时预览**: 编辑即所见的内容展示
-- **交互 UI**: 3D 卡片、磁力按钮、平滑滚动、暗色模式
-- **互动**: 实时浏览量、点赞、GitHub 评论
-- **SEO**: 自动生成 Sitemap、Robots.txt 和 Open Graph 图片
-- **性能**: 图片优化、字体加载优化、极小的客户端 JS 体积
+- **✨ 沉浸式体验**: 3D 悬浮卡片、磁力按钮、平滑滚动、粒子特效背景
+- **📝 强大的 CMS**: 
+  - 集成 TipTap 编辑器，支持代码高亮、表格、任务列表
+  - **全新仪表盘**: 支持 GitHub 风格的创作热力图、内容分布饼图
+  - 实时草稿保存与预览机制
+- **🛡️ 数据自主**: 
+  - 核心数据托管于 Supabase，拥有完整所有权
+  - 媒体资源存储于 Supabase Storage
+- **🌍 国际化支持**: 完整的路由级多语言支持 (i18n)
+- **🚀 极致性能**:
+  - Turbopack 开发构建
+  - 图片/字体自动优化
+  - 客户端路由预加载
+- **📈 多维统计**: 
+  - 集成 Vercel Analytics (流量分析)
+  - 自建文章阅读量/点赞数统计系统
+  - 管理后台可视化数据看板
 
 ## 管理后台
 
-本项目集成了完整的管理后台，基于 TipTap 编辑器。
+本项目包含一个功能完备的后台管理系统 (`/admin`)。
 
-### 访问管理后台
+### 访问方式
 
-- **本地开发**: 访问 [http://localhost:3000/admin/posts](http://localhost:3000/admin/posts)
-- **线上环境**: 访问 [https://emmmxx.xyz/admin/posts](https://emmmxx.xyz/admin/posts)
+- **本地开发**: [http://localhost:3000/admin](http://localhost:3000/admin)
+- **线上环境**: [https://emmmxx.xyz/admin](https://emmmxx.xyz/admin)
 
-### 功能
+### 功能亮点
 
-- **所见即所得编辑**: TipTap 提供强大的富文本编辑体验
-- **多语言支持**: 为每篇文章选择语言
-- **标签管理**: 灵活的标签系统
-- **草稿/发布**: 支持保存草稿和发布文章
-- **自动统计**: 自动计算阅读时间
+- **数据看板**: 
+  - **创作活跃度**: 可视化展示过去一年的文章发布频率（GitHub Heatmap 风格）
+  - **内容分布**: 动态饼图展示各标签文章占比
+  - **待办提醒**: 快速访问未完成的草稿
+- **文章管理**: 完整的增删改查 (CRUD) 流程，支持多语言、自定义 Slug、封面上传
+- **系统设置**: 站点基本信息配置
 
 ## 快速开始
 
@@ -53,11 +67,14 @@ pnpm install
 
 2. **配置环境变量**
 
-复制 `.env.local.example` 为 `.env.local` 并填入相关 Key。
+复制 `.env.local.example` 为 `.env.local` 并填入以下服务的 Key：
+- Supabase (URL, Anon Key)
+- Upstash Redis (URL, Token)
+- Giscus (Repo Info)
 
-3. **创建数据库**
+3. **初始化数据库**
 
-在 Supabase 项目中执行 `supabase/schema.sql` 文件。
+访问 Supabase 控制台，并在 SQL Editor 中运行 `supabase/schema.sql` 以创建必要的表结构。
 
 4. **启动开发服务器**
 
@@ -65,38 +82,42 @@ pnpm install
 pnpm dev
 ```
 
-访问 [http://localhost:3000](http://localhost:3000)。
+访问 [http://localhost:3000](http://localhost:3000) 即可看到效果。
 
-## 写作指南
+## 目录结构
 
-访问 `/admin/posts` 路由，点击"新建文章"即可开始创建内容。
-
-**文章包含以下字段:**
-
-- **标题**: 文章标题
-- **Slug**: URL 友好的路径 (自动生成或自定义)
-- **描述**: 文章摘要
-- **内容**: 使用 TipTap 编辑器编写的富文本内容
-- **封面图**: 文章缩略图 URL
-- **标签**: 多个标签支持
-- **语言**: zh, en, fr, ja
-- **发布状态**: 草稿或已发布
+```
+├── app/                  # Next.js App Router 路由
+│   ├── (root)/           # 博客前台页面
+│   ├── admin/            # 管理后台页面
+│   └── api/              # 后端 API 路由
+├── components/           # React 组件
+│   ├── admin/            # 后台专用组件 (图表, 列表)
+│   ├── blog/             # 博客文章相关组件
+│   ├── editor/           # TipTap 编辑器配置
+│   ├── effects/          # 视觉特效 (Vanta, Particles)
+│   └── ui/               # shadcn/ui 基础组件
+├── lib/                  # 工具函数与类型定义
+├── messages/             # i18n 翻译文件
+├── public/               # 静态资源
+└── supabase/             # 数据库迁移与结构文件
+```
 
 ## 常用命令
 
 | 命令                | 说明                                                   |
 | ------------------- | ------------------------------------------------------ |
-| `pnpm dev`        | 启动本地开发服务器                                     |
-| `pnpm build`      | 构建生产版本                                           |
+| `pnpm dev`        | 启动本地开发服务器 (Turbopack)                        |
+| `pnpm build`      | 构建生产版本并生成 RSS/Sitemap                         |
 | `pnpm start`      | 启动生产服务器                                         |
-| `pnpm lint`       | 运行代码检查                                           |
+| `pnpm lint`       | 运行代码风格检查                                       |
 
 ## 部署
 
-本项目部署在 Vercel 上。
+由 [Vercel](https://vercel.com) 提供自动部署支持。推送到 `main` 分支即可自动触发构建。
 
 ```bash
-pnpm build
+git push origin main
 ```
 
 ## 环境变量

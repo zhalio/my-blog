@@ -1,5 +1,6 @@
 import { supabase } from './supabase/client'
 import type { Post } from './supabase/types'
+import type { PostData as PostListItem } from './types'
 
 export interface PostData {
   id: string
@@ -18,9 +19,11 @@ export interface PostData {
   createdAt: string
   updatedAt: string
   publishedAt: string | null
+  seo_title?: string
+  seo_description?: string
 }
 
-export async function getPublishedPosts(locale: string = 'zh'): Promise<PostData[]> {
+export async function getPublishedPosts(locale: string = 'zh'): Promise<PostListItem[]> {
   const { data, error } = await supabase
     .from('posts')
     .select('*')
@@ -65,23 +68,27 @@ export async function getPostBySlug(slug: string, locale: string = 'zh'): Promis
 
   if (!data) return null
 
+  const post = data as Post;
+
   return {
-    id: data.id,
-    title: data.title,
-    slug: data.slug,
-    description: data.description || '',
-    content: data.content,
-    coverImage: data.cover_image,
-    author: data.author,
-    locale: data.locale,
-    tags: data.tags || [],
-    published: data.published,
-    featured: data.featured,
-    views: data.views,
-    readingTime: data.reading_time,
-    createdAt: data.created_at,
-    updatedAt: data.updated_at,
-    publishedAt: data.published_at,
+    id: post.id,
+    title: post.title,
+    slug: post.slug,
+    description: post.description || '',
+    content: post.content,
+    coverImage: post.cover_image,
+    author: post.author,
+    locale: post.locale,
+    tags: post.tags || [],
+    published: post.published,
+    featured: post.featured,
+    views: post.views,
+    readingTime: post.reading_time,
+    createdAt: post.created_at,
+    updatedAt: post.updated_at,
+    publishedAt: post.published_at,
+    seo_title: post.metadata?.seo_title,
+    seo_description: post.metadata?.seo_description,
   }
 }
 
@@ -99,7 +106,7 @@ export async function getAllTags(locale: string = 'zh'): Promise<Array<{ name: s
   return data || []
 }
 
-export async function getPostsByTag(tag: string, locale: string = 'zh'): Promise<PostData[]> {
+export async function getPostsByTag(tag: string, locale: string = 'zh'): Promise<PostListItem[]> {
   const { data, error } = await supabase
     .from('posts')
     .select('*')
@@ -133,7 +140,7 @@ export async function incrementPostViews(slug: string, locale: string = 'zh'): P
   const { error } = await supabase.rpc('increment_post_views', {
     post_slug: slug,
     post_locale: locale,
-  })
+  } as any)
 
   if (error) {
     console.error('Error incrementing views:', error)

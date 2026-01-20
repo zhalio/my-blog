@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     const { count: postsCount } = await supabase.from('posts').select('*', { count: 'exact', head: true }).eq('published', true)
     const { count: draftsCount } = await supabase.from('posts').select('*', { count: 'exact', head: true }).eq('published', false)
     const { data: viewsData } = await supabase.from('posts').select('views');
-    const totalViews = viewsData?.reduce((acc, curr) => acc + (curr.views || 0), 0) || 0;
+    const totalViews = (viewsData as { views: number }[] | null)?.reduce((acc, curr) => acc + (curr.views || 0), 0) || 0;
 
     // 2. Drafts List
     const { data: drafts } = await supabase
@@ -31,8 +31,8 @@ export async function GET(request: NextRequest) {
       .select('tags')
       .not('tags', 'is', null)
 
-    const tagCounts: Record<string, number> = {}
-    postsWithTags?.forEach(post => {
+    const tagCounts: Record<string, number> = {};
+    (postsWithTags as { tags: string[] }[] | null)?.forEach(post => {
       post.tags?.forEach((tag: string) => {
         tagCounts[tag] = (tagCounts[tag] || 0) + 1
       })

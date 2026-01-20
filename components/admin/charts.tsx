@@ -54,7 +54,7 @@ export function TrafficTrendChart({ data }: { data: any[] }) {
 }
 
 // --- Tag Distribution Chart (Pie Chart) ---
-export function TagRadarChart({ data }: { data: any[] }) {
+export function TagPieChart({ data }: { data: any[] }) {
     // Generate distinct colors - using Nord Theme Palette (Softer, not too bright)
     const COLORS = [
         '#88c0d0', // Nord 8 (Ice Blue)
@@ -80,7 +80,7 @@ export function TagRadarChart({ data }: { data: any[] }) {
                     dataKey="count"
                     nameKey="name"
                     stroke="none"
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    label={({ name, percent }) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
                     labelLine={{ stroke: 'hsl(var(--muted-foreground))', strokeWidth: 1 }}
                 >
                     {data.map((entry, index) => (

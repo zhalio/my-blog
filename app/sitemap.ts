@@ -35,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const locale of locales) {
       sitemapEntries.push({
         url: `${baseUrl}/${locale}/posts/${post.slug}`,
-        lastModified: new Date(post.publishedAt || post.createdAt),
+        lastModified: new Date(post.date),
         changeFrequency: 'weekly',
         priority: 0.6,
       })

@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import type { Database } from './types'
+import type { Database as SupabaseDB } from './types'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -8,7 +8,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables')
 }
 
-export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
+export const supabase = createClient<SupabaseDB>(supabaseUrl, supabaseAnonKey, {
   auth: {
     persistSession: false,
   },
@@ -16,7 +16,7 @@ export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
 
 // 用于服务端的客户端（如果需要）
 export const createServerClient = () => {
-  return createClient<Database>(supabaseUrl, supabaseAnonKey, {
+  return createClient<SupabaseDB>(supabaseUrl, supabaseAnonKey, {
     auth: {
       persistSession: false,
     },

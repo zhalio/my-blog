@@ -207,7 +207,7 @@ const CodeBlock = ({ node: { textContent } }: { node: { textContent: string } })
           className="flex-1 pl-6 pr-4 !m-0 !bg-transparent overflow-visible scrollbar-hide !text-[#24292e] dark:!text-[#d4d4d4]"
           style={{ fontFamily: 'inherit', fontSize: 'inherit', lineHeight: 'inherit' }}
         >
-          <NodeViewContent as="code" className="!bg-transparent !p-0 !whitespace-pre !font-inherit !text-inherit" />
+          <NodeViewContent as={"code" as any} className="!bg-transparent !p-0 !whitespace-pre !font-inherit !text-inherit" />
         </pre>
       </div>
     </NodeViewWrapper>

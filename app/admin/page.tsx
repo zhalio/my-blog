@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { ActivityHeatmap, TagRadarChart } from '@/components/admin/charts'
+import { ActivityHeatmap, TagPieChart } from '@/components/admin/charts'
 import { useSupabaseAuthStore } from '@/lib/supabase-auth-store'
 import { useRouter } from 'next/navigation'
 import { FileText, Eye, Edit3, MessageSquare, AlertCircle, BarChart3 } from 'lucide-react'
@@ -157,7 +157,7 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             {data.tags && data.tags.length > 0 ? (
-                <TagRadarChart data={data.tags} />
+                <TagPieChart data={data.tags} />
             ) : (
                 <div className="h-[300px] flex items-center justify-center text-muted-foreground">
                     暂无标签数据

@@ -1,4 +1,5 @@
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
+
 import "../globals.css";
 import "katex/dist/katex.min.css";
 import { ThemeProvider } from "@/components/layout/theme-provider"
@@ -16,15 +17,18 @@ import { Analytics } from "@vercel/analytics/react"
 import { getSiteSettings } from "@/lib/site-settings";
 // import { SiteFooter } from "@/components/layout/site-footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
+const geistSans = { variable: "font-sans" };
+const geistMono = { variable: "font-mono" };
+
 
 export async function generateMetadata({
   params

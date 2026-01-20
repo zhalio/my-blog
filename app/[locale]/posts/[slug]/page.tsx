@@ -9,6 +9,7 @@ import { FallbackBanner } from '@/components/blog/fallback-banner';
 import { ShareButtons } from "@/components/blog/share-buttons";
 import { PostStats } from "@/components/blog/post-stats";
 import { supabase } from '@/lib/supabase/client';
+import { Database } from "@/lib/supabase/types";
 
 // Enable ISR for post detail pages (seconds)
 export const revalidate = 60; // Regenerate at most once per minute
@@ -27,11 +28,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   }
 
   return {
-    title: post.seo_title || post.title,
-    description: post.seo_description || post.description || post.title,
+    title: post.metadata?.seo_title || post.title,
+    description: post.metadata?.seo_description || post.description || post.title,
     openGraph: {
-      title: post.seo_title || post.title,
-      description: post.seo_description || post.description || post.title,
+      title: post.metadata?.seo_title || post.title,
+      description: post.metadata?.seo_description || post.description || post.title,
       type: 'article',
       publishedTime: post.published_at,
       images: post.cover_image ? [post.cover_image] : [],
@@ -39,7 +40,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-async function getPost(slug: string, locale: string) {
+type Post = Database['public']['Tables']['posts']['Row'];
+
+async function getPost(slug: string, locale: string): Promise<Post | null> {
   const { data, error } = await supabase
     .from('posts')
     .select('*')
@@ -68,7 +71,7 @@ async function getAllPosts(locale: string) {
     return [];
   }
 
-  return data;
+  return data as { slug: string }[];
 }
 
 // 生成静态路径 (SSG)

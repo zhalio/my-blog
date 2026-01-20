@@ -106,9 +106,3 @@ generateRssFeed().catch((err) => {
   console.error('Error generating RSS feed:', err);
   process.exit(1);
 });
-}
-
-generateRssFeed().catch((err) => {
-  console.error('Failed to generate RSS:', err);
-  process.exit(1);
-});
