@@ -356,17 +356,17 @@ export default function AdminPostsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-zinc-50 dark:to-zinc-950">
-      <div className="container mx-auto px-4 max-w-6xl py-12">
+      <div className="container mx-auto px-4 max-w-6xl py-12 pb-32">
         {/* 页头部分 */}
-        <div className="mb-12 flex justify-between items-end gap-8">
+        <div className="mb-8 md:mb-12 flex flex-col md:flex-row justify-between md:items-end gap-4 md:gap-8">
           <div>
-            <h1 className="text-5xl font-bold tracking-tight mb-2">文章管理</h1>
-            <p className="text-base text-zinc-500 dark:text-zinc-400">
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-2">文章管理</h1>
+            <p className="text-sm md:text-base text-zinc-500 dark:text-zinc-400">
               共 <span className="font-semibold text-zinc-900 dark:text-zinc-100">{posts.length}</span> 篇文章
             </p>
           </div>
           <Link href="/admin/posts/new" className="flex-shrink-0">
-            <Button className="gap-2 px-6 h-11 text-base font-medium shadow-sm hover:shadow-md transition-shadow">
+            <Button className="w-full md:w-auto gap-2 px-6 h-11 text-base font-medium shadow-sm hover:shadow-md transition-shadow">
               <PlusCircle className="h-5 w-5" />
               新建文章
             </Button>
@@ -656,13 +656,13 @@ export default function AdminPostsPage() {
 
       {/* 底部悬浮批量操作栏 */}
       {selectedPosts.length > 0 && (
-        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5">
-          <div className="bg-zinc-900 dark:bg-zinc-100 shadow-2xl border border-zinc-800 dark:border-zinc-200/50 rounded-full px-4 py-2 flex items-center gap-2">
-            <span className="text-sm font-medium text-zinc-100 dark:text-zinc-900 px-3">
-              已选 {selectedPosts.length} 项
+        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5 w-[90%] md:w-auto max-w-sm md:max-w-none">
+          <div className="bg-zinc-900 dark:bg-zinc-100 shadow-2xl border border-zinc-800 dark:border-zinc-200/50 rounded-full px-4 py-2 flex items-center justify-between md:justify-start gap-2">
+            <span className="text-sm font-medium text-zinc-100 dark:text-zinc-900 px-1 md:px-3 whitespace-nowrap">
+              已选 {selectedPosts.length}
             </span>
             
-            <div className="h-4 w-px bg-white/15 dark:bg-black/10 mx-2" />
+            <div className="h-4 w-px bg-white/15 dark:bg-black/10 mx-1 md:mx-2" />
             
             <div className="flex items-center gap-1">
               <Button 
@@ -670,34 +670,34 @@ export default function AdminPostsPage() {
                 variant="ghost" 
                 onClick={() => handleBatchPublish(true)}
                 disabled={batchActionLoading}
-                className="h-8 rounded-full text-zinc-300 dark:text-zinc-600 hover:text-white dark:hover:text-black hover:bg-white/10 dark:hover:bg-black/5"
+                className="h-8 rounded-full text-zinc-300 dark:text-zinc-600 hover:text-white dark:hover:text-black hover:bg-white/10 dark:hover:bg-black/5 px-2 md:px-4"
               >
-                <CheckCircle2 className="h-4 w-4 mr-2" />
-                发布
+                <CheckCircle2 className="h-4 w-4 md:mr-2" />
+                <span className="hidden md:inline">发布</span>
               </Button>
               <Button 
                 size="sm" 
                 variant="ghost" 
                 onClick={() => handleBatchPublish(false)}
                 disabled={batchActionLoading}
-                className="h-8 rounded-full text-zinc-300 dark:text-zinc-600 hover:text-white dark:hover:text-black hover:bg-white/10 dark:hover:bg-black/5"
+                className="h-8 rounded-full text-zinc-300 dark:text-zinc-600 hover:text-white dark:hover:text-black hover:bg-white/10 dark:hover:bg-black/5 px-2 md:px-4"
               >
-                <Circle className="h-4 w-4 mr-2" />
-                草稿
+                <Circle className="h-4 w-4 md:mr-2" />
+                <span className="hidden md:inline">草稿</span>
               </Button>
               <Button 
                 size="sm" 
                 variant="ghost" 
                 onClick={handleBatchDelete}
                 disabled={batchActionLoading}
-                className="h-8 rounded-full text-red-400 dark:text-red-500 hover:text-red-300 dark:hover:text-red-600 hover:bg-red-500/10 dark:hover:bg-red-500/10"
+                className="h-8 rounded-full text-red-400 dark:text-red-500 hover:text-red-300 dark:hover:text-red-600 hover:bg-red-500/10 dark:hover:bg-red-500/10 px-2 md:px-4"
               >
-                <Trash2 className="h-4 w-4 mr-2" />
-                {batchActionLoading ? '处理中...' : '删除'}
+                <Trash2 className="h-4 w-4 md:mr-2" />
+                <span className="hidden md:inline">{batchActionLoading ? '处理中...' : '删除'}</span>
               </Button>
             </div>
 
-            <div className="h-4 w-px bg-white/15 dark:bg-black/10 mx-2" />
+            <div className="h-4 w-px bg-white/15 dark:bg-black/10 mx-1 md:mx-2" />
             
             <Button 
               size="sm" 

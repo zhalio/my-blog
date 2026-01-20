@@ -5,12 +5,21 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useSupabaseAuthStore } from '@/lib/supabase-auth-store'
 import { Button } from '@/components/ui/button'
-import { BookOpen, LogOut, LayoutDashboard, FileText, Settings, Home } from 'lucide-react'
+import { BookOpen, LogOut, LayoutDashboard, FileText, Settings, Home, Menu } from 'lucide-react'
 import { ModeToggle } from '@/components/layout/mode-toggle'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { useState } from 'react'
 
 export function AdminHeader() {
   const router = useRouter()
   const logout = useSupabaseAuthStore((state) => state.logout)
+  const [open, setOpen] = useState(false)
 
   const handleLogout = async () => {
     try {
@@ -81,14 +90,65 @@ export function AdminHeader() {
           {/* 移动端菜单 */}
           <div className="md:hidden flex items-center gap-2">
             <ModeToggle />
-            <Button
-              onClick={handleLogout}
-              variant="ghost"
-              size="sm"
-              className="gap-2"
-            >
-              <LogOut className="h-4 w-4" />
-            </Button>
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <SheetHeader>
+                  <SheetTitle className="text-left">管理菜单</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col gap-4 py-4 mt-4">
+                  <Link
+                    href="/admin"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors"
+                  >
+                    <LayoutDashboard className="w-4 h-4" />
+                    仪表盘
+                  </Link>
+                  <Link
+                    href="/admin/posts"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors"
+                  >
+                    <FileText className="w-4 h-4" />
+                    文章管理
+                  </Link>
+                  <Link
+                    href="/admin/settings"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors"
+                  >
+                    <Settings className="w-4 h-4" />
+                    系统设置
+                  </Link>
+                  <div className="h-px bg-zinc-200 dark:bg-zinc-800 mx-2" />
+                  <a
+                    href="/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors"
+                  >
+                    <Home className="w-4 h-4" />
+                    查看站点
+                  </a>
+                  <Button
+                    onClick={() => {
+                        setOpen(false)
+                        handleLogout()
+                    }}
+                    variant="ghost"
+                    className="justify-start px-3 text-zinc-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20"
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    退出登录
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
