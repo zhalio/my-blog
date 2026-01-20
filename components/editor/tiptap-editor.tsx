@@ -185,12 +185,7 @@ export function TipTapEditor({
             return true
           }
         }
-        return false relative">
-      {isUploading && (
-        <div className="absolute inset-0 z-50 bg-background/50 backdrop-blur-sm flex items-center justify-center">
-            <div className="animate-pulse text-primary font-medium">图片上传中...</div>
-        </div>
-      )}
+        return false
       },
     },
   })
@@ -200,7 +195,12 @@ export function TipTapEditor({
   }
 
   return (
-    <div className="border rounded-lg overflow-hidden">
+    <div className="border rounded-lg overflow-hidden relative">
+      {isUploading && (
+        <div className="absolute inset-0 z-50 bg-background/50 backdrop-blur-sm flex items-center justify-center">
+            <div className="animate-pulse text-primary font-medium">图片上传中...</div>
+        </div>
+      )}
       {editable && <MenuBar editor={editor} />}
       <EditorContent editor={editor} />
       {editable && editor && (
