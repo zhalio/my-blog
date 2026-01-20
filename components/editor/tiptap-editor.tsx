@@ -108,26 +108,73 @@ export function TipTapEditor({
     },
     editorProps: {
       attributes: {
-        class:
-          'prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none focus:outline-none min-h-[500px] px-4 py-2 bg-background text-foreground dark:prose-invert',
+        class: 'prose prose-lg dark:prose-invert max-w-none focus:outline-none min-h-[500px] leading-relaxed font-serif prose-headings:font-sans ProseMirror',
       },
-      handlePaste: (_view, event) => {
+      handlePaste: (view, event, slice) => {
+        // 1. Image Paste Support
+        const item = event.clipboardData?.items[0]
+        if (item?.type.indexOf('image') === 0) {
+          event.preventDefault()
+          const file = item.getAsFile()
+          if (file) {
+            uploadImage(file).then((url) => {
+              if (url) {
+                const { schema } = view.state
+                const node = schema.nodes.image.create({ src: url })
+                const transaction = view.state.tr.replaceSelectionWith(node)
+                view.dispatch(transaction)
+              }
+            })
+          }
+          return true
+        }
+
+        // 2. Existing Markdown Support
         try {
           const e = event as unknown as ClipboardEvent
           const text = e.clipboardData?.getData('text/markdown') || e.clipboardData?.getData('text/plain') || ''
           // 简单启发式：包含 Markdown 特征再拦截
           const looksMarkdown = /(^|\n)\s{0,3}(#{1,6}\s|[-*+]\s|\d+\.\s|>\s|```|~~|\*\*|__)/.test(text)
-          if (!text || !looksMarkdown) return false
-          e.preventDefault()
-          ;(async () => {
-            const file = await remark().use(remarkGfm).use(remarkRehype).use(rehypeStringify).process(text)
-            const html = String(file)
-            editor?.chain().focus().insertContent(html).run()
-          })()
-          return true
-        } catch {
-          return false
+          
+          if (text && looksMarkdown) {
+             e.preventDefault()
+             ;(async () => {
+               const file = await remark().use(remarkGfm).use(remarkRehype).use(rehypeStringify).process(text)
+               const html = String(file)
+               // Note: 'editor' comes from closure, might be safer to use view.props.editor? 
+               // Accessing via view.dom doesn't give Tiptap editor. 
+               // Stick to closure 'editor' as it was before, or use view in some way if possible, 
+               // but 'editor' is available in scope.
+               editor?.chain().focus().insertContent(html).run()
+             })()
+             return true
+          }
+        } catch {}
+        
+        return false
+      },
+      handleDrop: (view, event, slice, moved) => {
+        if (!moved && event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
+          const file = event.dataTransfer.files[0]
+          
+          if (file.type.indexOf('image') === 0) {
+            event.preventDefault()
+            
+            uploadImage(file).then((url) => {
+              if (url) {
+                const { schema } = view.state
+                const coordinates = view.posAtCoords({ left: event.clientX, top: event.clientY })
+                if (coordinates) {
+                   const node = schema.nodes.image.create({ src: url })
+                   const transaction = view.state.tr.insert(coordinates.pos, node)
+                   view.dispatch(transaction)
+                }
+              }
+            })
+            return true
+          }
         }
+        return false
       },
     },
   })
