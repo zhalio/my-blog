@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useSupabaseAuthStore } from '@/lib/supabase-auth-store'
 import { Button } from '@/components/ui/button'
-import { BookOpen, LogOut, LayoutDashboard, FileText, Settings, Home, Menu } from 'lucide-react'
+import { BookOpen, LogOut, LayoutDashboard, FileText, Settings, Home, Menu, Image as ImageIcon } from 'lucide-react'
 import { ModeToggle } from '@/components/layout/mode-toggle'
 import {
   Sheet,
@@ -57,6 +57,13 @@ export function AdminHeader() {
             >
               <FileText className="w-4 h-4" />
               文章管理
+            </Link>
+            <Link
+              href="/admin/media"
+              className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors"
+            >
+              <ImageIcon className="w-4 h-4" />
+              媒体库
             </Link>
             <Link
               href="/admin/settings"
@@ -116,6 +123,14 @@ export function AdminHeader() {
                   >
                     <FileText className="w-4 h-4" />
                     文章管理
+                  </Link>
+                  <Link
+                    href="/admin/media"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors"
+                  >
+                    <ImageIcon className="w-4 h-4" />
+                    媒体库
                   </Link>
                   <Link
                     href="/admin/settings"
