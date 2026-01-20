@@ -425,9 +425,9 @@ export default function EditPostPage() {
                             checked && !formData.published_at ? nowLocalInput() : formData.published_at,
                         })
                       }}
-                      className="rounded"设定发布时间
+                      className="rounded"
                     />
-                    <span className="text-sm font-medium">已发布</span>
+                    <span className="text-sm font-medium">设定发布时间</span>
                   </label>
                 </div>
 
