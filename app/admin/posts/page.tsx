@@ -452,7 +452,6 @@ export default function AdminPostsPage() {
             </div>
           </div>
         </div>
-      </div>
 
       {/* 统计卡片 */}
         {posts.length > 0 && (
