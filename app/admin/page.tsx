@@ -26,6 +26,7 @@ interface DashboardStats {
   }[]
   activity: {
     created_at: string
+    published_at: string | null
   }[]
 }
 
@@ -74,11 +75,13 @@ export default function AdminDashboard() {
   // Process data for charts
 
   // 1. Activity Heatmap Data
-  // Aggregate created_at by date
+  // Aggregate using published_at (if available) or created_at
   const activityMap = new Map<string, number>()
   if (data.activity) {
       data.activity.forEach(item => {
-        const date = item.created_at.split('T')[0]
+        const dateStr = item.published_at || item.created_at
+        if (!dateStr) return
+        const date = dateStr.split('T')[0]
         activityMap.set(date, (activityMap.get(date) || 0) + 1)
       })
   }
