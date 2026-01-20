@@ -82,7 +82,9 @@ export function TipTapEditor({
           class: 'border border-zinc-200 dark:border-zinc-800',
         },
       }),
-      TableCell.configure({
+      TableCell.extend({
+        content: 'block+',
+      }).configure({
         HTMLAttributes: {
           class: 'border border-zinc-200 dark:border-zinc-800 px-4 py-2',
         },
@@ -148,8 +150,8 @@ export function TipTapEditor({
           const e = event as unknown as ClipboardEvent
           const text = e.clipboardData?.getData('text/markdown') || e.clipboardData?.getData('text/plain') || ''
           
-          // Include $ to detect latex math
-          const looksMarkdown = /(^|\n)\s{0,3}(#{1,6}\s|[-*+]\s|\d+\.\s|>\s|```|~~|\*\*|__|\$\$?)/.test(text)
+          // Include $ to detect latex math and | to detect tables
+          const looksMarkdown = /(^|\n)\s{0,3}(#{1,6}\s|[-*+]\s|\d+\.\s|>\s|```|~~|\*\*|__|\$\$?|\|)/.test(text)
           
           if (text && looksMarkdown) {
              e.preventDefault()
@@ -157,8 +159,8 @@ export function TipTapEditor({
                // Strategy 1: Try full parse with Math
                try {
                  const file = await remark()
-                   .use(remarkGfm)
                    .use(remarkMath)
+                   .use(remarkGfm)
                    .use(remarkRehype, {
                      handlers: {
                        math: (state: any, node: any) => {
@@ -170,7 +172,7 @@ export function TipTapEditor({
                              'data-type': 'block-math', 
                              'data-latex': node.value || '' 
                            },
-                           children: []
+                           children: [{ type: 'text', value: node.value || '' }]
                          }
                        },
                        inlineMath: (state: any, node: any) => {
@@ -181,7 +183,7 @@ export function TipTapEditor({
                              'data-type': 'inline-math', 
                              'data-latex': node.value || '' 
                            },
-                           children: []
+                           children: [{ type: 'text', value: node.value || '' }]
                          }
                        }
                      }
