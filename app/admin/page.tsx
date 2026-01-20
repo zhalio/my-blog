@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { ActivityHeatmap, TagPieChart } from '@/components/admin/charts'
+import { ActivityHeatmap } from '@/components/admin/charts'
 import { useSupabaseAuthStore } from '@/lib/supabase-auth-store'
 import { useRouter } from 'next/navigation'
 import { FileText, Eye, Edit3, MessageSquare, AlertCircle, BarChart3 } from 'lucide-react'
@@ -15,14 +15,6 @@ interface DashboardStats {
     draftsCount: number
     totalViews: number
   }
-  drafts: {
-    id: string
-    title: string
-    updated_at: string
-  }[]
-  tags: {
-    name: string
-    count: number
   }[]
   activity: {
     created_at: string
@@ -149,33 +141,14 @@ export default function AdminDashboard() {
         </CardContent>
       </Card>
 
-      <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-7">
-        {/* Tag Distribution */}
-        <Card className="col-span-full lg:col-span-3 flex flex-col">
-          <CardHeader>
-            <CardTitle className="text-lg">内容分布</CardTitle>
-            <CardDescription className="text-sm">
-              各标签下的文章数量占比
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="pt-2 flex-1">
-            {data.tags && data.tags.length > 0 ? (
-                <TagPieChart data={data.tags} />
-            ) : (
-                <div className="h-[400px] flex items-center justify-center text-muted-foreground">
-                    暂无标签数据
-                </div>
-            )}
-          </CardContent>
-        </Card>
-
+      <div className="grid gap-4 grid-cols-1">
         {/* Drafts List */}
-        <Card className="col-span-full lg:col-span-4 flex flex-col">
+        <Card className="flex flex-col">
            <CardHeader>
              <CardTitle className="text-lg">待办事项</CardTitle>
              <CardDescription className="text-sm">最新草稿</CardDescription>
            </CardHeader>
-           <CardContent className="flex-1 min-h-[300px]">
+           <CardContent className="flex-1">
              {data.drafts && data.drafts.length > 0 ? (
                  <div className="space-y-4">
                    {data.drafts.map(draft => (
