@@ -55,47 +55,92 @@ export function TrafficTrendChart({ data }: { data: any[] }) {
 
 // --- Tag Distribution Chart (Pie Chart) ---
 export function TagPieChart({ data }: { data: any[] }) {
-    // Generate distinct colors - using Nord Theme Palette (Softer, not too bright)
+    // Modern, accessible color palette with better contrast
     const COLORS = [
-        '#88c0d0', // Nord 8 (Ice Blue)
-        '#81a1c1', // Nord 9 (Blue)
-        '#b48ead', // Nord 15 (Purple)
-        '#a3be8c', // Nord 14 (Green)
-        '#ebcb8b', // Nord 13 (Yellow)
-        '#d08770', // Nord 12 (Orange)
-        '#bf616a', // Nord 11 (Red)
+        'hsl(200, 95%, 50%)',  // Bright Blue
+        'hsl(280, 70%, 60%)',  // Purple
+        'hsl(340, 75%, 55%)',  // Pink
+        'hsl(30, 90%, 55%)',   // Orange
+        'hsl(45, 90%, 55%)',   // Yellow
+        'hsl(160, 60%, 45%)',  // Teal
+        'hsl(120, 50%, 50%)',  // Green
+        'hsl(260, 60%, 65%)',  // Lavender
     ];
 
+    // Custom label component for better readability
+    const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }: any) => {
+        const RADIAN = Math.PI / 180;
+        const radius = outerRadius + 30;
+        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+        
+        // Only show label if percentage is significant enough
+        if (percent < 0.05) return null;
+
+        return (
+            <text 
+                x={x} 
+                y={y} 
+                fill="hsl(var(--foreground))" 
+                textAnchor={x > cx ? 'start' : 'end'} 
+                dominantBaseline="central"
+                className="text-sm font-medium"
+            >
+                {`${name} ${(percent * 100).toFixed(0)}%`}
+            </text>
+        );
+    };
+
     return (
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={400}>
             <PieChart>
                 <Pie
                     data={data}
                     cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    paddingAngle={4}
+                    cy="45%"
+                    innerRadius={70}
+                    outerRadius={100}
+                    paddingAngle={2}
                     dataKey="count"
                     nameKey="name"
-                    stroke="none"
-                    label={({ name, percent }) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
-                    labelLine={{ stroke: 'hsl(var(--muted-foreground))', strokeWidth: 1 }}
+                    label={renderCustomLabel}
+                    labelLine={{
+                        stroke: 'hsl(var(--border))',
+                        strokeWidth: 1.5
+                    }}
                 >
                     {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        <Cell 
+                            key={`cell-${index}`} 
+                            fill={COLORS[index % COLORS.length]}
+                            className="transition-opacity hover:opacity-80"
+                        />
                     ))}
                 </Pie>
                 <Tooltip 
-                    contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: 'var(--radius)' }}
-                    itemStyle={{ color: 'hsl(var(--foreground))' }}
+                    contentStyle={{ 
+                        backgroundColor: 'hsl(var(--popover))', 
+                        borderColor: 'hsl(var(--border))', 
+                        borderRadius: '8px',
+                        fontSize: '14px',
+                        padding: '12px'
+                    }}
+                    itemStyle={{ 
+                        color: 'hsl(var(--popover-foreground))',
+                        fontWeight: 500
+                    }}
+                    formatter={(value: any, name: any) => [`${value} 篇文章`, name]}
                 />
                 <Legend 
                     layout="horizontal" 
                     verticalAlign="bottom" 
                     align="center"
-                    wrapperStyle={{ paddingTop: '20px' }}
+                    wrapperStyle={{ 
+                        paddingTop: '30px',
+                        fontSize: '13px'
+                    }}
+                    iconType="circle"
+                    iconSize={8}
                 />
             </PieChart>
         </ResponsiveContainer>

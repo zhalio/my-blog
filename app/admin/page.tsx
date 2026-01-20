@@ -150,19 +150,19 @@ export default function AdminDashboard() {
       </Card>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        {/* Tag Radar */}
+        {/* Tag Distribution */}
         <Card className="col-span-3">
           <CardHeader>
-            <CardTitle>内容分布</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-lg">内容分布</CardTitle>
+            <CardDescription className="text-sm">
               各标签下的文章数量占比
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-2">
             {data.tags && data.tags.length > 0 ? (
                 <TagPieChart data={data.tags} />
             ) : (
-                <div className="h-[300px] flex items-center justify-center text-muted-foreground">
+                <div className="h-[400px] flex items-center justify-center text-muted-foreground">
                     暂无标签数据
                 </div>
             )}
