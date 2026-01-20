@@ -150,8 +150,8 @@ export function TipTapEditor({
           const e = event as unknown as ClipboardEvent
           const text = e.clipboardData?.getData('text/markdown') || e.clipboardData?.getData('text/plain') || ''
           
-          // Include $ to detect latex math and | to detect tables
-          const looksMarkdown = /(^|\n)\s{0,3}(#{1,6}\s|[-*+]\s|\d+\.\s|>\s|```|~~|\*\*|__|\$\$?|\|)/.test(text)
+          // Include all common markdown triggers: math, tables, headers, lists, quotes, code, formatting, html, footnotes
+          const looksMarkdown = /(^|\n)\s{0,3}(#{1,6}\s|[-*+]\s|\d+\.\s|>|```|~~|[*_](?!\s)|`|[-*_]{3,}|!\[|\[|\||\$\$?|\\|<\/?[a-z]|\[\^)/i.test(text)
           
           if (text && looksMarkdown) {
              e.preventDefault()
