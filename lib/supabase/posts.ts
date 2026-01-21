@@ -1,6 +1,6 @@
-import { supabase } from './supabase/client'
-import type { Post } from './supabase/types'
-import type { PostData as PostListItem } from './types'
+import { supabase } from './client'
+import type { Post } from './types'
+import type { PostData as PostListItem } from '../types'
 
 export interface PostData {
   id: string
