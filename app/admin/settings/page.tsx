@@ -124,7 +124,7 @@ export default function SettingsPage() {
                 og_image: s.seo_config?.og_image ?? ''
             },
             feature_flags: {
-                enable_comments: s.feature_flags?.enable_comments ?? false,
+                enable_comments: s.feature_flags?.enable_comments ?? true,
                 enable_registrations: s.feature_flags?.enable_registrations ?? false,
                 maintenance_mode: s.feature_flags?.maintenance_mode ?? false
             }
