@@ -4,36 +4,82 @@ import { useState, useEffect } from 'react'
 import { useSupabaseAuthStore } from '@/lib/supabase-auth-store'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Label } from '@/components/ui/label'
-import { Save, Loader2 } from 'lucide-react'
+import { Textarea } from '@/components/ui/textarea'
+import { Switch } from '@/components/ui/switch'
+import { Save, Loader2, Plus, Trash2, Globe, Github, Twitter, Linkedin, Mail } from 'lucide-react'
+import { useForm, useFieldArray } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
+import { toast } from 'sonner' // Assuming you have sommer or similar toast, or use standard alert for now
+import { Separator } from '@/components/ui/separator'
 
-// --- Types ---
-interface SiteSettings {
-  site_title: string
-  site_description: string
-  site_keywords: string[]
-  favicon_url: string
-  footer_text: string
-  social_links: { platform: string; url: string; icon: string }[]
-}
+// --- Schema & Types ---
+const socialLinkSchema = z.object({
+  platform: z.string(),
+  url: z.string().url('请输入有效的 URL'),
+  icon: z.string().optional()
+})
+
+const settingsSchema = z.object({
+  site_title: z.string().min(1, '网站标题不能为空'),
+  site_description: z.string(),
+  site_keywords: z.array(z.string()),
+  favicon_url: z.string(),
+  footer_text: z.string().optional(),
+  social_links: z.array(socialLinkSchema).optional(),
+  
+  // New Fields
+  author_info: z.object({
+    name: z.string().optional(),
+    bio: z.string().optional(),
+    avatar_url: z.string().optional()
+  }).optional(),
+  
+  seo_config: z.object({
+    google_site_verification: z.string().optional(),
+    baidu_site_verification: z.string().optional(),
+    og_image: z.string().optional()
+  }).optional(),
+
+  feature_flags: z.object({
+    enable_comments: z.boolean().optional(),
+    enable_registrations: z.boolean().optional(),
+    maintenance_mode: z.boolean().optional()
+  }).optional()
+})
+
+type SiteSettings = z.infer<typeof settingsSchema>
 
 export default function SettingsPage() {
   const { accessToken: token } = useSupabaseAuthStore()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   
-  // Settings State
-  const [settings, setSettings] = useState<SiteSettings>({
-    site_title: '',
-    site_description: '',
-    site_keywords: [],
-    favicon_url: '',
-    footer_text: '',
-    social_links: []
+  const form = useForm<SiteSettings>({
+    resolver: zodResolver(settingsSchema),
+    defaultValues: {
+       site_title: '',
+       site_description: '',
+       site_keywords: [],
+       footer_text: '',
+       social_links: [],
+       author_info: { name: '', bio: '', avatar_url: '' },
+       seo_config: { google_site_verification: '', baidu_site_verification: '', og_image: '' },
+       feature_flags: { enable_comments: false, enable_registrations: false, maintenance_mode: false }
+    }
   })
+
+  const { fields: socialFields, append: appendSocial, remove: removeSocial } = useFieldArray({
+    control: form.control,
+    name: "social_links"
+  });
+
+  // Keywords handling
   const [keywordInput, setKeywordInput] = useState('')
+  const keywords = form.watch('site_keywords') || []
 
   useEffect(() => {
     fetchData()
@@ -43,9 +89,15 @@ export default function SettingsPage() {
     setLoading(true)
     try {
       const settingsRes = await fetch('/api/admin/settings')
-      const settingsData = await settingsRes.json()
-      if (settingsData.settings) {
-        setSettings(settingsData.settings)
+      const data = await settingsRes.json()
+      if (data.settings) {
+        // Merge with defaults to ensure all fields exist
+        form.reset({
+          ...data.settings,
+          author_info: data.settings.author_info || { name: '', bio: '', avatar_url: '' },
+          seo_config: data.settings.seo_config || { google_site_verification: '', baidu_site_verification: '', og_image: '' },
+          feature_flags: data.settings.feature_flags || { enable_comments: false, enable_registrations: false, maintenance_mode: false }
+        })
       }
     } catch (error) {
       console.error('Failed to load settings', error)
@@ -54,127 +106,236 @@ export default function SettingsPage() {
     }
   }
 
-  const handleSaveSettings = async () => {
+  const onSubmit = async (data: SiteSettings) => {
     if (!token) return
     setSaving(true)
     try {
-      await fetch('/api/admin/settings', {
+      const res = await fetch('/api/admin/settings', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(settings)
+        body: JSON.stringify(data)
       })
-      alert('保存成功')
+      if (!res.ok) throw new Error('Failed to save')
+      alert('所有配置已成功更新')
     } catch (error) {
-      alert('保存失败')
+      alert('保存失败，请重试')
     } finally {
       setSaving(false)
     }
   }
 
   const handleAddKeyword = () => {
-    if (keywordInput.trim() && !settings.site_keywords.includes(keywordInput.trim())) {
-      setSettings(prev => ({
-        ...prev,
-        site_keywords: [...(prev.site_keywords || []), keywordInput.trim()]
-      }))
+    if (keywordInput.trim() && !keywords.includes(keywordInput.trim())) {
+      form.setValue('site_keywords', [...keywords, keywordInput.trim()])
       setKeywordInput('')
     }
   }
 
   const removeKeyword = (kw: string) => {
-    setSettings(prev => ({
-      ...prev,
-      site_keywords: prev.site_keywords.filter(k => k !== kw)
-    }))
+    form.setValue('site_keywords', keywords.filter(k => k !== kw))
   }
 
-  if (loading) return <div className="p-8 text-center">Loading...</div>
+  if (loading) return (
+    <div className="flex items-center justify-center min-h-[500px]">
+        <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+    </div>
+  )
 
   return (
-    <div className="container mx-auto py-8 space-y-8">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">系统设置中心</h1>
-        <Button onClick={handleSaveSettings} disabled={saving} className="gap-2">
-          {saving ? <Loader2 className="animate-spin h-4 w-4" /> : <Save className="h-4 w-4" />}
-          保存全站配置
+    <div className="container mx-auto py-8 max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="flex justify-between items-center border-b pb-6">
+        <div>
+            <h1 className="text-3xl font-bold tracking-tight">系统设置</h1>
+            <p className="text-muted-foreground mt-2">管理站点的全局配置、SEO 信息及功能开关</p>
+        </div>
+        <Button onClick={form.handleSubmit(onSubmit)} disabled={saving} className="gap-2 min-w-[120px]">
+          {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+          保存更改
         </Button>
       </div>
 
       <Tabs defaultValue="general" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 lg:w-[400px]">
-          <TabsTrigger value="general">常规设置</TabsTrigger>
-          <TabsTrigger value="seo">SEO 配置</TabsTrigger>
+        
+        <TabsList className="grid w-full grid-cols-4 lg:w-[600px] bg-muted/50 p-1">
+          <TabsTrigger value="general" className="data-[state=active]:bg-background data-[state=active]:shadow-sm transition-all">基本设置</TabsTrigger>
+          <TabsTrigger value="author" className="data-[state=active]:bg-background data-[state=active]:shadow-sm transition-all">作者信息</TabsTrigger>
+          <TabsTrigger value="seo" className="data-[state=active]:bg-background data-[state=active]:shadow-sm transition-all">SEO & 链接</TabsTrigger>
+          <TabsTrigger value="advanced" className="data-[state=active]:bg-background data-[state=active]:shadow-sm transition-all">高级选项</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="general" className="mt-6 space-y-6">
-          <Card className="p-6 space-y-4">
-            <h2 className="text-lg font-semibold">基本信息</h2>
-            <div className="grid gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="site_title">网站标题</Label>
-                <Input 
-                  id="site_title" 
-                  value={settings.site_title} 
-                  onChange={e => setSettings({...settings, site_title: e.target.value})} 
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="site_desc">网站描述</Label>
-                <Input 
-                  id="site_desc" 
-                  value={settings.site_description || ''} 
-                  onChange={e => setSettings({...settings, site_description: e.target.value})} 
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="footer_text">底部版权文字</Label>
-                <Input 
-                  id="footer_text" 
-                  value={settings.footer_text || ''} 
-                  onChange={e => setSettings({...settings, footer_text: e.target.value})} 
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="favicon">Favicon URL</Label>
-                <Input 
-                  id="favicon" 
-                  value={settings.favicon_url || ''} 
-                  onChange={e => setSettings({...settings, favicon_url: e.target.value})} 
-                  placeholder="https://..."
-                />
-              </div>
-            </div>
-          </Card>
-        </TabsContent>
+        <div className="mt-8 space-y-6">
+            
+            {/* --- General Settings --- */}
+            <TabsContent value="general">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>站点基础信息</CardTitle>
+                        <CardDescription>配置博客的标题、描述和版权信息。</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                        <div className="grid gap-2">
+                            <Label>网站标题</Label>
+                            <Input {...form.register('site_title')} placeholder="我的博客" />
+                        </div>
+                        <div className="grid gap-2">
+                            <Label>网站描述</Label>
+                            <Textarea {...form.register('site_description')} placeholder="关于博客的简短介绍..." rows={4} className="resize-none" />
+                        </div>
+                        <div className="grid gap-2">
+                            <Label>Favicon URL</Label>
+                            <Input {...form.register('favicon_url')} placeholder="https://..." />
+                        </div>
+                        <div className="grid gap-2">
+                            <Label>页脚文本</Label>
+                            <Input {...form.register('footer_text')} placeholder="© 2024 All Rights Reserved" />
+                        </div>
+                    </CardContent>
+                </Card>
+            </TabsContent>
 
-        <TabsContent value="seo" className="mt-6 space-y-6">
-          <Card className="p-6 space-y-4">
-            <h2 className="text-lg font-semibold">SEO 默认配置</h2>
-             <div className="grid gap-2">
-                <Label>全局关键词 (Keywords)</Label>
-                <div className="flex flex-wrap gap-2 mb-2 bg-zinc-50 dark:bg-zinc-900 p-2 rounded-md border min-h-[40px]">
-                  {settings.site_keywords?.map(kw => (
-                    <span key={kw} className="bg-primary/10 text-primary px-2 py-1 rounded text-xs flex items-center gap-1">
-                      {kw}
-                      <button onClick={() => removeKeyword(kw)} className="hover:text-red-500">×</button>
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-2">
-                  <Input 
-                    value={keywordInput}
-                    onChange={e => setKeywordInput(e.target.value)}
-                    placeholder="输入关键词后按回车或点击添加"
-                    onKeyDown={e => e.key === 'Enter' && handleAddKeyword()}
-                  />
-                  <Button type="button" onClick={handleAddKeyword} variant="outline">添加</Button>
-                </div>
-              </div>
-          </Card>
-        </TabsContent>
+            {/* --- Author Settings --- */}
+            <TabsContent value="author">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>作者资料</CardTitle>
+                        <CardDescription>设置全局作者展示信息。</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <Label>显示名称</Label>
+                                <Input {...form.register('author_info.name')} placeholder="Admin" />
+                            </div>
+                            <div className="space-y-2">
+                                <Label>头像 URL</Label>
+                                <Input {...form.register('author_info.avatar_url')} placeholder="https://..." />
+                            </div>
+                         </div>
+                         <div className="space-y-2">
+                            <Label>个人简介</Label>
+                            <Textarea {...form.register('author_info.bio')} placeholder="写一段简短的自我介绍..." className="resize-none" rows={4} />
+                         </div>
+                    </CardContent>
+                </Card>
+            </TabsContent>
+
+            {/* --- SEO & Social --- */}
+            <TabsContent value="seo" className="space-y-6">
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>SEO 元数据</CardTitle>
+                        <CardDescription>配置搜索引擎验证和 OpenGraph 图片。</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                        <div className="space-y-2">
+                            <Label>关键词 (Tags)</Label>
+                            <div className="flex gap-2">
+                                <Input 
+                                    value={keywordInput} 
+                                    onChange={(e) => setKeywordInput(e.target.value)}
+                                    placeholder="输入关键词后按回车或添加"
+                                    onKeyDown={(e) => e.key === 'Enter' && handleAddKeyword()}
+                                />
+                                <Button type="button" onClick={handleAddKeyword} variant="secondary">添加</Button>
+                            </div>
+                            <div className="flex flex-wrap gap-2 mt-3">
+                                {keywords.map(kw => (
+                                    <span key={kw} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm flex items-center gap-1 group transition-colors hover:bg-destructive/10 hover:text-destructive cursor-pointer" onClick={() => removeKeyword(kw)}>
+                                        {kw}
+                                        <span className="w-3 h-3 group-hover:block hidden">×</span>
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                        <Separator />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                             <div className="space-y-2">
+                                <Label>Google Site Verification</Label>
+                                <Input {...form.register('seo_config.google_site_verification')} />
+                             </div>
+                             <div className="space-y-2">
+                                <Label>Baidu Site Verification</Label>
+                                <Input {...form.register('seo_config.baidu_site_verification')} />
+                             </div>
+                        </div>
+                        <div className="space-y-2">
+                             <Label>默认 OG Image URL</Label>
+                             <Input {...form.register('seo_config.og_image')} placeholder="https://.../og.jpg" />
+                        </div>
+                    </CardContent>
+                 </Card>
+
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>社交链接</CardTitle>
+                        <CardDescription>管理页脚或侧边栏显示的社交媒体图标。</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        {socialFields.map((field, index) => (
+                            <div key={field.id} className="flex gap-4 items-start animate-in fade-in slide-in-from-left-2">
+                                <div className="flex-1 grid grid-cols-3 gap-4">
+                                     <Input {...form.register(`social_links.${index}.platform`)} placeholder="平台 (e.g. Github)" />
+                                     <Input {...form.register(`social_links.${index}.url`)} placeholder="链接 URL" className="col-span-2" />
+                                </div>
+                                <Button type="button" variant="ghost" size="icon" onClick={() => removeSocial(index)} className="text-destructive hover:bg-destructive/10">
+                                    <Trash2 className="w-4 h-4" />
+                                </Button>
+                            </div>
+                        ))}
+                        <Button type="button" variant="outline" size="sm" onClick={() => appendSocial({ platform: '', url: '' })} className="mt-2">
+                            <Plus className="w-4 h-4 mr-2" />
+                            添加链接
+                        </Button>
+                    </CardContent>
+                 </Card>
+            </TabsContent>
+
+            {/* --- Advanced Settings --- */}
+            <TabsContent value="advanced">
+                <Card className="border-destructive/20 bg-destructive/5">
+                    <CardHeader>
+                        <CardTitle className="text-destructive">功能开关</CardTitle>
+                        <CardDescription>控制站点的某些敏感功能或状态。</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                        <div className="flex items-center justify-between p-4 bg-background rounded-lg border">
+                            <div className="space-y-0.5">
+                                <Label className="text-base">评论系统</Label>
+                                <p className="text-sm text-muted-foreground">是否允许用户在文章下发表评论。</p>
+                            </div>
+                            <Switch 
+                                checked={form.watch('feature_flags.enable_comments')}
+                                onCheckedChange={(checked) => form.setValue('feature_flags.enable_comments', checked)}
+                            />
+                        </div>
+                         <div className="flex items-center justify-between p-4 bg-background rounded-lg border">
+                            <div className="space-y-0.5">
+                                <Label className="text-base">开放注册</Label>
+                                <p className="text-sm text-muted-foreground">允许新用户注册账号（慎用）。</p>
+                            </div>
+                            <Switch 
+                                checked={form.watch('feature_flags.enable_registrations')}
+                                onCheckedChange={(checked) => form.setValue('feature_flags.enable_registrations', checked)}
+                            />
+                        </div>
+                         <div className="flex items-center justify-between p-4 bg-background rounded-lg border border-destructive/30">
+                            <div className="space-y-0.5">
+                                <Label className="text-base text-destructive">维护模式</Label>
+                                <p className="text-sm text-destructive/80">开启后，普通用户将无法访问站点内容。</p>
+                            </div>
+                            <Switch 
+                                checked={form.watch('feature_flags.maintenance_mode')}
+                                onCheckedChange={(checked) => form.setValue('feature_flags.maintenance_mode', checked)}
+                            />
+                        </div>
+                    </CardContent>
+                </Card>
+            </TabsContent>
+
+        </div>
       </Tabs>
     </div>
   )

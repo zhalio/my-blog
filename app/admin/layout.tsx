@@ -1,6 +1,6 @@
 import "../globals.css"
-import { AdminProtector } from "@/components/admin-protector"
-import { AdminHeader } from "@/components/admin-header"
+import { AdminHeader } from "@/components/admin/header"
+import { AdminProtector } from "@/components/admin/protector"
 import { ThemeProvider } from "@/components/layout/theme-provider"
 
 export const metadata = {

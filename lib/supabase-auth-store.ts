@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { supabaseAuth, getSession, getCurrentUser } from '@/lib/supabase-auth'
+import { supabaseAuth, getSession, getCurrentUser } from '@/lib/supabase/auth'
 
 interface SupabaseAuthState {
   user: any | null

@@ -1,4 +1,4 @@
-import { getAllTags } from "@/lib/supabase-posts";
+import { getAllTags } from "@/lib/supabase/posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 

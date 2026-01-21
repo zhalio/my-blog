@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { getPostBySlug, getPublishedPosts } from '@/lib/supabase-posts'
+import { getPostBySlug, getPublishedPosts } from '@/lib/supabase/posts'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-static'

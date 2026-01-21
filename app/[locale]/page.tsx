@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/routing";
-import { getPublishedPosts } from "@/lib/supabase-posts";
+import { getPublishedPosts } from "@/lib/supabase/posts";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from 'next-intl/server';
 import { PostList } from "@/components/blog/post-list";

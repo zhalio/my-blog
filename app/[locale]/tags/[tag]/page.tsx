@@ -1,4 +1,4 @@
-import { getPostsByTag, getAllTags } from "@/lib/supabase-posts";
+import { getPostsByTag, getAllTags } from "@/lib/supabase/posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PostList } from "@/components/blog/post-list";
 

@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getPublishedPosts } from '@/lib/supabase-posts'
+import { getPublishedPosts } from '@/lib/supabase/posts'
 
 export const dynamic = 'force-static'
 

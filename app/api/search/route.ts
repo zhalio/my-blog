@@ -1,4 +1,4 @@
-import { getPublishedPosts } from '@/lib/supabase-posts';
+import { getPublishedPosts } from '@/lib/supabase/posts';
 import { NextResponse } from 'next/server';
 
 export const revalidate = 60;
