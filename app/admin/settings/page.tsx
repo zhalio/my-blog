@@ -107,7 +107,11 @@ export default function SettingsPage() {
   }
 
   const onSubmit = async (data: SiteSettings) => {
-    if (!token) return
+    console.log('Submitting data:', data)
+    if (!token) {
+      toast.error('未授权，请重新登录')
+      return
+    }
     setSaving(true)
     try {
       const res = await fetch('/api/admin/settings', {
@@ -120,11 +124,20 @@ export default function SettingsPage() {
       })
       if (!res.ok) throw new Error('Failed to save')
       toast.success('所有配置已成功更新')
+      // Refresh local data to ensure sync
+      fetchData() 
     } catch (error) {
+      console.error(error)
       toast.error('保存失败，请检查数据库是否已运行 Migration')
     } finally {
       setSaving(false)
     }
+  }
+
+  const onInvalid = (errors: any) => {
+    console.error('Form validation errors:', errors)
+    const firstError = Object.values(errors)[0] as any
+    toast.error(`校验失败: ${firstError?.message || '请检查表单填写'}`)
   }
 
   const handleAddKeyword = () => {
@@ -151,7 +164,7 @@ export default function SettingsPage() {
             <h1 className="text-3xl font-bold tracking-tight">系统设置</h1>
             <p className="text-muted-foreground mt-2">管理站点的全局配置、SEO 信息及功能开关</p>
         </div>
-        <Button onClick={form.handleSubmit(onSubmit)} disabled={saving} className="gap-2 min-w-[120px]">
+        <Button onClick={form.handleSubmit(onSubmit, onInvalid)} disabled={saving} className="gap-2 min-w-[120px]">
           {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
           保存更改
         </Button>
