@@ -91,13 +91,46 @@ export default function SettingsPage() {
       const settingsRes = await fetch('/api/admin/settings')
       const data = await settingsRes.json()
       if (data.settings) {
-        // Merge with defaults to ensure all fields exist
-        form.reset({
-          ...data.settings,
-          author_info: data.settings.author_info || { name: '', bio: '', avatar_url: '' },
-          seo_config: data.settings.seo_config || { google_site_verification: '', baidu_site_verification: '', og_image: '' },
-          feature_flags: data.settings.feature_flags || { enable_comments: false, enable_registrations: false, maintenance_mode: false }
-        })
+         // Helper to replace null with empty string/default
+         const sanitize = (obj: any): any => {
+            if (obj === null || obj === undefined) return undefined;
+            if (Array.isArray(obj)) return obj.map(sanitize);
+            if (typeof obj === 'object') {
+              const result: any = {};
+              for (const key in obj) {
+                result[key] = sanitize(obj[key]);
+              }
+              return result;
+            }
+            return obj;
+         }
+
+         const s = data.settings
+         // Manually sanitize top-level string fields that might be null from DB
+         const cleanSettings = {
+            ...s,
+            site_title: s.site_title ?? '',
+            site_description: s.site_description ?? '',
+            favicon_url: s.favicon_url ?? '',
+            footer_text: s.footer_text ?? '',
+            author_info: {
+                name: s.author_info?.name ?? '',
+                bio: s.author_info?.bio ?? '',
+                avatar_url: s.author_info?.avatar_url ?? ''
+            },
+            seo_config: {
+                google_site_verification: s.seo_config?.google_site_verification ?? '',
+                baidu_site_verification: s.seo_config?.baidu_site_verification ?? '',
+                og_image: s.seo_config?.og_image ?? ''
+            },
+            feature_flags: {
+                enable_comments: s.feature_flags?.enable_comments ?? false,
+                enable_registrations: s.feature_flags?.enable_registrations ?? false,
+                maintenance_mode: s.feature_flags?.maintenance_mode ?? false
+            }
+         }
+
+        form.reset(cleanSettings)
       }
     } catch (error) {
       console.error('Failed to load settings', error)
