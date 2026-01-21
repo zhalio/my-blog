@@ -111,6 +111,8 @@ export default function SettingsPage() {
             ...s,
             site_title: s.site_title ?? '',
             site_description: s.site_description ?? '',
+            site_keywords: s.site_keywords ?? [],
+            social_links: s.social_links ?? [],
             favicon_url: s.favicon_url ?? '',
             footer_text: s.footer_text ?? '',
             author_info: {
