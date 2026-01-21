@@ -359,16 +359,7 @@ export default function SettingsPage() {
                                 onCheckedChange={(checked) => form.setValue('feature_flags.enable_comments', checked)}
                             />
                         </div>
-                         <div className="flex items-center justify-between p-4 bg-background rounded-lg border">
-                            <div className="space-y-0.5">
-                                <Label className="text-base">开放注册</Label>
-                                <p className="text-sm text-muted-foreground">允许新用户注册账号（慎用）。</p>
-                            </div>
-                            <Switch 
-                                checked={form.watch('feature_flags.enable_registrations')}
-                                onCheckedChange={(checked) => form.setValue('feature_flags.enable_registrations', checked)}
-                            />
-                        </div>
+                         {/* Registration Removed - Not applicable for Personal Blog */}
                          <div className="flex items-center justify-between p-4 bg-background rounded-lg border border-destructive/30">
                             <div className="space-y-0.5">
                                 <Label className="text-base text-destructive">维护模式</Label>
