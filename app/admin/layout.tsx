@@ -1,7 +1,9 @@
+import { ComponentType } from "react"
 import "../globals.css"
 import { AdminHeader } from "@/components/admin/header"
 import { AdminProtector } from "@/components/admin/protector"
 import { ThemeProvider } from "@/components/layout/theme-provider"
+import { Toaster } from "sonner"
 
 export const metadata = {
   metadataBase: new URL('https://emmmxx.xyz'),
@@ -20,6 +22,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <main className="container mx-auto px-4 max-w-6xl py-8">
                 {children}
               </main>
+              <Toaster />
             </div>
           </AdminProtector>
         </ThemeProvider>

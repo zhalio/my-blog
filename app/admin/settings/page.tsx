@@ -119,9 +119,9 @@ export default function SettingsPage() {
         body: JSON.stringify(data)
       })
       if (!res.ok) throw new Error('Failed to save')
-      alert('所有配置已成功更新')
+      toast.success('所有配置已成功更新')
     } catch (error) {
-      alert('保存失败，请重试')
+      toast.error('保存失败，请检查数据库是否已运行 Migration')
     } finally {
       setSaving(false)
     }
