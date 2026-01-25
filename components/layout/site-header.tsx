@@ -6,6 +6,7 @@ import { Terminal } from "lucide-react"
 import { CommandMenu } from "@/components/layout/command-menu"
 import { MobileNav } from "@/components/layout/mobile-nav"
 import { VantaSwitcher } from "@/components/effects/vanta-switcher"
+import { FontToggle } from "@/components/layout/font-toggle"
 
 export function SiteHeader() {
   const t = useTranslations('Navigation')
@@ -30,6 +31,7 @@ export function SiteHeader() {
              <CommandMenu />
            </div>
            <VantaSwitcher />
+              <FontToggle />
            <ModeToggle />
            <LanguageToggle />
         </div>
