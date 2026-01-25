@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useMemo, useState, type ReactNode } from "react"
-import { Check, Code, Italic, Languages, Sparkles, Type } from "lucide-react"
+import { useEffect, useMemo, useState } from "react"
+import { Check, Code, Italic, Sparkles, Type } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,34 +14,68 @@ import {
 
 const FONT_STORAGE_KEY = "article-font-preference"
 
-type LatinChoice = "latin-sans" | "latin-serif" | "latin-display" | "latin-mono"
-type CjkChoice = "cjk-sans" | "cjk-serif" | "cjk-rounded" | "cjk-kai"
+type FontChoice = "system-sans" | "source-han" | "pingfang" | "source-han-serif" | "songti" | "rounded" | "kaiti" | "mono"
 type FontSizeChoice = "xs" | "sm" | "base" | "lg" | "xl" | "2xl"
 
 type FontOption = {
-  id: LatinChoice | CjkChoice
+  id: FontChoice
   label: string
   hint: string
   stack: string
-  icon: ReactNode
 }
 
-const LATIN_OPTIONS: FontOption[] = [
-  { id: "latin-sans", label: "英文无衬线", hint: "Inter/Segoe/系统", stack: '"Inter", "Segoe UI", "SF Pro Text", system-ui, sans-serif', icon: <Type className="h-4 w-4" /> },
-  { id: "latin-serif", label: "英文衬线", hint: "Georgia/Times", stack: 'Georgia, "Times New Roman", Times, serif', icon: <Italic className="h-4 w-4" /> },
-  { id: "latin-display", label: "英文优雅衬线", hint: "Playfair / Baskerville", stack: '"Playfair Display", "Libre Baskerville", "Baskerville", "Times New Roman", serif', icon: <Sparkles className="h-4 w-4" /> },
-  { id: "latin-mono", label: "英文等宽", hint: "Fira Code/Consolas", stack: '"Fira Code", "JetBrains Mono", "Menlo", "Consolas", "Courier New", monospace', icon: <Code className="h-4 w-4" /> },
+const FONT_OPTIONS: FontOption[] = [
+  { 
+    id: "system-sans", 
+    label: "系统默认", 
+    hint: "清晰易读", 
+    stack: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif' 
+  },
+  { 
+    id: "source-han", 
+    label: "思源黑体", 
+    hint: "现代简洁", 
+    stack: '"Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif' 
+  },
+  { 
+    id: "pingfang", 
+    label: "苹方/雅黑", 
+    hint: "优雅流畅", 
+    stack: '"PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif' 
+  },
+  { 
+    id: "source-han-serif", 
+    label: "思源宋体", 
+    hint: "雅致书卷", 
+    stack: '"Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, serif' 
+  },
+  { 
+    id: "songti", 
+    label: "传统宋体", 
+    hint: "经典阅读", 
+    stack: '"Songti SC", "STSong", SimSun, "Noto Serif SC", Georgia, serif' 
+  },
+  { 
+    id: "rounded", 
+    label: "圆润黑体", 
+    hint: "柔和亲切", 
+    stack: '"MiSans", "HarmonyOS Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif' 
+  },
+  { 
+    id: "kaiti", 
+    label: "楷体", 
+    hint: "手写质感", 
+    stack: '"Kaiti SC", "STKaiti", KaiTi, "FangSong", serif' 
+  },
+  { 
+    id: "mono", 
+    label: "等宽字体", 
+    hint: "代码风格", 
+    stack: '"Fira Code", "JetBrains Mono", "Source Code Pro", Consolas, "Courier New", monospace' 
+  },
 ]
 
-const CJK_OPTIONS: FontOption[] = [
-  { id: "cjk-sans", label: "中文无衬线", hint: "思源黑/苹方/雅黑", stack: '"Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Heiti SC", "WenQuanYi Micro Hei", system-ui, sans-serif', icon: <Languages className="h-4 w-4" /> },
-  { id: "cjk-serif", label: "中文宋体", hint: "思源宋/宋体", stack: '"Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", "STSong", serif', icon: <Italic className="h-4 w-4" /> },
-  { id: "cjk-rounded", label: "中文圆体", hint: "更圆润", stack: '"MiSans", "HarmonyOS Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif', icon: <Sparkles className="h-4 w-4" /> },
-  { id: "cjk-kai", label: "中文楷体", hint: "更书写感", stack: '"Kaiti SC", "STKaiti", "KaiTi", "FangSong", serif', icon: <Italic className="h-4 w-4" /> },
-]
-
-const LATIN_MAP = Object.fromEntries(LATIN_OPTIONS.map((o) => [o.id, o.stack])) as Record<LatinChoice, string>
-const CJK_MAP = Object.fromEntries(CJK_OPTIONS.map((o) => [o.id, o.stack])) as Record<CjkChoice, string>
+const FONT_MAP = Object.fromEntries(FONT_OPTIONS.map((o) => [o.id, o.stack])) as Record<FontChoice, string>
 
 const FONT_SIZE_OPTIONS = [
   { id: "xs" as const, label: "特小", size: "0.875rem", lineHeight: "1.6" },
@@ -54,52 +88,35 @@ const FONT_SIZE_OPTIONS = [
 
 const FONT_SIZE_MAP = Object.fromEntries(FONT_SIZE_OPTIONS.map((o) => [o.id, { size: o.size, lineHeight: o.lineHeight }])) as Record<FontSizeChoice, { size: string; lineHeight: string }>
 
-type StoredPref = { latin: LatinChoice; cjk: CjkChoice; size: FontSizeChoice }
+type StoredPref = { font: FontChoice; size: FontSizeChoice }
 
 function applyFontPreference(pref: StoredPref) {
   const root = document.documentElement
-  const latinStack = LATIN_MAP[pref.latin] ?? LATIN_MAP["latin-sans"]
-  const cjkStack = CJK_MAP[pref.cjk] ?? CJK_MAP["cjk-sans"]
+  const fontStack = FONT_MAP[pref.font] ?? FONT_MAP["system-sans"]
   const sizeConfig = FONT_SIZE_MAP[pref.size] ?? FONT_SIZE_MAP["base"]
   
   // 移除旧的动态样式
   const oldStyle = document.getElementById('article-font-dynamic')
   if (oldStyle) oldStyle.remove()
   
-  // 创建新的样式标签，使用 @font-face + unicode-range 分离中英文
+  // 创建新的样式标签
   const style = document.createElement('style')
   style.id = 'article-font-dynamic'
   style.textContent = `
-    @font-face {
-      font-family: 'ArticleFontMixed';
-      src: local('Dummy');
-      font-style: normal;
-      font-weight: 400;
-      unicode-range: U+0000-00FF, U+0100-024F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF, U+2100-214F;
-    }
-    @font-face {
-      font-family: 'ArticleFontMixed';
-      src: local('Dummy');
-      font-style: normal;
-      font-weight: 400;
-      unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF, U+3400-4DBF, U+20000-2A6DF;
-    }
     .article-font {
-      font-family: ${latinStack}, ${cjkStack}, system-ui, sans-serif !important;
+      font-family: ${fontStack} !important;
     }
   `
   document.head.appendChild(style)
   
   root.style.setProperty("--article-font-size", sizeConfig.size)
   root.style.setProperty("--article-line-height", sizeConfig.lineHeight)
-  root.dataset.articleFontLatin = pref.latin
-  root.dataset.articleFontCjk = pref.cjk
+  root.dataset.articleFont = pref.font
   root.dataset.articleFontSize = pref.size
 }
 
 export function FontToggle() {
-  const [latin, setLatin] = useState<LatinChoice>("latin-sans")
-  const [cjk, setCjk] = useState<CjkChoice>("cjk-sans")
+  const [font, setFont] = useState<FontChoice>("system-sans")
   const [size, setSize] = useState<FontSizeChoice>("base")
 
   useEffect(() => {
@@ -108,82 +125,53 @@ export function FontToggle() {
     try {
       const parsed = savedRaw ? (JSON.parse(savedRaw) as Partial<StoredPref>) : null
       const initial: StoredPref = {
-        latin: parsed?.latin && parsed.latin in LATIN_MAP ? (parsed.latin as LatinChoice) : "latin-sans",
-        cjk: parsed?.cjk && parsed.cjk in CJK_MAP ? (parsed.cjk as CjkChoice) : "cjk-sans",
+        font: parsed?.font && parsed.font in FONT_MAP ? (parsed.font as FontChoice) : "system-sans",
         size: parsed?.size && parsed.size in FONT_SIZE_MAP ? (parsed.size as FontSizeChoice) : "base",
       }
-      setLatin(initial.latin)
-      setCjk(initial.cjk)
+      setFont(initial.font)
       setSize(initial.size)
       applyFontPreference(initial)
     } catch (e) {
-      applyFontPreference({ latin: "latin-sans", cjk: "cjk-sans", size: "base" })
+      applyFontPreference({ font: "system-sans", size: "base" })
     }
   }, [])
 
   useEffect(() => {
     if (typeof window === "undefined") return
-    const pref: StoredPref = { latin, cjk, size }
+    const pref: StoredPref = { font, size }
     applyFontPreference(pref)
     window.localStorage.setItem(FONT_STORAGE_KEY, JSON.stringify(pref))
-  }, [latin, cjk, size])
+  }, [font, size])
 
-  const activeIcon = useMemo(() => {
-    if (latin === "latin-mono") return <Code className="h-4 w-4" />
-    if (latin === "latin-serif" || latin === "latin-display") return <Italic className="h-4 w-4" />
-    return <Type className="h-4 w-4" />
-  }, [latin])
+  const activeOption = useMemo(() => FONT_OPTIONS.find((opt) => opt.id === font) ?? FONT_OPTIONS[0], [font])
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon" aria-label="切换正文字体">
-          {activeIcon}
+          {font === "mono" ? <Code className="h-4 w-4" /> : 
+           font.includes("serif") || font.includes("songti") || font.includes("kaiti") ? <Italic className="h-4 w-4" /> :
+           font === "rounded" ? <Sparkles className="h-4 w-4" /> :
+           <Type className="h-4 w-4" />}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={8} className="w-64">
-        <DropdownMenuLabel>英文/数字字体</DropdownMenuLabel>
+        <DropdownMenuLabel>字体样式</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {LATIN_OPTIONS.map((option) => (
+        {FONT_OPTIONS.map((option) => (
           <DropdownMenuItem
             key={option.id}
             className="flex items-center justify-between gap-2"
             onSelect={(e) => {
               e.preventDefault()
-              setLatin(option.id as LatinChoice)
+              setFont(option.id)
             }}
           >
-            <div className="flex items-center gap-2">
-              {option.icon}
-              <div className="flex flex-col leading-tight">
-                <span className="text-sm font-medium">{option.label}</span>
-                <span className="text-xs text-muted-foreground">{option.hint}</span>
-              </div>
+            <div className="flex flex-col leading-tight">
+              <span className="text-sm font-medium">{option.label}</span>
+              <span className="text-xs text-muted-foreground">{option.hint}</span>
             </div>
-            {latin === option.id && <Check className="h-4 w-4" />}
-          </DropdownMenuItem>
-        ))}
-
-        <DropdownMenuSeparator />
-        <DropdownMenuLabel>中文字体</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        {CJK_OPTIONS.map((option) => (
-          <DropdownMenuItem
-            key={option.id}
-            className="flex items-center justify-between gap-2"
-            onSelect={(e) => {
-              e.preventDefault()
-              setCjk(option.id as CjkChoice)
-            }}
-          >
-            <div className="flex items-center gap-2">
-              {option.icon}
-              <div className="flex flex-col leading-tight">
-                <span className="text-sm font-medium">{option.label}</span>
-                <span className="text-xs text-muted-foreground">{option.hint}</span>
-              </div>
-            </div>
-            {cjk === option.id && <Check className="h-4 w-4" />}
+            {font === option.id && <Check className="h-4 w-4" />}
           </DropdownMenuItem>
         ))}
 
