@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
+import { Redis } from '@upstash/redis'
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || '',
+  token: process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || '',
+})
 
 export async function GET(request: NextRequest) {
   const token = getAuthTokenFromRequest(request)
@@ -14,8 +20,20 @@ export async function GET(request: NextRequest) {
     // 1. Overview Counts
     const { count: postsCount } = await supabase.from('posts').select('*', { count: 'exact', head: true }).eq('published', true)
     const { count: draftsCount } = await supabase.from('posts').select('*', { count: 'exact', head: true }).eq('published', false)
-    const { data: viewsData } = await supabase.from('posts').select('views');
-    const totalViews = (viewsData as { views: number }[] | null)?.reduce((acc, curr) => acc + (curr.views || 0), 0) || 0;
+    
+    // 获取所有文章的 slug，然后从 Redis 读取真实阅读量
+    const { data: allPosts } = await supabase.from('posts').select('slug').eq('published', true)
+    let totalViews = 0
+    
+    if (allPosts && allPosts.length > 0) {
+      try {
+        const keys = allPosts.map(p => `views:${p.slug}`)
+        const viewsArray = await redis.mget<number[]>(...keys)
+        totalViews = viewsArray.reduce((sum, val) => sum + (val || 0), 0)
+      } catch (redisError) {
+        console.error('Failed to fetch views from Redis:', redisError)
+      }
+    }
 
     // 2. Drafts List
     const { data: drafts } = await supabase
