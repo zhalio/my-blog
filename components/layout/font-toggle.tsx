@@ -50,7 +50,8 @@ function applyFontPreference(pref: StoredPref) {
   const cjkStack = CJK_MAP[pref.cjk] ?? CJK_MAP["cjk-sans"]
   root.style.setProperty("--article-font-latin", latinStack)
   root.style.setProperty("--article-font-cjk", cjkStack)
-  root.style.setProperty("--article-font", `${cjkStack}, ${latinStack}, system-ui, sans-serif`)
+  // 拉丁字体在前，这样英文会优先使用拉丁字体，中文会fallback到CJK字体
+  root.style.setProperty("--article-font", `${latinStack}, ${cjkStack}, system-ui, sans-serif`)
   root.dataset.articleFontLatin = pref.latin
   root.dataset.articleFontCjk = pref.cjk
 }
