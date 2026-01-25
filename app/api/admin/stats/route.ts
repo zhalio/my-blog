@@ -22,14 +22,24 @@ export async function GET(request: NextRequest) {
     const { count: draftsCount } = await supabase.from('posts').select('*', { count: 'exact', head: true }).eq('published', false)
     
     // 获取所有文章的 slug，然后从 Redis 读取真实阅读量
-    const { data: allPosts } = await supabase.from('posts').select('slug').eq('published', true)
+    const { data: allPosts } = await supabase
+      .from('posts')
+      .select('slug')
+      .eq('published', true)
+
     let totalViews = 0
-    
-    if (allPosts && allPosts.length > 0) {
+    const postsArray = (allPosts as { slug: string }[] | null) ?? []
+    if (postsArray.length > 0) {
       try {
-        const keys = allPosts.map(p => `views:${p.slug}`)
-        const viewsArray = await redis.mget<number[]>(...keys)
-        totalViews = viewsArray.reduce((sum, val) => sum + (val || 0), 0)
+        const keys = postsArray.map((p) => `views:${p.slug}`)
+        const viewsUnknown = (await redis.mget(...keys)) as unknown[]
+        const viewsArray = viewsUnknown.map((v) => {
+          if (v == null) return null
+          if (typeof v === 'number') return v
+          const n = Number(v)
+          return Number.isFinite(n) ? n : null
+        }) as (number | null)[]
+        totalViews = viewsArray.reduce((sum: number, val) => sum + (val ?? 0), 0)
       } catch (redisError) {
         console.error('Failed to fetch views from Redis:', redisError)
       }
