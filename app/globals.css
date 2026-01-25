@@ -67,6 +67,8 @@
   --article-font-latin: var(--font-sans);
   --article-font-cjk: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Heiti SC", "WenQuanYi Micro Hei", "Source Han Sans SC", "Hiragino Sans GB", system-ui, sans-serif;
   --article-font: var(--article-font-latin), var(--article-font-cjk), system-ui, sans-serif;
+  --article-font-size: 1rem;
+  --article-line-height: 1.7;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
@@ -164,6 +166,8 @@
 
 .article-font {
   font-family: var(--article-font);
+  font-size: var(--article-font-size);
+  line-height: var(--article-line-height);
 }
 
 /* Custom Typography Overrides */

@@ -16,6 +16,7 @@ const FONT_STORAGE_KEY = "article-font-preference"
 
 type LatinChoice = "latin-sans" | "latin-serif" | "latin-display" | "latin-mono"
 type CjkChoice = "cjk-sans" | "cjk-serif" | "cjk-rounded" | "cjk-kai"
+type FontSizeChoice = "xs" | "sm" | "base" | "lg" | "xl" | "2xl"
 
 type FontOption = {
   id: LatinChoice | CjkChoice
@@ -42,23 +43,39 @@ const CJK_OPTIONS: FontOption[] = [
 const LATIN_MAP = Object.fromEntries(LATIN_OPTIONS.map((o) => [o.id, o.stack])) as Record<LatinChoice, string>
 const CJK_MAP = Object.fromEntries(CJK_OPTIONS.map((o) => [o.id, o.stack])) as Record<CjkChoice, string>
 
-type StoredPref = { latin: LatinChoice; cjk: CjkChoice }
+const FONT_SIZE_OPTIONS = [
+  { id: "xs" as const, label: "特小", size: "0.875rem", lineHeight: "1.6" },
+  { id: "sm" as const, label: "小", size: "0.9375rem", lineHeight: "1.65" },
+  { id: "base" as const, label: "标准", size: "1rem", lineHeight: "1.7" },
+  { id: "lg" as const, label: "大", size: "1.0625rem", lineHeight: "1.75" },
+  { id: "xl" as const, label: "特大", size: "1.125rem", lineHeight: "1.8" },
+  { id: "2xl" as const, label: "超大", size: "1.25rem", lineHeight: "1.85" },
+]
+
+const FONT_SIZE_MAP = Object.fromEntries(FONT_SIZE_OPTIONS.map((o) => [o.id, { size: o.size, lineHeight: o.lineHeight }])) as Record<FontSizeChoice, { size: string; lineHeight: string }>
+
+type StoredPref = { latin: LatinChoice; cjk: CjkChoice; size: FontSizeChoice }
 
 function applyFontPreference(pref: StoredPref) {
   const root = document.documentElement
   const latinStack = LATIN_MAP[pref.latin] ?? LATIN_MAP["latin-sans"]
   const cjkStack = CJK_MAP[pref.cjk] ?? CJK_MAP["cjk-sans"]
+  const sizeConfig = FONT_SIZE_MAP[pref.size] ?? FONT_SIZE_MAP["base"]
   root.style.setProperty("--article-font-latin", latinStack)
   root.style.setProperty("--article-font-cjk", cjkStack)
   // 拉丁字体在前，这样英文会优先使用拉丁字体，中文会fallback到CJK字体
   root.style.setProperty("--article-font", `${latinStack}, ${cjkStack}, system-ui, sans-serif`)
+  root.style.setProperty("--article-font-size", sizeConfig.size)
+  root.style.setProperty("--article-line-height", sizeConfig.lineHeight)
   root.dataset.articleFontLatin = pref.latin
   root.dataset.articleFontCjk = pref.cjk
+  root.dataset.articleFontSize = pref.size
 }
 
 export function FontToggle() {
   const [latin, setLatin] = useState<LatinChoice>("latin-sans")
   const [cjk, setCjk] = useState<CjkChoice>("cjk-sans")
+  const [size, setSize] = useState<FontSizeChoice>("base")
 
   useEffect(() => {
     if (typeof window === "undefined") return
@@ -68,21 +85,23 @@ export function FontToggle() {
       const initial: StoredPref = {
         latin: parsed?.latin && parsed.latin in LATIN_MAP ? (parsed.latin as LatinChoice) : "latin-sans",
         cjk: parsed?.cjk && parsed.cjk in CJK_MAP ? (parsed.cjk as CjkChoice) : "cjk-sans",
+        size: parsed?.size && parsed.size in FONT_SIZE_MAP ? (parsed.size as FontSizeChoice) : "base",
       }
       setLatin(initial.latin)
       setCjk(initial.cjk)
+      setSize(initial.size)
       applyFontPreference(initial)
     } catch (e) {
-      applyFontPreference({ latin: "latin-sans", cjk: "cjk-sans" })
+      applyFontPreference({ latin: "latin-sans", cjk: "cjk-sans", size: "base" })
     }
   }, [])
 
   useEffect(() => {
     if (typeof window === "undefined") return
-    const pref: StoredPref = { latin, cjk }
+    const pref: StoredPref = { latin, cjk, size }
     applyFontPreference(pref)
     window.localStorage.setItem(FONT_STORAGE_KEY, JSON.stringify(pref))
-  }, [latin, cjk])
+  }, [latin, cjk, size])
 
   const activeIcon = useMemo(() => {
     if (latin === "latin-mono") return <Code className="h-4 w-4" />
@@ -142,6 +161,25 @@ export function FontToggle() {
             {cjk === option.id && <Check className="h-4 w-4" />}
           </DropdownMenuItem>
         ))}
+
+        <DropdownMenuSeparator />
+        <DropdownMenuLabel>字号大小</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <div className="grid grid-cols-3 gap-1 px-2 pb-2">
+          {FONT_SIZE_OPTIONS.map((option) => (
+            <button
+              key={option.id}
+              onClick={() => setSize(option.id)}
+              className={`px-2 py-1.5 text-xs rounded transition-colors ${
+                size === option.id
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted hover:bg-muted/80"
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   )
