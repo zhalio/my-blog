@@ -104,7 +104,7 @@ export function ArticleContent({ html, className }: { html: string; className?: 
   return (
     <div 
       ref={ref}
-      className={cn("prose dark:prose-invert max-w-none", className)}
+      className={cn("prose dark:prose-invert max-w-none article-font", className)}
       dangerouslySetInnerHTML={{ __html: html }} 
     />
   );

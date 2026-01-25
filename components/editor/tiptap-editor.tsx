@@ -119,7 +119,7 @@ export function TipTapEditor({
     },
     editorProps: {
       attributes: {
-        class: 'prose prose-lg dark:prose-invert max-w-none focus:outline-none min-h-[500px] leading-relaxed font-serif prose-headings:font-sans ProseMirror',
+        class: 'prose prose-lg dark:prose-invert max-w-none focus:outline-none min-h-[500px] leading-relaxed article-font prose-headings:font-sans ProseMirror',
       },
       handlePaste: (view, event, slice) => {
         // 1. Image Paste Support

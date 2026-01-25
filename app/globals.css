@@ -64,6 +64,9 @@
 
 :root {
   --radius: 0.625rem;
+  --article-font-latin: var(--font-sans);
+  --article-font-cjk: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Heiti SC", "WenQuanYi Micro Hei", "Source Han Sans SC", "Hiragino Sans GB", system-ui, sans-serif;
+  --article-font: var(--article-font-cjk), var(--article-font-latin), system-ui, sans-serif;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
@@ -99,6 +102,21 @@
 
 :root[data-font="serif"] {
   --font-sans: var(--font-serif);
+}
+
+:root[data-article-font="sans"] {
+  --article-font-latin: var(--font-sans);
+  --article-font: var(--article-font-cjk), var(--article-font-latin), system-ui, sans-serif;
+}
+
+:root[data-article-font="serif"] {
+  --article-font-latin: var(--font-serif);
+  --article-font: var(--article-font-cjk), var(--article-font-latin), system-ui, serif;
+}
+
+:root[data-article-font="mono"] {
+  --article-font-latin: var(--font-mono);
+  --article-font: var(--article-font-cjk), var(--article-font-latin), monospace;
 }
 
 .dark {
@@ -142,6 +160,10 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.article-font {
+  font-family: var(--article-font);
 }
 
 /* Custom Typography Overrides */
