@@ -61,12 +61,26 @@
   to { background-position: 200% center; }
 }
 
+/* 自定义字体面，通过 unicode-range 分别控制拉丁和CJK字符 */
+@font-face {
+  font-family: 'ArticleFont';
+  src: local('Arial');
+  unicode-range: U+0000-024F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF, U+2100-214F;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ArticleFont';
+  src: local('Noto Sans SC'), local('Microsoft YaHei');
+  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
+  font-style: normal;
+}
 
 :root {
   --radius: 0.625rem;
   --article-font-latin: var(--font-sans);
   --article-font-cjk: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Heiti SC", "WenQuanYi Micro Hei", "Source Han Sans SC", "Hiragino Sans GB", system-ui, sans-serif;
-  --article-font: var(--article-font-latin), var(--article-font-cjk), system-ui, sans-serif;
+  --article-font: ArticleFont, system-ui, sans-serif;
   --article-font-size: 1rem;
   --article-line-height: 1.7;
   --background: oklch(1 0 0);

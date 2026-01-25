@@ -61,10 +61,35 @@ function applyFontPreference(pref: StoredPref) {
   const latinStack = LATIN_MAP[pref.latin] ?? LATIN_MAP["latin-sans"]
   const cjkStack = CJK_MAP[pref.cjk] ?? CJK_MAP["cjk-sans"]
   const sizeConfig = FONT_SIZE_MAP[pref.size] ?? FONT_SIZE_MAP["base"]
-  root.style.setProperty("--article-font-latin", latinStack)
-  root.style.setProperty("--article-font-cjk", cjkStack)
-  // 拉丁字体在前，这样英文会优先使用拉丁字体，中文会fallback到CJK字体
-  root.style.setProperty("--article-font", `${latinStack}, ${cjkStack}, system-ui, sans-serif`)
+  
+  // 移除旧的动态样式
+  const oldStyle = document.getElementById('article-font-dynamic')
+  if (oldStyle) oldStyle.remove()
+  
+  // 创建新的样式标签，使用 @font-face + unicode-range 分离中英文
+  const style = document.createElement('style')
+  style.id = 'article-font-dynamic'
+  style.textContent = `
+    @font-face {
+      font-family: 'ArticleFontMixed';
+      src: local('Dummy');
+      font-style: normal;
+      font-weight: 400;
+      unicode-range: U+0000-00FF, U+0100-024F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF, U+2100-214F;
+    }
+    @font-face {
+      font-family: 'ArticleFontMixed';
+      src: local('Dummy');
+      font-style: normal;
+      font-weight: 400;
+      unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF, U+3400-4DBF, U+20000-2A6DF;
+    }
+    .article-font {
+      font-family: ${latinStack}, ${cjkStack}, system-ui, sans-serif !important;
+    }
+  `
+  document.head.appendChild(style)
+  
   root.style.setProperty("--article-font-size", sizeConfig.size)
   root.style.setProperty("--article-line-height", sizeConfig.lineHeight)
   root.dataset.articleFontLatin = pref.latin
