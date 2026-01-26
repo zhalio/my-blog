@@ -19,6 +19,7 @@ export function SupabaseLoginForm() {
   useEffect(() => {
     const fetchCSRFToken = async () => {
       try {
+        console.log('[LOGIN FORM] Fetching CSRF token...')
         const response = await fetch('/api/auth/csrf', {
           credentials: 'include', // 确保接收 Cookie
         })
@@ -26,12 +27,13 @@ export function SupabaseLoginForm() {
         
         if (data.csrfToken) {
           setCsrfToken(data.csrfToken)
-          console.log('CSRF token fetched successfully')
+          console.log('[LOGIN FORM] CSRF token fetched:', data.csrfToken.substring(0, 20) + '...')
         } else {
           setError('无法获取安全令牌，请刷新页面')
+          console.error('[LOGIN FORM] No CSRF token in response')
         }
       } catch (err) {
-        console.error('Failed to fetch CSRF token:', err)
+        console.error('[LOGIN FORM] Failed to fetch CSRF token:', err)
         setError('安全初始化失败，请刷新页面')
       }
     }

@@ -9,9 +9,12 @@ export async function POST(request: NextRequest) {
   try {
     const { email, password, csrfToken } = await request.json()
 
+    console.log('[LOGIN] Received request:', { email, csrfTokenLength: csrfToken?.length })
+    console.log('[LOGIN] Cookies:', request.cookies.getAll().map(c => ({ name: c.name, value: c.value.substring(0, 20) + '...' })))
+
     // 验证 CSRF token
     if (!csrfToken) {
-      console.error('CSRF token missing from request body')
+      console.error('[LOGIN] CSRF token missing from request body')
       return NextResponse.json(
         { error: 'CSRF token required' },
         { status: 403 }
@@ -20,12 +23,17 @@ export async function POST(request: NextRequest) {
 
     const isValidCSRF = validateCSRFToken(csrfToken, request)
     if (!isValidCSRF) {
-      console.error('CSRF token validation failed')
+      console.error('[LOGIN] CSRF token validation failed', {
+        bodyToken: csrfToken.substring(0, 20) + '...',
+        cookieToken: request.cookies.get('x-csrf-token')?.value?.substring(0, 20) + '...',
+      })
       return NextResponse.json(
         { error: 'CSRF token invalid' },
         { status: 403 }
       )
     }
+
+    console.log('[LOGIN] CSRF token valid')
 
     if (!email || !password) {
       return NextResponse.json(
@@ -46,12 +54,14 @@ export async function POST(request: NextRequest) {
     })
 
     if (error || !data.session) {
-      console.error('Supabase auth error:', error?.message)
+      console.error('[LOGIN] Supabase auth error:', error?.message)
       return NextResponse.json(
         { error: 'Authentication failed' },
         { status: 401 }
       )
     }
+
+    console.log('[LOGIN] Authentication successful for:', email)
 
     // 创建响应
     const response = NextResponse.json(
@@ -91,14 +101,14 @@ export async function POST(request: NextRequest) {
     response.cookies.set({
       name: 'x-csrf-token',
       value: '',
-      httpOnly: true,
+      httpOnly: false,
       maxAge: 0,
       path: '/',
     })
 
     return response
   } catch (error) {
-    console.error('Login error:', error)
+    console.error('[LOGIN] Error:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
