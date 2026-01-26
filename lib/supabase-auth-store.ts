@@ -99,6 +99,22 @@ export const useSupabaseAuthStore = create<SupabaseAuthState>()(
       checkAuth: async () => {
         set({ isLoading: true })
         try {
+          // 优先尝试从服务端 API 验证 (HttpOnly Cookie)
+          const response = await fetch('/api/auth/me')
+          if (response.ok) {
+            const data = await response.json()
+            if (data.user) {
+              set({
+                user: data.user,
+                accessToken: 'hidden', // 令牌在 Cookie 中，客户端不可见
+                isAuthenticated: true,
+                isLoading: false,
+              })
+              return
+            }
+          }
+
+          // 回退到客户端 SDK (兼容旧模式)
           const session = await getSession()
           if (session?.user) {
             set({

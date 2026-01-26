@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useSupabaseAuthStore } from '@/lib/supabase-auth-store'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
@@ -14,6 +15,8 @@ export function SupabaseLoginForm() {
   const [loading, setLoading] = useState(false)
   const [csrfToken, setCsrfToken] = useState<string | null>(null)
   const router = useRouter()
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const checkAuth = useSupabaseAuthStore((state) => state.checkAuth)
 
   // 获取 CSRF token
   useEffect(() => {
@@ -80,7 +83,8 @@ export function SupabaseLoginForm() {
         return
       }
 
-      // 认证成功，重定向到管理后台
+      // 认证成功，更新状态并跳转
+      await checkAuth()
       router.push('/admin/posts')
     } catch (err: any) {
       setError(err.message || '发生错误，请重试')
