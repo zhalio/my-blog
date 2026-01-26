@@ -76,14 +76,17 @@ export async function POST(request: NextRequest) {
     )
 
     // 设置 httpOnly Cookie（安全传输访问令牌）
+    const isProduction = process.env.NODE_ENV === 'production'
+    
     response.cookies.set({
       name: 'auth-token',
       value: data.session.access_token,
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: isProduction,
+      sameSite: isProduction ? 'none' : 'lax',
       maxAge: 60 * 60 * 24 * 7, // 7 days
       path: '/',
+      domain: isProduction ? '.emmmxx.xyz' : undefined,
     })
 
     // 设置刷新令牌（httpOnly Cookie）
@@ -91,10 +94,11 @@ export async function POST(request: NextRequest) {
       name: 'refresh-token',
       value: data.session.refresh_token,
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: isProduction,
+      sameSite: isProduction ? 'none' : 'lax',
       maxAge: 60 * 60 * 24 * 30, // 30 days
       path: '/',
+      domain: isProduction ? '.emmmxx.xyz' : undefined,
     })
 
     // 清除 CSRF token cookie（一次性使用）
@@ -104,6 +108,7 @@ export async function POST(request: NextRequest) {
       httpOnly: false,
       maxAge: 0,
       path: '/',
+      domain: isProduction ? '.emmmxx.xyz' : undefined,
     })
 
     return response

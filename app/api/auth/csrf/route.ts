@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { generateCSRFToken } from '@/lib/csrf'
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     // 生成新的 CSRF token
     const csrfToken = generateCSRFToken()
@@ -15,16 +15,17 @@ export async function GET() {
     response.cookies.set({
       name: 'x-csrf-token',
       value: csrfToken,
-      httpOnly: false, // 允许 JS 读取，生产环境生效
+      httpOnly: false, // 允许 JS 读取
       secure: isProduction, // 生产环境需要 HTTPS
-      sameSite: isProduction ? 'none' : 'lax', // 生产环境允许跨站，需要配合 Secure
+      sameSite: isProduction ? 'none' : 'lax',
       maxAge: 60 * 60, // 1 hour
       path: '/',
+      domain: isProduction ? '.emmmxx.xyz' : undefined, // 生产环境允许跨子域
     })
 
-    console.log('[CSRF] Generated token:', {
+    console.log('[CSRF] Token generated and cookie set', {
       env: process.env.NODE_ENV,
-      secure: isProduction,
+      domain: isProduction ? '.emmmxx.xyz' : 'localhost',
       sameSite: isProduction ? 'none' : 'lax',
     })
 
