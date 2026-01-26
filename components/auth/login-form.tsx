@@ -64,7 +64,7 @@ export function SupabaseLoginForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // 包含 Cookie
+        credentials: 'include', // 确保发送 Cookie，在生产环境也需要这个
         body: JSON.stringify({
           email,
           password,
