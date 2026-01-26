@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import { useSupabaseAuthStore } from '@/lib/supabase-auth-store'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -13,9 +12,23 @@ export function SupabaseLoginForm() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-
-  const signInWithEmail = useSupabaseAuthStore((state) => state.signInWithEmail)
+  const [csrfToken, setCsrfToken] = useState<string | null>(null)
   const router = useRouter()
+
+  // 获取 CSRF token
+  useEffect(() => {
+    const fetchCSRFToken = async () => {
+      try {
+        const response = await fetch('/api/auth/csrf')
+        const data = await response.json()
+        setCsrfToken(data.csrfToken)
+      } catch (err) {
+        console.error('Failed to fetch CSRF token:', err)
+        setError('安全初始化失败，请刷新页面')
+      }
+    }
+    fetchCSRFToken()
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,10 +42,38 @@ export function SupabaseLoginForm() {
         return
       }
 
-      await signInWithEmail(email, password)
+      if (!csrfToken) {
+        setError('安全检查失败，请刷新页面')
+        setLoading(false)
+        return
+      }
+
+      // 调用新的安全 API
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // 包含 Cookie
+        body: JSON.stringify({
+          email,
+          password,
+          csrfToken,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.error || '认证失败，请检查邮箱和密码')
+        setLoading(false)
+        return
+      }
+
+      // 认证成功，重定向到管理后台
       router.push('/admin/posts')
     } catch (err: any) {
-      setError(err.message || '认证失败，请检查邮箱和密码')
+      setError(err.message || '发生错误，请重试')
       console.error(err)
     } finally {
       setLoading(false)
@@ -64,7 +105,7 @@ export function SupabaseLoginForm() {
                 placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                disabled={loading}
+                disabled={loading || !csrfToken}
                 autoFocus
                 className="text-base bg-zinc-50 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
               />
@@ -80,7 +121,7 @@ export function SupabaseLoginForm() {
                 placeholder="输入密码..."
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                disabled={loading}
+                disabled={loading || !csrfToken}
                 className="text-base bg-zinc-50 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
               />
             </div>
@@ -96,7 +137,7 @@ export function SupabaseLoginForm() {
             {/* 提交按钮 */}
             <Button
               type="submit"
-              disabled={loading || !email || !password}
+              disabled={loading || !email || !password || !csrfToken}
               className="w-full"
               size="lg"
             >
