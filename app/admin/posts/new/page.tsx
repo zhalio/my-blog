@@ -27,8 +27,9 @@ import Link from 'next/link'
 
 export default function NewPostPage() {
   const router = useRouter()
-  const { accessToken: token } = useSupabaseAuthStore()
+  const { accessToken: _token } = useSupabaseAuthStore()
   const [saving, setSaving] = useState(false)
+
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   
@@ -71,11 +72,7 @@ export default function NewPostPage() {
     if (!formData.slug.trim()) errors.push('URL Slug 不能为空')
     if (!formData.content) errors.push('内容不能为空')
     if (formData.tags.length === 0) errors.push('至少需要一个标签')
-    if (!token) {
-      setError('请先登录')
-      return
-    }
-
+    
     if (errors.length > 0) {
       setError(errors.join('，'))
       return
@@ -87,7 +84,6 @@ export default function NewPostPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
           ...formData,

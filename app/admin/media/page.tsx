@@ -29,7 +29,7 @@ interface MediaFile {
 }
 
 export default function MediaLibraryPage() {
-  const { accessToken: token } = useSupabaseAuthStore()
+  const { accessToken: _token } = useSupabaseAuthStore()
   const [files, setFiles] = useState<MediaFile[]>([])
   const [loading, setLoading] = useState(true)
   const [uploading, setUploading] = useState(false)
@@ -38,19 +38,13 @@ export default function MediaLibraryPage() {
   const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
-    if (token) {
-      fetchFiles()
-    }
-  }, [token])
+    fetchFiles()
+  }, [])
 
   const fetchFiles = async () => {
     setLoading(true)
     try {
-      const res = await fetch('/api/admin/media', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+      const res = await fetch('/api/admin/media')
       const data = await res.json()
       if (data.files) {
         setFiles(data.files)
@@ -75,9 +69,6 @@ export default function MediaLibraryPage() {
     try {
       const res = await fetch(`/api/admin/media?filename=${filename}`, {
         method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
       })
       
       if (res.ok) {
@@ -103,9 +94,6 @@ export default function MediaLibraryPage() {
       try {
         const res = await fetch('/api/admin/media', {
           method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          },
           body: formData
         })
         

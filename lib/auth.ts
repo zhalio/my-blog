@@ -6,18 +6,30 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || ''
 
 /**
- * 从请求头中提取认证令牌（已弃用，使用服务端 Cookie 代替）
+ * 从请求头或 Cookie 中提取认证令牌
  */
 export function getAuthTokenFromRequest(request: Request): string | null {
+  // 1. 尝试从 Authorization Header 获取
   const authHeader = request.headers.get('authorization')
-  if (!authHeader) return null
-
-  // 支持两种格式: "Bearer token" 或直接是 token
-  const parts = authHeader.split(' ')
-  if (parts.length === 2 && parts[0] === 'Bearer') {
-    return parts[1]
+  if (authHeader) {
+    const parts = authHeader.split(' ')
+    if (parts.length === 2 && parts[0] === 'Bearer') {
+      return parts[1]
+    }
+    return authHeader // 兼容直接传 token 的情况
   }
-  return authHeader
+
+  // 2. 尝试从 Cookie 获取 (auth-token)
+  // 注意：NextRequest 对象有 cookies 属性，但为了保持通用性，我们解析 Cookie 头部
+  const cookieHeader = request.headers.get('cookie')
+  if (cookieHeader) {
+    const match = cookieHeader.match(/auth-token=([^;]+)/)
+    if (match && match[1]) {
+      return match[1]
+    }
+  }
+
+  return null
 }
 
 /**

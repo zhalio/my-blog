@@ -28,7 +28,7 @@ import Link from 'next/link'
 export default function EditPostPage() {
   const router = useRouter()
   const params = useParams()
-  const { accessToken: token } = useSupabaseAuthStore()
+  const { accessToken: _token } = useSupabaseAuthStore()
   
   const isoToLocalInput = (iso: string) => {
     const d = new Date(iso)
@@ -70,11 +70,7 @@ export default function EditPostPage() {
 
   const fetchPost = async () => {
     try {
-      const res = await fetch(`/api/admin/posts/${params.id}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      })
+      const res = await fetch(`/api/admin/posts/${params.id}`)
 
       if (!res.ok) {
         throw new Error('获取文章失败')
@@ -149,11 +145,6 @@ export default function EditPostPage() {
   const handleSubmit = async (published: boolean) => {
     setError(null)
 
-    if (!token) {
-      setError('请先登录')
-      return
-    }
-
     // 验证
     const errors = []
     if (!formData.title.trim()) errors.push('标题不能为空')
@@ -194,7 +185,6 @@ export default function EditPostPage() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(submitData),
       })
@@ -219,18 +209,10 @@ export default function EditPostPage() {
   const handleDelete = async () => {
     if (!confirm('确定要删除这篇文章吗？此操作不能撤销。')) return
 
-    if (!token) {
-      setError('请先登录')
-      return
-    }
-
     setSaving(true)
     try {
       const res = await fetch(`/api/admin/posts/${params.id}`, {
         method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
       })
 
       if (!res.ok) {

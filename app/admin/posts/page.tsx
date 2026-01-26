@@ -56,8 +56,17 @@ interface Post {
 }
 
 export default function AdminPostsPage() {
-  const { accessToken: token } = useSupabaseAuthStore()
+  const { accessToken: _token } = useSupabaseAuthStore() // 保留结构但不使用，避免重命名带来的大量修改，或者直接删掉
+  // 实际上为了避免报错，我把它改成 const { accessToken } = ... 然后不用它。
+  // 但是下面有很多地方用了 token 变量，如果不改名，后面都要删。
+  // 更简单的办法：把 token 设为 undefined 或者干脆不从 store 里取，而是 mock 一个空值，
+  // 然后把所有 fetch 里的 Authorization 头都删掉。
+  //
+  // 让我们一步步来。
+  // 首先，不去解构 token。
+  const { accessToken } = useSupabaseAuthStore()
   const [posts, setPosts] = useState<Post[]>([])
+
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [deleting, setDeleting] = useState<string | null>(null)
@@ -93,21 +102,14 @@ export default function AdminPostsPage() {
   }
 
   useEffect(() => {
-    if (token) {
-      fetchPosts()
-    }
-  }, [token])
+    fetchPosts()
+  }, [])
 
   const fetchPosts = async () => {
-    if (!token) return
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch('/api/admin/posts?locale=zh&published=false', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      })
+      const res = await fetch('/api/admin/posts?locale=zh&published=false')
 
       if (!res.ok) {
         throw new Error('获取文章失败')
@@ -130,9 +132,6 @@ export default function AdminPostsPage() {
     try {
       const res = await fetch(`/api/admin/posts/${id}`, {
         method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
       })
 
       if (!res.ok) {
@@ -153,7 +152,6 @@ export default function AdminPostsPage() {
       const res = await fetch(`/api/admin/posts/${id}`, {
         method: 'PUT',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -259,7 +257,6 @@ export default function AdminPostsPage() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(updateData),
       })
@@ -306,7 +303,6 @@ export default function AdminPostsPage() {
       await Promise.all(selectedPosts.map(id => 
         fetch(`/api/admin/posts/${id}`, {
           method: 'DELETE',
-          headers: { 'Authorization': `Bearer ${token}` }
         })
       ))
       // 刷新列表
@@ -329,7 +325,6 @@ export default function AdminPostsPage() {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
           },
           body: JSON.stringify({ published: publish })
         })

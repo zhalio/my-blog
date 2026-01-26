@@ -54,8 +54,9 @@ const settingsSchema = z.object({
 type SiteSettings = z.infer<typeof settingsSchema>
 
 export default function SettingsPage() {
-  const { accessToken: token } = useSupabaseAuthStore()
+  const { accessToken: _token } = useSupabaseAuthStore()
   const [loading, setLoading] = useState(true)
+
   const [saving, setSaving] = useState(false)
   
   const form = useForm<SiteSettings>({
@@ -143,17 +144,13 @@ export default function SettingsPage() {
 
   const onSubmit = async (data: SiteSettings) => {
     console.log('Submitting data:', data)
-    if (!token) {
-      toast.error('未授权，请重新登录')
-      return
-    }
+    
     setSaving(true)
     try {
       const res = await fetch('/api/admin/settings', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(data)
       })

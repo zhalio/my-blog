@@ -27,21 +27,18 @@ interface DashboardStats {
 }
 
 export default function AdminDashboard() {
-  const { accessToken } = useSupabaseAuthStore()
+  const { accessToken } = useSupabaseAuthStore() // 保留，还是不用？最好删掉对 accessToken 的依赖，或者保留解构但不使用。
   const router = useRouter()
   const [data, setData] = useState<DashboardStats | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (!accessToken) return
+    // 移除 if (!accessToken) return
 
     const fetchStats = async () => {
       try {
-        const res = await fetch('/api/admin/stats', {
-          headers: {
-            'Authorization': `Bearer ${accessToken}`
-          }
-        })
+        // 移除 Authorization header
+        const res = await fetch('/api/admin/stats')
         if (res.status === 401) {
             router.push('/admin/posts') // fallback
             return
