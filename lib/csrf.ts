@@ -1,8 +1,6 @@
 import crypto from 'crypto'
 import type { NextRequest } from 'next/server'
 
-const CSRF_SECRET = process.env.CSRF_SECRET || 'default-csrf-secret-change-in-production'
-
 /**
  * 生成 CSRF token
  * 返回可发送给客户端的 token
@@ -22,6 +20,7 @@ export function validateCSRFToken(
   request: NextRequest
 ): boolean {
   if (!tokenFromBody || typeof tokenFromBody !== 'string') {
+    console.warn('[CSRF] No token in request body')
     return false
   }
 
@@ -30,7 +29,8 @@ export function validateCSRFToken(
     const tokenFromCookie = request.cookies.get('x-csrf-token')?.value
 
     if (!tokenFromCookie) {
-      console.warn('CSRF token not found in cookie')
+      console.warn('[CSRF] No token found in cookie')
+      console.log('[CSRF] Available cookies:', request.cookies.getAll().map(c => c.name))
       return false
     }
 
@@ -38,15 +38,17 @@ export function validateCSRFToken(
     const isValid = tokenFromBody === tokenFromCookie
     
     if (!isValid) {
-      console.warn('CSRF token mismatch', {
-        fromBody: tokenFromBody.substring(0, 10) + '...',
-        fromCookie: tokenFromCookie.substring(0, 10) + '...',
+      console.warn('[CSRF] Token mismatch', {
+        bodyToken: tokenFromBody.substring(0, 16) + '...' + tokenFromBody.substring(-16),
+        cookieToken: tokenFromCookie.substring(0, 16) + '...' + tokenFromCookie.substring(-16),
       })
+    } else {
+      console.log('[CSRF] Token validation successful')
     }
 
     return isValid
   } catch (error) {
-    console.error('CSRF token validation error:', error)
+    console.error('[CSRF] Validation error:', error)
     return false
   }
 }

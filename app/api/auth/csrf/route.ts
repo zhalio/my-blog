@@ -10,30 +10,27 @@ export async function GET() {
     const response = NextResponse.json({ csrfToken })
 
     // 在 Cookie 中设置相同的 token
-    // 生产环境需要 secure: true 并使用 SameSite=None
-    // 开发环境可以使用 secure: false 和 SameSite=Lax
     const isProduction = process.env.NODE_ENV === 'production'
     
     response.cookies.set({
       name: 'x-csrf-token',
       value: csrfToken,
-      httpOnly: false, // 允许 JS 读取以便调试和测试
-      secure: isProduction, // 生产环境 HTTPS，开发环境 HTTP
-      sameSite: isProduction ? 'none' : 'lax', // 生产环境跨站，开发环境同站
+      httpOnly: false, // 允许 JS 读取，生产环境生效
+      secure: isProduction, // 生产环境需要 HTTPS
+      sameSite: isProduction ? 'none' : 'lax', // 生产环境允许跨站，需要配合 Secure
       maxAge: 60 * 60, // 1 hour
       path: '/',
     })
 
     console.log('[CSRF] Generated token:', {
-      tokenLength: csrfToken.length,
-      isProduction,
+      env: process.env.NODE_ENV,
       secure: isProduction,
       sameSite: isProduction ? 'none' : 'lax',
     })
 
     return response
   } catch (error) {
-    console.error('[CSRF] Generation error:', error)
+    console.error('[CSRF] Error:', error)
     return NextResponse.json(
       { error: 'Failed to generate CSRF token' },
       { status: 500 }
