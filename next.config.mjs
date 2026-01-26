@@ -18,18 +18,6 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // 重定向 www 到非 www 域名（确保 Cookie 一致性）
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'www.emmmxx.xyz',
-          },
-        ],
-        destination: 'https://emmmxx.xyz/:path*',
-        permanent: true,
-      },
       {
         source: '/favicon.ico',
         destination: '/icon',
