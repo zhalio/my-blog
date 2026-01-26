@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { generateCSRFToken, validateCSRFToken } from '@/lib/csrf'
+import { validateCSRFToken } from '@/lib/csrf'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -10,7 +10,17 @@ export async function POST(request: NextRequest) {
     const { email, password, csrfToken } = await request.json()
 
     // 验证 CSRF token
-    if (!validateCSRFToken(csrfToken, request)) {
+    if (!csrfToken) {
+      console.error('CSRF token missing from request body')
+      return NextResponse.json(
+        { error: 'CSRF token required' },
+        { status: 403 }
+      )
+    }
+
+    const isValidCSRF = validateCSRFToken(csrfToken, request)
+    if (!isValidCSRF) {
+      console.error('CSRF token validation failed')
       return NextResponse.json(
         { error: 'CSRF token invalid' },
         { status: 403 }
@@ -36,6 +46,7 @@ export async function POST(request: NextRequest) {
     })
 
     if (error || !data.session) {
+      console.error('Supabase auth error:', error?.message)
       return NextResponse.json(
         { error: 'Authentication failed' },
         { status: 401 }
@@ -73,6 +84,15 @@ export async function POST(request: NextRequest) {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 30, // 30 days
+      path: '/',
+    })
+
+    // 清除 CSRF token cookie（一次性使用）
+    response.cookies.set({
+      name: 'x-csrf-token',
+      value: '',
+      httpOnly: true,
+      maxAge: 0,
       path: '/',
     })
 

@@ -19,9 +19,17 @@ export function SupabaseLoginForm() {
   useEffect(() => {
     const fetchCSRFToken = async () => {
       try {
-        const response = await fetch('/api/auth/csrf')
+        const response = await fetch('/api/auth/csrf', {
+          credentials: 'include', // 确保接收 Cookie
+        })
         const data = await response.json()
-        setCsrfToken(data.csrfToken)
+        
+        if (data.csrfToken) {
+          setCsrfToken(data.csrfToken)
+          console.log('CSRF token fetched successfully')
+        } else {
+          setError('无法获取安全令牌，请刷新页面')
+        }
       } catch (err) {
         console.error('Failed to fetch CSRF token:', err)
         setError('安全初始化失败，请刷新页面')
