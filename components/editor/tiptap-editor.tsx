@@ -273,31 +273,32 @@ export function TipTapEditor({
         </div>
       )}
       <style>{`
-        .admin-editor {
+        /* Dark theme */
+        .dark .admin-editor {
           background: #0b1220;
           border: 1px solid #111827;
           box-shadow: 0 10px 30px rgba(0,0,0,0.35);
         }
-        .admin-editor .ProseMirror {
+        .dark .admin-editor .ProseMirror {
           background: #0b1220;
           padding: 20px 24px 28px;
           min-height: 520px;
           line-height: 1.8;
           color: #e5e7eb;
         }
-        .admin-editor .ProseMirror h1,
-        .admin-editor .ProseMirror h2,
-        .admin-editor .ProseMirror h3,
-        .admin-editor .ProseMirror h4,
-        .admin-editor .ProseMirror h5,
-        .admin-editor .ProseMirror h6 {
+        .dark .admin-editor .ProseMirror h1,
+        .dark .admin-editor .ProseMirror h2,
+        .dark .admin-editor .ProseMirror h3,
+        .dark .admin-editor .ProseMirror h4,
+        .dark .admin-editor .ProseMirror h5,
+        .dark .admin-editor .ProseMirror h6 {
           color: #f8fafc;
           letter-spacing: -0.01em;
         }
-        .admin-editor .ProseMirror p {
+        .dark .admin-editor .ProseMirror p {
           color: #d1d5db;
         }
-        .admin-editor .ProseMirror pre {
+        .dark .admin-editor .ProseMirror pre {
           background: #0f172a;
           color: #e5e7eb;
           border: 1px solid #1f2937;
@@ -307,7 +308,7 @@ export function TipTapEditor({
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
           position: relative;
         }
-        .admin-editor .ProseMirror pre::before {
+        .dark .admin-editor .ProseMirror pre::before {
           content: 'code';
           position: absolute;
           top: 10px;
@@ -317,65 +318,171 @@ export function TipTapEditor({
           text-transform: uppercase;
           letter-spacing: 0.08em;
         }
-        .admin-editor .ProseMirror pre code {
+        .dark .admin-editor .ProseMirror pre code {
           background: transparent;
           padding: 0;
         }
-        .admin-editor .ProseMirror li {
+        .dark .admin-editor .ProseMirror li {
           padding-left: 6px;
         }
-        .admin-editor .ProseMirror ul,
-        .admin-editor .ProseMirror ol {
+        .dark .admin-editor .ProseMirror ul,
+        .dark .admin-editor .ProseMirror ol {
           margin-left: 1.2rem;
         }
-        .admin-editor .ProseMirror ul li::marker {
+        .dark .admin-editor .ProseMirror ul li::marker {
           color: #22d3ee;
         }
-        .admin-editor .ProseMirror code:not(pre code) {
+        .dark .admin-editor .ProseMirror code:not(pre code) {
           background: rgba(99, 102, 241, 0.12);
-          color: #6366f1;
+          color: #a5b4fc;
           padding: 0.15rem 0.35rem;
           border-radius: 6px;
           font-family: "JetBrains Mono", "Menlo", "Consolas", monospace;
           border: 1px solid rgba(99, 102, 241, 0.25);
         }
-        .admin-editor .ProseMirror blockquote {
+        .dark .admin-editor .ProseMirror blockquote {
           border-left: 3px solid #22d3ee;
           background: rgba(34, 211, 238, 0.05);
           padding: 10px 14px;
           border-radius: 10px;
           color: #cbd5e1;
         }
-        .admin-editor .ProseMirror table {
+        .dark .admin-editor .ProseMirror table {
           border: 1px solid #1f2937;
           border-radius: 8px;
           overflow: hidden;
           background: #0f172a;
         }
-        .admin-editor .ProseMirror th {
+        .dark .admin-editor .ProseMirror th {
           background: #111827;
           color: #e5e7eb;
           border: 1px solid #1f2937;
         }
-        .admin-editor .ProseMirror tr:nth-child(odd) td {
+        .dark .admin-editor .ProseMirror tr:nth-child(odd) td {
           background: rgba(255,255,255,0.02);
         }
-        .admin-editor .ProseMirror td {
+        .dark .admin-editor .ProseMirror td {
           border: 1px solid #1f2937;
         }
-        .admin-editor .ProseMirror hr {
+        .dark .admin-editor .ProseMirror hr {
           border-top: 1px dashed rgba(99, 102, 241, 0.4);
           margin: 1.5rem 0;
         }
-        .admin-editor .ProseMirror a {
+        .dark .admin-editor .ProseMirror a {
           color: #38bdf8;
           text-decoration: underline;
           text-underline-offset: 3px;
         }
-        .admin-editor .ProseMirror img {
+        .dark .admin-editor .ProseMirror img {
           border-radius: 12px;
           border: 1px solid #1f2937;
           box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        }
+
+        /* Light theme */
+        .light .admin-editor {
+          background: #f8fafc;
+          border: 1px solid #e5e7eb;
+          box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+        }
+        .light .admin-editor .ProseMirror {
+          background: #f8fafc;
+          padding: 20px 24px 28px;
+          min-height: 520px;
+          line-height: 1.8;
+          color: #0f172a;
+        }
+        .light .admin-editor .ProseMirror h1,
+        .light .admin-editor .ProseMirror h2,
+        .light .admin-editor .ProseMirror h3,
+        .light .admin-editor .ProseMirror h4,
+        .light .admin-editor .ProseMirror h5,
+        .light .admin-editor .ProseMirror h6 {
+          color: #0f172a;
+          letter-spacing: -0.01em;
+        }
+        .light .admin-editor .ProseMirror p {
+          color: #111827;
+        }
+        .light .admin-editor .ProseMirror pre {
+          background: #0b1220;
+          color: #e5e7eb;
+          border: 1px solid #1f2937;
+          border-radius: 10px;
+          padding: 14px 16px;
+          font-family: "JetBrains Mono", "Menlo", "Consolas", monospace;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+          position: relative;
+        }
+        .light .admin-editor .ProseMirror pre::before {
+          content: 'code';
+          position: absolute;
+          top: 10px;
+          right: 12px;
+          font-size: 11px;
+          color: rgba(229, 231, 235, 0.7);
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+        }
+        .light .admin-editor .ProseMirror pre code {
+          background: transparent;
+          padding: 0;
+        }
+        .light .admin-editor .ProseMirror li {
+          padding-left: 6px;
+        }
+        .light .admin-editor .ProseMirror ul,
+        .light .admin-editor .ProseMirror ol {
+          margin-left: 1.2rem;
+        }
+        .light .admin-editor .ProseMirror ul li::marker {
+          color: #06b6d4;
+        }
+        .light .admin-editor .ProseMirror code:not(pre code) {
+          background: rgba(99, 102, 241, 0.12);
+          color: #4338ca;
+          padding: 0.15rem 0.35rem;
+          border-radius: 6px;
+          font-family: "JetBrains Mono", "Menlo", "Consolas", monospace;
+          border: 1px solid rgba(99, 102, 241, 0.25);
+        }
+        .light .admin-editor .ProseMirror blockquote {
+          border-left: 3px solid #0ea5e9;
+          background: rgba(14, 165, 233, 0.08);
+          padding: 10px 14px;
+          border-radius: 10px;
+          color: #0f172a;
+        }
+        .light .admin-editor .ProseMirror table {
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          overflow: hidden;
+          background: #ffffff;
+        }
+        .light .admin-editor .ProseMirror th {
+          background: #f1f5f9;
+          color: #0f172a;
+          border: 1px solid #e2e8f0;
+        }
+        .light .admin-editor .ProseMirror tr:nth-child(odd) td {
+          background: #f8fafc;
+        }
+        .light .admin-editor .ProseMirror td {
+          border: 1px solid #e2e8f0;
+        }
+        .light .admin-editor .ProseMirror hr {
+          border-top: 1px dashed rgba(99, 102, 241, 0.5);
+          margin: 1.5rem 0;
+        }
+        .light .admin-editor .ProseMirror a {
+          color: #0ea5e9;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .light .admin-editor .ProseMirror img {
+          border-radius: 12px;
+          border: 1px solid #e2e8f0;
+          box-shadow: 0 12px 30px rgba(15,23,42,0.08);
         }
       `}</style>
     </div>
