@@ -7,29 +7,27 @@ import { useEffect, useState } from 'react';
 export function Comments() {
   const { theme, systemTheme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
-  const [enabled, setEnabled] = useState(true); // Default to true to prevent hydration mismatch if possible, or fetch early
-  const [loading, setLoading] = useState(true);
+  const [enabled, setEnabled] = useState(true); // Optimistic: render immediately, toggle off only if API says so
 
   useEffect(() => {
+    let cancelled = false;
     async function checkSettings() {
-        try {
-            const res = await fetch('/api/admin/settings');
-            const data = await res.json();
-            // If feature_flags is present, use it. Default to true if not found/error mostly? 
-            // Better defaulting: If data.settings exists, respect it.
-            if (data.settings?.feature_flags) {
-                setEnabled(data.settings.feature_flags.enable_comments !== false); // Default true unless explicitly false
-            }
-        } catch (e) {
-            console.error(e);
-        } finally {
-            setLoading(false);
+      try {
+        const res = await fetch('/api/admin/settings');
+        const data = await res.json();
+        if (cancelled) return;
+        if (data.settings?.feature_flags) {
+          setEnabled(data.settings.feature_flags.enable_comments !== false);
         }
+      } catch (e) {
+        console.error(e);
+      }
     }
     checkSettings();
+    return () => {
+      cancelled = true;
+    };
   }, []);
-
-  if (loading) return null; // Or a skeleton
   if (!enabled) return (
       <div className="py-10 text-center text-muted-foreground border-t mt-10">
           <p>由于技术原因或维护需要，评论区已暂时关闭。</p>
