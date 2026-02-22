@@ -5,6 +5,8 @@
 **在线访问**: [https://emmmxx.xyz](https://emmmxx.xyz)
 **用途定位**: 个人技术博客 + 简历/作品集补充，集中展示项目案例、工程化思路与可运行 Demo。
 
+**授权**：代码采用 [AGPL-3.0](LICENSE)，原创内容/媒体采用 [CC BY-NC-SA 4.0](CONTENT_LICENSE.md)。
+
 ---
 
 ## 技术栈
