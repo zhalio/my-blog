@@ -327,6 +327,51 @@ export function TipTapRenderer({ content, className = '', toc = [] }: TipTapRend
     }
   }, [editor, toc])
 
+  // 将纯文本中的 URL 自动转成可点击链接（避免内容里未显式插入链接时无法点击）
+  useEffect(() => {
+    if (!editor) return
+    const dom = editor.view.dom
+    const urlRegex = /(https?:\/\/[^\s<>"]+)/g
+
+    const walker = document.createTreeWalker(dom, NodeFilter.SHOW_TEXT)
+    const targets: Text[] = []
+
+    while (walker.nextNode()) {
+      const node = walker.currentNode as Text
+      if (!node.nodeValue) continue
+      if (!urlRegex.test(node.nodeValue)) continue
+      const parent = node.parentElement
+      if (!parent) continue
+      // 跳过已在链接或代码块内的文本
+      if (parent.closest('a, code, pre')) continue
+      targets.push(node)
+    }
+
+    targets.forEach((node) => {
+      const text = node.nodeValue || ''
+      const parts = text.split(urlRegex)
+      const frag = document.createDocumentFragment()
+
+      parts.forEach((part, idx) => {
+        if (!part) return
+        // 奇数索引是被捕获的 URL 片段
+        if (idx % 2 === 1) {
+          const a = document.createElement('a')
+          a.href = part
+          a.textContent = part
+          a.rel = 'noopener noreferrer'
+          a.target = '_blank'
+          a.className = 'text-blue-500 hover:text-blue-600 underline cursor-pointer'
+          frag.appendChild(a)
+        } else {
+          frag.appendChild(document.createTextNode(part))
+        }
+      })
+
+      node.replaceWith(frag)
+    })
+  }, [editor, content])
+
   // Replace external anchors with LinkPreview components for hover cards
   useEffect(() => {
     if (!editor) return
