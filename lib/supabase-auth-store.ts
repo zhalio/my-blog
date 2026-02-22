@@ -88,7 +88,12 @@ export const useSupabaseAuthStore = create<SupabaseAuthState>()(
       logout: async () => {
         set({ isLoading: true })
         try {
+          // 1. 调用后端 API 清除 HttpOnly Cookie
+          await fetch('/api/auth/logout', { method: 'POST' })
+          
+          // 2. 清除客户端 SDK 状态
           await supabaseAuth.auth.signOut()
+          
           set({ user: null, accessToken: null, isAuthenticated: false, isLoading: false })
         } catch (error) {
           set({ isLoading: false })
