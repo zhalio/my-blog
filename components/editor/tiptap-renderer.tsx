@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { createRoot } from 'react-dom/client'
 import { EditorContent, useEditor, NodeViewContent, NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { Link } from '@tiptap/extension-link'
@@ -17,6 +18,7 @@ import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
 import { Mathematics } from '@tiptap/extension-mathematics'
 import { common, createLowlight } from 'lowlight'
 import { Check, Copy } from 'lucide-react'
+import { LinkPreview } from '@/components/common/link-preview'
 
 const lowlight = createLowlight(common)
 
@@ -324,6 +326,43 @@ export function TipTapRenderer({ content, className = '', toc = [] }: TipTapRend
       editor.off('create', handler)
     }
   }, [editor, toc])
+
+  // Replace external anchors with LinkPreview components for hover cards
+  useEffect(() => {
+    if (!editor) return
+    const dom = editor.view.dom
+    const roots: { unmount: () => void }[] = []
+
+    const links = dom.querySelectorAll('a')
+    links.forEach((link) => {
+      if (!(link instanceof HTMLAnchorElement)) return
+      if (link.dataset.processed) return
+
+      const href = link.getAttribute('href')
+      if (!href || href.startsWith('/') || href.startsWith('#')) return
+
+      link.dataset.processed = 'true'
+
+      const container = document.createElement('span')
+      link.parentNode?.insertBefore(container, link)
+
+      const content = link.innerHTML
+      const classes = link.className
+      link.remove()
+
+      const root = createRoot(container)
+      roots.push(root)
+      root.render(
+        <LinkPreview url={href} className={classes}>
+          <span dangerouslySetInnerHTML={{ __html: content }} />
+        </LinkPreview>
+      )
+    })
+
+    return () => {
+      roots.forEach((root) => root.unmount())
+    }
+  }, [editor, content])
 
   // 图片点击放大（事件委托，避免重复绑定与动态内容遗漏）
   useEffect(() => {
