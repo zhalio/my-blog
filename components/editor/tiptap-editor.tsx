@@ -258,7 +258,7 @@ export function TipTapEditor({
   }
 
   return (
-    <div className="border rounded-lg overflow-hidden relative">
+    <div className="border rounded-lg overflow-hidden relative admin-editor">
       {isUploading && (
         <div className="absolute inset-0 z-50 bg-background/50 backdrop-blur-sm flex items-center justify-center">
             <div className="animate-pulse text-primary font-medium">图片上传中...</div>
@@ -272,6 +272,50 @@ export function TipTapEditor({
           <span>{editor.storage.characterCount.words()} 词</span>
         </div>
       )}
+      <style>{`
+        .admin-editor .ProseMirror {
+          background: transparent;
+        }
+        .admin-editor .ProseMirror pre {
+          background: #0f172a;
+          color: #e5e7eb;
+          border: 1px solid #1f2937;
+          border-radius: 10px;
+          padding: 14px 16px;
+          font-family: "JetBrains Mono", "Menlo", "Consolas", monospace;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+        .admin-editor .ProseMirror code:not(pre code) {
+          background: rgba(99, 102, 241, 0.12);
+          color: #6366f1;
+          padding: 0.15rem 0.35rem;
+          border-radius: 6px;
+          font-family: "JetBrains Mono", "Menlo", "Consolas", monospace;
+          border: 1px solid rgba(99, 102, 241, 0.25);
+        }
+        .admin-editor .ProseMirror blockquote {
+          border-left: 3px solid #22d3ee;
+          background: rgba(34, 211, 238, 0.05);
+          padding: 10px 14px;
+          border-radius: 10px;
+        }
+        .admin-editor .ProseMirror table {
+          border: 1px solid #1f2937;
+          border-radius: 8px;
+          overflow: hidden;
+        }
+        .admin-editor .ProseMirror th {
+          background: #111827;
+          color: #e5e7eb;
+        }
+        .admin-editor .ProseMirror tr:nth-child(odd) td {
+          background: rgba(255,255,255,0.02);
+        }
+        .admin-editor .ProseMirror hr {
+          border-top: 1px dashed rgba(99, 102, 241, 0.4);
+          margin: 1.5rem 0;
+        }
+      `}</style>
     </div>
   )
 }
