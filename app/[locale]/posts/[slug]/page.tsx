@@ -8,6 +8,7 @@ import { PostBreadcrumb } from "@/components/blog/post-breadcrumb";
 import { FallbackBanner } from '@/components/blog/fallback-banner';
 import { ShareButtons } from "@/components/blog/share-buttons";
 import { PostStats } from "@/components/blog/post-stats";
+import { Comments } from "@/components/blog/comments";
 import { supabase } from '@/lib/supabase/client';
 import { Database } from "@/lib/supabase/types";
 
@@ -173,6 +174,10 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
             content={post.content} 
             toc={toc}
           />
+
+          <div className="mt-12 border-t pt-10">
+            <Comments />
+          </div>
         </article>
       </FadeIn>
     </PostLayout>
