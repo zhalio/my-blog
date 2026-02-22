@@ -17,7 +17,8 @@ export async function POST(request: NextRequest) {
     }
 
     // 验证密码
-    if (!validateAdminRequest(password)) {
+    const isValid = await validateAdminRequest(password)
+    if (!isValid) {
       return NextResponse.json(
         { error: 'Invalid password' },
         { status: 401 }

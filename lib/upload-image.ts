@@ -1,5 +1,3 @@
-import { supabase } from '@/lib/supabase/client';
-
 export async function uploadImage(file: File): Promise<string | null> {
   try {
     // 1. Validate file type
@@ -14,31 +12,22 @@ export async function uploadImage(file: File): Promise<string | null> {
       return null;
     }
 
-    // 3. Generate unique path
-    // Using timestamp + random string + clean filename
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}.${fileExt}`;
-    const filePath = `uploads/${fileName}`;
+    const formData = new FormData();
+    formData.append('file', file);
 
-    // 4. Upload to Supabase Storage ('images' bucket)
-    const { data, error } = await supabase.storage
-      .from('images')
-      .upload(filePath, file, {
-        cacheControl: '3600',
-        upsert: false
-      });
+    const response = await fetch('/api/admin/media', {
+      method: 'POST',
+      body: formData,
+    });
 
-    if (error) {
-      console.error('Supabase storage upload error:', error);
-      throw error;
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Upload failed:', errorData.error);
+      return null;
     }
 
-    // 5. Get Public URL
-    const { data: { publicUrl } } = supabase.storage
-      .from('images')
-      .getPublicUrl(filePath);
-
-    return publicUrl;
+    const data = await response.json();
+    return data.url;
   } catch (error) {
     console.error('Failed to upload image:', error);
     return null;

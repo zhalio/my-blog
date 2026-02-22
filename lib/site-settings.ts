@@ -1,5 +1,3 @@
-import { supabase } from '@/lib/supabase/client'
-
 // Since we are in server component usually, we can use a direct fetch or cached fetch
 // But supabase client is client-side usually if it uses 'createBrowserClient'.
 // For server components using 'createClient' from '@supabase/supabase-js' with anon key is fine for public data.

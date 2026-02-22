@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase/client'
+import { getAdminClient } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
 import { Redis } from '@upstash/redis'
 
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     const tag = searchParams.get('tag')
     const published = searchParams.get('published') !== 'false' // 默认只获取已发布的
 
-    const client = supabase as any
+    const client = getAdminClient() as any
 
     let query = client
       .from('posts')
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
   }
   
   try {
-    const client = supabase as any
+    const client = getAdminClient() as any
     const body = await request.json()
     const {
       title,

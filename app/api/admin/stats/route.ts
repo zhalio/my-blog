@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase/client'
+import { getAdminClient } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
 import { Redis } from '@upstash/redis'
 
@@ -17,12 +17,13 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    const client = getAdminClient()
     // 1. Overview Counts
-    const { count: postsCount } = await supabase.from('posts').select('*', { count: 'exact', head: true }).eq('published', true)
-    const { count: draftsCount } = await supabase.from('posts').select('*', { count: 'exact', head: true }).eq('published', false)
+    const { count: postsCount } = await client.from('posts').select('*', { count: 'exact', head: true }).eq('published', true)
+    const { count: draftsCount } = await client.from('posts').select('*', { count: 'exact', head: true }).eq('published', false)
     
     // 获取所有文章的 slug，然后从 Redis 读取真实阅读量
-    const { data: allPosts } = await supabase
+    const { data: allPosts } = await client
       .from('posts')
       .select('slug')
       .eq('published', true)
@@ -46,7 +47,7 @@ export async function GET(request: NextRequest) {
     }
 
     // 2. Drafts List
-    const { data: drafts } = await supabase
+    const { data: drafts } = await client
       .from('posts')
       .select('id, title, updated_at')
       .eq('published', false)
@@ -54,7 +55,7 @@ export async function GET(request: NextRequest) {
       .limit(5)
 
     // 3. Tag Distribution (Calculate from posts directly to ensure accuracy)
-    const { data: postsWithTags } = await supabase
+    const { data: postsWithTags } = await client
       .from('posts')
       .select('tags')
       .not('tags', 'is', null)
@@ -75,7 +76,7 @@ export async function GET(request: NextRequest) {
     // Get last 365 days of posts created_at
     const oneYearAgo = new Date()
     oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1)
-    const { data: activityData } = await supabase
+    const { data: activityData } = await client
       .from('posts')
       .select('created_at, published_at')
       .gte('created_at', oneYearAgo.toISOString())

@@ -5,4 +5,5 @@
   "pasteImage.forceUnixStyleSeparator": true,
   "pasteImage.namePrefix": "${currentFileNameWithoutExt}-",
   "CodeGPT.apiKey": "Anthropic"
+
 }

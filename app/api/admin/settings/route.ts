@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase/client'
+import { getAdminClient } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
 
 export async function GET(request: NextRequest) {
   try {
-    const { data, error } = await supabase
+    const client = getAdminClient()
+    const { data, error } = await client
       .from('site_settings')
       .select('*')
       .eq('id', 1)
@@ -39,7 +40,8 @@ export async function PUT(request: NextRequest) {
     // Ensure ID is 1
     const payload = { ...body, id: 1, updated_at: new Date().toISOString() }
 
-    const { data, error } = await supabase
+    const client = getAdminClient()
+    const { data, error } = await client
       .from('site_settings')
       .upsert(payload)
       .select()

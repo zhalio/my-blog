@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase/client'
+import { getAdminClient } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
 
 // GET - 获取单个文章（需要认证）
@@ -15,7 +15,7 @@ export async function GET(
   
   try {
     const { id } = await params
-    const client = supabase as any
+    const client = getAdminClient() as any
 
     const { data, error } = await client.from('posts').select('*').eq('id', id).single()
 
@@ -47,7 +47,7 @@ export async function PUT(
   
   try {
     const { id } = await params
-    const client = supabase as any
+    const client = getAdminClient() as any
     const body = await request.json()
 
     // 如果发布状态从 false 变为 true，且未显式传入发布时间，则更新为当前时间
@@ -97,7 +97,7 @@ export async function DELETE(
   
   try {
     const { id } = await params
-    const client = supabase as any
+    const client = getAdminClient() as any
 
     const { error } = await client.from('posts').delete().eq('id', id)
 

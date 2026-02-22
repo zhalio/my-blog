@@ -39,6 +39,20 @@ export const createServerClient = () => {
   return getSupabaseClient()
 }
 
+// 用于服务端的管理员客户端（绕过 RLS）
+export const getAdminClient = () => {
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!supabaseUrl || !serviceRoleKey) {
+    console.warn('Missing SUPABASE_SERVICE_ROLE_KEY, falling back to anon client')
+    return getSupabaseClient()
+  }
+  return createClient<SupabaseDB>(supabaseUrl, serviceRoleKey, {
+    auth: {
+      persistSession: false,
+    },
+  })
+}
+
 export type Database = {
   public: {
     Tables: {

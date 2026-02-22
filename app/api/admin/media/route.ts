@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase/client'
+import { getAdminClient } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
 
 export async function GET(request: NextRequest) {
@@ -10,7 +10,8 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const { data, error } = await supabase
+    const client = getAdminClient()
+    const { data, error } = await client
       .storage
       .from('images')
       .list('uploads', {
@@ -25,7 +26,7 @@ export async function GET(request: NextRequest) {
 
     // Transform data to include public URL
     const files = data.map((file: any) => {
-      const { data: { publicUrl } } = supabase
+      const { data: { publicUrl } } = client
         .storage
         .from('images')
         .getPublicUrl(`uploads/${file.name}`)
@@ -68,7 +69,8 @@ export async function POST(request: NextRequest) {
     const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}.${fileExt}`
     const filePath = `uploads/${fileName}`
 
-    const { error } = await supabase.storage
+    const client = getAdminClient()
+    const { error } = await client.storage
       .from('images')
       .upload(filePath, file, {
         cacheControl: '3600',
@@ -79,7 +81,7 @@ export async function POST(request: NextRequest) {
       throw error
     }
 
-    const { data: { publicUrl } } = supabase
+    const { data: { publicUrl } } = client
       .storage
       .from('images')
       .getPublicUrl(filePath)
@@ -107,7 +109,8 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Filename is required' }, { status: 400 })
     }
 
-    const { error } = await supabase.storage
+    const client = getAdminClient()
+    const { error } = await client.storage
       .from('images')
       .remove([`uploads/${filename}`])
 
