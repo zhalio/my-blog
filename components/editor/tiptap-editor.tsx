@@ -28,6 +28,67 @@ import { uploadImage } from '@/lib/upload-image'
 
 const lowlight = createLowlight(common)
 
+// Dual Theme Syntax Highlighting (Light & Dark)
+const syntaxThemeCss = `
+/* Light Theme (VS Code Light+) */
+.hljs-comment,
+.hljs-quote { color: #008000; font-style: italic; }
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-section,
+.hljs-link { color: #0000ff; }
+.hljs-name { color: #800000; }
+.hljs-string,
+.hljs-meta-string { color: #a31515; }
+.hljs-attr { color: #ff0000; }
+.hljs-variable,
+.hljs-template-variable,
+.hljs-template-tag,
+.hljs-property { color: #001080; }
+.hljs-title,
+.hljs-title.function_,
+.hljs-doctag { color: #795e26; }
+.hljs-type,
+.hljs-built_in,
+.hljs-class .hljs-title { color: #267f99; }
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet { color: #098658; }
+.hljs-regexp { color: #811f3f; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: bold; }
+.hljs-meta { color: #0000ff; }
+
+/* Dark Theme Overrides (VS Code Dark+) */
+.dark .hljs-comment,
+.dark .hljs-quote { color: #6a9955; }
+.dark .hljs-keyword,
+.dark .hljs-selector-tag,
+.dark .hljs-literal,
+.dark .hljs-section,
+.dark .hljs-link { color: #569cd6; }
+.dark .hljs-name { color: #569cd6; }
+.dark .hljs-string,
+.dark .hljs-meta-string { color: #ce9178; }
+.dark .hljs-attr,
+.dark .hljs-variable,
+.dark .hljs-template-variable,
+.dark .hljs-template-tag,
+.dark .hljs-property { color: #9cdcfe; }
+.dark .hljs-title,
+.dark .hljs-title.function_,
+.dark .hljs-doctag { color: #dcdcaa; }
+.dark .hljs-type,
+.dark .hljs-built_in,
+.dark .hljs-class .hljs-title { color: #4ec9b0; }
+.dark .hljs-number,
+.dark .hljs-symbol,
+.dark .hljs-bullet { color: #b5cea8; }
+.dark .hljs-regexp { color: #d16969; }
+.dark .hljs-meta { color: #569cd6; }
+`
+
 interface TipTapEditorProps {
   content?: any
   onChange?: (content: any) => void
@@ -265,6 +326,7 @@ export function TipTapEditor({
         </div>
       )}
       {editable && <MenuBar editor={editor} />}
+      <style>{syntaxThemeCss}</style>
       <EditorContent editor={editor} />
       {editable && editor && (
         <div className="border-t px-4 py-2 text-xs text-gray-500 flex justify-between">
@@ -307,6 +369,7 @@ export function TipTapEditor({
           font-family: "JetBrains Mono", "Menlo", "Consolas", monospace;
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
           position: relative;
+          overflow: auto;
         }
         .dark .admin-editor .ProseMirror pre::before {
           content: 'code';
@@ -405,14 +468,15 @@ export function TipTapEditor({
           color: #111827;
         }
         .light .admin-editor .ProseMirror pre {
-          background: #111827;
-          color: #e5e7eb;
+          background: #0f172a;
+          color: #f8fafc;
           border: 1px solid #1f2937;
           border-radius: 10px;
           padding: 14px 16px;
           font-family: "JetBrains Mono", "Menlo", "Consolas", monospace;
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
           position: relative;
+          overflow: auto;
         }
         .light .admin-editor .ProseMirror pre::before {
           content: 'code';
@@ -440,7 +504,7 @@ export function TipTapEditor({
         }
         .light .admin-editor .ProseMirror code:not(pre code) {
           background: #f3f4f6;
-          color: #111827;
+          color: #0f172a;
           padding: 0.15rem 0.35rem;
           border-radius: 6px;
           font-family: "JetBrains Mono", "Menlo", "Consolas", monospace;
