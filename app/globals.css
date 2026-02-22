@@ -71,7 +71,7 @@
 
 @font-face {
   font-family: 'ArticleFont';
-  src: local('Noto Sans SC'), local('Microsoft YaHei');
+  src: local('Source Han Sans SC'), local('Noto Sans SC'), local('Microsoft YaHei');
   unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
   font-style: normal;
 }
@@ -79,7 +79,7 @@
 :root {
   --radius: 0.625rem;
   --article-font-latin: var(--font-sans);
-  --article-font-cjk: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Heiti SC", "WenQuanYi Micro Hei", "Source Han Sans SC", "Hiragino Sans GB", system-ui, sans-serif;
+  --article-font-cjk: "Source Han Sans SC", "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Heiti SC", "WenQuanYi Micro Hei", "Hiragino Sans GB", system-ui, sans-serif;
   --article-font: ArticleFont, system-ui, sans-serif;
   --article-font-size: 1rem;
   --article-line-height: 1.7;
