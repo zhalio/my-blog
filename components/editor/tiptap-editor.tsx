@@ -337,12 +337,12 @@ export function TipTapEditor({
       <style>{`
         /* Dark theme */
         .dark .admin-editor {
-          background: #0d1117;
+          background: #0c0f14;
           border: 1px solid #111827;
           box-shadow: 0 10px 30px rgba(0,0,0,0.28);
         }
         .dark .admin-editor .ProseMirror {
-          background: #0d1117;
+          background: #0c0f14;
           padding: 20px 24px 28px;
           min-height: 520px;
           line-height: 1.8;
@@ -406,8 +406,8 @@ export function TipTapEditor({
           border: 1px solid rgba(148, 163, 184, 0.35);
         }
         .dark .admin-editor .ProseMirror blockquote {
-          border-left: 3px solid #334155;
-          background: rgba(51, 65, 85, 0.18);
+          border-left: 3px solid #1f2937;
+          background: rgba(31, 41, 55, 0.35);
           padding: 10px 14px;
           border-radius: 10px;
           color: #cbd5e1;
