@@ -1,6 +1,6 @@
 # ZHalio's Blog & Portfolio
 
-基于 Next.js 16、Tailwind CSS v4、TipTap 和 Supabase 构建的现代化个人博客与轻量作品集。
+基于 Next.js 16、Tailwind CSS v4、TipTap 和 Supabase 构建的现代化个人博客与轻量作品集。默认内置外链悬浮预览、图片点击放大、代码块复制、Giscus 评论等体验型能力。
 
 **在线访问**: [https://emmmxx.xyz](https://emmmxx.xyz)
 **用途定位**: 个人技术博客 + 简历/作品集补充，集中展示项目案例、工程化思路与可运行 Demo。
@@ -41,6 +41,9 @@
 - **lowlight** - 代码高亮（集成到 TipTap）
 - **shiki** - VS Code 同款语法高亮
 - **rehype-pretty-code** - Markdown 代码美化
+- **外链预览** - 自动将外部链接替换为 Hover 预览卡片，可点击新开
+- **自动识别 URL** - 正文纯文本内的 `https://` 自动变为可点击链接
+- **图片放大与代码复制** - medium-zoom 预览图片，代码块一键复制
 
 ### 后端与数据
 
@@ -75,7 +78,7 @@
 
 ### 评论与社交
 
-- **Giscus** - GitHub Discussions 评论系统
+- **Giscus** - GitHub Discussions 评论系统（文章页默认启用，可在后台设置关闭）
 - **feed** - RSS/Atom 订阅源生成
 
 ### 分析与监控
