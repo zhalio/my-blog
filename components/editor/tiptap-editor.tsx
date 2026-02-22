@@ -448,11 +448,11 @@ export function TipTapEditor({
         .light .admin-editor {
           background: #ffffff;
           border: 1px solid #e5e7eb;
-          box-shadow: 0 12px 26px rgba(15,23,42,0.08);
+          box-shadow: 0 4px 12px rgba(15,23,42,0.05);
         }
         .light .admin-editor .ProseMirror {
           background: #ffffff;
-          padding: 20px 24px 28px;
+          padding: 18px 22px 24px;
           min-height: 520px;
           line-height: 1.8;
           color: #0f172a;
