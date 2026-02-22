@@ -470,7 +470,9 @@ export function TipTapEditor({
           color: #111827;
         }
         .light .admin-editor .ProseMirror pre {
-          color: #f8fafc;
+          background: #f8fafc;
+          color: #0f172a;
+          border: 1px solid #e2e8f0;
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .light .admin-editor .ProseMirror pre::before {
@@ -479,7 +481,7 @@ export function TipTapEditor({
           top: 10px;
           right: 12px;
           font-size: 11px;
-          color: rgba(229, 231, 235, 0.7);
+          color: #94a3b8;
           text-transform: uppercase;
           letter-spacing: 0.08em;
         }
