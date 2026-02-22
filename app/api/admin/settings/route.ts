@@ -40,7 +40,7 @@ export async function PUT(request: NextRequest) {
     // Ensure ID is 1
     const payload = { ...body, id: 1, updated_at: new Date().toISOString() }
 
-    const client = getAdminClient()
+    const client = getAdminClient(token || undefined)
     const { data, error } = await client
       .from('site_settings')
       .upsert(payload)

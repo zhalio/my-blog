@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const client = getAdminClient()
+    const client = getAdminClient(token || undefined)
     // 1. Overview Counts
     const { count: postsCount } = await client.from('posts').select('*', { count: 'exact', head: true }).eq('published', true)
     const { count: draftsCount } = await client.from('posts').select('*', { count: 'exact', head: true }).eq('published', false)

@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const client = getAdminClient()
+    const client = getAdminClient(token || undefined)
     const { data, error } = await client
       .storage
       .from('images')
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
     const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}.${fileExt}`
     const filePath = `uploads/${fileName}`
 
-    const client = getAdminClient()
+    const client = getAdminClient(token || undefined)
     const { error } = await client.storage
       .from('images')
       .upload(filePath, file, {
@@ -109,7 +109,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Filename is required' }, { status: 400 })
     }
 
-    const client = getAdminClient()
+    const client = getAdminClient(token || undefined)
     const { error } = await client.storage
       .from('images')
       .remove([`uploads/${filename}`])

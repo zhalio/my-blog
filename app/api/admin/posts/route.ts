@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     const tag = searchParams.get('tag')
     const published = searchParams.get('published') !== 'false' // 默认只获取已发布的
 
-    const client = getAdminClient() as any
+    const client = getAdminClient(token || undefined) as any
 
     let query = client
       .from('posts')
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
   }
   
   try {
-    const client = getAdminClient() as any
+    const client = getAdminClient(token || undefined) as any
     const body = await request.json()
     const {
       title,

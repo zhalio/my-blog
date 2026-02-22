@@ -39,18 +39,37 @@ export const createServerClient = () => {
   return getSupabaseClient()
 }
 
-// 用于服务端的管理员客户端（绕过 RLS）
-export const getAdminClient = () => {
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!supabaseUrl || !serviceRoleKey) {
-    console.warn('Missing SUPABASE_SERVICE_ROLE_KEY, falling back to anon client')
-    return getSupabaseClient()
+// 用于服务端的管理员客户端（使用用户 Token 认证）
+export const getAdminClient = (token?: string) => {
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('Missing Supabase environment variables')
   }
-  return createClient<SupabaseDB>(supabaseUrl, serviceRoleKey, {
-    auth: {
-      persistSession: false,
-    },
-  })
+  
+  // 如果提供了 token，则创建一个带有 Authorization 头的客户端
+  if (token) {
+    return createClient<SupabaseDB>(supabaseUrl, supabaseAnonKey, {
+      global: {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+      auth: {
+        persistSession: false,
+      },
+    })
+  }
+  
+  // 否则回退到使用 service_role_key（如果存在且有效）或 anon_key
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (serviceRoleKey && serviceRoleKey.startsWith('eyJ')) {
+    return createClient<SupabaseDB>(supabaseUrl, serviceRoleKey, {
+      auth: {
+        persistSession: false,
+      },
+    })
+  }
+  
+  return getSupabaseClient()
 }
 
 export type Database = {
