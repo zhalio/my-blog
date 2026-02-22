@@ -360,7 +360,8 @@ export function TipTapEditor({
         .dark .admin-editor .ProseMirror p {
           color: #d1d5db;
         }
-        .dark .admin-editor .ProseMirror pre {
+        /* Base code block style (both themes) */
+        .admin-editor .ProseMirror pre {
           background: #0f172a;
           color: #e5e7eb;
           border: 1px solid #1f2937;
@@ -371,6 +372,7 @@ export function TipTapEditor({
           position: relative;
           overflow: auto;
         }
+        .dark .admin-editor .ProseMirror pre { color: #e5e7eb; }
         .dark .admin-editor .ProseMirror pre::before {
           content: 'code';
           position: absolute;
@@ -468,15 +470,8 @@ export function TipTapEditor({
           color: #111827;
         }
         .light .admin-editor .ProseMirror pre {
-          background: #0f172a;
           color: #f8fafc;
-          border: 1px solid #1f2937;
-          border-radius: 10px;
-          padding: 14px 16px;
-          font-family: "JetBrains Mono", "Menlo", "Consolas", monospace;
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-          position: relative;
-          overflow: auto;
         }
         .light .admin-editor .ProseMirror pre::before {
           content: 'code';
@@ -503,12 +498,12 @@ export function TipTapEditor({
           color: #9ca3af;
         }
         .light .admin-editor .ProseMirror code:not(pre code) {
-          background: #f3f4f6;
+          background: #e2e8f0;
           color: #0f172a;
           padding: 0.15rem 0.35rem;
           border-radius: 6px;
           font-family: "JetBrains Mono", "Menlo", "Consolas", monospace;
-          border: 1px solid #e5e7eb;
+          border: 1px solid #cbd5e1;
         }
         .light .admin-editor .ProseMirror blockquote {
           border-left: 3px solid #cbd5e1;
