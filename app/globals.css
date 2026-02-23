@@ -86,15 +86,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'ZCOOLKuaiLeLocal';
-  src: url('/fonts/ZCOOLKuaiLe-Regular.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
-}
-
 :root {
   --radius: 0.625rem;
   --article-font-latin: var(--font-sans);
@@ -205,7 +196,7 @@
     font-weight: 600;
   }
   .font-handwriting-cjk {
-    font-family: "ZCOOLKuaiLeLocal", "MaShanZhengLocal", "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Source Han Sans SC", "Noto Sans SC", cursive;
+    font-family: "MaShanZhengLocal", "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Source Han Sans SC", "Noto Sans SC", cursive;
     letter-spacing: 0.02em;
     font-weight: 400;
   }
