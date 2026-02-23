@@ -32,6 +32,7 @@ export function VantaBackground() {
   const isArticlePage = pathname && /\/posts\/.+/.test(pathname)
   const isAboutPage = pathname && /\/about$/.test(pathname)
   const shouldDisableEffect = isArticlePage || isAboutPage
+  const isDark = theme === 'dark'
 
   useEffect(() => {
     if (!vantaRef.current) return
@@ -49,8 +50,6 @@ export function VantaBackground() {
 
     if (effect === 'none' || shouldDisableEffect) return
 
-    const isDark = theme === 'dark'
-    
     // Common options
     const options = {
       el: vantaRef.current,
@@ -95,8 +94,8 @@ export function VantaBackground() {
             newEffect = effectModule({
               ...options,
               backgroundColor: isDark ? 0x0 : 0xffffff,
-              color1: isDark ? 0x888888 : 0x444444, // Brighter in dark mode
-              color2: isDark ? 0x555555 : 0x666666,
+              color1: isDark ? 0x888888 : 0xaab8cf,
+              color2: isDark ? 0x555555 : 0xc9d5e6,
               colorMode: "lerpGradient",
               birdSize: 1,
               wingSpan: 30.00,
@@ -114,9 +113,9 @@ export function VantaBackground() {
             if (!isMounted) return
             newEffect = effectModule({
               ...options,
-              color: isDark ? 0x333333 : 0x666666, // Brighter in dark mode
-              shininess: 30.00,
-              waveHeight: 20.00,
+              color: isDark ? 0x333333 : 0x9bb2cf,
+              shininess: isDark ? 30.00 : 22.00,
+              waveHeight: isDark ? 20.00 : 12.00,
               waveSpeed: 0.8,
               zoom: 0.8
             })
@@ -127,8 +126,8 @@ export function VantaBackground() {
             if (!isMounted) return
             newEffect = effectModule({
               ...options,
-              color: isDark ? 0x888888 : 0x555555,
-              color2: isDark ? 0xcccccc : 0xaaaaaa,
+              color: isDark ? 0x888888 : 0x8fa7c6,
+              color2: isDark ? 0xcccccc : 0xd1deee,
               size: 1.00,
               backgroundColor: isDark ? 0x0 : 0xffffff,
             })
@@ -139,7 +138,7 @@ export function VantaBackground() {
             if (!isMounted) return
             newEffect = effectModule({
               ...options,
-              color: isDark ? 0x888888 : 0x555555,
+              color: isDark ? 0x888888 : 0x95aac6,
               backgroundColor: isDark ? 0x0 : 0xffffff,
             })
             break
@@ -149,7 +148,7 @@ export function VantaBackground() {
             if (!isMounted) return
             newEffect = effectModule({
               ...options,
-              color: isDark ? 0x888888 : 0x555555,
+              color: isDark ? 0x888888 : 0x96abc8,
               backgroundColor: isDark ? 0x0 : 0xffffff,
             })
             break
@@ -159,8 +158,8 @@ export function VantaBackground() {
             if (!isMounted) return
             newEffect = effectModule({
               ...options,
-              color: isDark ? 0x888888 : 0x555555,
-              color2: isDark ? 0xcccccc : 0xaaaaaa,
+              color: isDark ? 0x888888 : 0x94acc9,
+              color2: isDark ? 0xcccccc : 0xd4e0ef,
               backgroundColor: isDark ? 0x0 : 0xffffff,
             })
             break
@@ -171,7 +170,7 @@ export function VantaBackground() {
             newEffect = effectModule({
               ...options,
               backgroundColor: isDark ? 0x0 : 0xffffff,
-              baseColor: isDark ? 0x444444 : 0x222222,
+              baseColor: isDark ? 0x444444 : 0xb9c9df,
               size: 1.5,
             })
             break
@@ -202,7 +201,7 @@ export function VantaBackground() {
   return (
     <div 
       ref={vantaRef} 
-      className="fixed inset-0 -z-10 w-full h-full pointer-events-none opacity-50"
+      className={`fixed inset-0 -z-10 h-full w-full pointer-events-none ${isDark ? 'opacity-50' : 'opacity-28'}`}
     />
   )
 }

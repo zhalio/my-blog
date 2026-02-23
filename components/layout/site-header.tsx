@@ -48,8 +48,8 @@ export function SiteHeader() {
                   <span
                     className={`after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:rounded-full after:transition-all after:duration-200 ${
                       active
-                        ? 'after:w-full after:bg-white/90'
-                        : 'after:w-0 after:bg-white/70 hover:after:w-full hover:after:bg-white/80'
+                        ? 'after:w-full after:bg-primary/80 dark:after:bg-white/90'
+                        : 'after:w-0 after:bg-primary/45 hover:after:w-full hover:after:bg-primary/70 dark:after:bg-white/55 dark:hover:after:bg-white/80'
                     }`}
                   >
                     {item.label}
