@@ -37,7 +37,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               {t('title')}
             </TextShimmer>
           </h1>
-          <div className="max-w-[750px] text-lg text-muted-foreground/80 sm:text-xl h-8">
+          <div className="font-handwriting-cjk max-w-[750px] text-lg text-muted-foreground/80 sm:text-xl h-8">
             <TypewriterEffect text={t('description')} speed={150} waitBeforeDelete={5000} />
           </div>
           <div className="flex w-full max-w-2xl flex-col items-center gap-3 px-1 py-1">

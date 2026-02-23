@@ -209,8 +209,13 @@
     letter-spacing: 0.06em;
   }
   .font-handwriting {
-    font-family: "SatisfyLocal", "GreatVibesLocal", "MaShanZhengLocal", "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Segoe Script", "Bradley Hand", cursive;
-    letter-spacing: 0.008em;
+    font-family: "MaShanZhengLocal", "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Segoe Script", "Bradley Hand", cursive;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+  }
+  .font-handwriting-cjk {
+    font-family: "MaShanZhengLocal", "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Source Han Sans SC", "Noto Sans SC", cursive;
+    letter-spacing: 0.02em;
     font-weight: 400;
   }
 }
