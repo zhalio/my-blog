@@ -72,7 +72,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
                   <div className="mt-4 flex flex-wrap gap-2">
                     {post.tags.map(tag => (
                       <Link key={tag} href={`/tags/${tag}`} className="relative z-10 no-underline">
-                        <span className="rounded-md border border-white/18 bg-gradient-to-r from-white/30 via-white/18 to-emerald-50/26 px-2 py-1 text-xs text-zinc-700/80 backdrop-blur-md transition-colors hover:text-primary dark:border-white/8 dark:from-zinc-900/52 dark:via-zinc-900/40 dark:to-emerald-900/20 dark:text-zinc-300/85">
+                        <span className="rounded-md border border-white/16 bg-white/10 px-2 py-1 text-xs text-zinc-200/85 backdrop-blur-md transition-colors hover:border-white/24 hover:bg-white/14 hover:text-zinc-100 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300/85 dark:hover:bg-white/10">
                           #{tag}
                         </span>
                       </Link>
