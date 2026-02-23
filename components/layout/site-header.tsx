@@ -18,8 +18,10 @@ export function SiteHeader() {
   const stripLocale = (path: string) => path.replace(/^\/[a-zA-Z-]+(?=\/|$)/, '') || '/'
   const current = stripLocale(pathname || '')
 
-  const isActive = (href: string) =>
-    current === href || current.startsWith(href === '/' ? '/' : `${href}/`)
+  const isActive = (href: string) => {
+    if (href === '/') return current === '/'
+    return current === href || current.startsWith(`${href}/`)
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/30 bg-background/70 backdrop-blur-2xl shadow-[0_12px_45px_-30px_rgba(0,0,0,0.55)] supports-[backdrop-filter]:bg-background/70 dark:border-white/10">
@@ -46,8 +48,8 @@ export function SiteHeader() {
                   <span
                     className={`after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:rounded-full after:transition-all after:duration-200 ${
                       active
-                        ? 'after:w-full after:bg-gradient-to-r after:from-emerald-400 after:via-cyan-400 after:to-emerald-300'
-                        : 'after:w-0 after:bg-gradient-to-r after:from-transparent after:to-transparent hover:after:w-full hover:after:from-emerald-300/60 hover:after:to-cyan-300/60'
+                        ? 'after:w-full after:bg-white/90'
+                        : 'after:w-0 after:bg-white/70 hover:after:w-full hover:after:bg-white/80'
                     }`}
                   >
                     {item.label}

@@ -46,12 +46,12 @@ export function PostList({ posts, readMoreText }: PostListProps) {
       {posts.map((post) => (
         <motion.div key={post.id} variants={item} className="h-full">
           <ThreeDCard className="h-full">
-            <Card className="group/card flex h-full flex-col rounded-2xl border border-white/15 bg-white/8 shadow-lg shadow-emerald-500/5 backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-white/30 hover:shadow-emerald-500/15 dark:border-white/10 dark:bg-zinc-900/40">
+            <Card className="group/card flex h-full flex-col rounded-2xl border border-white/15 bg-white/10 shadow-lg shadow-white/5 backdrop-blur-xl transition-all duration-200 hover:-translate-y-1 hover:border-white/30 hover:shadow-white/15 dark:border-white/10 dark:bg-zinc-900/45">
               <CardHeader className="space-y-3">
                 <CardTitle className="line-clamp-2 text-lg">
                   <Link
                     href={`/posts/${post.slug}`}
-                    className="relative inline-block no-underline text-foreground transition-colors duration-200 after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-gradient-to-r after:from-emerald-400 after:via-cyan-400 after:to-emerald-300 after:transition-all after:duration-200 group-hover/card:after:w-full"
+                    className="relative inline-block no-underline text-foreground transition-colors duration-200 after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white/80 after:transition-all after:duration-200 group-hover/card:after:w-full"
                   >
                     {post.title}
                   </Link>
