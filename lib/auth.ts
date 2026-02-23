@@ -60,9 +60,11 @@ export async function validateAdminRequest(token: string | null): Promise<boolea
 /**
  * 带原因的管理员校验，便于排查 401 问题
  */
-export async function validateAdminRequestWithReason(token: string | null): Promise<{ ok: boolean; reason?: string; email?: string | null; expected?: string | null }>{
-  if (!token) return { ok: false, reason: 'missing_token', email: null, expected: ADMIN_EMAIL || null }
-  if (!supabaseUrl || !supabaseAnonKey) return { ok: false, reason: 'missing_supabase_env', email: null, expected: ADMIN_EMAIL || null }
+export async function validateAdminRequestWithReason(token: string | null): Promise<{ ok: boolean; reason?: string; email?: string | null; expected?: string | null }> {
+  const expected = ADMIN_EMAIL ? normalizeEmail(ADMIN_EMAIL) : null
+
+  if (!token) return { ok: false, reason: 'missing_token', email: null, expected }
+  if (!supabaseUrl || !supabaseAnonKey) return { ok: false, reason: 'missing_supabase_env', email: null, expected }
 
   const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     auth: { persistSession: false },
@@ -70,18 +72,17 @@ export async function validateAdminRequestWithReason(token: string | null): Prom
 
   const { data, error } = await supabase.auth.getUser(token)
   if (error || !data.user) {
-    return { ok: false, reason: 'token_invalid', email: null, expected: ADMIN_EMAIL || null }
+    return { ok: false, reason: 'token_invalid', email: null, expected }
   }
 
-  if (ADMIN_EMAIL) {
-    const expected = normalizeEmail(ADMIN_EMAIL)
+  if (expected) {
     const actual = normalizeEmail(data.user.email)
     if (expected !== actual) {
       return { ok: false, reason: 'email_mismatch', email: data.user.email, expected }
     }
   }
 
-  return { ok: true, email: data.user.email, expected: ADMIN_EMAIL || null }
+  return { ok: true, email: data.user.email, expected }
 }
 
 /**
@@ -94,7 +95,7 @@ export async function getAdminUser(token: string | null) {
   })
   const { data, error } = await supabase.auth.getUser(token)
   if (error || !data.user) return null
-  if (ADMIN_EMAIL && data.user.email !== ADMIN_EMAIL) return null
+  if (ADMIN_EMAIL && normalizeEmail(data.user.email) !== normalizeEmail(ADMIN_EMAIL)) return null
   return data.user
 }
 

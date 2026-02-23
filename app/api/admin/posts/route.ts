@@ -13,7 +13,10 @@ export async function GET(request: NextRequest) {
   const token = getAuthTokenFromRequest(request)
   const auth = await validateAdminRequestWithReason(token)
   if (!auth.ok) {
-    return NextResponse.json({ error: 'Unauthorized', reason: auth.reason, email: auth.email || null }, { status: 401 })
+    return NextResponse.json(
+      { error: 'Unauthorized', reason: auth.reason, email: auth.email || null, expected: auth.expected || null },
+      { status: 401 }
+    )
   }
   try {
     const { searchParams } = new URL(request.url)
@@ -72,7 +75,10 @@ export async function POST(request: NextRequest) {
   const token = getAuthTokenFromRequest(request)
   const auth = await validateAdminRequestWithReason(token)
   if (!auth.ok) {
-    return NextResponse.json({ error: 'Unauthorized', reason: auth.reason, email: auth.email || null }, { status: 401 })
+    return NextResponse.json(
+      { error: 'Unauthorized', reason: auth.reason, email: auth.email || null, expected: auth.expected || null },
+      { status: 401 }
+    )
   }
   
   try {
