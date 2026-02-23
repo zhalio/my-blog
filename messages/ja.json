@@ -3,6 +3,7 @@
     "home": "フロントページ",
     "about": "について",
     "posts": "記事",
+    "tags": "タグ",
     "guestbook": "メッセージ",
     "mobileNavDescription": "メインナビゲーションメニュー"
   },
@@ -31,7 +32,11 @@
   "Tags": {
     "title": "タグ",
     "description": "タグで記事を閲覧",
-    "count": "{count} 件の記事"
+    "count": "{count} 件の記事",
+    "totalTags": "{count} 個のタグ",
+    "totalAssignments": "{count} 件の分類",
+    "cta": "タグを見る",
+    "empty": "タグデータがありません"
   },
   "Guestbook": {
     "title": "掲示板",

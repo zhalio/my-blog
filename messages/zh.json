@@ -3,6 +3,7 @@
     "home": "首页",
     "about": "关于",
     "posts": "文章",
+    "tags": "标签",
     "guestbook": "留言",
     "mobileNavDescription": "主导航菜单"
   },
@@ -31,7 +32,11 @@
   "Tags": {
     "title": "标签",
     "description": "按标签浏览文章",
-    "count": "{count} 篇文章"
+    "count": "{count} 篇文章",
+    "totalTags": "{count} 个标签",
+    "totalAssignments": "{count} 次归档",
+    "cta": "查看标签",
+    "empty": "暂无标签数据"
   },
   "About": {
     "title": "关于本站",

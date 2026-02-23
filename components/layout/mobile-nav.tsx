@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import { Menu, Terminal, Home, BookOpen, MessageSquare, User } from "lucide-react"
+import { Menu, Terminal, Home, BookOpen, MessageSquare, User, Tags } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { Separator } from "@/components/ui/separator"
@@ -50,6 +50,14 @@ export function MobileNav() {
             >
               <BookOpen className="h-4 w-4" />
               {t('posts')}
+            </Link>
+            <Link
+              href="/tags"
+              className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+              onClick={() => setOpen(false)}
+            >
+              <Tags className="h-4 w-4" />
+              {t('tags')}
             </Link>
             <Link
               href="/guestbook"

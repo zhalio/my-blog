@@ -3,6 +3,7 @@
     "home": "première page",
     "about": "à propos",
     "posts": "article",
+    "tags": "étiquettes",
     "guestbook": "message",
     "mobileNavDescription": "Menu de navigation principal"
   },
@@ -32,7 +33,11 @@
   "Tags": {
     "title": "Étiquettes",
     "description": "Parcourir les articles par tags",
-    "count": "{count} articles"
+    "count": "{count} articles",
+    "totalTags": "{count} étiquettes",
+    "totalAssignments": "{count} classements",
+    "cta": "Voir l’étiquette",
+    "empty": "Aucune donnée d’étiquette"
   },
   "Guestbook": {
     "title": "babillard électronique",

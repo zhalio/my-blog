@@ -3,6 +3,7 @@
     "home": "front page",
     "about": "about",
     "posts": "article",
+    "tags": "tags",
     "guestbook": "message",
     "mobileNavDescription": "Main navigation menu"
   },
@@ -32,7 +33,11 @@
   "Tags": {
     "title": "Tags",
     "description": "Browse posts by tags",
-    "count": "{count} posts"
+    "count": "{count} posts",
+    "totalTags": "{count} tags",
+    "totalAssignments": "{count} assignments",
+    "cta": "View tag",
+    "empty": "No tag data yet"
   },
   "Guestbook": {
     "title": "message board",
