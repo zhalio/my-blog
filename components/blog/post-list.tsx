@@ -13,7 +13,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { PostData } from "@/lib/types";
-import { ThreeDCard } from "@/components/visuals/3d-card";
 
 const container = {
   hidden: { opacity: 0 },
@@ -45,8 +44,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
     >
       {posts.map((post) => (
         <motion.div key={post.id} variants={item} className="h-full">
-          <ThreeDCard className="h-full">
-            <Card className="group/card flex h-full flex-col rounded-2xl border border-white/22 bg-gradient-to-br from-white/42 via-white/22 to-emerald-50/22 ring-1 ring-white/14 shadow-lg shadow-emerald-500/8 backdrop-blur-xl transition-all duration-200 hover:-translate-y-1 hover:border-white/32 hover:from-white/52 hover:via-white/30 hover:to-emerald-50/30 dark:border-white/8 dark:from-zinc-900/58 dark:via-zinc-900/46 dark:to-emerald-900/22">
+          <Card className="group/card flex h-full flex-col rounded-2xl border border-white/20 bg-gradient-to-br from-white/42 via-white/22 to-emerald-50/22 shadow-lg shadow-emerald-500/8 backdrop-blur-xl transition-all duration-200 hover:-translate-y-1 hover:border-white/30 hover:from-white/52 hover:via-white/30 hover:to-emerald-50/30 dark:border-white/8 dark:from-zinc-900/58 dark:via-zinc-900/46 dark:to-emerald-900/22">
               <CardHeader className="space-y-3">
                 <CardTitle className="line-clamp-2 text-lg">
                   <Link
@@ -90,7 +88,6 @@ export function PostList({ posts, readMoreText }: PostListProps) {
                 </Button>
               </CardFooter>
             </Card>
-          </ThreeDCard>
         </motion.div>
       ))}
     </motion.div>
