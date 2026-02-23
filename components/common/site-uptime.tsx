@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
-import { Activity } from "lucide-react"
+import { Cog, Activity } from "lucide-react"
 
 const START_TIMESTAMP = new Date("2025-11-20T00:00:00Z").getTime()
 const MS_PER_DAY = 24 * 60 * 60 * 1000
@@ -16,14 +16,9 @@ export function SiteUptimeBadge() {
   const days = useMemo(() => calcDays(), [])
 
   return (
-    <div className="inline-flex items-center gap-3 rounded-2xl border border-white/30 bg-gradient-to-r from-white/60 via-white/40 to-emerald-50/60 px-4 py-3 text-sm text-zinc-700 shadow-lg shadow-emerald-500/10 ring-1 ring-white/20 backdrop-blur-xl dark:border-white/10 dark:from-zinc-900/70 dark:via-zinc-900/60 dark:to-emerald-900/30 dark:text-zinc-100">
-      <span className="relative inline-flex h-3 w-3">
-        <span
-          className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60"
-          aria-hidden
-          style={{ animationDuration: "1.8s" }}
-        />
-        <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500" aria-hidden />
+    <div className="inline-flex items-center gap-3 rounded-2xl border border-white/22 bg-gradient-to-r from-white/42 via-white/24 to-emerald-50/36 px-4 py-3 text-sm text-zinc-700 shadow-lg shadow-emerald-500/8 ring-1 ring-white/14 backdrop-blur-xl dark:border-white/8 dark:from-zinc-900/58 dark:via-zinc-900/46 dark:to-emerald-900/22 dark:text-zinc-100">
+      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-emerald-400/30 bg-emerald-500/8 ring-1 ring-emerald-300/15" aria-hidden>
+        <Cog className="h-4 w-4 animate-spin text-emerald-500 [animation-duration:2.6s]" />
       </span>
 
       <span className="flex flex-col leading-tight">

@@ -46,7 +46,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
       {posts.map((post) => (
         <motion.div key={post.id} variants={item} className="h-full">
           <ThreeDCard className="h-full">
-            <Card className="group/card flex h-full flex-col rounded-2xl border border-white/30 bg-gradient-to-br from-white/60 via-white/35 to-emerald-50/35 ring-1 ring-white/20 shadow-lg shadow-emerald-500/10 backdrop-blur-xl transition-all duration-200 hover:-translate-y-1 hover:border-white/40 hover:from-white/70 hover:via-white/45 hover:to-emerald-50/45 dark:border-white/10 dark:from-zinc-900/70 dark:via-zinc-900/60 dark:to-emerald-900/30">
+            <Card className="group/card flex h-full flex-col rounded-2xl border border-white/22 bg-gradient-to-br from-white/42 via-white/22 to-emerald-50/22 ring-1 ring-white/14 shadow-lg shadow-emerald-500/8 backdrop-blur-xl transition-all duration-200 hover:-translate-y-1 hover:border-white/32 hover:from-white/52 hover:via-white/30 hover:to-emerald-50/30 dark:border-white/8 dark:from-zinc-900/58 dark:via-zinc-900/46 dark:to-emerald-900/22">
               <CardHeader className="space-y-3">
                 <CardTitle className="line-clamp-2 text-lg">
                   <Link
@@ -74,7 +74,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
                   <div className="mt-4 flex flex-wrap gap-2">
                     {post.tags.map(tag => (
                       <Link key={tag} href={`/tags/${tag}`} className="relative z-10 no-underline">
-                        <span className="rounded-md border border-white/25 bg-gradient-to-r from-white/45 via-white/30 to-emerald-50/40 px-2 py-1 text-xs text-zinc-700/85 backdrop-blur-md transition-colors hover:text-primary dark:border-white/10 dark:from-zinc-900/65 dark:via-zinc-900/50 dark:to-emerald-900/25 dark:text-zinc-300/90">
+                        <span className="rounded-md border border-white/18 bg-gradient-to-r from-white/30 via-white/18 to-emerald-50/26 px-2 py-1 text-xs text-zinc-700/80 backdrop-blur-md transition-colors hover:text-primary dark:border-white/8 dark:from-zinc-900/52 dark:via-zinc-900/40 dark:to-emerald-900/20 dark:text-zinc-300/85">
                           #{tag}
                         </span>
                       </Link>
