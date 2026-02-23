@@ -78,6 +78,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'MaShanZhengLocal';
+  src: url('/fonts/MaShanZheng-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --radius: 0.625rem;
   --article-font-latin: var(--font-sans);
@@ -183,9 +191,9 @@
     letter-spacing: 0.06em;
   }
   .font-handwriting {
-    font-family: "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Segoe Script", "Bradley Hand", cursive;
+    font-family: "MaShanZhengLocal", "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Segoe Script", "Bradley Hand", cursive;
     letter-spacing: 0.02em;
-    font-weight: 600;
+    font-weight: 400;
   }
 }
 
