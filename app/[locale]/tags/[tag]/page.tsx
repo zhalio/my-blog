@@ -1,4 +1,4 @@
-import { getPostsByTag, getAllTags } from "@/lib/supabase/posts";
+import { getPostsByTag, getPublishedPosts } from "@/lib/supabase/posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PostList } from "@/components/blog/post-list";
 
@@ -8,11 +8,24 @@ const locales = ['zh', 'en', 'fr', 'ja'];
 
 export async function generateStaticParams() {
   const params: { locale: string; tag: string }[] = [];
-  
+  const posts = await getPublishedPosts('zh');
+  const tagSet = new Set<string>();
+
+  for (const post of posts) {
+    const tags = post.tags || [];
+    for (const tag of tags) {
+      const normalizedTag = tag.trim();
+      if (normalizedTag) {
+        tagSet.add(normalizedTag);
+      }
+    }
+  }
+
+  const allTags = Array.from(tagSet);
+
   for (const locale of locales) {
-    const tags = await getAllTags(locale);
-    tags.forEach((tag) => {
-      params.push({ locale, tag: tag.name });
+    allTags.forEach((tag) => {
+      params.push({ locale, tag });
     });
   }
 

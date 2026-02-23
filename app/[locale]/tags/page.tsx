@@ -1,4 +1,4 @@
-import { getAllTags } from "@/lib/supabase/posts";
+import { getPublishedPosts } from "@/lib/supabase/posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { ArrowRight, Hash } from 'lucide-react';
@@ -14,9 +14,22 @@ export default async function TagsPage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const t = await getTranslations('Tags');
 
-  // Content is authored in Chinese. Keep tag source consistent with posts language.
-  const tags = await getAllTags('zh');
-  const sortedTags = tags.sort((a, b) => b.count - a.count);
+  // Build tags directly from all published posts so this is a true "all tags" page.
+  const posts = await getPublishedPosts('zh');
+  const tagCountMap = new Map<string, number>();
+
+  for (const post of posts) {
+    const tags = post.tags || [];
+    for (const tag of tags) {
+      const normalizedTag = tag.trim();
+      if (!normalizedTag) continue;
+      tagCountMap.set(normalizedTag, (tagCountMap.get(normalizedTag) || 0) + 1);
+    }
+  }
+
+  const sortedTags = Array.from(tagCountMap.entries())
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   const totalPosts = sortedTags.reduce((sum, item) => sum + item.count, 0);
 
   return (
