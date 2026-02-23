@@ -101,7 +101,7 @@ export default async function LocaleLayout({
             <ThemeProvider
                 attribute="class"
                 defaultTheme="dark"
-                enableSystem
+                enableSystem={false}
                 disableTransitionOnChange
               >
                 <VantaProvider>

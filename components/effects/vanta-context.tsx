@@ -23,28 +23,44 @@ interface VantaContextType {
 
 const VantaContext = createContext<VantaContextType | undefined>(undefined);
 
+const normalizeEffect = (value: string | null): VantaEffectType | null => {
+  if (!value) return null;
+  if (value === 'global') return 'globe';
+  return VANTA_EFFECTS.includes(value as VantaEffectType) ? (value as VantaEffectType) : null;
+};
+
+const getDeviceDefaultEffect = (): VantaEffectType => {
+  if (typeof window === 'undefined') return 'halo';
+
+  const ua = navigator.userAgent || '';
+  const isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+  const isSmallScreen = window.innerWidth < 768;
+  const isMobile = isMobileUA || isSmallScreen;
+
+  return isMobile ? 'globe' : 'halo';
+};
+
 export function VantaProvider({ children }: { children: React.ReactNode }) {
 
-  // Default to desktop preference during SSR / first render
-  const [effect, setEffect] = useState<VantaEffectType>('rings');
+  const [effect, setEffect] = useState<VantaEffectType>(() => {
+    if (typeof window === 'undefined') return 'halo';
+
+    const savedEffect = normalizeEffect(localStorage.getItem('vanta-effect'));
+    return savedEffect ?? getDeviceDefaultEffect();
+  });
 
   // Load saved effect from local storage or decide default by device type
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const saved = localStorage.getItem('vanta-effect');
+    const saved = normalizeEffect(localStorage.getItem('vanta-effect'));
     if (saved) {
-      setEffect(saved as VantaEffectType);
+      setEffect(saved);
+      localStorage.setItem('vanta-effect', saved);
       return;
     }
 
-    // Simple mobile detection: userAgent + viewport width
-    const ua = navigator.userAgent || '';
-    const isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
-    const isSmallScreen = window.innerWidth < 768;
-    const isMobile = isMobileUA || isSmallScreen;
-
-    const defaultEffect: VantaEffectType = isMobile ? 'globe' : 'rings';
+    const defaultEffect = getDeviceDefaultEffect();
     setEffect(defaultEffect);
     localStorage.setItem('vanta-effect', defaultEffect);
   }, []);
