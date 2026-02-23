@@ -1,7 +1,7 @@
 import { getPublishedPosts } from "@/lib/supabase/posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
-import { ArrowRight, Hash } from 'lucide-react';
+import { Hash } from 'lucide-react';
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -31,6 +31,25 @@ export default async function TagsPage({ params }: { params: Promise<{ locale: s
     .map(([name, count]) => ({ name, count }))
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   const totalPosts = sortedTags.reduce((sum, item) => sum + item.count, 0);
+  const maxCount = sortedTags[0]?.count || 1;
+
+  const getTagSizeClass = (count: number) => {
+    const ratio = count / maxCount;
+    if (ratio >= 0.8) return 'text-base md:text-lg px-4 py-2.5';
+    if (ratio >= 0.5) return 'text-sm md:text-base px-4 py-2';
+    return 'text-sm px-3.5 py-1.5';
+  };
+
+  const getTagStyleClass = (count: number) => {
+    const ratio = count / maxCount;
+    if (ratio >= 0.8) {
+      return 'border-border/85 bg-background/85 text-foreground dark:border-white/18 dark:bg-white/10';
+    }
+    if (ratio >= 0.5) {
+      return 'border-border/75 bg-background/75 text-foreground/90 dark:border-white/14 dark:bg-white/8';
+    }
+    return 'border-border/70 bg-background/65 text-foreground/80 dark:border-white/12 dark:bg-white/6';
+  };
 
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">
@@ -60,23 +79,29 @@ export default async function TagsPage({ params }: { params: Promise<{ locale: s
           {t('empty')}
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {sortedTags.map((tag) => (
-            <Link key={tag.name} href={`/tags/${tag.name}`} className="group block no-underline">
-              <article className="flex h-full flex-col rounded-2xl border border-border/70 bg-background/78 p-5 shadow-sm backdrop-blur-xl transition-all duration-200 group-hover:-translate-y-1 group-hover:border-border/90 group-hover:shadow-md dark:border-white/8 dark:bg-zinc-900/40 dark:group-hover:border-white/14 dark:group-hover:shadow-black/35">
-                <div className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/70 bg-background/85 text-muted-foreground dark:border-white/14 dark:bg-white/8">
-                  <Hash className="h-4 w-4" />
-                </div>
-                <h2 className="line-clamp-1 text-xl font-semibold text-foreground">{tag.name}</h2>
-                <p className="mt-2 text-sm text-muted-foreground">{t('count', { count: tag.count })}</p>
-                <div className="mt-5 inline-flex items-center text-sm text-foreground/75 transition-colors group-hover:text-primary">
-                  {t('cta')}
-                  <ArrowRight className="ml-1 h-4 w-4" />
-                </div>
-              </article>
-            </Link>
-          ))}
-        </div>
+        <section className="rounded-2xl border border-border/70 bg-background/72 p-4 shadow-sm backdrop-blur-xl md:p-6 dark:border-white/8 dark:bg-zinc-900/34 dark:shadow-black/25">
+          <div className="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
+            <Hash className="h-4 w-4" />
+            <span>{t('description')}</span>
+          </div>
+          <div className="flex flex-wrap gap-3 md:gap-3.5">
+            {sortedTags.map((tag) => (
+              <Link
+                key={tag.name}
+                href={`/tags/${tag.name}`}
+                className={`group inline-flex items-center gap-2 rounded-full border no-underline shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-border hover:shadow-md dark:hover:border-white/20 ${getTagSizeClass(tag.count)} ${getTagStyleClass(tag.count)}`}
+              >
+                <span className="font-medium leading-none">#{tag.name}</span>
+                <span className="rounded-full border border-border/70 bg-background/75 px-2 py-0.5 text-xs text-muted-foreground dark:border-white/14 dark:bg-white/8">
+                  {tag.count}
+                </span>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-5 text-xs text-muted-foreground/90">
+            {t('totalTags', { count: sortedTags.length })} · {t('totalAssignments', { count: totalPosts })}
+          </p>
+        </section>
       )}
     </div>
   );
