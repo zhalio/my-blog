@@ -60,6 +60,7 @@ export default function SettingsPage() {
   const [saving, setSaving] = useState(false)
   
   const form = useForm<SiteSettings>({
+    // @ts-ignore zod v4 与 resolver 类型声明不匹配但运行时正常
     resolver: zodResolver(settingsSchema),
     defaultValues: {
        site_title: '',
