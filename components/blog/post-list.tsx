@@ -49,7 +49,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
                 <CardTitle className="line-clamp-2 text-lg">
                   <Link
                     href={`/posts/${post.slug}`}
-                    className="relative inline-block no-underline text-foreground transition-colors duration-200 after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary/70 after:transition-all after:duration-200 group-hover/card:after:w-full dark:after:bg-white/80"
+                    className="inline-block no-underline text-foreground transition-colors duration-200"
                   >
                     {post.title}
                   </Link>
