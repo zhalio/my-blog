@@ -41,8 +41,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="max-w-[750px] text-lg text-muted-foreground sm:text-xl h-8">
             <TypewriterEffect text={t('description')} speed={150} waitBeforeDelete={5000} />
           </div>
-          <HomeButtons viewPostsText={t('viewPosts')} />
-          <SiteUptimeBadge />
+          <div className="flex w-full max-w-xl flex-col items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-4 py-4 shadow-xl shadow-emerald-500/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-900/40">
+            <HomeButtons viewPostsText={t('viewPosts')} />
+            <SiteUptimeBadge />
+          </div>
         </FadeIn>
 
         {/* Posts Grid: 文章列表区域 */}
