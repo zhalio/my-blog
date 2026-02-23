@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
-import { Cog, Activity } from "lucide-react"
+import { Cog } from "lucide-react"
 import confetti from "canvas-confetti"
 
 const START_TIMESTAMP = new Date("2025-11-20T00:00:00Z").getTime()
@@ -60,12 +60,11 @@ export function SiteUptimeBadge() {
 
       <span className="flex flex-col leading-tight">
         <span className="flex items-center gap-1">
-          <Activity className="h-4 w-4 text-emerald-500" aria-hidden />
           <span className="text-foreground/80 dark:text-zinc-200/80">本站已稳定运行</span>
           <span className="font-semibold text-emerald-600 dark:text-emerald-400">{days}</span>
           <span className="text-foreground/80 dark:text-zinc-200/80">天</span>
         </span>
-        <span className="text-xs text-zinc-500 dark:text-zinc-400">since 2025.11.20</span>
+        <span className="block w-full text-center text-xs text-zinc-500 dark:text-zinc-400">since 2025.11.20</span>
       </span>
     </button>
   )
