@@ -5,6 +5,9 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || ''
 
+const normalizeEmail = (email: string | null | undefined) =>
+  (email ?? '').trim().toLowerCase()
+
 /**
  * 从请求头或 Cookie 中提取认证令牌
  */
@@ -46,16 +49,20 @@ export async function validateAdminRequest(token: string | null): Promise<boolea
   const { data, error } = await supabase.auth.getUser(token)
   if (error || !data.user) return false
 
-  if (ADMIN_EMAIL && data.user.email !== ADMIN_EMAIL) return false
+  if (ADMIN_EMAIL) {
+    const expected = normalizeEmail(ADMIN_EMAIL)
+    const actual = normalizeEmail(data.user.email)
+    if (expected !== actual) return false
+  }
   return true
 }
 
 /**
  * 带原因的管理员校验，便于排查 401 问题
  */
-export async function validateAdminRequestWithReason(token: string | null): Promise<{ ok: boolean; reason?: string; email?: string | null }>{
-  if (!token) return { ok: false, reason: 'missing_token', email: null }
-  if (!supabaseUrl || !supabaseAnonKey) return { ok: false, reason: 'missing_supabase_env', email: null }
+export async function validateAdminRequestWithReason(token: string | null): Promise<{ ok: boolean; reason?: string; email?: string | null; expected?: string | null }>{
+  if (!token) return { ok: false, reason: 'missing_token', email: null, expected: ADMIN_EMAIL || null }
+  if (!supabaseUrl || !supabaseAnonKey) return { ok: false, reason: 'missing_supabase_env', email: null, expected: ADMIN_EMAIL || null }
 
   const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     auth: { persistSession: false },
@@ -63,14 +70,18 @@ export async function validateAdminRequestWithReason(token: string | null): Prom
 
   const { data, error } = await supabase.auth.getUser(token)
   if (error || !data.user) {
-    return { ok: false, reason: 'token_invalid', email: null }
+    return { ok: false, reason: 'token_invalid', email: null, expected: ADMIN_EMAIL || null }
   }
 
-  if (ADMIN_EMAIL && data.user.email !== ADMIN_EMAIL) {
-    return { ok: false, reason: 'email_mismatch', email: data.user.email }
+  if (ADMIN_EMAIL) {
+    const expected = normalizeEmail(ADMIN_EMAIL)
+    const actual = normalizeEmail(data.user.email)
+    if (expected !== actual) {
+      return { ok: false, reason: 'email_mismatch', email: data.user.email, expected }
+    }
   }
 
-  return { ok: true, email: data.user.email }
+  return { ok: true, email: data.user.email, expected: ADMIN_EMAIL || null }
 }
 
 /**
