@@ -109,13 +109,22 @@ export default function AdminPostsPage() {
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch('/api/admin/posts?locale=zh&published=false')
+      const res = await fetch('/api/admin/posts?locale=zh&published=false', {
+        credentials: 'include',
+        headers: accessToken
+          ? {
+              Authorization: `Bearer ${accessToken}`,
+            }
+          : undefined,
+      })
+
+      const result = await res.json().catch(() => ({}))
 
       if (!res.ok) {
-        throw new Error('获取文章失败')
+        const message = result?.error ? `获取文章失败：${result.error}` : `获取文章失败（${res.status}）`
+        throw new Error(message)
       }
 
-      const result = await res.json()
       setPosts(result.posts || [])
     } catch (err) {
       setError(err instanceof Error ? err.message : '获取文章失败')
