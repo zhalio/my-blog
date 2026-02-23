@@ -61,7 +61,7 @@ export function SiteUptimeBadge() {
       <span className="flex flex-col leading-tight">
         <span className="flex items-center gap-1">
           <span className="text-foreground/80 dark:text-zinc-200/80">本站已稳定运行</span>
-          <span className="font-semibold text-emerald-600 dark:text-emerald-400 animate-pulse">{days}</span>
+          <span className="font-semibold text-emerald-600 dark:text-emerald-400">{days}</span>
           <span className="text-foreground/80 dark:text-zinc-200/80">天</span>
         </span>
         <span className="block w-full text-center text-xs text-zinc-500 dark:text-zinc-400">since 2025.11.20</span>

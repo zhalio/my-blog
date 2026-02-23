@@ -31,7 +31,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     <div className="relative min-h-[calc(100vh-4rem)] overflow-hidden">
       <div className="relative z-10 container mx-auto px-4 py-6 md:py-10">
         {/* Hero Section: 网站欢迎区域 */}
-        <FadeIn className="mx-auto flex max-w-[980px] flex-col items-center gap-4 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20 text-center">
+        <FadeIn className="mx-auto flex max-w-[980px] flex-col items-center gap-4 py-8 md:py-12 md:pb-8 lg:py-20 lg:pb-12 text-center">
           <h1 className="font-handwriting text-4xl font-semibold leading-tight tracking-[0.02em] md:text-7xl lg:leading-[1.1]">
             <TextShimmer className="inline-block">
               {t('title')}
@@ -47,7 +47,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </FadeIn>
 
         {/* Posts Grid: 文章列表区域 */}
-        <section className="mx-auto max-w-5xl space-y-8 mt-12">
+        <section className="mx-auto mt-8 max-w-5xl space-y-8 md:mt-10">
           <FadeIn delay={0.2} className="flex items-center justify-between border-b pb-2">
             <h2 className="text-2xl font-bold tracking-tight">{t('latestPosts')}</h2>
             <Link href="/posts" className="text-sm font-medium text-muted-foreground hover:text-primary">
