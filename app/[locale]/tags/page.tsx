@@ -1,6 +1,7 @@
 import { getAllTags } from "@/lib/supabase/posts";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
+import { ArrowRight, Hash } from 'lucide-react';
 
 const locales = ['zh', 'en', 'fr', 'ja'];
 
@@ -13,32 +14,54 @@ export default async function TagsPage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const t = await getTranslations('Tags');
 
-  const tags = await getAllTags(locale);
+  // Content is authored in Chinese. Keep tag source consistent with posts language.
+  const tags = await getAllTags('zh');
   const sortedTags = tags.sort((a, b) => b.count - a.count);
+  const totalPosts = sortedTags.reduce((sum, item) => sum + item.count, 0);
 
   return (
     <div className="container mx-auto px-4 py-6 md:py-10">
-      <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-        <div className="flex-1 space-y-4">
+      <div className="flex flex-col items-start gap-5 md:flex-row md:justify-between md:gap-8">
+        <div className="flex-1 space-y-3">
           <h1 className="inline-block font-bold text-4xl tracking-tight lg:text-5xl">{t('title')}</h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg text-muted-foreground md:text-xl">
             {t('description')}
           </p>
         </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="inline-flex items-center rounded-full border border-border/70 bg-background/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+            {sortedTags.length} 个标签
+          </span>
+          <span className="inline-flex items-center rounded-full border border-border/70 bg-background/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+            {totalPosts} 次归档
+          </span>
+        </div>
       </div>
       <hr className="my-8" />
-      <div className="flex flex-wrap gap-4">
-        {sortedTags.map((tag) => (
-          <Link key={tag.name} href={`/tags/${tag.name}`} className="no-underline">
-            <div className="flex items-center gap-2 rounded-lg border p-3 hover:bg-muted transition-colors">
-              <span className="text-lg font-medium">#{tag.name}</span>
-              <span className="text-sm text-muted-foreground bg-muted-foreground/10 px-2 py-0.5 rounded-full">
-                {tag.count}
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
+
+      {sortedTags.length === 0 ? (
+        <div className="rounded-2xl border border-border/70 bg-background/70 px-6 py-10 text-center text-muted-foreground backdrop-blur">
+          暂无标签数据
+        </div>
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {sortedTags.map((tag) => (
+            <Link key={tag.name} href={`/tags/${tag.name}`} className="group block no-underline">
+              <article className="flex h-full flex-col rounded-2xl border border-border/70 bg-gradient-to-r from-background/90 via-background/82 to-background/70 p-4 shadow-sm backdrop-blur-xl transition-all duration-200 group-hover:-translate-y-1 group-hover:border-border dark:border-white/6 dark:from-zinc-900/40 dark:via-zinc-900/30 dark:to-zinc-900/20 dark:shadow-lg dark:shadow-black/20">
+                <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-border/70 bg-background/80 text-muted-foreground dark:border-white/12 dark:bg-white/8">
+                  <Hash className="h-4 w-4" />
+                </div>
+                <h2 className="line-clamp-1 text-lg font-semibold text-foreground">{tag.name}</h2>
+                <p className="mt-2 text-sm text-muted-foreground">{t('count', { count: tag.count })}</p>
+                <div className="mt-4 inline-flex items-center text-sm text-foreground/75 transition-colors group-hover:text-primary">
+                  查看标签
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </div>
+              </article>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
