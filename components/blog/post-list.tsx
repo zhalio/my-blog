@@ -44,7 +44,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
     >
       {posts.map((post) => (
         <motion.div key={post.id} variants={item} className="h-full">
-          <Card className="group/card flex h-full flex-col rounded-2xl border border-border/70 bg-gradient-to-r from-background/88 via-background/74 to-emerald-50/52 shadow-sm backdrop-blur-xl transition-all duration-200 hover:-translate-y-1 hover:border-border hover:from-background/94 hover:via-background/84 hover:to-emerald-50/62 dark:border-white/6 dark:from-zinc-900/40 dark:via-zinc-900/30 dark:to-emerald-900/14 dark:shadow-lg dark:shadow-emerald-500/5">
+          <Card className="group/card flex h-full flex-col rounded-2xl border border-border/70 bg-gradient-to-r from-background/90 via-background/82 to-background/70 shadow-sm backdrop-blur-xl transition-all duration-200 hover:-translate-y-1 hover:border-border hover:from-background/94 hover:via-background/88 hover:to-background/78 dark:border-white/6 dark:from-zinc-900/40 dark:via-zinc-900/30 dark:to-emerald-900/14 dark:shadow-lg dark:shadow-emerald-500/5">
               <CardHeader className="space-y-3">
                 <CardTitle className="line-clamp-2 text-lg">
                   <Link

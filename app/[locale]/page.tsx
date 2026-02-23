@@ -29,11 +29,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)] overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 dark:hidden" aria-hidden>
-        <div className="absolute inset-x-0 top-0 h-[34rem] bg-gradient-to-b from-emerald-100/45 via-background to-background" />
-        <div className="absolute left-1/2 top-20 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-emerald-200/30 blur-3xl" />
-      </div>
-      
       <div className="relative z-10 container mx-auto px-4 py-6 md:py-10">
         {/* Hero Section: 网站欢迎区域 */}
         <FadeIn className="mx-auto flex max-w-[980px] flex-col items-center gap-4 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20 text-center">
