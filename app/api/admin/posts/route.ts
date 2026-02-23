@@ -70,9 +70,9 @@ export async function GET(request: NextRequest) {
 // POST - 创建新文章（需要认证）
 export async function POST(request: NextRequest) {
   const token = getAuthTokenFromRequest(request)
-  const ok = await validateAdminRequest(token)
-  if (!ok) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const auth = await validateAdminRequestWithReason(token)
+  if (!auth.ok) {
+    return NextResponse.json({ error: 'Unauthorized', reason: auth.reason, email: auth.email || null }, { status: 401 })
   }
   
   try {
