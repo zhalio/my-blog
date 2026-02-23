@@ -191,9 +191,9 @@
     letter-spacing: 0.06em;
   }
   .font-handwriting {
-    font-family: "MaShanZhengLocal", "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Segoe Script", "Bradley Hand", cursive;
+    font-family: "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Segoe Script", "Bradley Hand", cursive;
     letter-spacing: 0.02em;
-    font-weight: 400;
+    font-weight: 600;
   }
   .font-handwriting-cjk {
     font-family: "MaShanZhengLocal", "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Source Han Sans SC", "Noto Sans SC", cursive;
