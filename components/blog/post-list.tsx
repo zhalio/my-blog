@@ -27,7 +27,7 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 }
+  show: { opacity: 1, y: 0, transition: { duration: 0.2 } }
 };
 
 interface PostListProps {
@@ -46,14 +46,17 @@ export function PostList({ posts, readMoreText }: PostListProps) {
       {posts.map((post) => (
         <motion.div key={post.id} variants={item} className="h-full">
           <ThreeDCard className="h-full">
-            <Card className="flex flex-col h-full border-none bg-transparent shadow-none">
-              <CardHeader>
-                <CardTitle className="line-clamp-2">
-                  <Link href={`/posts/${post.slug}`} className="no-underline hover:underline">
+            <Card className="group/card flex h-full flex-col rounded-2xl border border-white/15 bg-white/8 shadow-lg shadow-emerald-500/5 backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-white/30 hover:shadow-emerald-500/15 dark:border-white/10 dark:bg-zinc-900/40">
+              <CardHeader className="space-y-3">
+                <CardTitle className="line-clamp-2 text-lg">
+                  <Link
+                    href={`/posts/${post.slug}`}
+                    className="relative inline-block no-underline text-foreground transition-colors duration-200 after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-gradient-to-r after:from-emerald-400 after:via-cyan-400 after:to-emerald-300 after:transition-all after:duration-200 group-hover/card:after:w-full"
+                  >
                     {post.title}
                   </Link>
                 </CardTitle>
-                <CardDescription className="flex items-center gap-2">
+                <CardDescription className="flex items-center gap-2 text-sm text-zinc-500/90 transition-colors duration-200 group-hover/card:text-zinc-300">
                   <time dateTime={post.date}>{new Date(post.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
                   {post.readingTime && (
                     <>
@@ -64,14 +67,14 @@ export function PostList({ posts, readMoreText }: PostListProps) {
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-1">
-                <p className="line-clamp-3 text-muted-foreground text-sm">
+                <p className="line-clamp-3 text-sm text-muted-foreground">
                   {post.summary || post.excerpt}
                 </p>
                 {post.tags && post.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-4">
+                  <div className="mt-4 flex flex-wrap gap-2">
                     {post.tags.map(tag => (
-                      <Link key={tag} href={`/tags/${tag}`} className="no-underline z-10 relative">
-                        <span className="text-xs bg-muted px-2 py-1 rounded-md text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
+                      <Link key={tag} href={`/tags/${tag}`} className="relative z-10 no-underline">
+                        <span className="rounded-md bg-muted px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary">
                           #{tag}
                         </span>
                       </Link>
@@ -80,7 +83,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
                 )}
               </CardContent>
               <CardFooter>
-                <Button asChild variant="ghost" className="w-full justify-start px-0 hover:bg-transparent hover:text-primary">
+                <Button asChild variant="ghost" className="w-full justify-start px-0 text-foreground/80 transition-colors hover:bg-transparent hover:text-primary">
                   <Link href={`/posts/${post.slug}`} className="flex items-center">
                     {readMoreText} <ArrowRight className="ml-2 size-4" />
                   </Link>

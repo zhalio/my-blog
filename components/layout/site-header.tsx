@@ -1,3 +1,5 @@
+"use client"
+
 import { Link } from "@/i18n/routing"
 import { ModeToggle } from "@/components/layout/mode-toggle"
 import { LanguageToggle } from "@/components/layout/language-toggle"
@@ -7,12 +9,20 @@ import { CommandMenu } from "@/components/layout/command-menu"
 import { MobileNav } from "@/components/layout/mobile-nav"
 import { VantaSwitcher } from "@/components/effects/vanta-switcher"
 import { FontToggle } from "@/components/layout/font-toggle"
+import { usePathname } from "next/navigation"
 
 export function SiteHeader() {
   const t = useTranslations('Navigation')
+  const pathname = usePathname()
+
+  const stripLocale = (path: string) => path.replace(/^\/[a-zA-Z-]+(?=\/|$)/, '') || '/'
+  const current = stripLocale(pathname || '')
+
+  const isActive = (href: string) =>
+    current === href || current.startsWith(href === '/' ? '/' : `${href}/`)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-200/50 dark:border-neutral-800/50 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-white/30 bg-background/70 backdrop-blur-2xl shadow-[0_12px_45px_-30px_rgba(0,0,0,0.55)] supports-[backdrop-filter]:bg-background/70 dark:border-white/10">
       <div className="container flex h-14 items-center">
         <MobileNav />
         <div className="mr-4 flex">
@@ -20,10 +30,31 @@ export function SiteHeader() {
             <Terminal className="h-6 w-6" />
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-            <Link href="/" className="transition-colors hover:text-primary">{t('home')}</Link>
-            <Link href="/posts" className="transition-colors hover:text-primary">{t('posts')}</Link>
-            <Link href="/guestbook" className="transition-colors hover:text-primary">{t('guestbook')}</Link>
-            <Link href="/about" className="transition-colors hover:text-primary">{t('about')}</Link>
+            {[
+              { href: '/', label: t('home') },
+              { href: '/posts', label: t('posts') },
+              { href: '/guestbook', label: t('guestbook') },
+              { href: '/about', label: t('about') },
+            ].map((item) => {
+              const active = isActive(item.href)
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`relative transition-colors ${active ? 'text-foreground' : 'text-foreground/70 hover:text-foreground'} `}
+                >
+                  <span
+                    className={`after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:rounded-full after:transition-all after:duration-200 ${
+                      active
+                        ? 'after:w-full after:bg-gradient-to-r after:from-emerald-400 after:via-cyan-400 after:to-emerald-300'
+                        : 'after:w-0 after:bg-gradient-to-r after:from-transparent after:to-transparent hover:after:w-full hover:after:from-emerald-300/60 hover:after:to-cyan-300/60'
+                    }`}
+                  >
+                    {item.label}
+                  </span>
+                </Link>
+              )
+            })}
           </nav>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-2 pr-3 md:pr-0">

@@ -33,15 +33,15 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <div className="relative z-10 container mx-auto px-4 py-6 md:py-10">
         {/* Hero Section: 网站欢迎区域 */}
         <FadeIn className="mx-auto flex max-w-[980px] flex-col items-center gap-4 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20 text-center">
-          <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-6xl lg:leading-[1.1]">
+          <h1 className="font-heading text-3xl font-bold leading-tight tracking-[0.08em] md:text-6xl lg:leading-[1.1]">
             <TextShimmer className="inline-block">
               {t('title')}
             </TextShimmer>
           </h1>
-          <div className="max-w-[750px] text-lg text-muted-foreground sm:text-xl h-8">
+          <div className="max-w-[750px] text-lg text-muted-foreground/80 sm:text-xl h-8">
             <TypewriterEffect text={t('description')} speed={150} waitBeforeDelete={5000} />
           </div>
-          <div className="flex w-full max-w-xl flex-col items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-4 py-4 shadow-xl shadow-emerald-500/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-900/40">
+          <div className="flex w-full max-w-2xl flex-col items-center gap-3 rounded-3xl border border-white/15 bg-white/8 px-5 py-4 shadow-lg shadow-emerald-500/8 backdrop-blur-2xl dark:border-white/10 dark:bg-zinc-900/35">
             <HomeButtons viewPostsText={t('viewPosts')} />
             <SiteUptimeBadge />
           </div>
