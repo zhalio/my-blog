@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase/client'
-import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
+import { getAuthTokenFromRequest, validateAdminRequestWithReason } from '@/lib/auth'
 import { Redis } from '@upstash/redis'
 
 const redisUrl = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || process.env.STORAGE_URL || ''
@@ -11,9 +11,9 @@ const redis = redisEnabled ? new Redis({ url: redisUrl, token: redisToken }) : n
 // GET - 获取所有文章列表（需要认证）
 export async function GET(request: NextRequest) {
   const token = getAuthTokenFromRequest(request)
-  const ok = await validateAdminRequest(token)
-  if (!ok) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const auth = await validateAdminRequestWithReason(token)
+  if (!auth.ok) {
+    return NextResponse.json({ error: 'Unauthorized', reason: auth.reason, email: auth.email || null }, { status: 401 })
   }
   try {
     const { searchParams } = new URL(request.url)

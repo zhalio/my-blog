@@ -51,6 +51,29 @@ export async function validateAdminRequest(token: string | null): Promise<boolea
 }
 
 /**
+ * 带原因的管理员校验，便于排查 401 问题
+ */
+export async function validateAdminRequestWithReason(token: string | null): Promise<{ ok: boolean; reason?: string; email?: string | null }>{
+  if (!token) return { ok: false, reason: 'missing_token', email: null }
+  if (!supabaseUrl || !supabaseAnonKey) return { ok: false, reason: 'missing_supabase_env', email: null }
+
+  const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: { persistSession: false },
+  })
+
+  const { data, error } = await supabase.auth.getUser(token)
+  if (error || !data.user) {
+    return { ok: false, reason: 'token_invalid', email: null }
+  }
+
+  if (ADMIN_EMAIL && data.user.email !== ADMIN_EMAIL) {
+    return { ok: false, reason: 'email_mismatch', email: data.user.email }
+  }
+
+  return { ok: true, email: data.user.email }
+}
+
+/**
  * 返回当前管理员用户（Supabase）
  */
 export async function getAdminUser(token: string | null) {
