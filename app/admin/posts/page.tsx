@@ -111,7 +111,7 @@ export default function AdminPostsPage() {
     try {
       const res = await fetch('/api/admin/posts?locale=zh&published=false', {
         credentials: 'include',
-        headers: accessToken
+        headers: accessToken && accessToken !== 'hidden'
           ? {
               Authorization: `Bearer ${accessToken}`,
             }
