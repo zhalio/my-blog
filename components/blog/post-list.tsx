@@ -46,7 +46,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
       {posts.map((post) => (
         <motion.div key={post.id} variants={item} className="h-full">
           <ThreeDCard className="h-full">
-            <Card className="group/card flex h-full flex-col rounded-2xl border border-white/15 bg-white/10 shadow-lg shadow-white/5 backdrop-blur-xl transition-all duration-200 hover:-translate-y-1 hover:border-white/30 hover:shadow-white/15 dark:border-white/10 dark:bg-zinc-900/45">
+            <Card className="group/card flex h-full flex-col rounded-2xl border border-white/20 bg-white/5 ring-1 ring-white/10 shadow-2xl shadow-black/20 backdrop-blur-2xl transition-all duration-200 hover:-translate-y-1 hover:border-white/35 hover:bg-white/10 hover:ring-white/20 dark:border-white/15 dark:bg-zinc-900/25 dark:ring-white/10 dark:hover:bg-zinc-900/35">
               <CardHeader className="space-y-3">
                 <CardTitle className="line-clamp-2 text-lg">
                   <Link
@@ -74,7 +74,7 @@ export function PostList({ posts, readMoreText }: PostListProps) {
                   <div className="mt-4 flex flex-wrap gap-2">
                     {post.tags.map(tag => (
                       <Link key={tag} href={`/tags/${tag}`} className="relative z-10 no-underline">
-                        <span className="rounded-md bg-muted px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary">
+                        <span className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-xs text-muted-foreground backdrop-blur-md transition-colors hover:bg-primary/10 hover:text-primary dark:bg-white/5">
                           #{tag}
                         </span>
                       </Link>
