@@ -7,6 +7,7 @@ import { FadeIn } from "@/components/visuals/fade-in";
 import { TypewriterEffect } from "@/components/visuals/typewriter-effect";
 import { TextShimmer } from "@/components/visuals/text-shimmer";
 import { HomeButtons } from "@/components/effects/home-buttons";
+import { SiteUptimeBadge } from "@/components/common/site-uptime";
 
 export const revalidate = 60;
 
@@ -41,6 +42,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <TypewriterEffect text={t('description')} speed={150} waitBeforeDelete={5000} />
           </div>
           <HomeButtons viewPostsText={t('viewPosts')} />
+          <SiteUptimeBadge />
         </FadeIn>
 
         {/* Posts Grid: 文章列表区域 */}
