@@ -4,12 +4,14 @@ import type { Database as SupabaseDB } from './types'
 function normalizeEnvValue(value?: string) {
   if (!value) return undefined
   let normalized = value.trim()
+  normalized = normalized.replace(/[\u200B-\u200D\uFEFF]/g, '')
   if (
     (normalized.startsWith('"') && normalized.endsWith('"')) ||
     (normalized.startsWith("'") && normalized.endsWith("'"))
   ) {
     normalized = normalized.slice(1, -1).trim()
   }
+  normalized = normalized.replace(/\s+/g, '')
   return normalized || undefined
 }
 

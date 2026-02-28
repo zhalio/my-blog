@@ -16,7 +16,7 @@ function keyReasonText(reason?: string, keyName?: string, keyRef?: string | null
     case 'project_ref_mismatch':
       return `${prefix}项目不匹配（key.ref=${keyRef}, url.ref=${urlRef}）`
     default:
-      return `${prefix}未知原因`
+      return `${prefix}格式看似正确但被 Supabase 拒绝（常见于复制不完整/密钥已轮换失效）`
   }
 }
 
