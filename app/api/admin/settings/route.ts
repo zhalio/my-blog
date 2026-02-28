@@ -9,6 +9,8 @@ function keyReasonText(reason?: string, keyName?: string, keyRef?: string | null
       return `${prefix}缺少配置`
     case 'invalid_jwt':
       return `${prefix}不是合法 JWT`
+    case 'invalid_format':
+      return `${prefix}格式不合法（应为 JWT 或 sb_publishable/sb_secret）`
     case 'invalid_role':
       return `${prefix}角色不匹配`
     case 'expired':
@@ -136,6 +138,7 @@ export async function PUT(request: NextRequest) {
           const reasonMap: Record<string, string> = {
             missing_key: '缺少 SUPABASE_SERVICE_ROLE_KEY',
             invalid_jwt: 'SUPABASE_SERVICE_ROLE_KEY 不是合法 JWT',
+            invalid_format: 'SUPABASE_SERVICE_ROLE_KEY 格式不合法（应为 JWT 或 sb_secret）',
             invalid_role: 'SUPABASE_SERVICE_ROLE_KEY 不是 service_role key',
             expired: 'SUPABASE_SERVICE_ROLE_KEY 已过期',
             project_ref_mismatch: `service_role key 项目不匹配（key.ref=${validation.keyRef}, url.ref=${validation.urlRef}）`,

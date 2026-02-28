@@ -50,29 +50,55 @@ function extractProjectRefFromSupabaseUrl(url?: string): string | null {
 
 type ServiceRoleValidation = {
   ok: boolean
-  reason?: 'missing_key' | 'invalid_jwt' | 'invalid_role' | 'expired' | 'project_ref_mismatch'
+  reason?: 'missing_key' | 'invalid_jwt' | 'invalid_role' | 'invalid_format' | 'expired' | 'project_ref_mismatch'
   keyRef?: string | null
   urlRef?: string | null
 }
 
 type AnonKeyValidation = {
   ok: boolean
-  reason?: 'missing_key' | 'invalid_jwt' | 'invalid_role' | 'expired' | 'project_ref_mismatch'
+  reason?: 'missing_key' | 'invalid_jwt' | 'invalid_role' | 'invalid_format' | 'expired' | 'project_ref_mismatch'
   keyRef?: string | null
   urlRef?: string | null
+}
+
+function isPublishableKey(token: string): boolean {
+  return /^sb_publishable_[A-Za-z0-9_-]+$/.test(token)
+}
+
+function isSecretKey(token: string): boolean {
+  return /^sb_secret_[A-Za-z0-9_-]+$/.test(token)
 }
 
 function validateJwtKey(
   token: string | undefined,
   expectedRole: 'anon' | 'service_role'
 ): ServiceRoleValidation | AnonKeyValidation {
+  const urlRef = extractProjectRefFromSupabaseUrl(supabaseUrl)
+
   if (!token) {
-    return { ok: false, reason: 'missing_key', keyRef: null, urlRef: extractProjectRefFromSupabaseUrl(supabaseUrl) }
+    return { ok: false, reason: 'missing_key', keyRef: null, urlRef }
+  }
+
+  if (token.startsWith('sb_')) {
+    if (expectedRole === 'anon' && isPublishableKey(token)) {
+      return { ok: true, keyRef: null, urlRef }
+    }
+
+    if (expectedRole === 'service_role' && isSecretKey(token)) {
+      return { ok: true, keyRef: null, urlRef }
+    }
+
+    if (isPublishableKey(token) || isSecretKey(token)) {
+      return { ok: false, reason: 'invalid_role', keyRef: null, urlRef }
+    }
+
+    return { ok: false, reason: 'invalid_format', keyRef: null, urlRef }
   }
 
   const payload = parseJwtPayload(token)
   if (!payload) {
-    return { ok: false, reason: 'invalid_jwt', keyRef: null, urlRef: extractProjectRefFromSupabaseUrl(supabaseUrl) }
+    return { ok: false, reason: 'invalid_jwt', keyRef: null, urlRef }
   }
 
   if (payload.role !== expectedRole) {
@@ -80,7 +106,7 @@ function validateJwtKey(
       ok: false,
       reason: 'invalid_role',
       keyRef: typeof payload.ref === 'string' ? payload.ref : null,
-      urlRef: extractProjectRefFromSupabaseUrl(supabaseUrl),
+      urlRef,
     }
   }
 
@@ -90,12 +116,11 @@ function validateJwtKey(
       ok: false,
       reason: 'expired',
       keyRef: typeof payload.ref === 'string' ? payload.ref : null,
-      urlRef: extractProjectRefFromSupabaseUrl(supabaseUrl),
+      urlRef,
     }
   }
 
   const keyRef = typeof payload.ref === 'string' ? payload.ref : null
-  const urlRef = extractProjectRefFromSupabaseUrl(supabaseUrl)
   if (keyRef && urlRef && keyRef !== urlRef) {
     return { ok: false, reason: 'project_ref_mismatch', keyRef, urlRef }
   }
