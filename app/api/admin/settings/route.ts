@@ -1,6 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getAdminClient, hasValidServiceRoleKey, validateServiceRoleKey } from '@/lib/supabase/client'
+import { getAdminClient, hasValidServiceRoleKey, validateAnonKey, validateServiceRoleKey } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
+
+function keyReasonText(reason?: string, keyName?: string, keyRef?: string | null, urlRef?: string | null) {
+  const prefix = keyName ? `${keyName}: ` : ''
+  switch (reason) {
+    case 'missing_key':
+      return `${prefix}缺少配置`
+    case 'invalid_jwt':
+      return `${prefix}不是合法 JWT`
+    case 'invalid_role':
+      return `${prefix}角色不匹配`
+    case 'expired':
+      return `${prefix}已过期`
+    case 'project_ref_mismatch':
+      return `${prefix}项目不匹配（key.ref=${keyRef}, url.ref=${urlRef}）`
+    default:
+      return `${prefix}未知原因`
+  }
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -24,6 +42,21 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ settings })
   } catch (error: any) {
+    const message = (error?.message || '').toLowerCase()
+    if (message.includes('invalid api key')) {
+      const anon = validateAnonKey()
+      const service = validateServiceRoleKey()
+      return NextResponse.json(
+        {
+          error: 'Supabase API Key 无效',
+          details: [
+            keyReasonText(anon.reason, 'NEXT_PUBLIC_SUPABASE_ANON_KEY', anon.keyRef, anon.urlRef),
+            keyReasonText(service.reason, 'SUPABASE_SERVICE_ROLE_KEY', service.keyRef, service.urlRef),
+          ],
+        },
+        { status: 500 }
+      )
+    }
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
@@ -79,8 +112,16 @@ export async function PUT(request: NextRequest) {
 
         if (repairError) {
           if ((repairError?.message || '').toLowerCase().includes('invalid api key')) {
+            const anon = validateAnonKey()
+            const service = validateServiceRoleKey()
             return NextResponse.json(
-              { error: 'Supabase API Key 无效：请在部署环境中检查 SUPABASE_SERVICE_ROLE_KEY 是否填写了 service_role key' },
+              {
+                error: 'Supabase API Key 无效',
+                details: [
+                  keyReasonText(anon.reason, 'NEXT_PUBLIC_SUPABASE_ANON_KEY', anon.keyRef, anon.urlRef),
+                  keyReasonText(service.reason, 'SUPABASE_SERVICE_ROLE_KEY', service.keyRef, service.urlRef),
+                ],
+              },
               { status: 500 }
             )
           }
@@ -99,8 +140,16 @@ export async function PUT(request: NextRequest) {
     const lowerMessage = message.toLowerCase()
 
     if (lowerMessage.includes('invalid api key')) {
+      const anon = validateAnonKey()
+      const service = validateServiceRoleKey()
       return NextResponse.json(
-        { error: 'Supabase API Key 无效：请检查 NEXT_PUBLIC_SUPABASE_ANON_KEY / SUPABASE_SERVICE_ROLE_KEY 配置' },
+        {
+          error: 'Supabase API Key 无效',
+          details: [
+            keyReasonText(anon.reason, 'NEXT_PUBLIC_SUPABASE_ANON_KEY', anon.keyRef, anon.urlRef),
+            keyReasonText(service.reason, 'SUPABASE_SERVICE_ROLE_KEY', service.keyRef, service.urlRef),
+          ],
+        },
         { status: 500 }
       )
     }

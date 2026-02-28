@@ -41,17 +41,27 @@ type ServiceRoleValidation = {
   urlRef?: string | null
 }
 
-export function validateServiceRoleKey(): ServiceRoleValidation {
-  if (!serviceRoleKey) {
+type AnonKeyValidation = {
+  ok: boolean
+  reason?: 'missing_key' | 'invalid_jwt' | 'invalid_role' | 'expired' | 'project_ref_mismatch'
+  keyRef?: string | null
+  urlRef?: string | null
+}
+
+function validateJwtKey(
+  token: string | undefined,
+  expectedRole: 'anon' | 'service_role'
+): ServiceRoleValidation | AnonKeyValidation {
+  if (!token) {
     return { ok: false, reason: 'missing_key', keyRef: null, urlRef: extractProjectRefFromSupabaseUrl(supabaseUrl) }
   }
 
-  const payload = parseJwtPayload(serviceRoleKey)
+  const payload = parseJwtPayload(token)
   if (!payload) {
     return { ok: false, reason: 'invalid_jwt', keyRef: null, urlRef: extractProjectRefFromSupabaseUrl(supabaseUrl) }
   }
 
-  if (payload.role !== 'service_role') {
+  if (payload.role !== expectedRole) {
     return {
       ok: false,
       reason: 'invalid_role',
@@ -77,6 +87,14 @@ export function validateServiceRoleKey(): ServiceRoleValidation {
   }
 
   return { ok: true, keyRef, urlRef }
+}
+
+export function validateAnonKey(): AnonKeyValidation {
+  return validateJwtKey(supabaseAnonKey, 'anon')
+}
+
+export function validateServiceRoleKey(): ServiceRoleValidation {
+  return validateJwtKey(serviceRoleKey, 'service_role')
 }
 
 export function hasValidServiceRoleKey() {
