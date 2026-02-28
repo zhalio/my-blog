@@ -20,6 +20,29 @@ function keyReasonText(reason?: string, keyName?: string, keyRef?: string | null
   }
 }
 
+function normalizeEnvValue(value?: string) {
+  if (!value) return undefined
+  let normalized = value.trim()
+  normalized = normalized.replace(/[\u200B-\u200D\uFEFF]/g, '')
+  if (
+    (normalized.startsWith('"') && normalized.endsWith('"')) ||
+    (normalized.startsWith("'") && normalized.endsWith("'"))
+  ) {
+    normalized = normalized.slice(1, -1).trim()
+  }
+  normalized = normalized.replace(/\s+/g, '')
+  return normalized || undefined
+}
+
+function keyFingerprint(value?: string) {
+  const normalized = normalizeEnvValue(value)
+  if (!normalized) return 'missing'
+  const len = normalized.length
+  const head = normalized.slice(0, 8)
+  const tail = normalized.slice(-8)
+  return `len=${len}, head=${head}, tail=${tail}`
+}
+
 export async function GET(request: NextRequest) {
   try {
     const client = getAdminClient()
@@ -52,6 +75,8 @@ export async function GET(request: NextRequest) {
           details: [
             keyReasonText(anon.reason, 'NEXT_PUBLIC_SUPABASE_ANON_KEY', anon.keyRef, anon.urlRef),
             keyReasonText(service.reason, 'SUPABASE_SERVICE_ROLE_KEY', service.keyRef, service.urlRef),
+            `NEXT_PUBLIC_SUPABASE_ANON_KEY 指纹: ${keyFingerprint(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)}`,
+            `SUPABASE_SERVICE_ROLE_KEY 指纹: ${keyFingerprint(process.env.SUPABASE_SERVICE_ROLE_KEY)}`,
           ],
         },
         { status: 500 }
@@ -120,6 +145,8 @@ export async function PUT(request: NextRequest) {
                 details: [
                   keyReasonText(anon.reason, 'NEXT_PUBLIC_SUPABASE_ANON_KEY', anon.keyRef, anon.urlRef),
                   keyReasonText(service.reason, 'SUPABASE_SERVICE_ROLE_KEY', service.keyRef, service.urlRef),
+                  `NEXT_PUBLIC_SUPABASE_ANON_KEY 指纹: ${keyFingerprint(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)}`,
+                  `SUPABASE_SERVICE_ROLE_KEY 指纹: ${keyFingerprint(process.env.SUPABASE_SERVICE_ROLE_KEY)}`,
                 ],
               },
               { status: 500 }
@@ -148,6 +175,8 @@ export async function PUT(request: NextRequest) {
           details: [
             keyReasonText(anon.reason, 'NEXT_PUBLIC_SUPABASE_ANON_KEY', anon.keyRef, anon.urlRef),
             keyReasonText(service.reason, 'SUPABASE_SERVICE_ROLE_KEY', service.keyRef, service.urlRef),
+            `NEXT_PUBLIC_SUPABASE_ANON_KEY 指纹: ${keyFingerprint(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)}`,
+            `SUPABASE_SERVICE_ROLE_KEY 指纹: ${keyFingerprint(process.env.SUPABASE_SERVICE_ROLE_KEY)}`,
           ],
         },
         { status: 500 }
