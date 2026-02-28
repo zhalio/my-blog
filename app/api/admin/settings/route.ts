@@ -50,10 +50,26 @@ export async function PUT(request: NextRequest) {
 
     if (error) {
       if (error.code === 'PGRST116') {
-        return NextResponse.json(
-          { error: 'site_settings 缺少默认行（id=1），请先执行 migration 初始化数据' },
-          { status: 500 }
-        )
+        const hasServiceRole = !!process.env.SUPABASE_SERVICE_ROLE_KEY?.startsWith('eyJ')
+        if (!hasServiceRole) {
+          return NextResponse.json(
+            { error: 'site_settings 缺少默认行（id=1），且未配置 SUPABASE_SERVICE_ROLE_KEY，无法自动初始化' },
+            { status: 500 }
+          )
+        }
+
+        const adminClient = getAdminClient()
+        const { data: repaired, error: repairError } = await adminClient
+          .from('site_settings')
+          .upsert({ id: 1, ...payload, site_title: body?.site_title || 'My Blog' })
+          .select()
+          .single()
+
+        if (repairError) {
+          throw repairError
+        }
+
+        return NextResponse.json({ settings: repaired })
       }
       throw error
     }
