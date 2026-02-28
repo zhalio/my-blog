@@ -29,6 +29,10 @@ export function hasValidServiceRoleKey() {
   return payload?.role === 'service_role'
 }
 
+function getValidatedServiceRoleKey(): string | null {
+  return hasValidServiceRoleKey() ? serviceRoleKey! : null
+}
+
 function getSupabaseClient() {
   if (!supabaseUrl || !supabaseAnonKey) {
     throw new Error('Missing Supabase environment variables: NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY')
@@ -83,8 +87,9 @@ export const getAdminClient = (token?: string) => {
   }
   
   // 否则回退到使用 service_role_key（如果存在且有效）或 anon_key
-  if (hasValidServiceRoleKey()) {
-    return createClient<SupabaseDB>(supabaseUrl, serviceRoleKey, {
+  const validatedServiceRoleKey = getValidatedServiceRoleKey()
+  if (validatedServiceRoleKey) {
+    return createClient<SupabaseDB>(supabaseUrl, validatedServiceRoleKey, {
       auth: {
         persistSession: false,
       },
