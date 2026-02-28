@@ -91,6 +91,13 @@ export default function SettingsPage() {
     setLoading(true)
     try {
       const settingsRes = await fetch('/api/admin/settings')
+      if (!settingsRes.ok) {
+        const err = await settingsRes.json().catch(() => null)
+        const details = Array.isArray(err?.details)
+          ? err.details.join('；')
+          : (typeof err?.details === 'string' ? err.details : '')
+        throw new Error(details ? `${err?.error || '加载失败'}：${details}` : (err?.error || '加载失败'))
+      }
       const data = await settingsRes.json()
       if (data.settings) {
          // Helper to replace null with empty string/default
@@ -138,6 +145,8 @@ export default function SettingsPage() {
       }
     } catch (error) {
       console.error('Failed to load settings', error)
+      const message = error instanceof Error ? error.message : '加载设置失败'
+      toast.error(message)
     } finally {
       setLoading(false)
     }
@@ -157,7 +166,10 @@ export default function SettingsPage() {
       })
       if (!res.ok) {
         const err = await res.json().catch(() => null)
-        throw new Error(err?.error || 'Failed to save')
+        const details = Array.isArray(err?.details)
+          ? err.details.join('；')
+          : (typeof err?.details === 'string' ? err.details : '')
+        throw new Error(details ? `${err?.error || 'Failed to save'}：${details}` : (err?.error || 'Failed to save'))
       }
       toast.success('所有配置已成功更新')
       // Refresh local data to ensure sync
