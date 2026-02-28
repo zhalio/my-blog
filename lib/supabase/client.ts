@@ -3,8 +3,31 @@ import type { Database as SupabaseDB } from './types'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
 let supabaseClient: any = null
+
+function parseJwtPayload(token: string): Record<string, any> | null {
+  try {
+    const parts = token.split('.')
+    if (parts.length !== 3) return null
+
+    const payload = parts[1]
+      .replace(/-/g, '+')
+      .replace(/_/g, '/')
+    const padded = payload + '='.repeat((4 - (payload.length % 4)) % 4)
+    const json = Buffer.from(padded, 'base64').toString('utf8')
+    return JSON.parse(json)
+  } catch {
+    return null
+  }
+}
+
+export function hasValidServiceRoleKey() {
+  if (!serviceRoleKey) return false
+  const payload = parseJwtPayload(serviceRoleKey)
+  return payload?.role === 'service_role'
+}
 
 function getSupabaseClient() {
   if (!supabaseUrl || !supabaseAnonKey) {
@@ -60,8 +83,7 @@ export const getAdminClient = (token?: string) => {
   }
   
   // 否则回退到使用 service_role_key（如果存在且有效）或 anon_key
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (serviceRoleKey && serviceRoleKey.startsWith('eyJ')) {
+  if (hasValidServiceRoleKey()) {
     return createClient<SupabaseDB>(supabaseUrl, serviceRoleKey, {
       auth: {
         persistSession: false,

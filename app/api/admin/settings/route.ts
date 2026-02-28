@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getAdminClient } from '@/lib/supabase/client'
+import { getAdminClient, hasValidServiceRoleKey } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
 
 export async function GET(request: NextRequest) {
@@ -50,10 +50,10 @@ export async function PUT(request: NextRequest) {
 
     if (error) {
       if (error.code === 'PGRST116') {
-        const hasServiceRole = !!process.env.SUPABASE_SERVICE_ROLE_KEY?.startsWith('eyJ')
+        const hasServiceRole = hasValidServiceRoleKey()
         if (!hasServiceRole) {
           return NextResponse.json(
-            { error: 'site_settings 缺少默认行（id=1），且未配置 SUPABASE_SERVICE_ROLE_KEY，无法自动初始化' },
+            { error: 'site_settings 缺少默认行（id=1），且 SUPABASE_SERVICE_ROLE_KEY 缺失或无效，无法自动初始化' },
             { status: 500 }
           )
         }
@@ -66,6 +66,12 @@ export async function PUT(request: NextRequest) {
           .single()
 
         if (repairError) {
+          if ((repairError?.message || '').toLowerCase().includes('invalid api key')) {
+            return NextResponse.json(
+              { error: 'Supabase API Key 无效：请在部署环境中检查 SUPABASE_SERVICE_ROLE_KEY 是否填写了 service_role key' },
+              { status: 500 }
+            )
+          }
           throw repairError
         }
 
@@ -78,6 +84,14 @@ export async function PUT(request: NextRequest) {
   } catch (error: any) {
     const code = error?.code as string | undefined
     const message = error?.message || 'Unknown error'
+    const lowerMessage = message.toLowerCase()
+
+    if (lowerMessage.includes('invalid api key')) {
+      return NextResponse.json(
+        { error: 'Supabase API Key 无效：请检查 NEXT_PUBLIC_SUPABASE_ANON_KEY / SUPABASE_SERVICE_ROLE_KEY 配置' },
+        { status: 500 }
+      )
+    }
 
     if (code === '42703') {
       return NextResponse.json(
