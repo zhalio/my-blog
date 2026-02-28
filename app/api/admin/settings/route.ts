@@ -37,17 +37,26 @@ export async function PUT(request: NextRequest) {
 
   try {
     const body = await request.json()
-    // Ensure ID is 1
-    const payload = { ...body, id: 1, updated_at: new Date().toISOString() }
+    // Singleton row update only (id = 1)
+    const payload = { ...body, updated_at: new Date().toISOString() }
 
     const client = getAdminClient(token || undefined)
     const { data, error } = await client
       .from('site_settings')
-      .upsert(payload)
+      .update(payload)
+      .eq('id', 1)
       .select()
       .single()
 
-    if (error) throw error
+    if (error) {
+      if (error.code === 'PGRST116') {
+        return NextResponse.json(
+          { error: 'site_settings 缺少默认行（id=1），请先执行 migration 初始化数据' },
+          { status: 500 }
+        )
+      }
+      throw error
+    }
 
     return NextResponse.json({ settings: data })
   } catch (error: any) {
