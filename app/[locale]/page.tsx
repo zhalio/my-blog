@@ -8,6 +8,7 @@ import { TypewriterEffect } from "@/components/visuals/typewriter-effect";
 import { TextShimmer } from "@/components/visuals/text-shimmer";
 import { HomeButtons } from "@/components/effects/home-buttons";
 import { SiteUptimeBadge } from "@/components/common/site-uptime";
+import { getSiteSettings } from "@/lib/site-settings";
 
 export const revalidate = 60;
 
@@ -24,6 +25,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   const t = await getTranslations('Home');
   const tCommon = await getTranslations('Common');
+  const settings = await getSiteSettings();
   // Content is authored in Chinese. Always fetch Chinese posts regardless of UI locale.
   const posts = await getPublishedPosts('zh');
 
@@ -34,11 +36,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <FadeIn className="mx-auto flex max-w-[980px] flex-col items-center gap-4 py-8 md:py-12 md:pb-8 lg:py-20 lg:pb-12 text-center">
           <h1 className="font-handwriting text-4xl font-semibold leading-tight tracking-[0.02em] md:text-7xl lg:leading-[1.1]">
             <TextShimmer className="inline-block">
-              {t('title')}
+              {settings.site_title || t('title')}
             </TextShimmer>
           </h1>
           <div className="font-handwriting-cjk max-w-[750px] text-lg text-muted-foreground/80 sm:text-xl h-8">
-            <TypewriterEffect text={t('description')} speed={150} waitBeforeDelete={5000} />
+            <TypewriterEffect text={settings.site_description || t('description')} speed={150} waitBeforeDelete={5000} />
           </div>
           <div className="flex w-full max-w-2xl flex-col items-center gap-3 px-1 py-1">
             <HomeButtons viewPostsText={t('viewPosts')} />

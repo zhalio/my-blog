@@ -16,7 +16,9 @@ import { VantaBackground } from "@/components/effects/vanta-background";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import { getSiteSettings } from "@/lib/site-settings";
-// import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteFooter } from "@/components/layout/site-footer";
+
+export const revalidate = 60;
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -112,7 +114,7 @@ export default async function LocaleLayout({
                     <main className="flex-1">
                       {children}
                     </main>
-                    {/* <SiteFooter text={settings.footer_text || '© 2026 My Blog'} /> */}
+                    <SiteFooter text={settings.footer_text || '© 2026 My Blog'} />
                     <ScrollToTopButton />
                   </div>
                   <SpeedInsights />
