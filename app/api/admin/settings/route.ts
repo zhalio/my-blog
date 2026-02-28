@@ -51,6 +51,23 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json({ settings: data })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    const code = error?.code as string | undefined
+    const message = error?.message || 'Unknown error'
+
+    if (code === '42703') {
+      return NextResponse.json(
+        { error: '数据库缺少设置字段（请执行最新 migration）', details: message, code },
+        { status: 500 }
+      )
+    }
+
+    if (code === '42P01') {
+      return NextResponse.json(
+        { error: '数据库缺少 site_settings 表（请执行初始化 schema/migration）', details: message, code },
+        { status: 500 }
+      )
+    }
+
+    return NextResponse.json({ error: message, code }, { status: 500 })
   }
 }

@@ -155,13 +155,17 @@ export default function SettingsPage() {
         },
         body: JSON.stringify(data)
       })
-      if (!res.ok) throw new Error('Failed to save')
+      if (!res.ok) {
+        const err = await res.json().catch(() => null)
+        throw new Error(err?.error || 'Failed to save')
+      }
       toast.success('所有配置已成功更新')
       // Refresh local data to ensure sync
       fetchData() 
     } catch (error) {
       console.error(error)
-      toast.error('保存失败，请检查数据库是否已运行 Migration')
+      const message = error instanceof Error ? error.message : '保存失败'
+      toast.error(message)
     } finally {
       setSaving(false)
     }
