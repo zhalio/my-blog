@@ -23,10 +23,64 @@ function parseJwtPayload(token: string): Record<string, any> | null {
   }
 }
 
-export function hasValidServiceRoleKey() {
-  if (!serviceRoleKey) return false
+function extractProjectRefFromSupabaseUrl(url?: string): string | null {
+  if (!url) return null
+  try {
+    const hostname = new URL(url).hostname
+    const match = hostname.match(/^([a-z0-9-]+)\.supabase\.co$/i)
+    return match?.[1] ?? null
+  } catch {
+    return null
+  }
+}
+
+type ServiceRoleValidation = {
+  ok: boolean
+  reason?: 'missing_key' | 'invalid_jwt' | 'invalid_role' | 'expired' | 'project_ref_mismatch'
+  keyRef?: string | null
+  urlRef?: string | null
+}
+
+export function validateServiceRoleKey(): ServiceRoleValidation {
+  if (!serviceRoleKey) {
+    return { ok: false, reason: 'missing_key', keyRef: null, urlRef: extractProjectRefFromSupabaseUrl(supabaseUrl) }
+  }
+
   const payload = parseJwtPayload(serviceRoleKey)
-  return payload?.role === 'service_role'
+  if (!payload) {
+    return { ok: false, reason: 'invalid_jwt', keyRef: null, urlRef: extractProjectRefFromSupabaseUrl(supabaseUrl) }
+  }
+
+  if (payload.role !== 'service_role') {
+    return {
+      ok: false,
+      reason: 'invalid_role',
+      keyRef: typeof payload.ref === 'string' ? payload.ref : null,
+      urlRef: extractProjectRefFromSupabaseUrl(supabaseUrl),
+    }
+  }
+
+  const nowSec = Math.floor(Date.now() / 1000)
+  if (typeof payload.exp === 'number' && payload.exp <= nowSec) {
+    return {
+      ok: false,
+      reason: 'expired',
+      keyRef: typeof payload.ref === 'string' ? payload.ref : null,
+      urlRef: extractProjectRefFromSupabaseUrl(supabaseUrl),
+    }
+  }
+
+  const keyRef = typeof payload.ref === 'string' ? payload.ref : null
+  const urlRef = extractProjectRefFromSupabaseUrl(supabaseUrl)
+  if (keyRef && urlRef && keyRef !== urlRef) {
+    return { ok: false, reason: 'project_ref_mismatch', keyRef, urlRef }
+  }
+
+  return { ok: true, keyRef, urlRef }
+}
+
+export function hasValidServiceRoleKey() {
+  return validateServiceRoleKey().ok
 }
 
 function getValidatedServiceRoleKey(): string | null {

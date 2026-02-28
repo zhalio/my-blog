@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getAdminClient, hasValidServiceRoleKey } from '@/lib/supabase/client'
+import { getAdminClient, hasValidServiceRoleKey, validateServiceRoleKey } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
 
 export async function GET(request: NextRequest) {
@@ -51,9 +51,21 @@ export async function PUT(request: NextRequest) {
     if (error) {
       if (error.code === 'PGRST116') {
         const hasServiceRole = hasValidServiceRoleKey()
+        const validation = validateServiceRoleKey()
         if (!hasServiceRole) {
+          const reasonMap: Record<string, string> = {
+            missing_key: '缺少 SUPABASE_SERVICE_ROLE_KEY',
+            invalid_jwt: 'SUPABASE_SERVICE_ROLE_KEY 不是合法 JWT',
+            invalid_role: 'SUPABASE_SERVICE_ROLE_KEY 不是 service_role key',
+            expired: 'SUPABASE_SERVICE_ROLE_KEY 已过期',
+            project_ref_mismatch: `service_role key 项目不匹配（key.ref=${validation.keyRef}, url.ref=${validation.urlRef}）`,
+          }
+
           return NextResponse.json(
-            { error: 'site_settings 缺少默认行（id=1），且 SUPABASE_SERVICE_ROLE_KEY 缺失或无效，无法自动初始化' },
+            {
+              error: 'site_settings 缺少默认行（id=1），且 SUPABASE_SERVICE_ROLE_KEY 无法用于自动初始化',
+              details: reasonMap[validation.reason || ''] || '未知 service_role 校验失败原因',
+            },
             { status: 500 }
           )
         }
