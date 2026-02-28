@@ -43,6 +43,35 @@ function keyFingerprint(value?: string) {
   return `len=${len}, head=${head}, tail=${tail}`
 }
 
+function extractProjectRefFromSupabaseUrl(url?: string) {
+  const normalized = normalizeEnvValue(url)
+  if (!normalized) return null
+  try {
+    const hostname = new URL(normalized).hostname
+    const match = hostname.match(/^([a-z0-9-]+)\.supabase\.co$/i)
+    return match?.[1] ?? null
+  } catch {
+    return null
+  }
+}
+
+function buildApiKeyErrorDetails() {
+  const anon = validateAnonKey()
+  const service = validateServiceRoleKey()
+  const normalizedUrl = normalizeEnvValue(process.env.NEXT_PUBLIC_SUPABASE_URL)
+  const urlRef = extractProjectRefFromSupabaseUrl(process.env.NEXT_PUBLIC_SUPABASE_URL)
+
+  return [
+    keyReasonText(anon.reason, 'NEXT_PUBLIC_SUPABASE_ANON_KEY', anon.keyRef, anon.urlRef),
+    keyReasonText(service.reason, 'SUPABASE_SERVICE_ROLE_KEY', service.keyRef, service.urlRef),
+    `NEXT_PUBLIC_SUPABASE_URL: ${normalizedUrl || 'missing'} (url.ref=${urlRef || 'unknown'})`,
+    `NEXT_PUBLIC_SUPABASE_ANON_KEY ref: ${anon.keyRef || 'unknown'} (url.ref=${anon.urlRef || urlRef || 'unknown'})`,
+    `SUPABASE_SERVICE_ROLE_KEY ref: ${service.keyRef || 'unknown'} (url.ref=${service.urlRef || urlRef || 'unknown'})`,
+    `NEXT_PUBLIC_SUPABASE_ANON_KEY 指纹: ${keyFingerprint(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)}`,
+    `SUPABASE_SERVICE_ROLE_KEY 指纹: ${keyFingerprint(process.env.SUPABASE_SERVICE_ROLE_KEY)}`,
+  ]
+}
+
 export async function GET(request: NextRequest) {
   try {
     const client = getAdminClient()
@@ -67,17 +96,10 @@ export async function GET(request: NextRequest) {
   } catch (error: any) {
     const message = (error?.message || '').toLowerCase()
     if (message.includes('invalid api key')) {
-      const anon = validateAnonKey()
-      const service = validateServiceRoleKey()
       return NextResponse.json(
         {
           error: 'Supabase API Key 无效',
-          details: [
-            keyReasonText(anon.reason, 'NEXT_PUBLIC_SUPABASE_ANON_KEY', anon.keyRef, anon.urlRef),
-            keyReasonText(service.reason, 'SUPABASE_SERVICE_ROLE_KEY', service.keyRef, service.urlRef),
-            `NEXT_PUBLIC_SUPABASE_ANON_KEY 指纹: ${keyFingerprint(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)}`,
-            `SUPABASE_SERVICE_ROLE_KEY 指纹: ${keyFingerprint(process.env.SUPABASE_SERVICE_ROLE_KEY)}`,
-          ],
+          details: buildApiKeyErrorDetails(),
         },
         { status: 500 }
       )
@@ -137,17 +159,10 @@ export async function PUT(request: NextRequest) {
 
         if (repairError) {
           if ((repairError?.message || '').toLowerCase().includes('invalid api key')) {
-            const anon = validateAnonKey()
-            const service = validateServiceRoleKey()
             return NextResponse.json(
               {
                 error: 'Supabase API Key 无效',
-                details: [
-                  keyReasonText(anon.reason, 'NEXT_PUBLIC_SUPABASE_ANON_KEY', anon.keyRef, anon.urlRef),
-                  keyReasonText(service.reason, 'SUPABASE_SERVICE_ROLE_KEY', service.keyRef, service.urlRef),
-                  `NEXT_PUBLIC_SUPABASE_ANON_KEY 指纹: ${keyFingerprint(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)}`,
-                  `SUPABASE_SERVICE_ROLE_KEY 指纹: ${keyFingerprint(process.env.SUPABASE_SERVICE_ROLE_KEY)}`,
-                ],
+                details: buildApiKeyErrorDetails(),
               },
               { status: 500 }
             )
@@ -167,17 +182,10 @@ export async function PUT(request: NextRequest) {
     const lowerMessage = message.toLowerCase()
 
     if (lowerMessage.includes('invalid api key')) {
-      const anon = validateAnonKey()
-      const service = validateServiceRoleKey()
       return NextResponse.json(
         {
           error: 'Supabase API Key 无效',
-          details: [
-            keyReasonText(anon.reason, 'NEXT_PUBLIC_SUPABASE_ANON_KEY', anon.keyRef, anon.urlRef),
-            keyReasonText(service.reason, 'SUPABASE_SERVICE_ROLE_KEY', service.keyRef, service.urlRef),
-            `NEXT_PUBLIC_SUPABASE_ANON_KEY 指纹: ${keyFingerprint(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)}`,
-            `SUPABASE_SERVICE_ROLE_KEY 指纹: ${keyFingerprint(process.env.SUPABASE_SERVICE_ROLE_KEY)}`,
-          ],
+          details: buildApiKeyErrorDetails(),
         },
         { status: 500 }
       )
