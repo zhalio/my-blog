@@ -50,7 +50,10 @@ export const getSiteSettings = async () => {
       site_keywords: [],
       favicon_url: '',
       footer_text: '© 2026 My Blog. All rights reserved.',
-      social_links: []
+      social_links: [],
+      feature_flags: {
+        enable_footer: true,
+      }
     }
   } catch (error) {
     console.error('Error fetching site settings (this is expected during build if Supabase env vars are not set):', error);
@@ -60,7 +63,10 @@ export const getSiteSettings = async () => {
       site_keywords: [],
       favicon_url: '',
       footer_text: '© 2026 My Blog. All rights reserved.',
-      social_links: []
+      social_links: [],
+      feature_flags: {
+        enable_footer: true,
+      }
     }
   }
 }

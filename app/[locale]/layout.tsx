@@ -114,7 +114,9 @@ export default async function LocaleLayout({
                     <main className="flex-1">
                       {children}
                     </main>
-                    <SiteFooter text={settings.footer_text || '© 2026 My Blog'} />
+                    {settings.feature_flags?.enable_footer !== false && (
+                      <SiteFooter text={settings.footer_text || '© 2026 My Blog'} />
+                    )}
                     <ScrollToTopButton />
                   </div>
                   <SpeedInsights />

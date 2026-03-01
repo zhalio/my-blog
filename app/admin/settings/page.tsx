@@ -46,6 +46,7 @@ const settingsSchema = z.object({
 
   feature_flags: z.object({
     enable_comments: z.boolean().optional(),
+    enable_footer: z.boolean().optional(),
     enable_registrations: z.boolean().optional(),
     maintenance_mode: z.boolean().optional()
   }).optional()
@@ -70,7 +71,7 @@ export default function SettingsPage() {
        social_links: [],
        author_info: { name: '', bio: '', avatar_url: '' },
        seo_config: { google_site_verification: '', baidu_site_verification: '', og_image: '' },
-       feature_flags: { enable_comments: false, enable_registrations: false, maintenance_mode: false }
+       feature_flags: { enable_comments: false, enable_footer: true, enable_registrations: false, maintenance_mode: false }
     }
   })
 
@@ -136,6 +137,7 @@ export default function SettingsPage() {
             },
             feature_flags: {
                 enable_comments: s.feature_flags?.enable_comments ?? true,
+              enable_footer: s.feature_flags?.enable_footer ?? true,
                 enable_registrations: s.feature_flags?.enable_registrations ?? false,
                 maintenance_mode: s.feature_flags?.maintenance_mode ?? false
             }
@@ -239,11 +241,11 @@ export default function SettingsPage() {
                     </CardHeader>
                     <CardContent className="space-y-6">
                         <div className="grid gap-2">
-                            <Label>网站标题</Label>
+                          <Label>主标题（首页大标题）</Label>
                             <Input {...form.register('site_title')} placeholder="我的博客" />
                         </div>
                         <div className="grid gap-2">
-                            <Label>网站描述</Label>
+                          <Label>副标题（首页副标题）</Label>
                             <Textarea {...form.register('site_description')} placeholder="关于博客的简短介绍..." rows={4} className="resize-none" />
                         </div>
                         <div className="grid gap-2">
@@ -253,6 +255,16 @@ export default function SettingsPage() {
                         <div className="grid gap-2">
                             <Label>页脚文本</Label>
                             <Input {...form.register('footer_text')} placeholder="© 2024 All Rights Reserved" />
+                        </div>
+                        <div className="flex items-center justify-between p-4 bg-muted/30 rounded-lg border">
+                          <div className="space-y-0.5">
+                            <Label className="text-base">显示页脚</Label>
+                            <p className="text-sm text-muted-foreground">关闭后前台将隐藏页脚区域。</p>
+                          </div>
+                          <Switch
+                            checked={form.watch('feature_flags.enable_footer')}
+                            onCheckedChange={(checked) => form.setValue('feature_flags.enable_footer', checked)}
+                          />
                         </div>
                     </CardContent>
                 </Card>
