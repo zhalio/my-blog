@@ -39,7 +39,7 @@ export function AdminHeader() {
               <BookOpen className="h-5 w-5 text-white dark:text-zinc-900" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Blog Admin</p>
+              <p className="text-sm font-semibold font-handwriting text-zinc-900 dark:text-zinc-100">Blog Admin</p>
             </div>
           </Link>
 
