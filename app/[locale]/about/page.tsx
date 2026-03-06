@@ -1,7 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { PostLayout } from "@/components/blog/post-layout";
-import { FadeIn } from "@/components/visuals/fade-in";
 import { TipTapRenderer } from "@/components/editor/tiptap-renderer";
 import { supabase } from '@/lib/supabase/client';
 
@@ -52,24 +51,22 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
   return (
     <PostLayout toc={toc}>
-      <FadeIn>
-        <article className="prose dark:prose-invert max-w-none">
-          <div className="space-y-4 border-b pb-8">
-            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{post.title}</h1>
-            {post.description && (
-              <p className="text-xl text-muted-foreground">
-                {post.description}
-              </p>
-            )}
-          </div>
+      <article className="prose dark:prose-invert max-w-none">
+        <div className="space-y-4 border-b pb-8">
+          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{post.title}</h1>
+          {post.description && (
+            <p className="text-xl text-muted-foreground">
+              {post.description}
+            </p>
+          )}
+        </div>
 
-          <TipTapRenderer
-            className="mt-8 leading-7 text-base md:text-lg"
-            content={post.content}
-            toc={toc}
-          />
-        </article>
-      </FadeIn>
+        <TipTapRenderer
+          className="mt-8 leading-7 text-base md:text-lg"
+          content={post.content}
+          toc={toc}
+        />
+      </article>
     </PostLayout>
   );
 }
