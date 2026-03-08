@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
+import { updatePostSchema } from '@/lib/validation/post'
+import { z } from 'zod'
+
+const currentPostPublishStateSchema = z.object({
+  published: z.boolean(),
+})
 
 // GET - 获取单个文章（需要认证）
 export async function GET(
@@ -48,7 +54,20 @@ export async function PUT(
   try {
     const { id } = await params
     const client = getAdminClient(token || undefined)
-    const body = await request.json()
+    const rawBody: unknown = await request.json()
+    const parsedBody = updatePostSchema.safeParse(rawBody)
+
+    if (!parsedBody.success) {
+      return NextResponse.json(
+        {
+          error: 'Invalid request body',
+          details: parsedBody.error.flatten(),
+        },
+        { status: 400 }
+      )
+    }
+
+    const body = parsedBody.data
 
     // 如果发布状态从 false 变为 true，且未显式传入发布时间，则更新为当前时间
     if (body.published === true) {
@@ -58,12 +77,9 @@ export async function PUT(
         .eq('id', id)
         .single()
 
-      if (
-        currentPost &&
-        typeof currentPost === 'object' &&
-        'published' in currentPost &&
-        currentPost.published === false
-      ) {
+      const currentPostResult = currentPostPublishStateSchema.safeParse(currentPost)
+
+      if (currentPostResult.success && currentPostResult.data.published === false) {
         if (!body.published_at) {
           body.published_at = new Date().toISOString()
         }

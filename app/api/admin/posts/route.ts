@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequestWithReason } from '@/lib/auth'
 import { Redis } from '@upstash/redis'
+import { createPostSchema } from '@/lib/validation/post'
 
 function normalizeEnv(value?: string) {
   const normalized = value?.trim()
@@ -93,28 +94,33 @@ export async function POST(request: NextRequest) {
   
   try {
     const client = getAdminClient(token || undefined)
-    const body = await request.json()
+    const rawBody: unknown = await request.json()
+    const parsedBody = createPostSchema.safeParse(rawBody)
+
+    if (!parsedBody.success) {
+      return NextResponse.json(
+        {
+          error: 'Invalid request body',
+          details: parsedBody.error.flatten(),
+        },
+        { status: 400 }
+      )
+    }
+
+    const body = parsedBody.data
     const {
       title,
       slug,
       description,
       content,
       cover_image,
-      author = 'Admin',
-      locale = 'zh',
-      tags = [],
-      published = false,
-      featured = false,
+      author,
+      locale,
+      tags,
+      published,
+      featured,
       reading_time,
     } = body
-
-    // 验证必填字段
-    if (!title || !slug || !content) {
-      return NextResponse.json(
-        { error: 'Missing required fields: title, slug, content' },
-        { status: 400 }
-      )
-    }
 
     // 检查 slug 是否已存在
     const { data: existingPost } = await client
@@ -143,7 +149,7 @@ export async function POST(request: NextRequest) {
         featured,
         reading_time,
         // 若前端提供发布时间则尊重该值；否则在发布时使用当前时间
-        published_at: published ? (body.published_at || new Date().toISOString()) : null,
+        published_at: published ? (body.published_at ?? new Date().toISOString()) : null,
       } as never)
       .select()
       .single()

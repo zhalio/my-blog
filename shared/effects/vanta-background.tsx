@@ -16,7 +16,6 @@ type VantaEffectFactory = (options: Record<string, unknown>) => VantaEffectInsta
 declare global {
   interface Window {
     THREE?: typeof THREE;
-    p5?: unknown;
   }
 }
 
@@ -78,9 +77,9 @@ export function VantaBackground() {
 
         // Load p5 for effects that need it
         if (['topology', 'rings', 'dots'].includes(effect)) {
-            if (typeof window !== 'undefined' && !window.p5) {
+          if (typeof window !== 'undefined' && !Reflect.get(window, 'p5')) {
                 const p5 = (await import('p5')).default
-                window.p5 = p5
+            Reflect.set(window, 'p5', p5)
             }
         }
 
