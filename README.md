@@ -255,44 +255,40 @@ pnpm dev
 ## 目录结构
 
 ```
-├── app/                  # Next.js App Router 路由
-│   ├── (root)/           # 博客前台页面（根布局）
-│   ├── [locale]/         # 国际化路由（zh, en, fr, ja）
-│   │   ├── about/        # 关于页面
-│   │   ├── guestbook/    # 留言板
-│   │   ├── posts/        # 文章列表与详情
-│   │   └── tags/         # 标签页面
-│   ├── admin/            # 管理后台
-│   │   ├── posts/        # 文章管理 CRUD
-│   │   └── settings/     # 系统设置
-│   └── api/              # 后端 API 路由
-│       ├── admin/        # 管理 API
-│       ├── search/       # 全文搜索
-│       └── stats/        # 统计数据
-├── components/           # React 组件
-│   ├── admin/            # 后台专用组件（图表、列表）
-│   ├── blog/             # 博客文章相关组件
-│   ├── editor/           # TipTap 编辑器配置与渲染器
-│   ├── effects/          # 视觉特效（Vanta, Particles, Lottie）
-│   ├── layout/           # 布局组件（Header, Footer, Theme Toggle）
-│   ├── ui/               # shadcn/ui 基础组件
-│   └── visuals/          # 动效组件（3D Card, Fade In）
-├── lib/                  # 工具函数与类型定义
-│   ├── supabase/         # Supabase 客户端与类型
-│   ├── posts.ts          # 文章数据处理
-│   ├── auth.ts           # 身份验证逻辑
-│   └── utils.ts          # 通用工具函数
-├── messages/             # i18n 翻译文件（zh.json, en.json, fr.json, ja.json）
-├── public/               # 静态资源
-│   ├── images/           # 图片资源
-│   ├── rss.xml           # RSS 订阅源
-│   └── sitemap.xml       # 站点地图
-├── scripts/              # 辅助脚本
-│   └── generate-rss.mjs  # RSS/Atom 生成脚本
-└── supabase/             # 数据库迁移与结构文件
-    ├── schema.sql        # 数据库结构定义
-    └── migrations/       # 迁移历史
+├── app/                      # Next.js App Router 路由（前台 + 后台 + API）
+│   ├── (root)/
+│   ├── [locale]/             # 国际化页面（zh/en/fr/ja）
+│   ├── admin/
+│   └── api/
+├── features/                 # 业务域模块（feature-first）
+│   ├── admin/
+│   ├── auth/
+│   └── blog/
+├── shared/                   # 跨业务共享模块
+│   ├── components/
+│   ├── effects/
+│   ├── layout/
+│   └── visuals/
+├── components/ui/            # shadcn/ui 基础组件（保留）
+├── lib/                      # 工具函数、数据访问、类型
+│   ├── supabase/
+│   ├── auth.ts
+│   ├── site-settings.ts
+│   └── utils.ts
+├── messages/                 # i18n 文案
+├── content/posts/            # Markdown 内容源
+├── public/                   # 静态资源 + RSS
+├── scripts/                  # 构建脚本（如 RSS 生成）
+├── supabase/                 # schema 与 migrations
+└── proxy.ts                  # 路由保护（Next.js 16 proxy 约定）
 ```
+
+### 架构说明（当前）
+
+- 业务代码统一在 `features/*`（如 `features/blog/editor`、`features/admin/components`）
+- 公共能力统一在 `shared/*`（如 `shared/layout`、`shared/effects`）
+- 旧的 `components/*` 业务路径已迁移，ESLint 已限制回流到旧路径
+- `components/ui/*` 作为基础 UI 层继续保留
 
 ---
 
@@ -303,7 +299,8 @@ pnpm dev
 | `pnpm dev`     | 启动本地开发服务器（Turbopack 加速）    |
 | `pnpm build`   | 构建生产版本并生成 RSS/Sitemap          |
 | `pnpm start`   | 启动生产服务器                          |
-| `pnpm lint`    | 运行 ESLint 代码检查                    |
+| `pnpm lint .`  | 运行 ESLint 代码检查                    |
+| `pnpm exec tsc --noEmit` | 运行 TypeScript 全量类型检查 |
 | `pnpm publish` | 快捷发布命令（git add + commit + push） |
 
 ---
@@ -388,4 +385,5 @@ git push origin main
 
 ## License
 
-MIT © 2026 ZHalio
+- 代码：AGPL-3.0-only（见 `LICENSE`）
+- 内容与媒体：CC BY-NC-SA 4.0（见 `CONTENT_LICENSE.md`）
