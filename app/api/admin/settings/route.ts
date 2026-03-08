@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAdminClient, hasValidServiceRoleKey, validateAnonKey, validateServiceRoleKey } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
+import { revalidateSiteSettings } from '@/lib/revalidation/settings'
 
 function keyReasonText(reason?: string, keyName?: string, keyRef?: string | null, urlRef?: string | null) {
   const prefix = keyName ? `${keyName}: ` : ''
@@ -186,10 +187,14 @@ export async function PUT(request: NextRequest) {
           throw repairError
         }
 
+        revalidateSiteSettings()
+
         return NextResponse.json({ settings: repaired })
       }
       throw error
     }
+
+    revalidateSiteSettings()
 
     return NextResponse.json({ settings: data })
   } catch (error: unknown) {

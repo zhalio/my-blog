@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://emmmxx.xyz</id>
     <title>emmm's Blog</title>
-    <updated>2026-03-08T14:05:54.727Z</updated>
+    <updated>2026-03-08T14:14:38.778Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>emmm</name>
@@ -138,7 +138,7 @@ fastboot reboot
         <id>https://emmmxx.xyz/zh/posts/about</id>
         <link href="https://emmmxx.xyz/zh/posts/about"/>
         <updated>2026-01-20T08:06:00.000Z</updated>
-        <content type="html"><![CDATA[emmm's Blog & Portfolio
+        <content type="html"><![CDATA[Emmm's Blog & Portfolio
 
 基于 Next.js 16、Tailwind CSS v4、TipTap 和 Supabase 构建的现代化个人博客与轻量作品集。默认内置外链悬浮预览、图片点击放大、代码块复制、Giscus 评论等体验型能力。
 
