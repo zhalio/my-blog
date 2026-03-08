@@ -2,9 +2,17 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequest } from '@/lib/auth'
 import { updatePostSchema } from '@/lib/validation/post'
+import { revalidatePostMutation } from '@/lib/revalidation/posts'
 import { z } from 'zod'
 
 const currentPostPublishStateSchema = z.object({
+  published: z.boolean(),
+})
+
+const currentPostCacheStateSchema = z.object({
+  locale: z.string(),
+  slug: z.string(),
+  tags: z.array(z.string()).nullable().optional(),
   published: z.boolean(),
 })
 
@@ -54,6 +62,19 @@ export async function PUT(
   try {
     const { id } = await params
     const client = getAdminClient(token || undefined)
+    const { data: existingPost } = await client
+      .from('posts')
+      .select('locale, slug, tags, published')
+      .eq('id', id)
+      .single()
+
+    const existingPostResult = currentPostCacheStateSchema.safeParse(existingPost)
+
+    if (!existingPostResult.success) {
+      return NextResponse.json({ error: 'Post not found' }, { status: 404 })
+    }
+
+    const previousPost = existingPostResult.data
     const rawBody: unknown = await request.json()
     const parsedBody = updatePostSchema.safeParse(rawBody)
 
@@ -98,6 +119,15 @@ export async function PUT(
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
+    revalidatePostMutation({
+      before: previousPost,
+      after: {
+        locale: body.locale ?? previousPost.locale,
+        slug: body.slug ?? previousPost.slug,
+        tags: body.tags ?? previousPost.tags ?? [],
+      },
+    })
+
     return NextResponse.json({ post: data })
   } catch (error) {
     console.error('Error in PUT /api/admin/posts/[id]:', error)
@@ -120,12 +150,28 @@ export async function DELETE(
     const { id } = await params
     const client = getAdminClient(token || undefined)
 
+    const { data: existingPost } = await client
+      .from('posts')
+      .select('locale, slug, tags, published')
+      .eq('id', id)
+      .single()
+
+    const existingPostResult = currentPostCacheStateSchema.safeParse(existingPost)
+
+    if (!existingPostResult.success) {
+      return NextResponse.json({ error: 'Post not found' }, { status: 404 })
+    }
+
     const { error } = await client.from('posts').delete().eq('id', id)
 
     if (error) {
       console.error('Error deleting post:', error)
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
+
+    revalidatePostMutation({
+      before: existingPostResult.data,
+    })
 
     return NextResponse.json({ message: 'Post deleted successfully' })
   } catch (error) {

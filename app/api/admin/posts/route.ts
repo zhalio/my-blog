@@ -3,6 +3,7 @@ import { getAdminClient } from '@/lib/supabase/client'
 import { getAuthTokenFromRequest, validateAdminRequestWithReason } from '@/lib/auth'
 import { Redis } from '@upstash/redis'
 import { createPostSchema } from '@/lib/validation/post'
+import { revalidatePostMutation } from '@/lib/revalidation/posts'
 
 function normalizeEnv(value?: string) {
   const normalized = value?.trim()
@@ -158,6 +159,14 @@ export async function POST(request: NextRequest) {
       console.error('Error creating post:', error)
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
+
+    revalidatePostMutation({
+      after: {
+        locale,
+        slug,
+        tags,
+      },
+    })
 
     return NextResponse.json({ post: data }, { status: 201 })
   } catch (error) {
