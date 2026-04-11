@@ -57,14 +57,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-extrabold leading-[1.1] lg:leading-[1.15] text-slate-800 dark:text-white tracking-tight mt-2 md:mt-4 z-10 font-heading drop-shadow-sm transition-transform duration-500 relative inline-block group">
             <span className="relative z-10 inline-block">{settings.site_title || t('title')}</span>
-            <HandDrawnUnderline className="absolute -bottom-2 -left-2 w-[110%] h-4 sm:h-6 text-emerald-400/90 dark:text-emerald-400/60 -rotate-2 z-[-1] transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3" />
+            <HandDrawnUnderline className="absolute bottom-0 -left-2 w-[110%] h-4 sm:h-6 text-emerald-400/90 dark:text-emerald-400/60 -rotate-2 z-[-1] transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3" />
             <HandDrawnStar className="hidden md:block absolute -top-8 -right-14 w-12 h-12 md:w-16 md:h-16 text-yellow-400 fill-yellow-200 dark:text-yellow-500/30 dark:fill-yellow-500/20 animate-[spin_6s_linear_infinite] z-0 opacity-80 group-hover:scale-125 transition-transform" />
           </h1>
 
-          <div className="relative w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 mt-6 md:mt-10 cursor-default">
-             <HandDrawnArrow className="hidden md:block absolute top-[85%] -left-12 lg:-left-20 w-16 h-16 text-indigo-400/80 dark:text-indigo-400/40 rotate-[130deg] opacity-80 hover:scale-110 hover:-translate-x-2 transition-all duration-300 z-10" />
-             <HandDrawnSmiley className="hidden lg:block absolute -top-16 right-4 w-14 h-14 text-pink-400/90 dark:text-pink-400/60 rotate-12 opacity-90 hover:scale-125 hover:rotate-[24deg] transition-all duration-300 z-10 cursor-pointer" />
-             <div className="relative text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 dark:text-slate-300 font-medium leading-relaxed min-h-[5rem] md:min-h-[6rem] z-10 w-full max-w-xl text-left border-l-4 border-slate-200 dark:border-slate-700 pl-4 sm:pl-5 py-1">
+          <div className="relative w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 mt-8 md:mt-12 cursor-default">
+             <HandDrawnArrow className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-12 lg:-left-20 w-16 h-16 text-indigo-400/80 dark:text-indigo-400/40 rotate-[130deg] opacity-80 hover:scale-110 hover:-translate-x-2 transition-all duration-300 z-10" />
+             <div className="relative text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 dark:text-slate-300 font-medium leading-relaxed z-10 w-full max-w-xl text-left border-l-4 border-slate-200 dark:border-slate-700 pl-4 sm:pl-5 py-2">
                <TypewriterEffect text={settings.site_description || t('description')} speed={50} waitBeforeDelete={6000} />
              </div>
           </div>
@@ -120,23 +119,23 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </div>
 
       {/* 趣味涂鸦分隔带 - 填补留白，增加交互丰富度 */}
-      <div className="w-full relative h-24 md:h-32 mt-4 md:mt-8 mb-4 md:-mb-8 overflow-hidden flex items-center justify-center opacity-90 group pointer-events-auto select-none z-10 hidden sm:flex">
+      <div className="w-full relative py-12 md:py-20 flex flex-col items-center justify-center opacity-90 group pointer-events-auto select-none z-10 hidden sm:flex">
         {/* 手绘虚线波浪 */}
-        <div className="absolute w-[200%] h-0.5 border-t-[3px] border-dashed border-slate-200 dark:border-slate-800 top-1/2 -translate-y-1/2 z-0 hidden md:block opacity-50"></div>
+        <div className="absolute w-full max-w-[1280px] h-0.5 border-t-[3px] border-dashed border-slate-200 dark:border-slate-800 top-1/2 -translate-y-1/2 z-0 hidden md:block opacity-50"></div>
         
-        {/* 一组可以随着鼠标划过变大跳跃的悬浮涂鸦图标 */}
-        <div className="flex items-center justify-between w-full max-w-[900px] px-8 relative z-10 transition-transform">
-          <HandDrawnSmiley className="w-12 h-12 text-emerald-400 drop-shadow-sm hover:scale-[1.8] hover:-rotate-12 hover:-translate-y-4 hover:text-emerald-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-lg" />
+        {/* 一组可以随着鼠标划过变大跳跃的悬浮涂鸦贴纸 */}
+        <div className="flex items-center justify-between w-full max-w-[1000px] px-8 relative z-10">
+          <HandDrawnSmiley className="w-12 h-12 text-emerald-400 drop-shadow-sm hover:scale-[1.8] hover:-rotate-12 hover:-translate-y-4 hover:text-emerald-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(52,211,153,0.3)] z-20" />
           
-          <HandDrawnPlanet className="w-14 h-14 text-indigo-400 drop-shadow-sm hover:scale-[1.8] hover:rotate-[30deg] hover:-translate-y-4 hover:text-indigo-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-lg" />
+          <HandDrawnPlanet className="w-14 h-14 text-indigo-400 drop-shadow-sm hover:scale-[1.8] hover:rotate-[30deg] hover:-translate-y-4 hover:text-indigo-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(129,140,248,0.3)] z-20" />
           
-          <div className="px-6 py-2.5 border-[3px] border-dashed border-slate-300 dark:border-slate-600 rounded-[2rem] font-black text-slate-400 dark:text-slate-400 tracking-[0.25em] text-sm md:text-base uppercase hover:scale-110 hover:-rotate-[3deg] hover:border-sky-400 dark:hover:border-sky-400 hover:text-sky-500 dark:hover:text-sky-300 transition-all duration-300 font-heading bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm cursor-crosshair hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)]">
+          <div className="px-8 py-3 border-[3px] border-dashed border-slate-300 dark:border-slate-600 rounded-[2rem] font-black text-slate-400 dark:text-slate-400 tracking-[0.25em] text-sm md:text-base uppercase hover:scale-110 hover:-rotate-[3deg] hover:border-sky-400 dark:hover:border-sky-400 hover:text-sky-500 dark:hover:text-sky-300 transition-all duration-300 font-heading bg-white dark:bg-slate-800 shadow-sm cursor-crosshair z-20 hover:shadow-xl">
             Explore 🚀
           </div>
           
-          <HandDrawnStar className="w-12 h-12 text-amber-400 drop-shadow-sm hover:scale-[1.8] hover:rotate-[72deg] hover:-translate-y-4 hover:text-amber-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-lg" />
+          <HandDrawnStar className="w-12 h-12 text-amber-400 drop-shadow-sm hover:scale-[1.8] hover:rotate-[72deg] hover:-translate-y-4 hover:text-amber-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(251,191,36,0.3)] z-20" />
           
-          <HandDrawnSwirl className="w-12 h-12 text-rose-400 drop-shadow-sm hover:scale-[1.8] hover:-rotate-[45deg] hover:-translate-y-4 hover:text-rose-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-lg" />
+          <HandDrawnSwirl className="w-12 h-12 text-rose-400 drop-shadow-sm hover:scale-[1.8] hover:-rotate-[45deg] hover:-translate-y-4 hover:text-rose-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(251,113,133,0.3)] z-20" />
         </div>
       </div>
 
