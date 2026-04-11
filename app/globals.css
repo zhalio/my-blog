@@ -93,10 +93,11 @@
   --article-font: ArticleFont, system-ui, sans-serif;
   --article-font-size: 1rem;
   --article-line-height: 1.7;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  /* 更漫画/手账风的白纸背景（米黄色底） */
+  --background: oklch(0.98 0.01 90); 
+  --foreground: oklch(0.2 0.05 260);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.2 0.05 260);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
   --primary: oklch(0.208 0.042 265.755);
@@ -185,6 +186,14 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-color: #faf8f5;
+    background-image: radial-gradient(#d1cfcb 2px, transparent 2px);
+    background-size: 32px 32px;
+    font-family: 'Comic Sans MS', "MaShanZhengLocal", "Ma Shan Zheng", "LXGW WenKai", "STKaiti", "KaiTi", "Source Han Sans SC", "Noto Sans SC", cursive, sans-serif !important;
+  }
+  .dark body {
+    background-color: #1c1c1c;
+    background-image: radial-gradient(#333333 2px, transparent 2px);
   }
   .font-heading {
     font-family: var(--font-heading);
@@ -199,6 +208,24 @@
     font-family: "MaShanZhengLocal", "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Source Han Sans SC", "Noto Sans SC", cursive;
     letter-spacing: 0.02em;
     font-weight: 400;
+  }
+}
+
+@layer components {
+  .sketch-ui {
+    border: 2.5px solid var(--foreground) !important;
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px !important;
+    box-shadow: 4px 4px 0px 0px var(--foreground) !important;
+    transition: all 0.2s ease-in-out;
+  }
+  .sketch-ui:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px var(--foreground) !important;
+    border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px !important;
+  }
+  .sketch-ui:active {
+    transform: translate(4px, 4px) !important;
+    box-shadow: 0px 0px 0px 0px var(--foreground) !important;
   }
 }
 

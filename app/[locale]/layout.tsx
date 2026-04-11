@@ -102,12 +102,12 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider
                 attribute="class"
-                defaultTheme="dark"
+                defaultTheme="light"
                 enableSystem={false}
                 disableTransitionOnChange
               >
                 <VantaProvider>
-                  <VantaBackground />
+                  {/* <VantaBackground /> */}
                   <div className="relative flex min-h-screen flex-col">
                     <SiteHeader />
                     {/* Main Content */}
