@@ -17,8 +17,7 @@ export const TextShimmer = ({
     <span
       className={cn(
         "text-transparent bg-clip-text animate-shimmer",
-        "bg-gradient-to-r from-[#000] via-[#666] to-[#000]",
-        "dark:from-[#fff] dark:via-[#888] dark:to-[#fff]",
+        "bg-gradient-to-r from-pink-500 via-yellow-400 to-pink-500",
         className
       )}
       style={{
