@@ -230,13 +230,6 @@
     border: 2px solid rgba(255, 255, 255, 0.05);
   }
 }
-    transform: translate(-1px, -2px);
-    border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px !important;
-  }
-  .sketch-ui:not(.no-sketch-hover):active {
-    transform: translate(1px, 1px);
-  }
-}
 
 .article-font {
   font-family: var(--article-font);
