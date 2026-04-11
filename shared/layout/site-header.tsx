@@ -48,7 +48,6 @@ export function SiteHeader() {
                 >
                   <span
                     className={`after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-[6px] after:h-[3px] after:rounded-full after:transition-all after:duration-200 ${
-                      active ? 'after:w-3/4 after:bg-primary' : 'after:w-0'
                       active
                         ? 'after:w-full after:bg-primary/80 dark:after:bg-white/90'
                         : 'after:w-0 after:bg-primary/45 hover:after:w-full hover:after:bg-primary/70 dark:after:bg-white/55 dark:hover:after:bg-white/80'
