@@ -9,7 +9,7 @@ import { HomeButtons } from "@/features/blog/effects/home-buttons";
 import { SiteUptimeBadge } from "@/shared/components/common/site-uptime";
 import { getSiteSettings } from "@/lib/site-settings";
 import { TypewriterEffect } from "@/shared/visuals/typewriter-effect";
-import { HandDrawnArrow, HandDrawnStar, HandDrawnCloud, HandDrawnSmiley, HandDrawnScribble } from "@/shared/visuals/doodles";
+import { HandDrawnArrow, HandDrawnStar, HandDrawnCloud, HandDrawnSmiley, HandDrawnScribble, HandDrawnHeart, HandDrawnLeaf } from "@/shared/visuals/doodles";
 import { CartoonBlob1, CartoonBlob2, CartoonBlob3, CartoonStarburst } from "@/shared/visuals/cartoon-shapes";
 import { Particles } from "@/shared/effects/particles";
 
@@ -38,8 +38,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
          <CartoonBlob2 className="absolute -top-[10%] -left-[10%] w-[600px] h-[600px] text-sky-100 fill-sky-100 dark:text-sky-950/40 dark:fill-sky-950/40 animate-[spin_40s_linear_infinite]" />
          <CartoonBlob3 className="absolute top-[30%] -right-[5%] w-[800px] h-[800px] text-[#fcdec9] fill-[#fcdec9] dark:text-orange-950/40 dark:fill-orange-950/40 animate-[spin_50s_linear_infinite_reverse]" />
          <HandDrawnStar className="absolute top-[20%] right-[20%] w-20 h-20 text-[#ffc66d] fill-[#ffe4b5] dark:text-amber-700/40 dark:fill-amber-700/40 animate-[bounce_5s_infinite]" />
-         <HandDrawnCloud className="absolute bottom-[20%] left-[10%] w-32 h-32 text-emerald-300 dark:text-emerald-900/50 stroke-[3px] animate-[bounce_8s_infinite_reverse]" />
-         <HandDrawnScribble className="absolute top-[50%] left-[40%] w-24 h-24 text-indigo-300 dark:text-indigo-900/50 animate-[spin_20s_linear_infinite]" />
+         <HandDrawnCloud className="absolute bottom-[20%] left-[10%] w-32 h-32 text-emerald-200 fill-emerald-100 dark:text-emerald-900/40 dark:fill-emerald-900/40 animate-[bounce_8s_infinite_reverse]" />
+         <HandDrawnLeaf className="absolute top-[15%] left-[45%] w-16 h-16 text-rose-300 fill-rose-100 dark:text-rose-900/50 dark:fill-rose-900/30 animate-[spin_10s_linear_infinite]" />
+         <HandDrawnHeart className="absolute bottom-[30%] right-[30%] w-16 h-16 text-pink-300 fill-pink-100 dark:text-pink-900/50 dark:fill-pink-900/30 animate-[bounce_6s_infinite]" />
       </div>
 
       {/* 内容区域 */}
@@ -66,7 +67,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-8 w-full relative z-20">
             <HomeButtons viewPostsText={t('viewPosts')} />
-            <SiteUptimeBadge />
+            <div className="w-full lg:w-auto flex justify-center lg:justify-start mt-2 lg:mt-0">
+               <SiteUptimeBadge />
+            </div>
           </div>
         </FadeIn>
 
