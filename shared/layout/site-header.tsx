@@ -36,6 +36,7 @@ export function SiteHeader() {
               { href: '/', label: t('home') },
               { href: '/posts', label: t('posts') },
               { href: '/tags', label: t('tags') },
+              { href: '/friends', label: '友链' },
               { href: '/guestbook', label: t('guestbook') },
               { href: '/about', label: t('about') },
             ].map((item) => {

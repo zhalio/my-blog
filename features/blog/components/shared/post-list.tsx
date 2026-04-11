@@ -2,18 +2,18 @@
 
 import { motion } from 'framer-motion';
 import { Link } from "@/i18n/routing";
-import { HandDrawnArrow, HandDrawnStar, HandDrawnSmiley, HandDrawnCloud } from "@/shared/visuals/doodles";
+import { Sparkles, Code2, Coffee, Layers, Compass, Zap } from 'lucide-react';
 import { PostData } from "@/lib/types";
 
-const DOODLES = [HandDrawnStar, HandDrawnSmiley, HandDrawnCloud];
+const ICONS = [Sparkles, Code2, Coffee, Layers, Compass, Zap];
 
 const CARD_COLORS = [
-  'bg-[#ffdfba] dark:bg-orange-950', // pastel orange
-  'bg-[#ffffba] dark:bg-yellow-950', // pastel yellow
-  'bg-[#baffc9] dark:bg-green-950',  // pastel green
-  'bg-[#bae1ff] dark:bg-sky-950',    // pastel blue
-  'bg-[#ffb3ba] dark:bg-rose-950',   // pastel pink
-  'bg-[#e2c6ff] dark:bg-purple-950'  // pastel purple
+  'from-blue-50/80 to-indigo-50/80 dark:from-blue-900/10 dark:to-indigo-900/10',
+  'from-emerald-50/80 to-teal-50/80 dark:from-emerald-900/10 dark:to-teal-900/10',
+  'from-rose-50/80 to-pink-50/80 dark:from-rose-900/10 dark:to-pink-900/10',
+  'from-amber-50/80 to-orange-50/80 dark:from-amber-900/10 dark:to-orange-900/10',
+  'from-violet-50/80 to-purple-50/80 dark:from-violet-900/10 dark:to-purple-900/10',
+  'from-sky-50/80 to-cyan-50/80 dark:from-sky-900/10 dark:to-cyan-900/10'
 ];
 
 const container = {
@@ -45,23 +45,25 @@ export function PostList({ posts, readMoreText }: PostListProps) {
       animate="show"
     >
       {posts.map((post, i) => {
-        const Icon = DOODLES[i % DOODLES.length];
+        const Icon = ICONS[i % ICONS.length];
         const thumbBg = CARD_COLORS[i % CARD_COLORS.length];
 
         return (
         <motion.article key={post.id} variants={item} className="h-full group">
-          <Link href={`/posts/${post.slug}`} className="block h-full outline-none focus-visible:ring-4 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-3xl bg-white dark:bg-slate-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] border border-slate-100 dark:border-slate-700/50 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)] dark:shadow-none active:translate-y-1 relative flex flex-col overflow-hidden">
+          <Link href={`/posts/${post.slug}`} className="block h-full outline-none focus-visible:ring-4 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-2xl bg-white dark:bg-slate-800/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] border border-slate-100 dark:border-slate-700/50 shadow-sm dark:shadow-none active:translate-y-0.5 relative flex flex-col overflow-hidden">
 
-            {/* Thumbnail Cover - Soft flat aesthetic */}
-            <div className={`h-32 w-full relative overflow-hidden flex items-center justify-center transition-colors border-b border-black/5 dark:border-white/5 ${thumbBg}`}>
-              <div className="absolute inset-0 bg-white/25 dark:bg-black/25 backdrop-blur-[1px]"></div>
-              <Icon className="w-16 h-16 text-black/10 dark:text-white/10 stroke-[2px] group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-10" />
+            {/* Thumbnail Cover - Professional flat aesthetic */}
+            <div className={`h-32 w-full relative overflow-hidden flex items-center justify-center transition-colors border-b border-slate-100/50 dark:border-slate-700/30 bg-gradient-to-br ${thumbBg}`}>
+              <div className="absolute inset-0 bg-white/40 dark:bg-slate-900/40 backdrop-blur-[2px]"></div>
+              <div className="w-16 h-16 rounded-2xl bg-white/60 dark:bg-slate-800/60 shadow-sm border border-white/50 dark:border-slate-700/50 flex items-center justify-center relative z-10 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+                 <Icon className="w-8 h-8 text-slate-600 dark:text-slate-300" strokeWidth={1.5} />
+              </div>
             </div>
 
             {/* Card Body */}
-            <div className="px-6 py-7 flex-1 flex flex-col relative bg-transparent">  
+            <div className="px-6 py-7 flex-1 flex flex-col relative bg-transparent">
 
-              <div className="absolute -top-3 left-6 px-3.5 py-1 tracking-wider bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full text-[11px] font-bold text-slate-500 dark:text-slate-400 group-hover:-translate-y-0.5 transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] border border-white dark:border-slate-600 shadow-sm shadow-slate-200/50 dark:shadow-black/50">
+              <div className="absolute -top-3 left-6 px-3 py-1 tracking-wider bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full text-xs font-semibold text-slate-500 dark:text-slate-400 group-hover:-translate-y-0.5 transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] border border-slate-100 dark:border-slate-600/60 shadow-sm">
                 <time dateTime={post.date}>
                   {new Date(post.date).toLocaleDateString(undefined, {
                     year: 'numeric',
