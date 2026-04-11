@@ -14,7 +14,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <html lang="zh" suppressHydrationWarning>
       <body className="min-h-screen bg-background">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <AdminProtector>
             <div className="min-h-screen">
               <AdminHeader />

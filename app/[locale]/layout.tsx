@@ -92,7 +92,7 @@ export default async function LocaleLayout({
                     {children}
                   </main>
                   {settings.feature_flags?.enable_footer !== false && (
-                    <SiteFooter text={settings.footer_text || '© 2026 My Blog'} />
+                    <SiteFooter text={settings.footer_text || '© 2026 emmm.'} />
                   )}
                   <ScrollToTopButton />
                 </div>
