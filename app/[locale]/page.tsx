@@ -44,7 +44,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </div>
 
       {/* 内容区域 */}
-      <div className="w-full max-w-6xl mx-auto px-4 py-12 md:py-20 lg:py-24 flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-12 lg:gap-16 relative z-10 lg:min-h-[calc(100vh-10rem)]">
+      <div className="w-full max-w-7xl mx-auto px-4 py-12 md:py-20 lg:py-24 flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-12 lg:gap-16 relative z-10">
         
         {/* 左侧文字与按钮区 */}
         <FadeIn className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left gap-6 md:gap-8 mt-4 md:mt-8 lg:mt-0 z-20 w-full">
@@ -113,7 +113,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </div>
 
       {/* Posts Grid: 文章列表区域 */}
-      <section className="w-full mt-16 md:mt-24 lg:mt-32 max-w-[1280px] mx-auto px-4 md:px-8 space-y-10 md:space-y-12 relative z-20">
+      <section className="w-full mt-8 md:mt-16 lg:mt-20 max-w-[1280px] mx-auto px-4 md:px-8 space-y-10 md:space-y-12 relative z-20">
         <FadeIn delay={0.2} className="flex items-center justify-between pb-8 gap-6 relative">
           {/* Subtle separator line instead of heavy border */}
           <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent"></div>

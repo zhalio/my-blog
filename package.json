@@ -11,6 +11,8 @@
     "publish": "git add . && git commit -m \"chore: update project\" && git push"
   },
   "dependencies": {
+    "@fontsource/nunito": "^5.2.7",
+    "@fontsource/quicksand": "^5.2.10",
     "@fontsource/zcool-kuaile": "^5.2.8",
     "@giscus/react": "^3.1.0",
     "@hookform/resolvers": "^5.2.2",

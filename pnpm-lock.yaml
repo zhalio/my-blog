@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/nunito':
+        specifier: ^5.2.7
+        version: 5.2.7
+      '@fontsource/quicksand':
+        specifier: ^5.2.10
+        version: 5.2.10
       '@fontsource/zcool-kuaile':
         specifier: ^5.2.8
         version: 5.2.8
@@ -390,6 +396,12 @@ packages:
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+
+  '@fontsource/nunito@5.2.7':
+    resolution: {integrity: sha512-pmtBq0H9ex9nk+RtJYEJOD9pag393iHETnl/PVKleF4i06cd0ttngK5ZCTgYb5eOqR3Xdlrjtev8m7bmgYprew==}
+
+  '@fontsource/quicksand@5.2.10':
+    resolution: {integrity: sha512-rck0ccT6vJF9RnbSW2ON1grq5qFZvjVOGvYIUixATXF8mNh4KglD+8Sn8QpRgKQBSBJF5yOR3SBYBWPg/Y8YbQ==}
 
   '@fontsource/zcool-kuaile@5.2.8':
     resolution: {integrity: sha512-pIeFNRM0rwrJkO+TP7WG+KXvqy0YFRrPecNNzHTNOQLYhxrqN67/wzyx3fH+Ky63Y/Am5heB5XIzsEx/Io+P4w==}
@@ -4261,6 +4273,10 @@ snapshots:
       react-dom: 19.2.3(react@19.2.3)
 
   '@floating-ui/utils@0.2.10': {}
+
+  '@fontsource/nunito@5.2.7': {}
+
+  '@fontsource/quicksand@5.2.10': {}
 
   '@fontsource/zcool-kuaile@5.2.8': {}
 

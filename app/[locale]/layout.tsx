@@ -1,10 +1,6 @@
-import { Nunito, Quicksand, ZCOOL_KuaiLe } from "next/font/google";
-
-const zcool = ZCOOL_KuaiLe({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-heading-cjk",
-});
+import "@fontsource/zcool-kuaile/400.css";
+import "@fontsource/nunito";
+import "@fontsource/quicksand";
 
 import "../globals.css";
 import "katex/dist/katex.min.css";
@@ -22,16 +18,6 @@ import { getSiteSettings } from "@/lib/site-settings";
 import { SiteFooter } from "@/shared/layout/site-footer";
 
 export const revalidate = 60;
-
-const nunito = Nunito({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const quicksand = Quicksand({
-  variable: "--font-heading",
-  subsets: ["latin"],
-});
 
 export async function generateMetadata({
   params
@@ -90,7 +76,7 @@ export default async function LocaleLayout({
     <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning>
       <head>
       </head>
-      <body className={`${nunito.variable} ${quicksand.variable} ${zcool.variable} min-h-screen bg-background font-sans antialiased text-slate-800 dark:text-slate-200`}>
+      <body className={`min-h-screen bg-background font-sans antialiased text-slate-800 dark:text-slate-200`}>
         <SmoothScroll>
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider
