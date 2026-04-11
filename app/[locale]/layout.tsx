@@ -1,5 +1,4 @@
-// import { Geist, Geist_Mono } from "next/font/google";
-// import { Lora } from 'next/font/google';
+import { Nunito, Quicksand } from "next/font/google";
 
 import "../globals.css";
 import "katex/dist/katex.min.css";
@@ -20,25 +19,15 @@ import { SiteFooter } from "@/shared/layout/site-footer";
 
 export const revalidate = 60;
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-const geistSans = { variable: "font-sans" };
-const geistMono = { variable: "font-mono" };
-
-/*
-const lora = Lora({
-  subsets: ['latin'],
-  variable: '--font-lora',
-  display: 'swap',
+const nunito = Nunito({
+  variable: "--font-sans",
+  subsets: ["latin"],
 });
-*/
+
+const quicksand = Quicksand({
+  variable: "--font-heading",
+  subsets: ["latin"],
+});
 
 export async function generateMetadata({
   params
@@ -97,7 +86,7 @@ export default async function LocaleLayout({
     <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning>
       <head>
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}>
+      <body className={`${nunito.variable} ${quicksand.variable} min-h-screen bg-background font-sans antialiased text-slate-800 dark:text-slate-200`}>
         <SmoothScroll>
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider

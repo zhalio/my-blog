@@ -186,34 +186,39 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: #fefdf5;
-    /* A more playful, scattered pattern with dots and pluses */
-    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='10' cy='10' r='1.5'/%3E%3Ccircle cx='50' cy='50' r='1.5'/%3E%3Cpath d='M30 70h4v4h-4zM70 30h4v4h-4z'/%3E%3Cpath d='M70 70h2v6h-2zM68 72h6v2h-6zM30 30l2 2-2 2-2-2z'/%3E%3C/g%3E%3C/svg%3E");
-    font-family: 'Comic Sans MS', "MaShanZhengLocal", "Ma Shan Zheng", "LXGW WenKai", "STKaiti", "KaiTi", "Source Han Sans SC", "Noto Sans SC", cursive, sans-serif !important;
+    background-color: #fdfbf7;
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.02) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.02) 2px, transparent 2px);
+    background-size: 32px 32px;
+    background-position: center top;
+    font-family: "Nunito", "Quicksand", system-ui, -apple-system, sans-serif;
   }
   .dark body {
-    background-color: #1c1c1c;
-    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='10' cy='10' r='1.5'/%3E%3Ccircle cx='50' cy='50' r='1.5'/%3E%3Cpath d='M30 70h4v4h-4zM70 30h4v4h-4z'/%3E%3Cpath d='M70 70h2v6h-2zM68 72h6v2h-6zM30 30l2 2-2 2-2-2z'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: #1a1a1a;
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.02) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 2px, transparent 2px);
   }
   .font-heading {
-    font-family: var(--font-heading);
-    letter-spacing: 0.06em;
+    font-family: "Cherry Bomb One", "MaShanZhengLocal", var(--font-heading);
+    letter-spacing: 0.04em;
   }
   .font-handwriting {
-    font-family: "MaShanZhengLocal", "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Segoe Script", "Bradley Hand", cursive;
+    font-family: inherit; /* removed to unify fonts */
     letter-spacing: 0.02em;
-    font-weight: 600;
+    font-weight: 700;
   }
   .font-handwriting-cjk {
-    font-family: "MaShanZhengLocal", "Ma Shan Zheng", "Zhi Mang Xing", "LXGW WenKai", "STXingkai", "STKaiti", "KaiTi", "Source Han Sans SC", "Noto Sans SC", cursive;
+    font-family: inherit; /* removed to unify fonts */
     letter-spacing: 0.02em;
-    font-weight: 400;
+    font-weight: 700;
   }
 }
 
 @layer components {
   .sketch-ui {
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px !important;
+    border-radius: 12px;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .sketch-ui:not(.no-sketch-hover):hover, .group:hover .sketch-ui.group-hover-trigger {

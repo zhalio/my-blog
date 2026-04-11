@@ -10,21 +10,16 @@ export function HomeButtons({
   viewPostsText: string 
 }) {
   return (
-    <div className="flex flex-wrap items-center justify-start gap-4 py-4 sm:gap-6 w-full">
-      <Button asChild size="lg" className="sketch-ui h-12 w-[160px] md:h-14 md:w-[180px] px-4 text-sm md:text-base font-black group">
+    <div className="flex flex-wrap items-center justify-start gap-4 lg:gap-6 w-full">
+      <Button asChild size="lg" className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-bold group bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all rounded-full cursor-pointer border border-primary-foreground/10">
         <Link href="/posts" className="flex items-center justify-center whitespace-nowrap">
-          <span className="truncate">{viewPostsText}</span>
-          <HandDrawnArrow className="ml-2 size-5 group-hover:translate-x-1 group-hover:-rotate-12 transition-transform hidden sm:inline stroke-[2px] fill-transparent" />
+          <span className="truncate mr-2">{viewPostsText}</span>
+          <HandDrawnArrow className="size-5 group-hover:translate-x-1 group-hover:-rotate-12 transition-transform stroke-2 fill-transparent" />
         </Link>
       </Button>
-      <Button variant="outline" asChild size="lg" className="sketch-ui h-12 w-[140px] md:h-14 md:w-[160px] px-4 text-sm md:text-base font-black group hover:bg-neutral-100 dark:hover:bg-neutral-800">
+      <Button variant="outline" asChild size="lg" className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-bold group bg-white/80 dark:bg-zinc-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-zinc-700 text-foreground shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all rounded-full cursor-pointer border border-slate-200 dark:border-zinc-700">
         <Link href="https://github.com/zzemy" target="_blank" rel="noreferrer" className="flex items-center justify-center whitespace-nowrap">
           <span className="truncate">GitHub</span>
-        </Link>
-      </Button>
-      <Button variant="outline" asChild size="lg" className="sketch-ui h-12 w-[140px] md:h-14 md:w-[160px] px-4 text-sm md:text-base font-black group hover:bg-neutral-100 dark:hover:bg-neutral-800">
-        <Link href="https://qm.qq.com/cgi-bin/qm/qr?k=GJV7-av-NF7gsXV13umV8RqQC0Cum5zo" target="_blank" rel="noreferrer" className="flex items-center justify-center whitespace-nowrap">
-          <span className="truncate">QQ</span>
         </Link>
       </Button>
     </div>
