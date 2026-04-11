@@ -36,20 +36,16 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <FadeIn className="w-full max-w-[980px] flex flex-col items-center justify-center gap-8 py-16 md:py-24 text-center relative mt-6">
           
           {/* Hand-drawn Floating Accents */}
-          <div className="absolute -top-4 right-10 md:right-32 text-amber-400 rotate-12 md:scale-125 animate-[bounce_5s_ease-in-out_infinite] opacity-80">
+          <div className="absolute -top-4 right-10 md:right-32 text-amber-400 rotate-[15deg] md:scale-125 animate-[bounce_5s_ease-in-out_infinite] opacity-90 drop-shadow-sm">
             <HandDrawnStar className="w-12 h-12" />
           </div>
 
-          <div className="absolute top-20 left-4 md:left-24 text-emerald-400 -rotate-[15deg] md:scale-125 animate-[pulse_4s_ease-in-out_infinite] opacity-80">
+          <div className="absolute top-20 left-4 md:left-24 text-emerald-400 -rotate-[10deg] md:scale-125 animate-[pulse_4s_ease-in-out_infinite] opacity-90 drop-shadow-sm">
              <HandDrawnCloud className="w-16 h-16" />
           </div>
 
-          <div className="absolute bottom-40 right-4 md:right-16 text-indigo-400 rotate-[25deg] md:scale-150 animate-[pulse_6s_ease-in-out_infinite] hidden sm:block opacity-60">
-            <HandDrawnSmiley className="w-10 h-10" />
-          </div>
-
-          <div className="absolute -bottom-10 left-10 md:left-20 text-rose-400 -rotate-[20deg] animate-[bounce_6s_ease-in-out_infinite] hidden sm:block opacity-60">
-            <HandDrawnScribble className="w-16 h-16" />
+          <div className="absolute bottom-20 right-4 md:right-16 text-indigo-400 rotate-[15deg] md:scale-150 animate-[pulse_5s_ease-in-out_infinite] hidden sm:block opacity-80 drop-shadow-sm">
+            <HandDrawnSmiley className="w-12 h-12" />
           </div>
 
           <div className="relative inline-flex flex-col items-center mt-4">
