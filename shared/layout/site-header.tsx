@@ -24,7 +24,7 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/30 bg-background/70 backdrop-blur-2xl shadow-[0_12px_45px_-30px_rgba(0,0,0,0.55)] supports-[backdrop-filter]:bg-background/70 dark:border-white/10">
+    <header className="sticky top-0 z-50 w-full border-b-[3px] border-foreground/10 bg-background/80 backdrop-blur-md dark:border-foreground/10">
       <div className="mx-auto flex h-14 w-full items-center px-3 md:px-6">
         <MobileNav />
         <div className="mr-4 flex">
@@ -44,10 +44,11 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative transition-colors ${active ? 'text-foreground' : 'text-foreground/70 hover:text-foreground'} `}
+                  className={`relative font-bold transition-all px-2 py-1 rounded-lg ${active ? 'text-foreground bg-foreground/5' : 'text-foreground/70 hover:text-foreground hover:bg-foreground/5'} `}
                 >
                   <span
-                    className={`after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:rounded-full after:transition-all after:duration-200 ${
+                    className={`after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-[6px] after:h-[3px] after:rounded-full after:transition-all after:duration-200 ${
+                      active ? 'after:w-3/4 after:bg-primary' : 'after:w-0'
                       active
                         ? 'after:w-full after:bg-primary/80 dark:after:bg-white/90'
                         : 'after:w-0 after:bg-primary/45 hover:after:w-full hover:after:bg-primary/70 dark:after:bg-white/55 dark:hover:after:bg-white/80'

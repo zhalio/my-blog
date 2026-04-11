@@ -52,19 +52,19 @@ export function SiteUptimeBadge() {
     <button
       type="button"
       onClick={handleConfetti}
-      className="inline-flex items-center gap-3 rounded-2xl border border-border/70 bg-gradient-to-r from-background/92 via-background/82 to-background/72 px-4 py-3 text-left text-sm text-foreground shadow-sm ring-1 ring-border/45 backdrop-blur-xl transition-colors hover:border-border dark:border-white/8 dark:from-zinc-900/58 dark:via-zinc-900/46 dark:to-zinc-900/28 dark:text-zinc-100 dark:shadow-lg dark:shadow-black/25 dark:ring-white/14"
+      className="sketch-ui inline-flex items-center gap-3 rounded-full bg-background/80 px-6 py-3 text-left text-sm text-foreground backdrop-blur-md hover:bg-background transition-all outline-none font-bold active:scale-95"
     >
-      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-border/70 bg-background/70 ring-1 ring-border/50 dark:border-white/16 dark:bg-white/6 dark:ring-white/12" aria-hidden>
-        <Cog className="h-4 w-4 animate-spin text-zinc-600 [animation-duration:2.6s] dark:text-zinc-300" />
+      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-foreground/20 bg-background" aria-hidden>
+        <Cog className="h-5 w-5 animate-spin text-primary [animation-duration:3s]" />
       </span>
 
       <span className="flex flex-col leading-tight">
-        <span className="flex items-center gap-1">
-          <span className="text-foreground/80 dark:text-zinc-200/80">本站已稳定运行</span>
-          <span className="font-semibold text-emerald-600 dark:text-emerald-400">{days}</span>
-          <span className="text-foreground/80 dark:text-zinc-200/80">天</span>
+        <span className="flex items-center justify-center gap-1.5">
+          <span className="text-foreground/90">本站已稳定运行</span>
+          <span className="font-black text-lg text-primary">{days}</span>
+          <span className="text-foreground/90">天</span>
         </span>
-        <span className="block w-full text-center text-xs text-zinc-500 dark:text-zinc-400">since 2025.11.20</span>
+        <span className="block w-full text-center text-[11px] text-muted-foreground font-semibold">since 2025.11.20</span>
       </span>
     </button>
   )
