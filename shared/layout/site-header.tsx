@@ -7,7 +7,6 @@ import { useTranslations } from "next-intl"
 import { Terminal } from "lucide-react"
 import { CommandMenu } from "@/shared/layout/command-menu"
 import { MobileNav } from "@/shared/layout/mobile-nav"
-import { VantaSwitcher } from "@/shared/effects/vanta-switcher"
 import { FontToggle } from "@/shared/layout/font-toggle"
 import { usePathname } from "next/navigation"
 
@@ -65,7 +64,6 @@ export function SiteHeader() {
            <div className="w-full flex-1 md:w-auto md:flex-none">
              <CommandMenu />
            </div>
-           <VantaSwitcher />
               <FontToggle />
            <ModeToggle />
            <LanguageToggle />
