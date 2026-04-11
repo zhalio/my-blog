@@ -2,7 +2,7 @@
 -- 1. Create site_settings table (Singleton)
 CREATE TABLE IF NOT EXISTS site_settings (
   id INT8 PRIMARY KEY DEFAULT 1, -- Always use ID 1
-  site_title TEXT NOT NULL DEFAULT 'My Blog',
+  site_title TEXT NOT NULL DEFAULT 'emmm.',
   site_description TEXT,
   site_keywords TEXT[], -- Array of strings
   favicon_url TEXT,

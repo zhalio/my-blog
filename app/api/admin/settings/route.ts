@@ -103,7 +103,7 @@ export async function GET() {
 
     // Default if not found (though migration should ensure it exists)
     const settings = data || {
-      site_title: 'My Blog',
+      site_title: 'emmm.',
       site_keywords: [],
       social_links: []
     }
@@ -170,10 +170,7 @@ export async function PUT(request: NextRequest) {
         const adminClient = getAdminClient()
         const { data: repaired, error: repairError } = await adminClient
           .from('site_settings')
-          .upsert({ id: 1, ...payload, site_title: body?.site_title || 'My Blog' })
-          .select()
-          .single()
-
+          .upsert({ id: 1, ...payload, site_title: body?.site_title || 'emmm.' })
         if (repairError) {
           if ((repairError?.message || '').toLowerCase().includes('invalid api key')) {
             return NextResponse.json(
