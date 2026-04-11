@@ -1,4 +1,5 @@
 import { Nunito, Quicksand } from "next/font/google";
+import "@fontsource/zcool-kuaile";
 
 import "../globals.css";
 import "katex/dist/katex.min.css";

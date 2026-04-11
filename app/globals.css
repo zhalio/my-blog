@@ -186,38 +186,50 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: #faf8f5;
-    background-image: radial-gradient(#d4d0c8 2px, transparent 2px);
-    background-size: 32px 32px;
-    font-family: "Nunito", "Quicksand", system-ui, -apple-system, sans-serif;
+    background-color: #fafcff;
+    background-image: radial-gradient(#e2e8f0 2px, transparent 2px);
+    background-size: 28px 28px;
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   }
   .dark body {
-    background-color: #171717;
-    background-image: radial-gradient(#333 2px, transparent 2px);
-    background-size: 32px 32px;
+    background-color: #0f172a;
+    background-image: radial-gradient(#1e293b 2px, transparent 2px);
+    background-size: 28px 28px;
   }
   .font-heading {
-    font-family: inherit;
-    letter-spacing: 0.04em;
+    font-family: var(--font-heading), system-ui, -apple-system, sans-serif;
+    letter-spacing: 0.02em;
+    font-weight: 800;
   }
   .font-handwriting {
-    font-family: "MaShanZhengLocal", "Comic Sans MS", "Chalkboard SE", "Zhi Mang Xing", cursive;
-    letter-spacing: 0.02em;
-    font-weight: 700;
+    font-family: var(--font-heading), system-ui, sans-serif;
+    letter-spacing: 0;
+    font-weight: 800;
   }
   .font-handwriting-cjk {
-    font-family: "MaShanZhengLocal", "Comic Sans MS", "Chalkboard SE", "Zhi Mang Xing", cursive;
-    letter-spacing: 0.02em;
-    font-weight: 700;
+    font-family: var(--font-heading), "ZCOOL KuaiLe", "Yuanti SC", "RuiZi YunZi Ku XingKai GBK", system-ui, sans-serif;
+    letter-spacing: 0;
+    font-weight: 800;
   }
 }
 
 @layer components {
+  /* Modern clean rounded component style overridden */
   .sketch-ui {
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px !important;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
-  .sketch-ui:not(.no-sketch-hover):hover, .group:hover .sketch-ui.group-hover-trigger {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+  .dark .glass-card {
+    background: rgba(30, 41, 59, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+  }
+}
     transform: translate(-1px, -2px);
     border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px !important;
   }

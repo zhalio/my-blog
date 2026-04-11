@@ -37,18 +37,18 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         {/* 左侧文字与按钮区 */}
         <FadeIn className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left gap-8 mt-8 lg:mt-0 z-20">
           
-          <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-[#baffc9] dark:bg-green-900 border-[2.5px] border-slate-700 dark:border-slate-300 shadow-[4px_4px_0_0_#334155] dark:shadow-[4px_4px_0_0_#94a3b8] -rotate-2 rounded-full font-bold text-slate-800 dark:text-green-100 transition-transform hover:rotate-0 hover:translate-y-1 hover:translate-x-1 hover:shadow-[2px_2px_0_0_#334155] dark:hover:shadow-[2px_2px_0_0_#94a3b8] sketch-ui">
-            <HandDrawnStar className="text-slate-800 dark:text-green-100 fill-yellow-300 w-6 h-6 animate-[spin_4s_linear_infinite]" /> 
-            <span className="text-sm md:text-base tracking-wide font-handwriting-cjk text-lg">Welcome to my digital garden</span>
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-900/40 border-2 border-white/50 dark:border-white/10 shadow-lg shadow-purple-200/50 dark:shadow-none rounded-full font-bold text-slate-700 dark:text-purple-100 transition-all hover:scale-105 backdrop-blur-md">
+            <span className="text-xl animate-pulse">✨</span> 
+            <span className="text-sm md:text-base tracking-wide font-heading">Welcome to my digital garden</span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black leading-tight lg:leading-[1.1] text-slate-800 dark:text-white tracking-tight mt-4 z-10 font-handwriting-cjk drop-shadow-sm">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black leading-tight lg:leading-[1.15] text-slate-800 dark:text-white tracking-tight mt-4 z-10 font-heading drop-shadow-sm">
             {settings.site_title || t('title')}
           </h1>
 
-          <div className="relative w-full max-w-xl mx-auto lg:mx-0 mt-4">
-             <div className="absolute -inset-4 bg-[#bae1ff] dark:bg-sky-900 skew-y-2 rounded-2xl -z-10 border-[2.5px] border-slate-700 dark:border-slate-300 shadow-[6px_6px_0_0_#334155] dark:shadow-[6px_6px_0_0_#94a3b8] sketch-ui"></div>
-             <p className="text-xl md:text-2xl text-slate-800 dark:text-sky-100 font-bold p-3 leading-relaxed font-handwriting-cjk">
+          <div className="relative w-full max-w-xl mx-auto lg:mx-0 mt-6 group">
+             <div className="absolute -inset-4 bg-gradient-to-br from-amber-100 to-rose-50 dark:from-amber-900/30 dark:to-rose-900/20 rounded-[2.5rem] -z-10 border border-white/60 dark:border-white/5 shadow-xl shadow-amber-100/50 dark:shadow-none transition-transform group-hover:scale-[1.02]"></div>
+             <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 font-bold p-4 leading-relaxed font-heading">
                <TypewriterEffect text={settings.site_description || t('description')} speed={80} loop={true} />
              </p>
           </div>
@@ -58,32 +58,44 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
         </FadeIn>
 
-        {/* 右侧拍立得相框区 */}
-        <FadeIn delay={0.2} className="w-full lg:w-[450px] flex justify-center relative my-12 lg:my-0 mr-2 md:mr-8 group">
+        {/* 右侧现代圆润 Bento 卡片区 */}
+        <FadeIn delay={0.2} className="w-full lg:w-[480px] flex justify-center relative my-12 lg:my-0 group">
           
           {/* Accent graphics behind */}
-          <div className="absolute top-4 -right-10 w-32 h-32 bg-[#ffdfba] dark:bg-orange-900 border-[2.5px] border-slate-700 dark:border-slate-300 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] z-10 animate-[spin_12s_linear_infinite] shadow-[6px_6px_0_0_#334155] dark:shadow-[6px_6px_0_0_#94a3b8]" />
-          <HandDrawnCloud className="absolute -bottom-8 -left-8 w-32 h-32 text-slate-800 dark:text-slate-300 fill-white dark:fill-zinc-800 stroke-[2px] z-30 animate-[bounce_3s_infinite] drop-shadow-md" />
+          <div className="absolute -top-8 -right-8 w-40 h-40 bg-gradient-to-br from-fuchsia-300 to-purple-400 opacity-30 dark:opacity-20 blur-3xl rounded-full z-10" />
+          <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-gradient-to-tr from-cyan-300 to-blue-400 opacity-30 dark:opacity-20 blur-3xl rounded-full z-10" />
 
-          {/* Main Photograph */}
-          <div className="relative w-64 lg:w-[340px] bg-white dark:bg-zinc-800 border-[2.5px] border-slate-700 dark:border-slate-300 p-5 pb-20 rotate-3 shadow-[10px_10px_0_0_#334155] dark:shadow-[10px_10px_0_0_#94a3b8] hover:rotate-[1deg] hover:scale-105 hover:-translate-y-2 transition-all duration-500 z-20 rounded-xl sketch-ui group-hover:-rotate-2">
+          {/* Main Floating Card */}
+          <div className="relative w-full max-w-[360px] bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white dark:border-slate-800 p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] hover:-translate-y-4 hover:shadow-[0_40px_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-500 z-20 rounded-[3rem] overflow-hidden">
              
-             {/* Tape holding the picture */}
-             <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-28 h-12 bg-[#ffb3ba] dark:bg-rose-900 border-[2px] border-slate-700 dark:border-slate-300 -rotate-[6deg] z-30 opacity-95 shadow-sm flex justify-center items-center sketch-ui backdrop-blur-none">
-                 <span className="opacity-60 font-bold text-lg tracking-widest text-slate-800 dark:text-rose-100">///</span>
+             {/* Decorative Top Pill */}
+             <div className="absolute top-6 right-8 px-4 py-1.5 bg-gradient-to-r from-amber-200 to-orange-300 text-orange-900 text-xs font-black rounded-full shadow-sm">
+                 HELLO
              </div>
              
-             {/* Picture Frame */}
-             <div className="w-full aspect-square bg-[#ffffba] dark:bg-yellow-900/50 overflow-hidden relative flex flex-col items-center justify-center rounded-lg border-[2.5px] border-slate-700 dark:border-slate-300 bg-[radial-gradient(#000_1.5px,transparent_1.5px)] dark:bg-[radial-gradient(#fff_1.5px,transparent_1.5px)] [background-size:16px_16px]">
-                <HandDrawnSmiley className="w-36 h-36 lg:w-44 lg:h-44 text-slate-800 dark:text-yellow-100 stroke-[2px] group-hover:scale-125 group-hover:-rotate-12 transition-transform duration-500 fill-white dark:fill-zinc-800 relative z-20" />
-                <HandDrawnStar className="absolute top-4 right-4 w-14 h-14 text-slate-800 dark:text-slate-300 fill-[#bae1ff] dark:fill-sky-900 stroke-[2.5px] animate-[pulse_2s_infinite] group-hover:animate-bounce z-10" />
-                <div className="absolute bottom-0 w-full h-[25%] bg-[#ffdfba] dark:bg-orange-950 border-t-[2.5px] border-slate-700 dark:border-slate-300 z-0"></div>
+             {/* Circular Avatar Container */}
+             <div className="w-full aspect-square mt-8 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950/40 dark:to-purple-950/40 overflow-hidden relative flex flex-col items-center justify-center rounded-[2.5rem] border-2 border-white dark:border-slate-800 shadow-inner group-hover:scale-105 transition-transform duration-500">
+                {/* 替换以前粗糙的手绘笑脸，使用圆润可爱的简单 SVG 元素 */}
+                <div className="relative z-20 flex flex-col items-center justify-center space-y-4">
+                   <div className="flex gap-6">
+                      <div className="w-6 h-6 rounded-full bg-slate-800 dark:bg-slate-200 animate-bounce" style={{animationDelay: "0ms"}}></div>
+                      <div className="w-6 h-6 rounded-full bg-slate-800 dark:bg-slate-200 animate-bounce" style={{animationDelay: "150ms"}}></div>
+                   </div>
+                   <svg width="48" height="24" viewBox="0 0 48 24" fill="none" className="text-slate-800 dark:text-slate-200">
+                     <path d="M4 4C12 20 36 20 44 4" stroke="currentColor" strokeWidth="8" strokeLinecap="round"/>
+                   </svg>
+                </div>
+
+                <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/40 via-transparent to-transparent z-10"></div>
              </div>
              
-             {/* Caption */}
-             <div className="absolute bottom-5 left-0 w-full text-center">
-                <span className="text-3xl font-black text-slate-800 dark:text-slate-200 font-handwriting-cjk rotate-[-3deg] inline-block hover:scale-110 transition-transform">
+             {/* Content */}
+             <div className="mt-8 text-center flex flex-col gap-2">
+                <span className="text-3xl font-black text-slate-800 dark:text-white font-heading tracking-tight">
                   Hi, I'm emmm!
+                </span>
+                <span className="text-sm font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-full inline-block mx-auto">
+                  Frontend Developer 🌈
                 </span>
              </div>
           </div>
@@ -93,16 +105,18 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
       {/* Posts Grid: 文章列表区域 */}
       <section className="w-full mt-24 max-w-[1280px] mx-auto px-4 md:px-8 space-y-12 relative z-20">
-        <FadeIn delay={0.2} className="flex flex-col sm:flex-row items-center justify-between border-b-[4px] border-slate-700 dark:border-slate-300 border-dashed pb-6 gap-6 relative">
+        <FadeIn delay={0.2} className="flex items-center justify-between pb-6 gap-6 relative border-b border-slate-200/60 dark:border-slate-800">
           
-          <h2 className="text-4xl lg:text-5xl font-black tracking-tight flex items-center gap-4 text-slate-800 dark:text-slate-100 z-10 font-handwriting-cjk">
-            <span className="w-6 h-12 bg-[#ffb3ba] dark:bg-rose-900 border-[2.5px] border-slate-700 dark:border-slate-300 rounded-lg shadow-[3px_3px_0_0_#334155] dark:shadow-[3px_3px_0_0_#94a3b8] -skew-x-[15deg]"></span>
+          <h2 className="text-3xl lg:text-4xl font-black tracking-tight flex items-center gap-4 text-slate-800 dark:text-white z-10 font-heading">
+            <div className="relative flex items-center justify-center w-12 h-12 bg-gradient-to-br from-sky-400 to-indigo-500 text-white rounded-[1.2rem] shadow-lg shadow-indigo-500/30">
+               <svg xmlns="http://www.w3.org/2000/svg" className="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+            </div>
             <span>{t('latestPosts')}</span>
           </h2>
 
-          <Link href="/posts" className="text-lg md:text-xl font-black bg-[#e2c6ff] dark:bg-purple-900 text-slate-800 dark:text-purple-100 px-6 py-3 hover:-translate-y-1 hover:translate-x-1 group flex items-center gap-2 border-[2.5px] border-slate-700 dark:border-slate-300 shadow-[4px_4px_0_0_#334155] dark:shadow-[4px_4px_0_0_#94a3b8] hover:shadow-[2px_2px_0_0_#334155] dark:hover:shadow-[2px_2px_0_0_#94a3b8] transition-all sketch-ui font-handwriting-cjk">
+          <Link href="/posts" className="text-base font-bold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 px-6 py-3 hover:bg-slate-50 hover:scale-105 group flex items-center gap-2 border border-slate-200 dark:border-slate-700 shadow-sm rounded-full transition-all tracking-wide">
             {t('viewAll')} 
-            <HandDrawnArrow className="w-6 h-6 text-slate-800 dark:text-purple-100 stroke-[2.5px] fill-transparent group-hover:translate-x-2 group-hover:translate-y-[-2px] group-hover:-rotate-12 transition-transform" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="size-4 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
           </Link>
         </FadeIn>
         
