@@ -77,6 +77,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                <SiteUptimeBadge />
             </div>
           </div>
+          
+          {/* 按钮下方的装饰性涂鸦 - 填充空白部位 */}
+          <div className="hidden lg:block absolute bottom-0 right-10 w-32 h-32 opacity-60 z-0 pointer-events-none">
+             <HandDrawnScribble className="w-full h-full text-indigo-200 dark:text-indigo-500/20" />
+          </div>
+          <div className="hidden md:block lg:hidden absolute -bottom-10 left-20 w-24 h-24 opacity-60 z-0 pointer-events-none">
+             <HandDrawnScribble className="w-full h-full text-sky-200 dark:text-sky-500/20" />
+          </div>
         </FadeIn>
 
         {/* 右侧个人卡片 */}
