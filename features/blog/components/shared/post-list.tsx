@@ -39,45 +39,45 @@ export function PostList({ posts, readMoreText }: PostListProps) {
         const Icon = DOODLES[i % DOODLES.length];
         return (
         <motion.article key={post.id} variants={item} className="h-full group">
-          <Link href={`/posts/${post.slug}`} className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-2xl p-6 bg-background sketch-ui transition-all hover:-translate-y-2 border-2 border-foreground/10 hover:border-foreground/30 shadow-[4px_4px_0_0_rgba(0,0,0,0.1)] dark:shadow-[4px_4px_0_0_rgba(255,255,255,0.1)] hover:shadow-[8px_8px_0_0_rgba(0,0,0,0.15)] dark:hover:shadow-[8px_8px_0_0_rgba(255,255,255,0.15)] relative flex flex-col">
+          <Link href={`/posts/${post.slug}`} className="block h-full outline-none focus-visible:ring-4 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-2xl p-6 bg-[#fffaf0] dark:bg-zinc-900 sketch-ui transition-all hover:-translate-y-2 border-4 border-foreground shadow-[6px_6px_0_0_currentColor] dark:shadow-[6px_6px_0_0_#ffffff] hover:shadow-[10px_10px_0_0_#f43f5e] relative flex flex-col">
             
             {/* Cute corner doodles hidden by default, visible on hover */}
-            <div className="absolute -top-4 -right-3 size-10 md:size-12 text-primary transform rotate-[15deg] group-hover:rotate-[25deg] group-hover:scale-110 transition-all opacity-0 group-hover:opacity-100 z-20 pointer-events-none drop-shadow-sm">
-              <Icon className="fill-background stroke-[2.5px]" />
+            <div className="absolute -top-6 -right-6 size-12 md:size-16 text-[#f43f5e] transform rotate-[15deg] group-hover:rotate-[25deg] group-hover:scale-125 transition-all opacity-0 group-hover:opacity-100 z-20 pointer-events-none drop-shadow-sm">
+              <Icon className="fill-transparent stroke-[3px]" />
             </div>
 
-            <header className="mb-4">
-              <h3 className="text-xl md:text-2xl font-black tracking-wide text-foreground group-hover:text-primary transition-colors decoration-wavy decoration-2 underline-offset-4 group-hover:underline decoration-primary/60 line-clamp-2 leading-snug">
+            <header className="mb-4 relative">
+              <h3 className="text-2xl md:text-3xl font-black tracking-wide text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug">
                 {post.title}
               </h3>
-              <time dateTime={post.date} className="text-sm md:text-base font-bold text-muted-foreground/70 mt-3 block font-handwriting tracking-widest">
+              <time dateTime={post.date} className="text-sm md:text-base font-bold text-foreground/60 mt-3 flex items-center gap-2 font-mono tracking-widest bg-black/5 dark:bg-white/10 w-fit px-3 py-1 rounded-full sketch-ui">
                 {new Date(post.date).toLocaleDateString(undefined, { 
                   year: 'numeric', 
                   month: '2-digit', 
                   day: '2-digit' 
                 }).replace(/\//g, '.')}
-                {post.readingTime && <span className="ml-2">• {post.readingTime}</span>}
+                {post.readingTime && <span className="text-foreground/40 font-bold">• {post.readingTime}</span>}
               </time>
             </header>
 
-            <p className="text-base leading-relaxed text-foreground/80 font-medium mb-6 line-clamp-3 flex-1">
+            <p className="text-base leading-relaxed text-foreground/80 font-medium mb-6 line-clamp-3 my-4 flex-1">
               {post.summary || post.excerpt}
             </p>
 
-            <div className="mt-auto pt-4 border-t-2 border-foreground/10 border-dashed flex flex-col gap-4">
+            <div className="mt-auto pt-4 border-t-4 border-foreground border-solid flex flex-col gap-4">
               {post.tags && post.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {post.tags.slice(0, 3).map((tag) => (
-                    <span key={tag} className="sketch-ui inline-flex items-center px-3 py-1 text-xs md:text-sm font-bold text-primary/80 bg-primary/10 border border-primary/20 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    <span key={tag} className="sketch-ui inline-flex items-center px-3 py-1 text-xs md:text-sm font-bold text-foreground bg-[#ffde59] border-2 border-foreground group-hover:scale-105 transition-all">
                       # {tag}
                     </span>
                   ))}
                 </div>
               )}
 
-              <div className="flex items-center justify-between font-bold text-lg text-primary/80 group-hover:text-primary transition-colors mt-2">
-                <span className="font-handwriting-cjk">{readMoreText}</span>
-                <HandDrawnArrow className="w-7 h-7 -rotate-6 group-hover:translate-x-2 group-hover:-rotate-12 transition-all stroke-[2.5px] fill-transparent" />
+              <div className="flex items-center justify-between font-bold text-xl text-foreground group-hover:text-primary transition-colors mt-2">
+                <span className="font-handwriting-cjk underline decoration-wavy underline-offset-4">{readMoreText}</span>
+                <HandDrawnArrow className="w-8 h-8 -rotate-6 group-hover:translate-x-3 group-hover:-rotate-12 transition-all stroke-[3px] fill-transparent text-primary" />
               </div>
             </div>
           </Link>

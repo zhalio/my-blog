@@ -186,15 +186,14 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: #fefcf8;
-    background-image: radial-gradient(#d4d0c8 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-color: #fefdf5;
+    /* A more playful, scattered pattern with dots and pluses */
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='10' cy='10' r='1.5'/%3E%3Ccircle cx='50' cy='50' r='1.5'/%3E%3Cpath d='M30 70h4v4h-4zM70 30h4v4h-4z'/%3E%3Cpath d='M70 70h2v6h-2zM68 72h6v2h-6zM30 30l2 2-2 2-2-2z'/%3E%3C/g%3E%3C/svg%3E");
     font-family: 'Comic Sans MS', "MaShanZhengLocal", "Ma Shan Zheng", "LXGW WenKai", "STKaiti", "KaiTi", "Source Han Sans SC", "Noto Sans SC", cursive, sans-serif !important;
   }
   .dark body {
-    background-color: #1a1a1a;
-    background-image: radial-gradient(#2d2d2d 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-color: #1c1c1c;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='10' cy='10' r='1.5'/%3E%3Ccircle cx='50' cy='50' r='1.5'/%3E%3Cpath d='M30 70h4v4h-4zM70 30h4v4h-4z'/%3E%3Cpath d='M70 70h2v6h-2zM68 72h6v2h-6zM30 30l2 2-2 2-2-2z'/%3E%3C/g%3E%3C/svg%3E");
   }
   .font-heading {
     font-family: var(--font-heading);
