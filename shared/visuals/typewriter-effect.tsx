@@ -60,10 +60,10 @@ export function TypewriterEffect({
   }, [displayedText, isDeleting, text, speed, waitBeforeDelete, waitBeforeRestart, loop]);
 
   return (
-    <span className="inline-block min-h-[1.5em]">
+    <span className="inline min-h-[1.5em] break-words relative">
       {displayedText}
       {cursor && (
-        <span className="ml-1 animate-pulse font-bold text-primary">|</span>
+        <span className="animate-pulse font-bold text-primary ml-1 absolute select-none">|</span>    
       )}
     </span>
   );

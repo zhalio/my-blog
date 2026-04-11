@@ -46,11 +46,11 @@ export const getSiteSettings = async () => {
     }
     
     return data || {
-      site_title: 'My Blog',
-      site_description: 'A dedicated space for sharing knowledge and insights.',
+      site_title: 'emmm.',
+      site_description: 'Welcome to my digital garden. Explore my tech stack, side projects, and daily life.',
       site_keywords: [],
       favicon_url: '',
-      footer_text: '© 2026 My Blog. All rights reserved.',
+      footer_text: '© 2026 emmm. All rights reserved.',
       social_links: [],
       feature_flags: {
         enable_footer: true,
@@ -67,11 +67,11 @@ export const getSiteSettings = async () => {
       console.error('Error fetching site settings:', error)
     }
     return {
-      site_title: 'My Blog',
-      site_description: 'A dedicated space for sharing knowledge and insights.',
+      site_title: 'emmm.',
+      site_description: 'Welcome to my digital garden. Explore my tech stack, side projects, and daily life.',
       site_keywords: [],
       favicon_url: '',
-      footer_text: '© 2026 My Blog. All rights reserved.',
+      footer_text: '© 2026 emmm. All rights reserved.',
       social_links: [],
       feature_flags: {
         enable_footer: true,

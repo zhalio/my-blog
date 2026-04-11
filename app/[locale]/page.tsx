@@ -63,7 +63,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="relative w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 mt-3 md:mt-5 cursor-default">
              <HandDrawnArrow className="hidden md:block absolute top-[85%] -left-12 lg:-left-16 w-14 h-14 text-indigo-400/80 dark:text-indigo-400/40 rotate-[130deg] opacity-80 pointer-events-none z-0" />
              <HandDrawnSmiley className="hidden lg:block absolute -top-14 right-10 w-12 h-12 text-pink-400/80 dark:text-pink-400/50 rotate-12 opacity-80 pointer-events-none z-0 hover:scale-110 transition-transform" />
-             <div className="relative text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 dark:text-slate-300 font-medium leading-relaxed flex items-center justify-center lg:justify-start min-h-[4rem] md:min-h-[5rem] z-10 w-full max-w-xl">
+             <div className="relative text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 dark:text-slate-300 font-medium leading-relaxed flex flex-col items-center justify-center lg:items-start min-h-[5rem] md:min-h-[6rem] z-10 w-full max-w-xl text-balance">
                <TypewriterEffect text={settings.site_description || t('description')} speed={80} waitBeforeDelete={4000} />
                <HandDrawnUnderline className="hidden sm:block absolute -bottom-1 -left-4 sm:left-0 w-[90%] sm:w-[280px] h-3 sm:h-5 text-emerald-400/80 dark:text-emerald-400/50 -rotate-1 pointer-events-none z-[-1]" />
              </div>
