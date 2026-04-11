@@ -34,16 +34,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     <div className="relative overflow-hidden flex flex-col justify-start pb-12 w-full">
       
       {/* 丰富的卡通动态图形背景层 */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden h-[1000px] max-h-[100vh]">
          <CartoonBlob2 className="absolute top-[-10%] left-[-15%] md:top-[-10%] md:left-[-5%] w-[350px] h-[350px] md:w-[800px] md:h-[800px] text-sky-200 fill-sky-100 dark:fill-sky-400 dark:stroke-none opacity-50 dark:opacity-10 animate-[spin_60s_linear_infinite]" />
          <CartoonStarburst className="absolute top-[30%] -right-[20%] md:top-[-5%] md:-right-[10%] w-[300px] h-[300px] md:w-[700px] md:h-[700px] text-rose-200 fill-rose-100 dark:fill-rose-400 dark:stroke-none opacity-40 dark:opacity-10 animate-[spin_50s_linear_infinite_reverse]" />
-         
-         <HandDrawnSparkle className="absolute top-[10%] right-[10%] md:top-[12%] md:right-[20%] w-8 h-8 md:w-16 md:h-16 text-[#ffc66d] fill-[#ffe4b5] dark:text-amber-500/30 dark:fill-amber-500/10 animate-[bounce_5s_infinite]" />
-         <HandDrawnSwirl className="absolute bottom-[40%] -left-[10%] md:bottom-[20%] md:left-[5%] w-16 h-16 md:w-24 md:h-24 text-emerald-200 dark:text-emerald-500/30 animate-[spin_20s_linear_infinite]" />
-         <HandDrawnLeaf className="absolute top-[12%] left-[10%] md:top-[15%] md:left-[45%] w-8 h-8 md:w-14 md:h-14 text-rose-300 fill-rose-100 dark:text-rose-500/30 dark:fill-rose-500/10 animate-[spin_10s_linear_infinite_reverse]" />
-         <HandDrawnPlanet className="absolute bottom-[20%] right-[10%] md:bottom-[25%] md:right-[25%] w-12 h-12 md:w-20 md:h-20 text-indigo-300 fill-indigo-100 dark:text-indigo-500/30 dark:fill-indigo-500/10 animate-[bounce_6s_infinite]" />
-      </div>
 
+         <HandDrawnSparkle className="absolute top-[10%] right-[10%] md:top-[12%] md:right-[20%] w-8 h-8 md:w-16 md:h-16 text-[#ffc66d] fill-[#ffe4b5] dark:text-amber-500/30 dark:fill-amber-500/10 animate-[bounce_5s_infinite]" />
+         <HandDrawnSwirl className="absolute top-[60%] -left-[10%] md:top-[80%] md:left-[5%] w-16 h-16 md:w-24 md:h-24 text-emerald-200 dark:text-emerald-500/30 animate-[spin_20s_linear_infinite]" />
+         <HandDrawnLeaf className="absolute top-[12%] left-[10%] md:top-[15%] md:left-[45%] w-8 h-8 md:w-14 md:h-14 text-rose-300 fill-rose-100 dark:text-rose-500/30 dark:fill-rose-500/10 animate-[spin_10s_linear_infinite_reverse]" />      
+         <HandDrawnPlanet className="absolute top-[50%] right-[10%] md:top-[70%] md:right-[25%] w-12 h-12 md:w-20 md:h-20 text-indigo-300 fill-indigo-100 dark:text-indigo-500/30 dark:fill-indigo-500/10 animate-[bounce_6s_infinite]" />      </div>
       {/* 内容区域 */}
       <div className="w-full max-w-[1280px] mx-auto px-4 py-12 md:py-16 lg:py-20 flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-10 lg:gap-8 relative z-10">
         
@@ -107,7 +105,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
              {/* Content */}
              <div className="mt-6 sm:mt-8 text-center flex flex-col gap-1.5 sm:gap-2 relative z-20 w-full">
                 <span className="text-xl sm:text-2xl font-extrabold text-slate-800 dark:text-slate-100 font-heading tracking-tight hover:text-sky-500 transition-colors">
-                  Hi, I'm emmm!
+                  Hi, I&apos;m emmm!
                 </span>
                 <span className="text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/60 px-3 sm:px-4 py-1.5 sm:py-2 mt-1 sm:mt-2 rounded-full flex items-center justify-center gap-1 sm:gap-1.5 mx-auto border border-slate-100 dark:border-slate-700/80 shadow-sm shadow-slate-100 dark:shadow-none">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-sky-500 dark:text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>

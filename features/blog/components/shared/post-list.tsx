@@ -55,7 +55,17 @@ export function PostList({ posts, readMoreText }: PostListProps) {
           <Link href={`/posts/${post.slug}`} className="block h-full outline-none focus-visible:ring-4 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-3xl bg-white dark:bg-slate-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] border border-slate-100 dark:border-slate-700/50 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)] dark:shadow-none active:translate-y-1 relative flex flex-col overflow-hidden">
 
             {/* Thumbnail Cover - Rich colorful blocks */}
-            <div className={`h-40 w-full relative overflow-hidden flex items-center justify-center transition-colors ${thumbBg}`}>
+            <div className={`h-40 w-full relative overflow-hidden flex items-center justify-center transition-colors ${thumbBg}`}>              {/* Decorative Blob */}
+              {(() => {
+                const Blob = BLOBS[i % BLOBS.length];
+                return (
+                  <Blob className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] opacity-40 group-hover:scale-[1.3] group-hover:rotate-12 transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${thumbBg.blob}`}/>
+                )
+              })()}
+              
+              {/* Additional scattered doodles within the card banner */}
+              <HandDrawnStar className={`absolute top-4 left-4 w-6 h-6 opacity-0 -translate-y-2 group-hover:opacity-60 group-hover:translate-y-0 group-hover:rotate-[360deg] transition-all duration-700 delay-100 ${thumbBg.text}`} />
+              <HandDrawnSparkle className={`absolute bottom-4 left-1/4 w-5 h-5 opacity-0 translate-y-2 group-hover:opacity-50 group-hover:translate-y-0 group-hover:animate-pulse transition-all duration-700 delay-200 ${thumbBg.text}`} />
               <div className="absolute inset-0 bg-white/20 dark:bg-slate-900/20 backdrop-blur-[2px]"></div>
               <div className="w-20 h-20 bg-white/80 dark:bg-slate-800/80 rounded-3xl shadow-sm flex items-center justify-center relative z-10 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500">
                 <Icon className="w-10 h-10 text-slate-800 dark:text-slate-100" />
