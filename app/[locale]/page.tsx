@@ -55,17 +55,17 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <span className="text-[10px] sm:text-xs md:text-sm tracking-wide font-heading uppercase">Welcome to my digital garden</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-extrabold leading-[1.1] lg:leading-[1.15] text-slate-800 dark:text-white tracking-tight mt-2 md:mt-4 z-10 font-heading drop-shadow-sm transition-transform duration-500 relative">
-            <span className="relative z-10">{settings.site_title || t('title')}</span>
-            <HandDrawnStar className="hidden md:block absolute -top-8 -right-14 w-12 h-12 md:w-16 md:h-16 text-yellow-400 fill-yellow-200 dark:text-yellow-500/30 dark:fill-yellow-500/20 animate-[spin_6s_linear_infinite] z-0 opacity-80 pointer-events-none" />
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-extrabold leading-[1.1] lg:leading-[1.15] text-slate-800 dark:text-white tracking-tight mt-2 md:mt-4 z-10 font-heading drop-shadow-sm transition-transform duration-500 relative inline-block group">
+            <span className="relative z-10 inline-block">{settings.site_title || t('title')}</span>
+            <HandDrawnUnderline className="absolute -bottom-2 -left-2 w-[110%] h-4 sm:h-6 text-emerald-400/90 dark:text-emerald-400/60 -rotate-2 z-[-1] transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3" />
+            <HandDrawnStar className="hidden md:block absolute -top-8 -right-14 w-12 h-12 md:w-16 md:h-16 text-yellow-400 fill-yellow-200 dark:text-yellow-500/30 dark:fill-yellow-500/20 animate-[spin_6s_linear_infinite] z-0 opacity-80 group-hover:scale-125 transition-transform" />
           </h1>
 
-          <div className="relative w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 mt-3 md:mt-5 cursor-default">
-             <HandDrawnArrow className="hidden md:block absolute top-[85%] -left-12 lg:-left-16 w-14 h-14 text-indigo-400/80 dark:text-indigo-400/40 rotate-[130deg] opacity-80 pointer-events-none z-0" />
-             <HandDrawnSmiley className="hidden lg:block absolute -top-14 right-10 w-12 h-12 text-pink-400/80 dark:text-pink-400/50 rotate-12 opacity-80 pointer-events-none z-0 hover:scale-110 transition-transform" />
-             <div className="relative text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 dark:text-slate-300 font-medium leading-relaxed flex flex-col items-center justify-center lg:items-start min-h-[5rem] md:min-h-[6rem] z-10 w-full max-w-xl text-balance">
-               <TypewriterEffect text={settings.site_description || t('description')} speed={80} waitBeforeDelete={4000} />
-               <HandDrawnUnderline className="hidden sm:block absolute -bottom-1 -left-4 sm:left-0 w-[90%] sm:w-[280px] h-3 sm:h-5 text-emerald-400/80 dark:text-emerald-400/50 -rotate-1 pointer-events-none z-[-1]" />
+          <div className="relative w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 mt-6 md:mt-10 cursor-default">
+             <HandDrawnArrow className="hidden md:block absolute top-[85%] -left-12 lg:-left-20 w-16 h-16 text-indigo-400/80 dark:text-indigo-400/40 rotate-[130deg] opacity-80 hover:scale-110 hover:-translate-x-2 transition-all duration-300 z-10" />
+             <HandDrawnSmiley className="hidden lg:block absolute -top-16 right-4 w-14 h-14 text-pink-400/90 dark:text-pink-400/60 rotate-12 opacity-90 hover:scale-125 hover:rotate-[24deg] transition-all duration-300 z-10 cursor-pointer" />
+             <div className="relative text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 dark:text-slate-300 font-medium leading-relaxed min-h-[5rem] md:min-h-[6rem] z-10 w-full max-w-xl text-left border-l-4 border-slate-200 dark:border-slate-700 pl-4 sm:pl-5 py-1">
+               <TypewriterEffect text={settings.site_description || t('description')} speed={50} waitBeforeDelete={6000} />
              </div>
           </div>
 
