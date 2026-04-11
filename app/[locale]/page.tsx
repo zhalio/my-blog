@@ -9,7 +9,7 @@ import { HomeButtons } from "@/features/blog/effects/home-buttons";
 import { SiteUptimeBadge } from "@/shared/components/common/site-uptime";
 import { getSiteSettings } from "@/lib/site-settings";
 import { TypewriterEffect } from "@/shared/visuals/typewriter-effect";
-import { HandDrawnArrow, HandDrawnStar, HandDrawnCloud, HandDrawnSmiley, HandDrawnScribble, HandDrawnHeart, HandDrawnLeaf } from "@/shared/visuals/doodles";
+import { HandDrawnArrow, HandDrawnStar, HandDrawnCloud, HandDrawnSmiley, HandDrawnScribble, HandDrawnHeart, HandDrawnLeaf, HandDrawnUnderline } from "@/shared/visuals/doodles";
 import { CartoonBlob1, CartoonBlob2, CartoonBlob3, CartoonStarburst } from "@/shared/visuals/cartoon-shapes";
 import { Particles } from "@/shared/effects/particles";
 
@@ -54,15 +54,19 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <span className="text-xs md:text-sm tracking-wide font-heading uppercase">Welcome to my digital garden</span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] font-extrabold leading-[1.1] lg:leading-[1.15] text-slate-800 dark:text-white tracking-tight mt-2 z-10 font-heading drop-shadow-sm transition-transform duration-500">
-            {settings.site_title || t('title')}
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] font-extrabold leading-[1.1] lg:leading-[1.15] text-slate-800 dark:text-white tracking-tight mt-2 z-10 font-heading drop-shadow-sm transition-transform duration-500 relative">
+            <span className="relative z-10">{settings.site_title || t('title')}</span>
+            <HandDrawnStar className="absolute -top-6 -right-10 w-12 h-12 text-yellow-300 fill-yellow-200 dark:text-yellow-700 dark:fill-yellow-800/30 animate-[bounce_6s_infinite] z-0 opacity-80" />
           </h1>
 
           <div className="relative w-full max-w-xl mx-auto lg:mx-0 mt-4 cursor-default">
+             <HandDrawnUnderline className="absolute -bottom-2 left-2 w-40 h-5 text-emerald-300 dark:text-emerald-800/80 -rotate-2" />
+             <HandDrawnArrow className="absolute top-[90%] -left-12 w-10 h-10 text-indigo-300 dark:text-indigo-800/80 rotate-[140deg] opacity-70" />
              <div className="text-lg md:text-xl text-slate-500 dark:text-slate-400 font-medium leading-relaxed min-h-[4rem] flex items-center h-[4rem]">
                <TypewriterEffect text={settings.site_description || t('description')} speed={100} waitBeforeDelete={3000} />
              </div>
-             <svg xmlns="http://www.w3.org/2000/svg" className="absolute -top-16 -right-4 w-16 h-16 text-slate-200 dark:text-slate-800 animate-[bounce_4s_infinite] transition-transform hover:scale-110 hover:-rotate-6 cursor-grab opacity-80" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17.5 19c-2.484 0-4.5-2.016-4.5-4.5S15.016 10 17.5 10c2.484 0 4.5 2.016 4.5 4.5S19.984 19 17.5 19zM17.5 11c-1.93 0-3.5 1.57-3.5 3.5S15.57 18 17.5 18c1.93 0 3.5-1.57 3.5-3.5S19.43 11 17.5 11zM7.5 15C4.467 15 2 12.533 2 9.5S4.467 4 7.5 4c2.82 0 5.148 2.124 5.462 4.851A5.485 5.485 0 0 1 18 11.5c0 .324-.035.645-.101.956l-.99-.142A4.475 4.475 0 0 0 17 11.5c0-2.481-2.019-4.5-4.5-4.5-.429 0-.853.065-1.258.196l-.903.29-.32-.894A4.502 4.502 0 0 0 5.76 4.79C3.659 5.21 2.235 6.953 2 9.176l-.004.908.895.144C4.301 10.457 5.5 11.832 5.5 13.5c0 .27-.03.543-.089.813z"></path></svg>
+             <HandDrawnCloud className="absolute -top-16 -right-4 w-16 h-16 text-sky-200 dark:text-sky-800 animate-[bounce_4s_infinite] transition-transform hover:scale-110 hover:-rotate-6 cursor-grab opacity-80" />
+             <HandDrawnSmiley className="absolute -bottom-16 right-10 w-10 h-10 text-pink-300 dark:text-pink-800/80 rotate-12 opacity-80" />
           </div>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-8 w-full relative z-20">

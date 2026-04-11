@@ -27,8 +27,8 @@ export function HandDrawnUnderline(props: React.SVGProps<SVGSVGElement>) {
 
 export function HandDrawnCloud(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M17.5 19c2.48 0 4.5-2.02 4.5-4.505 0-2.373-1.83-4.321-4.15-4.485-.357-3.037-2.923-5.385-6.04-5.385S6.126 6.972 5.77 10.01C3.45 10.174 1.62 12.122 1.62 14.495 1.62 16.98 3.64 19 6.12 19h11.38z" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
     </svg>
   )
 }
