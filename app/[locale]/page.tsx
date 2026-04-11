@@ -35,13 +35,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       
       {/* 丰富的卡通动态图形背景层 */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-         <CartoonBlob2 className="absolute -top-[5%] -left-[20%] md:-top-[5%] md:-left-[5%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] text-sky-100 fill-sky-100 dark:text-sky-500/5 dark:fill-sky-500/5 animate-[spin_40s_linear_infinite]" />
-         <CartoonBlob3 className="absolute top-[60%] -right-[30%] md:top-[20%] md:-right-[5%] w-[400px] h-[400px] md:w-[700px] md:h-[700px] text-[#fcdec9] fill-[#fcdec9] dark:text-rose-500/5 dark:fill-rose-500/5 animate-[spin_50s_linear_infinite_reverse]" />
+         <CartoonBlob2 className="absolute top-[-10%] left-[-15%] md:top-[-20%] md:left-[-10%] w-[350px] h-[350px] md:w-[700px] md:h-[700px] text-sky-200 fill-sky-100 dark:fill-sky-400 dark:stroke-none opacity-60 dark:opacity-10 animate-[spin_40s_linear_infinite]" />
+         <CartoonStarburst className="absolute top-[50%] -right-[15%] md:top-[10%] md:-right-[10%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] text-rose-200 fill-rose-100 dark:fill-rose-400 dark:stroke-none opacity-60 dark:opacity-10 animate-[spin_50s_linear_infinite_reverse]" />
          
-         <HandDrawnStar className="absolute top-[8%] right-[5%] md:top-[12%] md:right-[15%] w-10 h-10 md:w-16 md:h-16 text-[#ffc66d] fill-[#ffe4b5] dark:text-amber-500/10 dark:fill-amber-500/10 animate-[bounce_5s_infinite]" />
-         <HandDrawnCloud className="absolute bottom-[40%] -left-[10%] md:bottom-[20%] md:left-[10%] w-20 h-20 md:w-32 md:h-32 text-emerald-200 fill-emerald-100 dark:text-emerald-500/10 dark:fill-emerald-500/10 animate-[bounce_8s_infinite_reverse]" />
-         <HandDrawnLeaf className="absolute top-[8%] left-[10%] md:top-[15%] md:left-[40%] w-8 h-8 md:w-14 md:h-14 text-rose-300 fill-rose-100 dark:text-rose-500/10 dark:fill-rose-500/10 animate-[spin_10s_linear_infinite]" />
-         <HandDrawnHeart className="absolute bottom-[20%] right-[10%] md:bottom-[25%] md:right-[25%] w-10 h-10 md:w-16 md:h-16 text-pink-300 fill-pink-100 dark:text-pink-500/10 dark:fill-pink-500/10 animate-[bounce_6s_infinite]" />
+         <HandDrawnStar className="absolute top-[8%] right-[10%] md:top-[12%] md:right-[15%] w-8 h-8 md:w-16 md:h-16 text-[#ffc66d] fill-[#ffe4b5] dark:text-amber-500/30 dark:fill-amber-500/10 animate-[bounce_5s_infinite]" />
+         <HandDrawnCloud className="absolute bottom-[40%] -left-[10%] md:bottom-[20%] md:left-[10%] w-16 h-16 md:w-32 md:h-32 text-emerald-200 fill-emerald-100 dark:text-emerald-500/30 dark:fill-emerald-500/10 animate-[bounce_8s_infinite_reverse]" />
+         <HandDrawnLeaf className="absolute top-[8%] left-[10%] md:top-[15%] md:left-[40%] w-8 h-8 md:w-14 md:h-14 text-rose-300 fill-rose-100 dark:text-rose-500/30 dark:fill-rose-500/10 animate-[spin_10s_linear_infinite]" />
+         <HandDrawnHeart className="absolute bottom-[20%] right-[10%] md:bottom-[25%] md:right-[25%] w-10 h-10 md:w-16 md:h-16 text-pink-300 fill-pink-100 dark:text-pink-500/30 dark:fill-pink-500/10 animate-[bounce_6s_infinite]" />
       </div>
 
       {/* 内容区域 */}
@@ -81,19 +81,19 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           
           {/* 按钮下方的装饰性涂鸦 - 增强留白区域的卡通感和手绘感 */}
           <div className="relative w-full h-24 md:h-32 mt-4 lg:mt-8 pointer-events-none">
-             <HandDrawnScribble className="absolute left-4 top-2 w-20 h-20 md:w-28 md:h-28 text-indigo-200 dark:text-indigo-400/20 -rotate-12" />
-             <HandDrawnArrow className="absolute left-24 top-8 w-12 h-12 md:w-16 md:h-16 text-emerald-300 dark:text-emerald-400/20 rotate-[120deg]" />
-             <HandDrawnStar className="absolute left-40 md:left-48 top-4 w-8 h-8 md:w-12 md:h-12 text-amber-300 fill-amber-100 dark:text-amber-500/20 dark:fill-amber-500/10 animate-[bounce_4s_infinite]" />
-             <HandDrawnSmiley className="absolute right-10 md:right-1/4 top-6 w-10 h-10 md:w-14 md:h-14 text-pink-300 dark:text-pink-400/20 rotate-12 hover:scale-110 transition-transform" />
-             <HandDrawnCloud className="absolute right-0 md:right-10 top-0 w-16 h-16 md:w-20 md:h-20 text-sky-200 fill-sky-100 dark:text-sky-500/20 dark:fill-sky-500/10 animate-[bounce_6s_infinite_reverse]" />
+             <HandDrawnScribble className="absolute left-4 top-2 w-16 h-16 md:w-20 md:h-20 text-indigo-300 dark:text-indigo-400/60 -rotate-12" />
+             <HandDrawnArrow className="absolute left-24 top-8 w-12 h-12 md:w-16 md:h-16 text-emerald-300 dark:text-emerald-400/60 rotate-[120deg]" />
+             <HandDrawnStar className="absolute left-40 md:left-48 top-4 w-8 h-8 md:w-12 md:h-12 text-[#ffc66d] fill-[#ffe4b5] dark:text-amber-400/60 dark:fill-amber-500/20 animate-[bounce_4s_infinite]" />
+             <HandDrawnSmiley className="absolute right-10 md:right-1/4 top-6 w-10 h-10 md:w-14 md:h-14 text-pink-300 dark:text-pink-400/60 rotate-12 hover:scale-110 transition-transform" />
+             <HandDrawnCloud className="absolute right-0 md:right-10 top-0 w-16 h-16 md:w-20 md:h-20 text-sky-200 fill-sky-100 dark:text-sky-400/60 dark:fill-sky-500/20 animate-[bounce_6s_infinite_reverse]" />
           </div>
         </FadeIn>
 
         {/* 右侧个人卡片 */}
         <FadeIn delay={0.2} className="w-full lg:w-[480px] flex justify-center relative mt-16 sm:my-12 lg:my-0 lg:pl-10">
 
-          <CartoonBlob1 className="absolute -top-12 -right-8 md:-top-20 md:-right-16 w-64 h-64 md:w-80 md:h-80 text-violet-100 fill-violet-100 dark:text-violet-500/10 dark:fill-violet-500/10 animate-[spin_25s_linear_infinite] z-10 hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] scale-90" />
-          <HandDrawnStar className="absolute -bottom-6 -left-4 md:-bottom-10 md:-left-10 w-20 h-20 md:w-28 md:h-28 text-amber-300 fill-amber-200 dark:text-amber-500/30 dark:fill-amber-500/20 animate-[bounce_5s_infinite] z-30 drop-shadow-sm hover:rotate-12 hover:scale-110 transition-transform duration-500 cursor-crosshair opacity-80" />
+          <CartoonBlob1 className="absolute -top-12 -right-8 md:-top-16 md:-right-10 w-48 h-48 md:w-64 md:h-64 text-amber-200 fill-amber-100 dark:fill-amber-400 dark:stroke-none opacity-70 dark:opacity-[0.15] animate-[spin_25s_linear_infinite] z-10 hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] scale-90" />
+          <HandDrawnStar className="absolute -bottom-6 -left-4 md:-bottom-10 md:-left-10 w-16 h-16 md:w-24 md:h-24 text-[#ffc66d] fill-[#ffe4b5] dark:text-amber-500/30 dark:fill-amber-500/20 animate-[bounce_5s_infinite] z-30 drop-shadow-sm hover:rotate-12 hover:scale-110 transition-transform duration-500 cursor-crosshair opacity-80" />
 
           {/* Main Profile Card */}
           <div className="relative w-full max-w-[280px] sm:max-w-[320px] bg-white/70 dark:bg-slate-800/40 backdrop-blur-xl p-6 sm:p-8 pb-8 sm:pb-10 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] dark:shadow-none z-20 rounded-[2.5rem] border border-white dark:border-slate-700/50 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] dark:hover:border-slate-600/80 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center">
