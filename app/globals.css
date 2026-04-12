@@ -48,6 +48,19 @@
   --radius-xl: calc(var(--radius) + 4px);
   --animate-text-gradient: text-gradient 3s linear infinite;
   --animate-shimmer: shimmer 3s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out infinite reverse;
+  --animate-float-rotate: float-rotate 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes float-rotate {
+  0%, 100% { transform: translateY(0) rotate(1deg); }
+  50% { transform: translateY(-10px) rotate(-1deg); }
 }
 
 @keyframes shimmer {

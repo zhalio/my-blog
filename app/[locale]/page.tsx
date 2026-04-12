@@ -39,8 +39,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         {/* 左侧文字与按钮区 */}
         <FadeIn className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left z-20 w-full lg:pr-4 xl:pr-10">
           
-          <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 bg-yellow-100 dark:bg-yellow-900/40 shadow-[4px_4px_0px_#f59e0b] dark:shadow-[4px_4px_0px_#b45309] border-2 border-yellow-400 dark:border-yellow-600 rounded-lg font-bold text-yellow-800 dark:text-yellow-200 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-default group mb-6 md:mb-8 rotate-[-2deg]">
-            <span className="text-[10px] sm:text-xs md:text-sm tracking-widest font-black uppercase">✨ Welcome to my digital garden</span>
+          <div className="animate-float-slow pb-2">
+            <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 bg-yellow-100 dark:bg-yellow-900/40 shadow-[4px_4px_0px_#f59e0b] dark:shadow-[4px_4px_0px_#b45309] border-2 border-yellow-400 dark:border-yellow-600 rounded-lg font-bold text-yellow-800 dark:text-yellow-200 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-default group mb-6 md:mb-6 rotate-[-2deg]">
+              <span className="text-[10px] sm:text-xs md:text-sm tracking-widest font-black uppercase">✨ Welcome to my digital garden</span>
+            </div>
           </div>
 
           <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6rem] xl:text-[6.5rem] font-black leading-[1.1] text-slate-800 dark:text-slate-100 tracking-tight z-10 relative inline-block group mb-6 md:mb-8" style={{ textShadow: '4px 4px 0px rgba(100, 116, 139, 0.2)' }}>
@@ -63,14 +65,15 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
         {/* 右侧个人卡片 */}
         <FadeIn delay={0.2} className="w-full lg:w-[480px] xl:w-[500px] flex justify-center lg:justify-end xl:justify-center relative mt-16 sm:mt-24 lg:my-0 lg:pl-10">
+          
+          <div className="animate-float-rotate relative w-full flex justify-center">
+            {/* Main Profile Card - Neo-Brutalism & Playful design */}
+            <div className="relative w-full max-w-[280px] sm:max-w-[320px] bg-[#fff9ed] dark:bg-slate-800 p-8 sm:p-10 pb-10 sm:pb-12 shadow-[8px_8px_0px_#e2e8f0] dark:shadow-[8px_8px_0px_#1e293b] z-20 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:-translate-y-2 hover:-rotate-[4deg] hover:shadow-[14px_14px_0px_#cbd5e1] dark:hover:shadow-[14px_14px_0px_#0f172a] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center rotate-1">
 
-          {/* Main Profile Card - Neo-Brutalism & Playful design */}
-          <div className="relative w-full max-w-[280px] sm:max-w-[320px] bg-[#fff9ed] dark:bg-slate-800 p-8 sm:p-10 pb-10 sm:pb-12 shadow-[8px_8px_0px_#e2e8f0] dark:shadow-[8px_8px_0px_#1e293b] z-20 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:-translate-y-2 hover:-rotate-2 hover:shadow-[14px_14px_0px_#cbd5e1] dark:hover:shadow-[14px_14px_0px_#0f172a] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center rotate-1">
-
-             {/* Decorative Top Pill */}
-             <div className="absolute -top-4 -right-4 px-4 py-2 bg-sky-400 dark:bg-sky-500 text-white font-black text-xs border-2 border-sky-100 dark:border-slate-600 rounded-lg shadow-[4px_4px_0px_#bae6fd] dark:shadow-[4px_4px_0px_#0ea5e9] rotate-[10deg] tracking-widest uppercase">
-                 HELLO!
-             </div>
+               {/* Decorative Top Pill */}
+               <div className="absolute -top-4 -right-4 px-4 py-2 bg-sky-400 dark:bg-sky-500 text-white font-black text-xs border-2 border-sky-100 dark:border-slate-600 rounded-lg shadow-[4px_4px_0px_#bae6fd] dark:shadow-[4px_4px_0px_#0ea5e9] rotate-[10deg] tracking-widest uppercase animate-float-slow">
+                   HELLO!
+               </div>
 
              {/* Circular Avatar */}
              <div className="w-32 h-32 sm:w-40 sm:h-40 mt-6 sm:mt-8 relative group-hover:scale-105 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
@@ -89,6 +92,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   Frontend Developer
                 </span>
              </div>
+            </div>
           </div>
         </FadeIn>
       </div>
