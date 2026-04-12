@@ -81,8 +81,8 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider
                 attribute="class"
-                defaultTheme="light"
-                enableSystem={false}
+                defaultTheme="system"
+                enableSystem
                 disableTransitionOnChange
               >
                 <div className="relative flex min-h-screen flex-col">
