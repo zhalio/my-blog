@@ -35,13 +35,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       
       {/* 趣味手绘风格与几何背景层 - 分散布局，增加空间感 */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden h-[1000px] max-h-[100vh]">
-         {/* 把浅蓝圆圈往左下角拉，避开头像卡片和中间标题区域 */}
-         <CartoonBlob2 className="absolute -bottom-[20%] -left-[15%] md:-bottom-[10%] md:-left-[10%] w-[400px] h-[400px] md:w-[700px] md:h-[700px] text-sky-200/60 fill-sky-100/60 dark:fill-sky-900/20 dark:stroke-none opacity-60 animate-[spin_60s_linear_infinite]" />
-         {/* 把粉色多芒星往右上角外沿推，不和黄色色块重叠 */}
-         <CartoonStarburst className="absolute -top-[10%] -right-[15%] w-[350px] h-[350px] md:w-[700px] md:h-[700px] text-rose-200/50 fill-rose-100/50 dark:fill-rose-900/20 dark:stroke-none opacity-50 animate-[spin_50s_linear_infinite_reverse]" />
+         {/* 调和浅蓝圆圈，放在背景左上但别太靠边被切掉 */}
+         <CartoonBlob2 className="absolute top-[5%] left-[5%] md:top-[10%] md:left-[10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] text-sky-200/60 fill-sky-100/60 dark:fill-sky-900/20 dark:stroke-none opacity-60 animate-[spin_60s_linear_infinite]" />
+         {/* 调和粉色多芒星，放在背景右下角且适度露出 */}
+         <CartoonStarburst className="absolute bottom-[20%] right-[5%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] text-rose-200/50 fill-rose-100/50 dark:fill-rose-900/20 dark:stroke-none opacity-50 animate-[spin_50s_linear_infinite_reverse]" />
          
-         <HandDrawnLeaf className="absolute top-[8%] left-[10%] md:top-[10%] md:left-[25%] w-8 h-8 md:w-12 md:h-12 text-rose-300 fill-rose-100 dark:text-rose-500/40 dark:fill-rose-500/20 animate-[spin_10s_linear_infinite_reverse]" />      
-         <HandDrawnPlanet className="absolute top-[80%] left-[8%] md:top-[85%] md:left-[15%] w-10 h-10 md:w-16 md:h-16 text-indigo-300 fill-indigo-100 dark:text-indigo-500/40 dark:fill-indigo-500/20 animate-[bounce_6s_infinite]" />
+         <HandDrawnLeaf className="absolute top-[8%] left-[20%] md:top-[15%] md:left-[35%] w-8 h-8 md:w-12 md:h-12 text-rose-300 fill-rose-100 dark:text-rose-500/40 dark:fill-rose-500/20 animate-[spin_10s_linear_infinite_reverse]" />      
+         <HandDrawnPlanet className="absolute bottom-[25%] left-[10%] md:bottom-[30%] md:left-[20%] w-10 h-10 md:w-16 md:h-16 text-indigo-300 fill-indigo-100 dark:text-indigo-500/40 dark:fill-indigo-500/20 animate-[bounce_6s_infinite]" />
       </div>
       {/* 内容区域 */}
       <div className="w-full max-w-[1400px] mx-auto px-4 py-12 md:py-20 lg:py-24 xl:py-32 flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-16 md:gap-20 lg:gap-24 xl:gap-32 relative z-10">
@@ -57,11 +57,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6rem] xl:text-[6.5rem] font-black leading-[1.2] lg:leading-[1.1] text-slate-800 dark:text-slate-100 tracking-tight z-10 font-heading relative inline-block group">
             <span className="relative z-10 inline-block px-1">{settings.site_title || t('title')}</span>
             <HandDrawnUnderline className="absolute bottom-[-4px] sm:bottom-0 -left-2 w-[110%] h-4 sm:h-5 text-sky-400/90 dark:text-sky-400/60 -rotate-2 z-[-1] transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3" />
-            <HandDrawnStar className="hidden md:block absolute -top-12 -left-12 w-10 h-10 md:w-16 md:h-16 text-yellow-400 fill-yellow-200 dark:text-yellow-500/80 dark:fill-yellow-500/40 animate-[spin_6s_linear_infinite] z-0 opacity-100 group-hover:scale-125 transition-transform" />
+            <HandDrawnStar className="hidden md:block absolute -top-8 -right-8 w-10 h-10 md:w-16 md:h-16 text-yellow-400 fill-yellow-200 dark:text-yellow-500/80 dark:fill-yellow-500/40 animate-[spin_6s_linear_infinite] z-0 opacity-100 group-hover:scale-125 transition-transform" />
           </h1>
 
           <div className="relative w-full max-w-[90%] sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 cursor-default">
-             <HandDrawnArrow className="hidden md:block absolute top-[15%] -translate-y-1/2 -left-12 lg:-left-20 w-14 h-14 md:w-16 md:h-16 text-emerald-400/80 dark:text-emerald-400/60 rotate-[130deg] opacity-100 hover:scale-110 hover:-translate-x-2 transition-all duration-300 z-10" />
+             <HandDrawnArrow className="hidden md:block absolute -top-12 left-16 w-12 h-12 md:w-14 md:h-14 text-emerald-400/80 dark:text-emerald-400/60 rotate-[80deg] opacity-100 hover:scale-110 hover:-translate-x-2 transition-all duration-300 z-10" />
              <div className="relative min-h-[80px] sm:min-h-[96px] text-base sm:text-lg md:text-xl lg:text-2xl text-slate-500 dark:text-slate-400 leading-relaxed sm:leading-loose z-10 w-full max-w-xl text-center lg:text-left mx-auto lg:mx-0 transition-all duration-300 flex items-start justify-center lg:justify-start">
                <TypewriterEffect text={settings.site_description || t('description')} speed={50} waitBeforeDelete={6000} />
              </div>
@@ -78,7 +78,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         {/* 右侧个人卡片 */}
         <FadeIn delay={0.2} className="w-full lg:w-[480px] xl:w-[500px] flex justify-center lg:justify-end xl:justify-center relative mt-16 sm:mt-24 lg:my-0 lg:pl-10">
 
-          <CartoonBlob1 className="absolute -bottom-16 -right-12 md:-bottom-24 md:-right-20 w-48 h-48 md:w-64 md:h-64 text-amber-200 fill-amber-100 dark:fill-amber-400 dark:stroke-none opacity-40 dark:opacity-10 animate-[spin_25s_linear_infinite] z-10 hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] scale-90" />
+          <CartoonBlob1 className="absolute -bottom-10 right-0 md:-bottom-12 md:-right-4 w-48 h-48 md:w-64 md:h-64 text-amber-200 fill-amber-100 dark:fill-amber-400 dark:stroke-none opacity-40 dark:opacity-10 animate-[spin_25s_linear_infinite] z-10 hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] scale-90" />
 
           {/* Main Profile Card - Neo-Brutalism & Playful design */}
           <div className="relative w-full max-w-[280px] sm:max-w-[320px] bg-white dark:bg-slate-800 p-8 sm:p-10 pb-10 sm:pb-12 shadow-[8px_8px_0px_#e2e8f0] dark:shadow-[8px_8px_0px_#1e293b] z-20 rounded-[2.5rem] border-2 border-slate-200 dark:border-slate-700 hover:-translate-y-2 hover:-rotate-1 hover:shadow-[14px_14px_0px_#cbd5e1] dark:hover:shadow-[14px_14px_0px_#0f172a] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center">
