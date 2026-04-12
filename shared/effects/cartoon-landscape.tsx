@@ -2,42 +2,60 @@
 
 import { motion } from 'framer-motion';
 
+// A visually rich, sticker-like cloud component
+const CloudSvg = () => (
+  <svg viewBox="0 0 200 120" className="w-full h-full overflow-visible drop-shadow-sm">
+    {/* Colored Drop Shadow (Sticker effect) */}
+    <path 
+      d="M 50,70 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" 
+      className="fill-sky-100 dark:fill-slate-700/50" 
+      transform="translate(4, 5)" 
+    />
+    {/* Main Cloud Body */}
+    <path 
+      d="M 50,70 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" 
+      className="fill-white dark:fill-slate-800" 
+    />
+    {/* Soft Outline */}
+    <path 
+      d="M 50,70 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" 
+      fill="none" 
+      className="stroke-slate-200 dark:stroke-slate-600" 
+      strokeWidth="3.5" 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+    />
+    {/* Inner Fluffy Highlights/Detail Lines */}
+    <path d="M 64,54 c 2,-3 8,-6 14,-3" fill="none" className="stroke-slate-100 dark:stroke-slate-700" strokeWidth="2.5" strokeLinecap="round" />
+    <path d="M 90,58 c 3,-2 8,-2 10,1" fill="none" className="stroke-slate-100 dark:stroke-slate-700" strokeWidth="2.5" strokeLinecap="round" />
+    <path d="M 54,75 c 0,-3 4,-5 8,-3" fill="none" className="stroke-slate-100 dark:stroke-slate-700" strokeWidth="2.5" strokeLinecap="round" />
+  </svg>
+);
+
 export function CartoonLandscape() {
   return (
     <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
       {/* 动画笔记本网格背景，营造随时可以涂鸦的纸张感 */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-      {/* 统一风格的卡通云朵 1 (左上方横穿) */}
+      {/* 统一风格的高颜值云朵 1 (左上方横穿) */}
       <div className="absolute top-[2%] left-[10%] w-48 md:w-56 h-24 md:h-28 animate-[slide_60s_linear_infinite]">
-        <svg viewBox="0 0 200 100" className="w-full h-full">
-          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" className="fill-white dark:fill-slate-800" />
-          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <CloudSvg />
       </div>
 
-      {/* 统一风格的卡通云朵 2 (右上极高处) */}
+      {/* 统一风格的高颜值云朵 2 (右上极高处) */}
       <div className="absolute top-[-2%] right-[15%] w-40 md:w-48 h-20 md:h-24 animate-[slide-reverse_70s_linear_infinite]">
-        <svg viewBox="0 0 200 100" className="w-full h-full">
-          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" className="fill-white dark:fill-slate-800" />
-          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <CloudSvg />
       </div>
       
-      {/* 统一风格的卡通云朵 3 (顶部居中偏左) */}
+      {/* 统一风格的高颜值云朵 3 (顶部居中偏左) */}
       <div className="absolute top-[8%] left-[40%] w-32 md:w-40 h-16 md:h-20 animate-[slide_55s_linear_infinite] delay-1000">
-         <svg viewBox="0 0 200 100" className="w-full h-full">
-           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" className="fill-white dark:fill-slate-800" />
-           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-         </svg>
+        <CloudSvg />
       </div>
 
       {/* 填补中间空旷区域的云朵 4 */}
-      <div className="absolute top-[25%] left-[55%] w-24 md:w-32 h-12 md:h-16 animate-[slide-reverse_85s_linear_infinite] opacity-80">
-         <svg viewBox="0 0 200 100" className="w-full h-full">
-           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" className="fill-white dark:fill-slate-800" />
-           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-         </svg>
+      <div className="absolute top-[25%] left-[55%] w-24 md:w-32 h-12 md:h-16 animate-[slide-reverse_85s_linear_infinite] opacity-90">
+        <CloudSvg />
       </div>
 
       {/* 填补空隙的涂鸦纸飞机 */}
