@@ -8,26 +8,54 @@ export function CartoonLandscape() {
       {/* 动画笔记本网格背景，营造随时可以涂鸦的纸张感 */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-      {/* 动态卡通云朵 (左上方横穿) */}
-      <div className="absolute top-[2%] left-[10%] w-48 md:w-64 h-24 md:h-32 animate-[slide_60s_linear_infinite]">
-        <svg viewBox="0 0 200 100" className="w-full h-full text-slate-100 dark:text-slate-800/80">
-          <path d="M 50,50 a 20,20 0 0,1 15,-18 a 30,30 0 0,1 50,0 a 20,20 0 0,1 15,18 q 20,5 20,25 q 0,20 -20,20 l -80,0 q -20,0 -20,-20 q 0,-20 20,-25" fill="currentColor" />
-          <path d="M 50,50 a 20,20 0 0,1 15,-18 a 30,30 0 0,1 50,0 a 20,20 0 0,1 15,18 q 20,5 20,25 q 0,20 -20,20 l -80,0 q -20,0 -20,-20 q 0,-20 20,-25" fill="none" stroke="#94a3b8" strokeWidth="3" strokeDasharray="10 5" opacity="0.6" />
+      {/* 统一风格的卡通云朵 1 (左上方横穿) */}
+      <div className="absolute top-[2%] left-[10%] w-48 md:w-56 h-24 md:h-28 animate-[slide_60s_linear_infinite]">
+        <svg viewBox="0 0 200 100" className="w-full h-full">
+          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" className="fill-white dark:fill-slate-800" />
+          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
 
-      {/* 动态卡通云朵 2 (右上极高处) */}
+      {/* 统一风格的卡通云朵 2 (右上极高处) */}
       <div className="absolute top-[-2%] right-[15%] w-40 md:w-48 h-20 md:h-24 animate-[slide-reverse_70s_linear_infinite]">
-        <svg viewBox="0 0 200 100" className="w-full h-full text-sky-50 dark:text-slate-800 opacity-80">
-          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="currentColor" />
-          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" stroke="#94a3b8" strokeWidth="2" opacity="0.5" />
+        <svg viewBox="0 0 200 100" className="w-full h-full">
+          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" className="fill-white dark:fill-slate-800" />
+          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
       
-      {/* 动态卡通云朵 3 (顶部居中偏左) */}
-      <div className="absolute top-[8%] left-[40%] w-32 md:w-40 h-16 md:h-20 animate-[slide_55s_linear_infinite] delay-1000 opacity-70">
-         <svg viewBox="0 0 200 100" className="w-full h-full text-sky-100 dark:text-slate-700">
-           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="currentColor" />
+      {/* 统一风格的卡通云朵 3 (顶部居中偏左) */}
+      <div className="absolute top-[8%] left-[40%] w-32 md:w-40 h-16 md:h-20 animate-[slide_55s_linear_infinite] delay-1000">
+         <svg viewBox="0 0 200 100" className="w-full h-full">
+           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" className="fill-white dark:fill-slate-800" />
+           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+         </svg>
+      </div>
+
+      {/* 填补中间空旷区域的云朵 4 */}
+      <div className="absolute top-[25%] left-[55%] w-24 md:w-32 h-12 md:h-16 animate-[slide-reverse_85s_linear_infinite] opacity-80">
+         <svg viewBox="0 0 200 100" className="w-full h-full">
+           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" className="fill-white dark:fill-slate-800" />
+           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+         </svg>
+      </div>
+
+      {/* 填补空隙的涂鸦纸飞机 */}
+      <div className="absolute top-[35%] left-[35%] w-8 md:w-12 h-8 md:h-12 animate-[slide_45s_linear_infinite]">
+         <svg viewBox="0 0 24 24" className="w-full h-full text-slate-400 dark:text-slate-500 opacity-60 rotate-12">
+            <path d="M22 2 L11 13 M22 2 l-7 20 -4-9 -9-4 20-7 z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+         </svg>
+      </div>
+
+      {/* 填补空隙的星星点点 */}
+      <div className="absolute top-[18%] left-[25%] w-4 h-4 text-amber-300 dark:text-amber-600/60 animate-pulse">
+         <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+            <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" />
+         </svg>
+      </div>
+      <div className="absolute top-[40%] right-[35%] w-5 h-5 text-sky-300 dark:text-sky-600/60 animate-pulse delay-700">
+         <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+            <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" />
          </svg>
       </div>
 
