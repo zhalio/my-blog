@@ -25,21 +25,50 @@ export function CartoonLandscape() {
         </svg>
       </div>
 
-      {/* 动态卡通云朵 (左上方，避开了按钮区和标题) */}
-      <div className="absolute top-[5%] left-[5%] w-48 md:w-64 h-24 md:h-32 animate-[slide_60s_linear_infinite]">
+      {/* 动态卡通云朵 (左上方横穿) */}
+      <div className="absolute top-[2%] left-[10%] w-48 md:w-64 h-24 md:h-32 animate-[slide_60s_linear_infinite]">
         <svg viewBox="0 0 200 100" className="w-full h-full text-slate-100 dark:text-slate-800/80">
           <path d="M 50,50 a 20,20 0 0,1 15,-18 a 30,30 0 0,1 50,0 a 20,20 0 0,1 15,18 q 20,5 20,25 q 0,20 -20,20 l -80,0 q -20,0 -20,-20 q 0,-20 20,-25" fill="currentColor" />
-          {/* Cloud hand-drawn outline */}
           <path d="M 50,50 a 20,20 0 0,1 15,-18 a 30,30 0 0,1 50,0 a 20,20 0 0,1 15,18 q 20,5 20,25 q 0,20 -20,20 l -80,0 q -20,0 -20,-20 q 0,-20 20,-25" fill="none" stroke="#94a3b8" strokeWidth="3" strokeDasharray="10 5" opacity="0.6" />
         </svg>
       </div>
 
-      {/* 动态卡通云朵 2 (右上方更慢地飘动) */}
-      <div className="absolute top-[12%] right-[10%] w-40 md:w-48 h-20 md:h-24 animate-[slide-reverse_70s_linear_infinite]">
+      {/* 动态卡通云朵 2 (右上极高处) */}
+      <div className="absolute top-[-2%] right-[15%] w-40 md:w-48 h-20 md:h-24 animate-[slide-reverse_70s_linear_infinite]">
         <svg viewBox="0 0 200 100" className="w-full h-full text-sky-50 dark:text-slate-800 opacity-80">
           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="currentColor" />
           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" stroke="#94a3b8" strokeWidth="2" opacity="0.5" />
         </svg>
+      </div>
+      
+      {/* 动态卡通云朵 3 (顶部居中偏左) */}
+      <div className="absolute top-[8%] left-[40%] w-32 md:w-40 h-16 md:h-20 animate-[slide_55s_linear_infinite] delay-1000 opacity-70">
+         <svg viewBox="0 0 200 100" className="w-full h-full text-sky-100 dark:text-slate-700">
+           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="currentColor" />
+         </svg>
+      </div>
+
+      {/* 远景飞鸟/海鸥组合 (居高空流动) */}
+      <div className="absolute top-[12%] right-[25%] w-16 h-8 text-slate-400 dark:text-slate-600 animate-[slide-reverse_25s_linear_infinite]">
+         <svg viewBox="0 0 100 50" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="w-full h-full opacity-60">
+            <path d="M10,25 Q25,10 50,25 Q75,10 90,25" />
+         </svg>
+      </div>
+      
+      {/* 远景飞鸟组合 2 */}
+      <div className="absolute top-[5%] left-[30%] w-12 h-6 text-slate-300 dark:text-slate-600 animate-[slide_35s_linear_infinite]">
+         <svg viewBox="0 0 100 50" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" className="w-full h-full opacity-40">
+            <path d="M10,35 Q25,15 50,35 Q75,15 90,35" />
+         </svg>
+      </div>
+
+      {/* 卡通太阳/星球 (高处背景) */}
+      <div className="absolute top-[4%] right-[5%] w-24 h-24 text-yellow-300 fill-yellow-100 dark:text-yellow-600/40 dark:fill-yellow-600/20 animate-[spin_40s_linear_infinite] opacity-80">
+         <svg viewBox="0 0 100 100" className="w-full h-full">
+            <circle cx="50" cy="50" r="30" fill="inherit" stroke="currentColor" strokeWidth="3" strokeDasharray="6 4" />
+            <path d="M50 0 L50 10 M50 90 L50 100 M0 50 L10 50 M90 50 L100 50" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+            <path d="M15 15 L25 25 M85 85 L75 75 M15 85 L25 75 M85 15 L75 25" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+         </svg>
       </div>
 
       {/* 风中飘落的叶片 */}

@@ -73,8 +73,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
              </div>
 
              {/* Circular Avatar */}
-             <div className="w-32 h-32 sm:w-40 sm:h-40 mt-6 sm:mt-8 relative bg-slate-50 dark:bg-slate-800/50 rounded-full border-[4px] sm:border-[6px] border-white dark:border-slate-700/80 shadow-md group-hover:scale-105 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] overflow-hidden">
-                <Image src="/images/touxiang.jpg" alt="Avatar" fill priority sizes="(max-width: 640px) 128px, 160px" className="object-cover" />
+             <div className="w-32 h-32 sm:w-40 sm:h-40 mt-6 sm:mt-8 relative group-hover:scale-105 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+                {/* 悬浮光环，脱离传统边框阴影 */}
+                <div className="absolute inset-0 bg-sky-200 dark:bg-sky-500/20 rounded-full scale-110 opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-tr from-sky-100 to-indigo-100 dark:from-slate-700 dark:to-slate-600 rounded-full scale-[1.05] shadow-[0_0_20px_rgba(56,189,248,0.3)] dark:shadow-[0_0_20px_rgba(56,189,248,0.1)] group-hover:-rotate-12 transition-all duration-500 delay-75"></div>
+                
+                <div className="absolute inset-0 bg-slate-50 dark:bg-slate-800/50 rounded-full border-2 sm:border-[3px] border-dashed border-sky-300 dark:border-sky-600 shadow-md overflow-hidden z-10">
+                  <Image src="/images/touxiang.jpg" alt="Avatar" fill priority sizes="(max-width: 640px) 128px, 160px" className="object-cover group-hover:rotate-6 transition-transform duration-500" />
+                </div>
              </div>
 
              {/* Content */}
