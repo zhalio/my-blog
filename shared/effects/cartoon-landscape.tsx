@@ -25,21 +25,39 @@ export function CartoonLandscape() {
         </svg>
       </div>
 
-      {/* 动态卡通云朵 (左飘) */}
-      <div className="absolute top-[25%] left-0 w-64 h-32 animate-[slide_40s_linear_infinite]">
-        <svg viewBox="0 0 200 100" className="w-full h-full text-slate-200 dark:text-slate-800">
+      {/* 动态卡通云朵 (左上方，避开了按钮区和标题) */}
+      <div className="absolute top-[5%] left-[5%] w-48 md:w-64 h-24 md:h-32 animate-[slide_60s_linear_infinite]">
+        <svg viewBox="0 0 200 100" className="w-full h-full text-slate-100 dark:text-slate-800/80">
           <path d="M 50,50 a 20,20 0 0,1 15,-18 a 30,30 0 0,1 50,0 a 20,20 0 0,1 15,18 q 20,5 20,25 q 0,20 -20,20 l -80,0 q -20,0 -20,-20 q 0,-20 20,-25" fill="currentColor" />
           {/* Cloud hand-drawn outline */}
-          <path d="M 50,50 a 20,20 0 0,1 15,-18 a 30,30 0 0,1 50,0 a 20,20 0 0,1 15,18 q 20,5 20,25 q 0,20 -20,20 l -80,0 q -20,0 -20,-20 q 0,-20 20,-25" fill="none" stroke="#64748b" strokeWidth="3" strokeDasharray="10 5" opacity="0.5" />
+          <path d="M 50,50 a 20,20 0 0,1 15,-18 a 30,30 0 0,1 50,0 a 20,20 0 0,1 15,18 q 20,5 20,25 q 0,20 -20,20 l -80,0 q -20,0 -20,-20 q 0,-20 20,-25" fill="none" stroke="#94a3b8" strokeWidth="3" strokeDasharray="10 5" opacity="0.6" />
         </svg>
       </div>
 
       {/* 动态卡通云朵 2 (右上方更慢地飘动) */}
-      <div className="absolute top-[10%] right-[-20%] w-48 h-24 animate-[slide-reverse_50s_linear_infinite]">
-        <svg viewBox="0 0 200 100" className="w-full h-full text-slate-200 dark:text-slate-800 opacity-60">
+      <div className="absolute top-[12%] right-[10%] w-40 md:w-48 h-20 md:h-24 animate-[slide-reverse_70s_linear_infinite]">
+        <svg viewBox="0 0 200 100" className="w-full h-full text-sky-50 dark:text-slate-800 opacity-80">
           <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="currentColor" />
-          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" stroke="#64748b" strokeWidth="2" opacity="0.4" />
+          <path d="M 50,60 a 15,15 0 0,1 10,-15 a 25,25 0 0,1 40,0 a 15,15 0 0,1 10,15 q 15,5 15,20 q 0,15 -15,15 l -60,0 q -15,0 -15,-15 q 0,-15 15,-20" fill="none" stroke="#94a3b8" strokeWidth="2" opacity="0.5" />
         </svg>
+      </div>
+
+      {/* 风中飘落的叶片 */}
+      <div className="absolute top-[30%] right-[30%] w-8 h-8 text-emerald-300 dark:text-emerald-700/50 animate-[spin_10s_linear_infinite]">
+         <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" opacity="0.3"/>
+            <path d="M17 8c-2.43 0-4.66 1.15-6.1 2.96A7.95 7.95 0 007 8c-2.76 0-5 2.24-5 5s2.24 5 5 5c2.43 0 4.66-1.15 6.1-2.96A7.95 7.95 0 0021 18c2.76 0 5-2.24 5-5s-2.24-5-5-5z" />
+         </svg>
+      </div>
+      <div className="absolute top-[45%] left-[20%] w-10 h-10 text-amber-300 dark:text-amber-700/50 animate-[spin_15s_linear_infinite_reverse]">
+         <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+         </svg>
+      </div>
+      <div className="absolute top-[70%] right-[15%] w-12 h-12 text-sky-200 dark:text-sky-800/40 animate-[spin_20s_linear_infinite]">
+         <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+            <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z"/>
+         </svg>
       </div>
 
       {/* 底部融合动画涂鸦波浪 (海洋/草地感) */}
