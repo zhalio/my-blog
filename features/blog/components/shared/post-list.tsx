@@ -52,14 +52,14 @@ export function PostList({ posts, readMoreText }: PostListProps) {
 
         return (
         <motion.article key={post.id} variants={item} className="h-full group">
-          <Link href={`/posts/${post.slug}`} className="block h-full outline-none focus-visible:ring-4 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-3xl bg-white dark:bg-slate-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] border border-slate-100 dark:border-slate-700/50 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)] dark:shadow-none active:translate-y-1 relative flex flex-col overflow-hidden">
+          <Link href={`/posts/${post.slug}`} className="block h-full outline-none focus-visible:ring-4 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-[2rem] bg-white dark:bg-slate-800 transition-all duration-300 hover:-translate-y-3 hover:translate-x-1 hover:-rotate-1 hover:shadow-[12px_12px_0px_rgba(203,213,225,0.4)] dark:hover:shadow-[12px_12px_0px_rgba(30,41,59,0.7)] border-2 border-slate-200/60 dark:border-slate-700/60 active:translate-y-0 active:shadow-none active:translate-x-0 relative flex flex-col overflow-hidden group">
 
             {/* Thumbnail Cover - Rich colorful blocks */}
-            <div className="h-40 w-full relative overflow-hidden flex items-center justify-center transition-colors bg-slate-50 dark:bg-slate-900/50">              {/* Decorative Blob */}
+            <div className="h-44 w-full relative overflow-hidden flex items-center justify-center transition-colors bg-slate-50 dark:bg-slate-900/50 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] dark:bg-[radial-gradient(#334155_1px,transparent_1px)]">              {/* Decorative Blob */}
               {(() => {
                 const Blob = BLOBS[i % BLOBS.length];
                 return (
-                  <Blob className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 -rotate-12 opacity-80 group-hover:scale-125 group-hover:rotate-6 transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${thumbBg.blob}`}/>
+                  <Blob className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] animate-[spin_40s_linear_infinite] opacity-90 group-hover:scale-[1.1] transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${thumbBg.blob}`}/>
                 )
               })()}
 
@@ -67,8 +67,8 @@ export function PostList({ posts, readMoreText }: PostListProps) {
               <HandDrawnStar className={`absolute top-4 left-4 w-8 h-8 opacity-0 -translate-y-2 group-hover:opacity-80 group-hover:translate-y-0 group-hover:rotate-[360deg] transition-all duration-700 delay-100 ${thumbBg.text}`} />
               <HandDrawnSparkle className={`absolute bottom-4 left-1/4 w-6 h-6 opacity-0 translate-y-2 group-hover:opacity-80 group-hover:translate-y-0 group-hover:animate-pulse transition-all duration-700 delay-200 ${thumbBg.text}`} />    
               <div className="absolute inset-0 bg-white/20 dark:bg-slate-900/20 backdrop-blur-[1px] transition-all duration-500 group-hover:backdrop-blur-sm"></div>
-              <div className={`w-20 h-20 bg-white dark:bg-slate-800 rounded-3xl shadow-sm flex items-center justify-center relative z-10 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 border-2 border-white dark:border-slate-800 ring-4 ring-white/50 dark:ring-slate-800/50 ${thumbBg.text}`}>
-                <Icon className="w-10 h-10" />
+              <div className={`w-20 h-20 bg-white dark:bg-slate-800/90 backdrop-blur-sm rounded-3xl shadow-[6px_6px_0px_rgba(0,0,0,0.06)] dark:shadow-[6px_6px_0px_rgba(0,0,0,0.3)] flex items-center justify-center relative z-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border-2 border-slate-100 dark:border-slate-700 ${thumbBg.text}`}>
+                <Icon className="w-10 h-10 drop-shadow-sm" />
               </div>
             </div>
 
