@@ -90,7 +90,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <HandDrawnStar className="absolute -bottom-6 -left-4 md:-bottom-10 md:-left-10 w-16 h-16 md:w-24 md:h-24 text-[#ffc66d] fill-[#ffe4b5] dark:text-amber-500/30 dark:fill-amber-500/20 animate-[bounce_5s_infinite] z-30 drop-shadow-sm hover:rotate-12 hover:scale-110 transition-transform duration-500 cursor-crosshair opacity-80" />
 
           {/* Main Profile Card */}
-          <div className="relative w-full max-w-[280px] sm:max-w-[320px] bg-white/70 dark:bg-slate-800/40 backdrop-blur-xl p-6 sm:p-8 pb-8 sm:pb-10 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] dark:shadow-none z-20 rounded-[2.5rem] border border-white dark:border-slate-700/50 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] dark:hover:border-slate-600/80 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center">
+          <div className="relative w-full max-w-[280px] sm:max-w-[320px] bg-white dark:bg-slate-800 p-6 sm:p-8 pb-8 sm:pb-10 shadow-[8px_8px_0px_#e2e8f0] dark:shadow-[8px_8px_0px_#1e293b] z-20 rounded-[2.5rem] border-2 border-slate-200 dark:border-slate-700 hover:-translate-y-2 hover:-rotate-1 hover:shadow-[14px_14px_0px_#cbd5e1] dark:hover:shadow-[14px_14px_0px_#0f172a] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group bg-white dark:bg-slate-800 flex flex-col items-center">
 
              {/* Decorative Top Pill */}
              <div className="absolute top-4 right-5 sm:top-6 sm:right-6 px-3 sm:px-4 py-1 sm:py-1.5 bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-300 text-[9px] sm:text-[10px] font-bold rounded-full border border-slate-200/50 dark:border-slate-600/50 shadow-sm backdrop-blur-md z-30 tracking-widest uppercase">
@@ -117,7 +117,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </div>
 
       {/* 趣味涂鸦分隔带 - 填补留白，增加交互丰富度 */}
-      <div className="w-full relative py-12 md:py-20 flex flex-col items-center justify-center opacity-90 group pointer-events-auto select-none z-10 hidden sm:flex">
+      <div className="w-full relative py-12 md:py-20 flex flex-col items-center justify-center opacity-90 group pointer-events-auto select-none z-10 flex w-full relative py-8 md:py-20">
         {/* 手绘虚线波浪 */}
         <div className="absolute w-full max-w-[1280px] h-0.5 border-t-[3px] border-dashed border-slate-200 dark:border-slate-800 top-1/2 -translate-y-1/2 z-0 hidden md:block opacity-50"></div>
         
@@ -125,13 +125,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <div className="flex items-center justify-between w-full max-w-[1000px] px-8 relative z-10">
           <HandDrawnSmiley className="w-12 h-12 text-emerald-400 drop-shadow-sm hover:scale-[1.8] hover:-rotate-12 hover:-translate-y-4 hover:text-emerald-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(52,211,153,0.3)] z-20" />
           
-          <HandDrawnPlanet className="w-14 h-14 text-indigo-400 drop-shadow-sm hover:scale-[1.8] hover:rotate-[30deg] hover:-translate-y-4 hover:text-indigo-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(129,140,248,0.3)] z-20" />
+          <HandDrawnPlanet className="hidden sm:block w-14 h-14 text-indigo-400 drop-shadow-sm hover:scale-[1.8] hover:rotate-[30deg] hover:-translate-y-4 hover:text-indigo-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(129,140,248,0.3)] z-20" />
           
-          <div className="relative px-10 py-3.5 border-[3px] border-dashed border-slate-300 dark:border-slate-600 rounded-[2rem] font-black text-slate-400 dark:text-slate-400 tracking-[0.25em] text-sm md:text-base uppercase hover:scale-110 hover:-rotate-[3deg] hover:border-sky-400 dark:hover:border-slate-500 hover:text-sky-500 dark:hover:text-sky-300 transition-all duration-300 font-heading bg-white dark:bg-slate-800 cursor-crosshair z-20 shadow-[6px_6px_0px_#e2e8f0] dark:shadow-[6px_6px_0px_#0f172a] hover:shadow-[10px_10px_0px_#38bdf8] dark:hover:shadow-[10px_10px_0px_#38bdf8] -translate-y-1 hover:-translate-y-3">
+          <div className="relative px-6 py-2.5 sm:px-10 sm:py-3.5 border-[3px] border-dashed border-slate-300 dark:border-slate-600 rounded-[2rem] font-black text-slate-400 dark:text-slate-400 tracking-[0.25em] text-sm md:text-base uppercase hover:scale-110 hover:-rotate-[3deg] hover:border-sky-400 dark:hover:border-slate-500 hover:text-sky-500 dark:hover:text-sky-300 transition-all duration-300 font-heading bg-white dark:bg-slate-800 cursor-crosshair z-20 shadow-[6px_6px_0px_#e2e8f0] dark:shadow-[6px_6px_0px_#0f172a] hover:shadow-[10px_10px_0px_#38bdf8] dark:hover:shadow-[10px_10px_0px_#38bdf8] -translate-y-1 hover:-translate-y-3">
             Explore 🚀
           </div>
           
-          <HandDrawnStar className="w-12 h-12 text-amber-400 drop-shadow-sm hover:scale-[1.8] hover:rotate-[72deg] hover:-translate-y-4 hover:text-amber-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(251,191,36,0.3)] z-20" />
+          <HandDrawnStar className="hidden md:block w-12 h-12 text-amber-400 drop-shadow-sm hover:scale-[1.8] hover:rotate-[72deg] hover:-translate-y-4 hover:text-amber-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(251,191,36,0.3)] z-20" />
           
           <HandDrawnSwirl className="w-12 h-12 text-rose-400 drop-shadow-sm hover:scale-[1.8] hover:-rotate-[45deg] hover:-translate-y-4 hover:text-rose-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(251,113,133,0.3)] z-20" />
         </div>

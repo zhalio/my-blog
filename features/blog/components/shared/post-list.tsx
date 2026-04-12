@@ -52,10 +52,10 @@ export function PostList({ posts, readMoreText }: PostListProps) {
 
         return (
         <motion.article key={post.id} variants={item} className="h-full group">
-          <Link href={`/posts/${post.slug}`} className="block h-full outline-none focus-visible:ring-4 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-[2rem] bg-white dark:bg-slate-800 transition-all duration-300 hover:-translate-y-3 hover:translate-x-1 hover:-rotate-1 hover:shadow-[12px_12px_0px_rgba(203,213,225,0.4)] dark:hover:shadow-[12px_12px_0px_rgba(30,41,59,0.7)] border-2 border-slate-200/60 dark:border-slate-700/60 active:translate-y-0 active:shadow-none active:translate-x-0 relative flex flex-col overflow-hidden group">
+          <Link href={`/posts/${post.slug}`} className="block h-full outline-none focus-visible:ring-4 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-[2rem] bg-white dark:bg-slate-800 transition-all duration-300 shadow-[6px_6px_0px_rgba(203,213,225,0.4)] dark:shadow-[6px_6px_0px_rgba(30,41,59,0.4)] hover:-translate-y-3 hover:translate-x-1 hover:-rotate-1 hover:shadow-[14px_14px_0px_rgba(203,213,225,0.8)] dark:hover:shadow-[14px_14px_0px_rgba(30,41,59,0.8)] border-2 border-slate-200 dark:border-slate-700/80 active:translate-y-1 active:translate-x-1 active:shadow-[2px_2px_0px_rgba(203,213,225,0.8)] dark:active:shadow-[2px_2px_0px_rgba(30,41,59,0.8)] relative flex flex-col overflow-hidden group">
 
             {/* Thumbnail Cover - Rich colorful blocks */}
-            <div className="h-44 w-full relative overflow-hidden flex items-center justify-center transition-colors bg-slate-50 dark:bg-slate-900/50 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] dark:bg-[radial-gradient(#334155_1px,transparent_1px)]">              {/* Decorative Blob */}
+            <div className="h-36 sm:h-44 w-full relative overflow-hidden flex items-center justify-center transition-colors bg-slate-50 dark:bg-slate-900/50 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] dark:bg-[radial-gradient(#334155_1px,transparent_1px)]">              {/* Decorative Blob */}
               {(() => {
                 const Blob = BLOBS[i % BLOBS.length];
                 return (
