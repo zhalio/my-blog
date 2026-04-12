@@ -40,12 +40,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <FadeIn className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left z-20 w-full lg:pr-4 xl:pr-10">
           
           <div className="animate-float-slow pb-2">
-            <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 bg-yellow-100 dark:bg-yellow-900/40 shadow-[4px_4px_0px_#f59e0b] dark:shadow-[4px_4px_0px_#b45309] border-2 border-yellow-400 dark:border-yellow-600 rounded-lg font-bold text-yellow-800 dark:text-yellow-200 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-default group mb-6 md:mb-6 rotate-[-2deg]">
+            <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 bg-yellow-100 dark:bg-amber-950/40 shadow-[4px_4px_0px_#f59e0b] dark:shadow-[4px_4px_0px_#78350f] border-2 border-yellow-400 dark:border-amber-700/50 rounded-lg font-bold text-yellow-800 dark:text-amber-400 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-default group mb-6 md:mb-6 rotate-[-2deg]">
               <span className="text-[10px] sm:text-xs md:text-sm tracking-widest font-black uppercase">✨ Welcome to my digital garden</span>
             </div>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6rem] xl:text-[6.5rem] font-black leading-[1.1] text-slate-800 dark:text-slate-100 tracking-tight z-10 relative inline-block group mb-6 md:mb-8" style={{ textShadow: '4px 4px 0px rgba(100, 116, 139, 0.2)' }}>
+          <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6rem] xl:text-[6.5rem] font-black leading-[1.1] text-slate-800 dark:text-slate-100 tracking-tight z-10 relative inline-block group mb-6 md:mb-8 transition-colors duration-300 [text-shadow:4px_4px_0px_rgba(100,116,139,0.2)] dark:[text-shadow:4px_4px_0px_rgba(0,0,0,0.6)]">
             <span className="relative z-10 inline-block px-1">{settings.site_title || t('title')}</span>
           </h1>
 
