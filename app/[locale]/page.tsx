@@ -9,8 +9,7 @@ import { HomeButtons } from "@/features/blog/effects/home-buttons";
 import { SiteUptimeBadge } from "@/shared/components/common/site-uptime";
 import { getSiteSettings } from "@/lib/site-settings";
 import { TypewriterEffect } from "@/shared/visuals/typewriter-effect";
-import { HandDrawnArrow, HandDrawnStar, HandDrawnCloud, HandDrawnSmiley, HandDrawnScribble, HandDrawnHeart, HandDrawnLeaf, HandDrawnUnderline, HandDrawnSparkle, HandDrawnSwirl, HandDrawnPlanet } from "@/shared/visuals/doodles";
-import { CartoonBlob1, CartoonBlob2, CartoonBlob3, CartoonStarburst } from "@/shared/visuals/cartoon-shapes";
+import { CartoonLandscape } from "@/shared/effects/cartoon-landscape";
 
 export const revalidate = 60;
 
@@ -30,60 +29,22 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const posts = await getPublishedPosts('zh');
 
   return (
-    <div className="relative overflow-hidden flex flex-col justify-start pb-12 w-full">
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        @keyframes float-reverse {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(20px) rotate(-5deg); }
-        }
-        @keyframes draw {
-          0% { stroke-dasharray: 0, 1000; stroke-dashoffset: 0; }
-          100% { stroke-dasharray: 1000, 0; stroke-dashoffset: 0; }
-        }
-        @keyframes wobble {
-          0% { transform: rotate(-3deg); }
-          50% { transform: rotate(3deg); }
-          100% { transform: rotate(-3deg); }
-        }
-        .animate-float { animation: float 8s ease-in-out infinite; }
-        .animate-float-reverse { animation: float-reverse 9s ease-in-out infinite; }
-        .animate-wobble-slow { animation: wobble 4s ease-in-out infinite; }
-        .animate-draw { animation: draw 2s ease-out forwards; }
-      `}</style>
-      
-      {/* 趣味手绘风格与几何背景层 - 分散布局，增加动态空间感 */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden h-[1000px] max-h-[100vh]">
-         {/* 调和浅蓝圆圈，放在背景左上但别太靠边被切掉 */}
-         <div className="absolute top-[5%] left-[5%] md:top-[10%] md:left-[10%] animate-float">
-           <CartoonBlob2 className="w-[350px] h-[350px] md:w-[600px] md:h-[600px] text-sky-200/60 fill-sky-100/60 dark:fill-sky-900/20 dark:stroke-none opacity-60 animate-[spin_60s_linear_infinite]" />
-         </div>
-         {/* 调和粉色多芒星，放在背景右下角且适度露出 */}
-         <div className="absolute bottom-[20%] right-[5%] animate-float-reverse">
-           <CartoonStarburst className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] text-rose-200/50 fill-rose-100/50 dark:fill-rose-900/20 dark:stroke-none opacity-50 animate-[spin_50s_linear_infinite_reverse]" />
-         </div>
-         
-         <HandDrawnLeaf className="absolute top-[8%] left-[20%] md:top-[15%] md:left-[35%] w-8 h-8 md:w-12 md:h-12 text-rose-300 fill-rose-100 dark:text-rose-500/40 dark:fill-rose-500/20 animate-float" />      
-         <HandDrawnPlanet className="absolute bottom-[25%] left-[10%] md:bottom-[30%] md:left-[20%] w-10 h-10 md:w-16 md:h-16 text-indigo-300 fill-indigo-100 dark:text-indigo-500/40 dark:fill-indigo-500/20 animate-float-reverse" />
-      </div>
+    <div className="relative overflow-hidden flex flex-col justify-start pb-12 w-full font-sans tracking-tight">
+      {/* 动画笔记本网格与手绘动态涂鸦全局背景 */}
+      <CartoonLandscape />
+
       {/* 内容区域 */}
       <div className="w-full max-w-[1400px] mx-auto px-4 py-12 md:py-20 lg:py-24 xl:py-32 flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-16 md:gap-20 lg:gap-24 xl:gap-32 relative z-10">
         
         {/* 左侧文字与按钮区 */}
         <FadeIn className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left z-20 w-full lg:pr-4 xl:pr-10">
           
-          <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 bg-white dark:bg-slate-800 shadow-[4px_4px_0px_#e2e8f0] dark:shadow-[4px_4px_0px_#1e293b] border-2 border-slate-200 dark:border-slate-700 rounded-full font-bold text-slate-600 dark:text-slate-300 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform hover:scale-105 active:scale-95 cursor-default group mb-6 md:mb-8">
-            <HandDrawnSparkle className="w-3.5 h-3.5 md:w-4 md:h-4 text-emerald-500 fill-emerald-200 animate-pulse" />
-            <span className="text-[10px] sm:text-xs md:text-sm tracking-wide font-heading uppercase text-emerald-600 dark:text-emerald-400">Welcome to my digital garden</span>
+          <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 bg-yellow-100 dark:bg-yellow-900/40 shadow-[4px_4px_0px_#f59e0b] dark:shadow-[4px_4px_0px_#b45309] border-2 border-yellow-400 dark:border-yellow-600 rounded-lg font-bold text-yellow-800 dark:text-yellow-200 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-default group mb-6 md:mb-8 rotate-[-2deg]">
+            <span className="text-[10px] sm:text-xs md:text-sm tracking-widest font-black uppercase">✨ Welcome to my digital garden</span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6rem] xl:text-[6.5rem] font-black leading-[1.1] text-slate-800 dark:text-slate-100 tracking-tight z-10 font-heading relative inline-block group mb-6 md:mb-8">
+          <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6rem] xl:text-[6.5rem] font-black leading-[1.1] text-slate-800 dark:text-slate-100 tracking-tight z-10 relative inline-block group mb-6 md:mb-8" style={{ textShadow: '4px 4px 0px rgba(100, 116, 139, 0.2)' }}>
             <span className="relative z-10 inline-block px-1">{settings.site_title || t('title')}</span>
-            <HandDrawnUnderline className="absolute bottom-[-4px] sm:bottom-0 -left-2 w-[110%] h-4 sm:h-5 text-sky-400/90 dark:text-sky-400/60 -rotate-2 z-[-1] transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3 animate-draw" style={{ strokeDasharray: "1000", strokeWidth: "3" }} />
-            <HandDrawnStar className="hidden md:block absolute -top-4 -right-16 w-10 h-10 md:w-14 md:h-14 text-yellow-400 fill-yellow-200 dark:text-yellow-500/80 dark:fill-yellow-500/40 animate-[spin_6s_linear_infinite] z-0 opacity-100 group-hover:scale-125 transition-transform" />
           </h1>
 
           <div className="relative w-full max-w-[90%] sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 cursor-default mb-8 md:mb-12">
@@ -103,16 +64,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         {/* 右侧个人卡片 */}
         <FadeIn delay={0.2} className="w-full lg:w-[480px] xl:w-[500px] flex justify-center lg:justify-end xl:justify-center relative mt-16 sm:mt-24 lg:my-0 lg:pl-10">
 
-          <div className="absolute -bottom-10 right-0 md:-bottom-12 md:-right-4 animate-wobble-slow">
-             <CartoonBlob1 className="w-48 h-48 md:w-64 md:h-64 text-amber-200 fill-amber-100 dark:fill-amber-400 dark:stroke-none opacity-50 dark:opacity-20 z-10 hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] scale-90" />
-          </div>
-
           {/* Main Profile Card - Neo-Brutalism & Playful design */}
-          <div className="relative w-full max-w-[280px] sm:max-w-[320px] bg-white dark:bg-slate-800 p-8 sm:p-10 pb-10 sm:pb-12 shadow-[8px_8px_0px_#e2e8f0] dark:shadow-[8px_8px_0px_#1e293b] z-20 rounded-[2.5rem] border-2 border-slate-200 dark:border-slate-700 hover:-translate-y-2 hover:-rotate-1 hover:shadow-[14px_14px_0px_#cbd5e1] dark:hover:shadow-[14px_14px_0px_#0f172a] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center">
+          <div className="relative w-full max-w-[280px] sm:max-w-[320px] bg-[#fff9ed] dark:bg-slate-800 p-8 sm:p-10 pb-10 sm:pb-12 shadow-[12px_12px_0px_#000] dark:shadow-[12px_12px_0px_#0f172a] z-20 rounded-xl border-4 border-black dark:border-slate-700 hover:-translate-y-2 hover:-rotate-2 hover:shadow-[16px_16px_0px_#000] dark:hover:shadow-[16px_16px_0px_#0f172a] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center rotate-1">
 
              {/* Decorative Top Pill */}
-             <div className="absolute top-5 right-6 sm:top-8 sm:right-8 px-3 sm:px-4 py-1 sm:py-1.5 bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-300 text-[9px] sm:text-[10px] font-bold rounded-full border border-slate-200/50 dark:border-slate-600/50 shadow-sm backdrop-blur-md z-30 tracking-widest uppercase">
-                 HELLO
+             <div className="absolute -top-4 -right-4 px-4 py-2 bg-rose-400 dark:bg-rose-600 text-white font-black text-xs border-2 border-black rounded-lg shadow-[4px_4px_0px_#000] rotate-[10deg] tracking-widest uppercase">
+                 HELLO!
              </div>
 
              {/* Circular Avatar */}
@@ -134,49 +91,41 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </FadeIn>
       </div>
 
-      {/* 趣味涂鸦分隔带 - 填补留白，增加交互丰富度 */}
-      <div className="w-full relative py-12 md:py-20 flex flex-col items-center justify-center opacity-90 group pointer-events-auto select-none z-10 flex w-full relative py-8 md:py-20">
-        {/* 手绘虚线波浪 */}
-        <div className="absolute w-full max-w-[1280px] h-0.5 border-t-[3px] border-dashed border-slate-200 dark:border-slate-800 top-1/2 -translate-y-1/2 z-0 hidden md:block opacity-50"></div>
+      {/* 纯CSS大色块涂鸦分隔带 - Comic 面板风格，不留碎片 */}
+      <div className="w-full relative py-12 md:py-24 flex flex-col items-center justify-center opacity-100 group pointer-events-auto select-none z-10">
         
-        {/* 一组可以随着鼠标划过变大跳跃的悬浮涂鸦贴纸，引入浮动和摇摆动画 */}
-        <div className="flex items-center justify-between w-full max-w-[1000px] px-8 relative z-10">
-          <div className="animate-float">
-            <HandDrawnSmiley className="w-12 h-12 text-emerald-400 drop-shadow-sm hover:scale-[1.8] hover:-rotate-12 hover:-translate-y-4 hover:text-emerald-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(52,211,153,0.3)] z-20" />
-          </div>
-          
-          <div className="animate-wobble-slow">
-            <HandDrawnPlanet className="hidden sm:block w-14 h-14 text-indigo-400 drop-shadow-sm hover:scale-[1.8] hover:rotate-[30deg] hover:-translate-y-4 hover:text-indigo-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(129,140,248,0.3)] z-20" />
-          </div>
-          
-          <div className="relative px-6 py-2.5 sm:px-10 sm:py-3.5 border-[3px] border-dashed border-slate-300 dark:border-slate-600 rounded-[2rem] font-black text-slate-400 dark:text-slate-400 tracking-[0.25em] text-sm md:text-base uppercase hover:scale-110 hover:-rotate-[3deg] hover:border-sky-400 dark:hover:border-slate-500 hover:text-sky-500 dark:hover:text-sky-300 transition-all duration-300 font-heading bg-white dark:bg-slate-800 cursor-crosshair z-20 shadow-[6px_6px_0px_#e2e8f0] dark:shadow-[6px_6px_0px_#0f172a] hover:shadow-[10px_10px_0px_#38bdf8] dark:hover:shadow-[10px_10px_0px_#38bdf8] -translate-y-1 hover:-translate-y-3 animate-float" style={{ animationDelay: '1.5s' }}>
-            Explore 🚀
-          </div>
-          
-          <div className="animate-float-reverse">
-            <HandDrawnStar className="hidden md:block w-12 h-12 text-amber-400 drop-shadow-sm hover:scale-[1.8] hover:rotate-[72deg] hover:-translate-y-4 hover:text-amber-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(251,191,36,0.3)] z-20" />
-          </div>
-          
-          <div className="animate-wobble-slow" style={{ animationDelay: '1s' }}>
-            <HandDrawnSwirl className="w-12 h-12 text-rose-400 drop-shadow-sm hover:scale-[1.8] hover:-rotate-[45deg] hover:-translate-y-4 hover:text-rose-500 transition-all duration-300 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_10px_10px_rgba(251,113,133,0.3)] z-20" />
-          </div>
+        <div className="relative group perspective-1000">
+           {/* 背景阴影色块 */}
+           <div className="absolute inset-0 bg-sky-400 rounded-3xl rotate-[6deg] translate-x-2 translate-y-3 dark:bg-sky-600 border-4 border-black"></div>
+           
+           {/* 交互主体 */}
+           <div className="relative px-12 py-6 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl font-black text-slate-800 dark:text-slate-100 tracking-widest text-lg md:text-2xl uppercase hover:scale-105 hover:-rotate-[2deg] hover:bg-yellow-100 transition-all duration-300 font-heading cursor-grab active:cursor-grabbing z-20 shadow-[8px_8px_0px_#f43f5e] dark:shadow-[8px_8px_0px_#e11d48]">
+             LET'S EXPLORE 🚀
+           </div>
         </div>
+
       </div>
 
       {/* Posts Grid: 文章列表区域 */}
       <section className="w-full mt-8 md:mt-16 lg:mt-20 max-w-[1280px] mx-auto px-4 md:px-8 space-y-10 md:space-y-12 relative z-20">
         <FadeIn delay={0.2} className="flex items-center justify-between pb-8 gap-6 relative">
-          {/* Subtle separator line instead of heavy border */}
-          <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent"></div>
+          {/* Comic-style separator line */}
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-black dark:bg-slate-700 rounded-full"></div>
           
           <h2 className="text-3xl lg:text-4xl font-black tracking-tight flex items-center gap-4 text-slate-800 dark:text-white z-10 font-heading">
-            <HandDrawnStar className="w-12 h-12 text-amber-400 fill-amber-200 dark:text-amber-600 dark:fill-amber-600/30 animate-[bounce_4s_infinite] hover:scale-110 hover:rotate-12 transition-transform cursor-pointer" />
+            <div className="flex items-center justify-center w-12 h-12 bg-amber-300 dark:bg-amber-600 border-4 border-black rounded-full shadow-[4px_4px_0px_#000] rotate-[-5deg] animate-[bounce_4s_infinite]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="black" strokeWidth="2" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+            </div>
             <span>{t('latestPosts')}</span>
           </h2>
 
-          <Link href="/posts" className="text-sm md:text-base font-bold bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-6 py-2.5 group flex items-center gap-2 border border-slate-200 dark:border-slate-700/50 shadow-sm rounded-full transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] tracking-wide">
+          <Link href="/posts" className="text-sm md:text-base font-bold bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-6 py-2.5 group flex items-center gap-2 border-2 border-black dark:border-slate-500 shadow-[4px_4px_0px_#000] dark:shadow-[4px_4px_0px_#64748b] hover:shadow-[6px_6px_0px_#000] dark:hover:shadow-[6px_6px_0px_#64748b] hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer rounded-lg uppercase tracking-wider">
             {t('viewAll')} 
-            <HandDrawnArrow className="w-5 h-5 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-all duration-300" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="3" stroke="currentColor" className="w-5 h-5 group-hover:translate-x-1 transition-transform">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
           </Link>
         </FadeIn>
         
