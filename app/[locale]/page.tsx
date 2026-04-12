@@ -34,10 +34,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <CartoonLandscape />
 
       {/* 内容区域 */}
-      <div className="w-full max-w-[1400px] mx-auto px-4 py-12 md:py-20 lg:py-24 xl:py-32 flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-16 md:gap-20 lg:gap-24 xl:gap-32 relative z-10">
+      <div className="w-full max-w-6xl mx-auto px-4 py-12 md:py-16 lg:py-24 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 xl:gap-20 relative z-10">
         
         {/* 左侧文字与按钮区 */}
-        <FadeIn className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left z-20 w-full lg:pr-4 xl:pr-10">
+        <FadeIn className="w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left z-20">
           
           <div className="animate-float-slow pb-2">
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 bg-yellow-100 dark:bg-amber-950/40 shadow-[4px_4px_0px_#f59e0b] dark:shadow-[4px_4px_0px_#78350f] border-2 border-yellow-400 dark:border-amber-700/50 rounded-lg font-bold text-yellow-800 dark:text-amber-400 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-default group mb-6 md:mb-6 rotate-[-2deg]">
@@ -64,11 +64,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </FadeIn>
 
         {/* 右侧个人卡片 */}
-        <FadeIn delay={0.2} className="w-full lg:w-[480px] xl:w-[500px] flex justify-center lg:justify-end xl:justify-center relative mt-16 sm:mt-24 lg:my-0 lg:pl-10">
+        <FadeIn delay={0.2} className="w-full lg:w-[45%] flex justify-center lg:justify-end relative mt-16 sm:mt-24 lg:my-0">
           
-          <div className="animate-float-rotate relative w-full flex justify-center">
+          <div className="animate-float-rotate relative w-full flex justify-center lg:justify-end">
             {/* Main Profile Card - Neo-Brutalism & Playful design */}
-            <div className="relative w-full max-w-[280px] sm:max-w-[320px] bg-[#fff9ed] dark:bg-slate-800 p-8 sm:p-10 pb-10 sm:pb-12 shadow-[8px_8px_0px_#e2e8f0] dark:shadow-[8px_8px_0px_#1e293b] z-20 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:-translate-y-2 hover:-rotate-[4deg] hover:shadow-[14px_14px_0px_#cbd5e1] dark:hover:shadow-[14px_14px_0px_#0f172a] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center rotate-1">
+            <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[340px] bg-[#fff9ed] dark:bg-slate-800 p-8 sm:p-10 pb-10 sm:pb-12 shadow-[8px_8px_0px_#e2e8f0] dark:shadow-[8px_8px_0px_#1e293b] z-20 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:-translate-y-2 hover:-rotate-[4deg] hover:shadow-[14px_14px_0px_#cbd5e1] dark:hover:shadow-[14px_14px_0px_#0f172a] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center rotate-1">
 
                {/* Decorative Top Pill */}
                <div className="absolute -top-4 -right-4 px-4 py-2 bg-sky-400 dark:bg-sky-500 text-white font-black text-xs border-2 border-sky-100 dark:border-slate-600 rounded-lg shadow-[4px_4px_0px_#bae6fd] dark:shadow-[4px_4px_0px_#0ea5e9] rotate-[10deg] tracking-widest uppercase animate-float-slow">
@@ -113,7 +113,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </div>
 
       {/* Posts Grid: 文章列表区域 */}
-      <section className="w-full mt-8 md:mt-16 lg:mt-20 max-w-[1280px] mx-auto px-4 md:px-8 space-y-10 md:space-y-12 relative z-20">
+      <section className="w-full mt-8 lg:mt-12 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-20">
         <FadeIn delay={0.2} className="flex items-center justify-between pb-8 gap-6 relative">
           {/* Comic-style separator line */}
           <div className="absolute bottom-0 left-0 w-full h-[3px] bg-slate-200 dark:bg-slate-800 rounded-full"></div>
