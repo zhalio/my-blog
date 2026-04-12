@@ -74,12 +74,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
              {/* Circular Avatar */}
              <div className="w-32 h-32 sm:w-40 sm:h-40 mt-6 sm:mt-8 relative group-hover:scale-105 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
-                {/* 悬浮光环，脱离传统边框阴影 */}
-                <div className="absolute inset-0 bg-sky-200 dark:bg-sky-500/20 rounded-full scale-110 opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-all duration-500"></div>
-                <div className="absolute inset-0 bg-gradient-to-tr from-sky-100 to-indigo-100 dark:from-slate-700 dark:to-slate-600 rounded-full scale-[1.05] shadow-[0_0_20px_rgba(56,189,248,0.3)] dark:shadow-[0_0_20px_rgba(56,189,248,0.1)] group-hover:-rotate-12 transition-all duration-500 delay-75"></div>
-                
-                <div className="absolute inset-0 bg-slate-50 dark:bg-slate-800/50 rounded-full border-2 sm:border-[3px] border-dashed border-sky-300 dark:border-sky-600 shadow-md overflow-hidden z-10">
-                  <Image src="/images/touxiang.jpg" alt="Avatar" fill priority sizes="(max-width: 640px) 128px, 160px" className="object-cover group-hover:rotate-6 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-white dark:bg-slate-800 rounded-full border-[4px] border-slate-50 dark:border-slate-700 shadow-sm overflow-hidden z-10">
+                  <Image src="/images/touxiang.jpg" alt="Avatar" fill priority sizes="(max-width: 640px) 128px, 160px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
              </div>
 
@@ -102,10 +98,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         
         <div className="relative group perspective-1000">
            {/* 背景阴影色块 */}
-           <div className="absolute inset-0 bg-sky-400 rounded-3xl rotate-[6deg] translate-x-2 translate-y-3 dark:bg-sky-600 border-4 border-black"></div>
+           <div className="absolute inset-0 bg-sky-100 dark:bg-sky-900/30 rounded-3xl rotate-[6deg] translate-x-2 translate-y-3"></div>
            
            {/* 交互主体 */}
-           <div className="relative px-12 py-6 bg-white dark:bg-slate-800 border-4 border-black rounded-2xl font-black text-slate-800 dark:text-slate-100 tracking-widest text-lg md:text-2xl uppercase hover:scale-105 hover:-rotate-[2deg] hover:bg-yellow-100 transition-all duration-300 font-heading cursor-grab active:cursor-grabbing z-20 shadow-[8px_8px_0px_#f43f5e] dark:shadow-[8px_8px_0px_#e11d48]">
+           <div className="relative px-12 py-6 bg-white dark:bg-slate-800 rounded-2xl font-bold text-slate-700 dark:text-slate-200 tracking-widest text-lg md:text-2xl uppercase hover:scale-105 hover:-rotate-[2deg] hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-300 font-heading cursor-grab active:cursor-grabbing z-20 shadow-md border border-slate-100 dark:border-slate-700 hover:shadow-lg">
              LET'S EXPLORE 🚀
            </div>
         </div>
