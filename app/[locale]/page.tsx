@@ -33,42 +33,48 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       {/* 动画笔记本网格与手绘动态涂鸦全局背景 */}
       <CartoonLandscape />
 
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[42rem] bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.85),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(191,219,254,0.35),transparent_30%),linear-gradient(to_bottom,rgba(255,252,245,0.92),rgba(255,252,245,0.5),transparent)] dark:bg-[radial-gradient(circle_at_20%_20%,rgba(148,163,184,0.12),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(56,189,248,0.08),transparent_30%),linear-gradient(to_bottom,rgba(15,23,42,0.28),rgba(15,23,42,0.08),transparent)]" />
-
       {/* 内容区域 */}
-      <div className="relative mx-auto w-full max-w-6xl px-4 py-8 md:py-12 lg:py-16">
-        <div className="absolute inset-x-4 top-4 bottom-0 rounded-[2.5rem] border border-white/60 bg-white/20 shadow-[0_30px_90px_rgba(148,163,184,0.16)] backdrop-blur-[1px] dark:border-slate-700/40 dark:bg-slate-900/10" />
-        <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 xl:gap-20">
+      <div className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 lg:py-16 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 xl:gap-20 relative z-10">
         
         {/* 左侧文字与按钮区 */}
-        <FadeIn className="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left z-20">
+        <FadeIn className="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left z-20 relative">
           
-          <div className="animate-float-slow w-full flex justify-center lg:justify-start">
+          {/* Decorative background shape behind text to make it more "full" */}
+          <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-sky-50/50 dark:bg-sky-900/10 rounded-[3rem] -rotate-2 -z-10 blur-xl opacity-70 border border-white dark:border-slate-800 mask-image:linear-gradient(to_bottom,transparent,black)" />
+
+          <div className="animate-float-slow w-full flex justify-center lg:justify-start relative">
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 bg-yellow-100 dark:bg-amber-950/40 shadow-[4px_4px_0px_#f59e0b] dark:shadow-[4px_4px_0px_#78350f] border-2 border-yellow-400 dark:border-amber-700/50 rounded-lg font-bold text-yellow-800 dark:text-amber-400 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-default group mb-6 md:mb-8 rotate-[-2deg]">
               <span className="text-[10px] sm:text-xs md:text-sm tracking-widest font-black uppercase">✨ Welcome to my digital garden</span>
             </div>
+            
+            {/* Added decorative tiny star next to the badge */}
+            <div className="absolute -top-4 right-10 text-rose-400 animate-pulse lg:right-auto lg:left-64">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" />
+              </svg>
+            </div>
           </div>
 
-          <h1 className="max-w-3xl text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6rem] xl:text-[6.5rem] font-black leading-[1.05] text-slate-800 dark:text-slate-100 tracking-tight z-10 relative inline-block group mb-6 md:mb-8 transition-colors duration-300 [text-shadow:4px_4px_0px_rgba(100,116,139,0.16)] dark:[text-shadow:4px_4px_0px_rgba(0,0,0,0.6)]">
-            <span className="relative z-10 inline-block px-1">{settings.site_title || t('title')}</span>
-            <span className="absolute -left-4 -top-4 h-10 w-10 rounded-full border-2 border-sky-300 bg-sky-100/80 shadow-[3px_3px_0px_#93c5fd] dark:border-sky-700 dark:bg-sky-950/40 dark:shadow-[3px_3px_0px_#0ea5e9] animate-float-slow" />
+          <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6rem] xl:text-[6.5rem] font-black leading-[1.1] text-slate-800 dark:text-slate-100 tracking-tight z-10 relative inline-block group mb-6 md:mb-8 transition-colors duration-300">
+            {/* Text Stroke/Shadow Effect to look embossed */}
+            <span className="relative z-10 inline-block px-1 [text-shadow:4px_4px_0px_#bae6fd] dark:[text-shadow:4px_4px_0px_#0284c7]">{settings.site_title || t('title')}</span>
           </h1>
 
           <div className="relative w-full max-w-[90%] sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 cursor-default mb-8 md:mb-12">
-             <div className="relative min-h-[60px] sm:min-h-[80px] text-base sm:text-lg md:text-xl lg:text-2xl text-slate-500 dark:text-slate-400 leading-relaxed sm:leading-relaxed z-10 w-full max-w-xl text-center lg:text-left mx-auto lg:mx-0 transition-all duration-300 flex items-start justify-center lg:justify-start">
+             <div className="relative min-h-[60px] sm:min-h-[80px] text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-slate-600 dark:text-slate-400 leading-relaxed sm:leading-relaxed z-10 w-full max-w-xl text-center lg:text-left mx-auto lg:mx-0 transition-all duration-300 flex items-start justify-center lg:justify-start">
                <TypewriterEffect text={settings.site_description || t('description')} speed={50} waitBeforeDelete={6000} />
              </div>
+             {/* Small hand-drawn underline under description */}
+             <svg className="absolute -bottom-4 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-32 h-3 text-sky-300 dark:text-sky-700/60" viewBox="0 0 100 10" preserveAspectRatio="none">
+               <path d="M0,5 Q50,-5 100,5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+             </svg>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 relative z-20">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 relative z-20 mt-4">
              <HomeButtons viewPostsText={t('viewPosts')} />
-             <SiteUptimeBadge />
-          </div>
-
-          <div className="mt-6 md:mt-8 flex flex-wrap justify-center lg:justify-start gap-3 text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
-            <span className="rounded-full border border-slate-200 bg-white/90 px-3 py-2 shadow-[3px_3px_0px_rgba(226,232,240,0.9)] dark:border-slate-700 dark:bg-slate-800/80 dark:shadow-[3px_3px_0px_rgba(15,23,42,0.7)]">清爽留白</span>
-            <span className="rounded-full border border-emerald-200 bg-emerald-50/90 px-3 py-2 shadow-[3px_3px_0px_rgba(167,243,208,0.8)] dark:border-emerald-700/50 dark:bg-emerald-950/30 dark:shadow-[3px_3px_0px_rgba(6,78,59,0.6)]">轻拟物层次</span>
-            <span className="rounded-full border border-amber-200 bg-amber-50/90 px-3 py-2 shadow-[3px_3px_0px_rgba(253,230,138,0.8)] dark:border-amber-700/50 dark:bg-amber-950/30 dark:shadow-[3px_3px_0px_rgba(120,53,15,0.6)]">插画感装饰</span>
+             <div className="rotate-2 transition-transform hover:-rotate-2">
+               <SiteUptimeBadge />
+             </div>
           </div>
         </FadeIn>
 
@@ -76,30 +82,40 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <FadeIn delay={0.2} className="flex-1 w-full flex justify-center lg:justify-end relative mt-12 sm:mt-16 lg:my-0">
           
           <div className="animate-float-rotate relative w-full flex justify-center lg:justify-end">
+            
+            {/* Added decorative elements around the avatar card */}
+            <div className="absolute -left-6 top-10 w-12 h-12 bg-rose-100 border-2 border-rose-400 rounded-full flex items-center justify-center -rotate-12 shadow-[4px_4px_0px_#fb7185] z-30 animate-bounce [animation-duration:3s]">
+               <span className="text-xl font-bold text-rose-500">!</span>
+            </div>
+            
+            <div className="absolute -right-4 bottom-20 w-16 h-6 bg-emerald-200/80 -rotate-[15deg] backdrop-blur-sm z-30 shadow-sm border border-emerald-300/50"></div>
+
             {/* Main Profile Card - Neo-Brutalism & Playful design */}
-            <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[340px] bg-[#fff9ed] dark:bg-slate-800 p-8 sm:p-10 pb-10 sm:pb-12 shadow-[8px_8px_0px_#e2e8f0] dark:shadow-[8px_8px_0px_#1e293b] z-20 rounded-[1.75rem] border-2 border-slate-200 dark:border-slate-700 hover:-translate-y-2 hover:-rotate-[4deg] hover:shadow-[14px_14px_0px_#cbd5e1] dark:hover:shadow-[14px_14px_0px_#0f172a] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center rotate-1 overflow-hidden">
-              <div className="absolute inset-x-6 top-6 h-24 rounded-full bg-sky-100/60 blur-3xl dark:bg-sky-500/10" />
-              <div className="absolute -bottom-6 left-1/2 h-24 w-36 -translate-x-1/2 rounded-full bg-amber-100/80 blur-3xl dark:bg-amber-500/10" />
+            <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px] bg-[#fff9ed] dark:bg-slate-800/90 backdrop-blur-sm p-8 sm:p-10 pb-10 sm:pb-12 shadow-[12px_12px_0px_#cbd5e1] dark:shadow-[12px_12px_0px_#0f172a] z-20 rounded-[2.5rem] border-4 border-slate-200 dark:border-slate-600 hover:-translate-y-2 hover:-rotate-[4deg] hover:shadow-[18px_18px_0px_#94a3b8] dark:hover:shadow-[18px_18px_0px_#020617] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center rotate-2">
+               
+               {/* Inner dashed frame for planner style */}
+               <div className="absolute inset-3 border-2 border-dashed border-amber-200/70 dark:border-slate-500/40 rounded-[2rem] pointer-events-none" />
 
                {/* Decorative Top Pill */}
-               <div className="absolute -top-4 -right-4 px-4 py-2 bg-sky-400 dark:bg-sky-500 text-white font-black text-xs border-2 border-sky-100 dark:border-slate-600 rounded-lg shadow-[4px_4px_0px_#bae6fd] dark:shadow-[4px_4px_0px_#0ea5e9] rotate-[10deg] tracking-widest uppercase animate-float-slow">
+               <div className="absolute -top-4 -right-4 px-5 py-2.5 bg-sky-400 dark:bg-sky-500 text-white font-black text-xs border-2 border-sky-100 dark:border-slate-600 rounded-xl shadow-[4px_4px_0px_#bae6fd] dark:shadow-[4px_4px_0px_#0369a1] rotate-[10deg] tracking-widest uppercase animate-float-slow">
                    HELLO!
                </div>
 
              {/* Circular Avatar */}
-             <div className="w-32 h-32 sm:w-40 sm:h-40 mt-6 sm:mt-8 relative group-hover:scale-105 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
-                <div className="absolute inset-0 bg-white dark:bg-slate-800 rounded-full border-[4px] border-slate-50 dark:border-slate-700 shadow-sm overflow-hidden z-10">
-                  <Image src="/images/touxiang.jpg" alt="Avatar" fill priority sizes="(max-width: 640px) 128px, 160px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+             <div className="w-36 h-36 sm:w-44 sm:h-44 mt-6 sm:mt-8 relative group-hover:scale-105 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+                <div className="absolute inset-0 bg-white dark:bg-slate-800 rounded-[2.5rem] rotate-45 border-[4px] border-amber-100 dark:border-slate-700 shadow-sm z-0 transition-transform group-hover:rotate-[60deg] duration-700"></div>
+                <div className="absolute inset-1 bg-white dark:bg-slate-800 rounded-full border-[4px] border-slate-50 dark:border-slate-600 shadow-inner overflow-hidden z-10">
+                  <Image src="/images/touxiang.jpg" alt="Avatar" fill priority sizes="(max-width: 640px) 144px, 176px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
                 </div>
              </div>
 
              {/* Content */}
-             <div className="mt-8 sm:mt-10 text-center flex flex-col gap-2 relative z-20 w-full">
+             <div className="mt-8 sm:mt-12 text-center flex flex-col gap-2 relative z-20 w-full">
                 <span className="text-2xl sm:text-3xl font-extrabold text-slate-800 dark:text-slate-100 font-heading tracking-tight hover:text-sky-500 transition-colors mb-1">
                   Hi, I&apos;m emmm!
                 </span>
-                <span className="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/60 px-4 py-2 sm:py-2.5 mt-2 rounded-full flex items-center justify-center gap-1.5 mx-auto border border-slate-100 dark:border-slate-700/80 shadow-sm shadow-slate-100 dark:shadow-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-sky-500 dark:text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                <span className="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-300 bg-white dark:bg-slate-800 px-4 py-2 sm:py-2.5 mt-2 rounded-xl flex items-center justify-center gap-2 mx-auto border-2 border-slate-100 dark:border-slate-600 shadow-[2px_2px_0px_#e2e8f0] dark:shadow-[2px_2px_0px_#0f172a]">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-emerald-500 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
                   Frontend Developer
                 </span>
              </div>
@@ -109,17 +125,17 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </div>
 
       {/* 创意手绘风分隔线：虚线与引导箭头 */}
-      <div className="w-full relative py-8 md:py-16 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-500 z-10 max-w-5xl mx-auto px-4 select-none">
+      <div className="w-full relative py-12 md:py-20 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-500 z-10 max-w-5xl mx-auto px-4 select-none mt-4">
         <div className="flex-1 border-t-[3px] border-dashed border-slate-300 dark:border-slate-700/60 rounded-full"></div>
         
-        <div className="px-6 flex flex-col items-center gap-2">
-          <div className="text-slate-400 dark:text-slate-500 animate-bounce">
+        <div className="px-6 flex flex-col items-center gap-3">
+          <div className="text-slate-400 dark:text-slate-500 animate-bounce bg-white dark:bg-slate-800 p-2 rounded-full border-2 border-slate-200 dark:border-slate-700 shadow-sm">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="m12 5 0 14" />
               <path d="m19 12-7 7-7-7" />
             </svg>
           </div>
-          <span className="font-bold text-slate-400 dark:text-slate-500 tracking-[0.2em] text-xs uppercase">
+          <span className="font-black text-slate-400 dark:text-slate-500 tracking-[0.2em] text-xs uppercase bg-slate-50 dark:bg-slate-800/50 px-4 py-1 rounded-full">
             Let's Explore 🚀
           </span>
         </div>
@@ -131,7 +147,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <section className="w-full mt-8 lg:mt-12 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-20">
         <FadeIn delay={0.2} className="flex items-center justify-between pb-8 gap-6 relative">
           {/* Comic-style separator line */}
-          <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-sky-200 via-emerald-200 to-amber-200 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 rounded-full"></div>
+          <div className="absolute bottom-0 left-0 w-full h-[3px] bg-slate-200 dark:bg-slate-800 rounded-full"></div>
           
           <h2 className="text-3xl lg:text-4xl font-black tracking-tight flex items-center gap-4 text-slate-800 dark:text-white z-10 font-heading">
             <div className="flex items-center justify-center w-12 h-12 bg-amber-100 text-amber-500 dark:bg-amber-900/40 dark:text-amber-400 border-[3px] border-amber-300 dark:border-amber-700/50 rounded-full shadow-[4px_4px_0px_#fde68a] dark:shadow-[4px_4px_0px_#78350f] rotate-[-5deg] animate-[bounce_4s_infinite]">
@@ -152,7 +168,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         
         <PostList posts={posts.slice(0, 6)} readMoreText={tCommon('readMore')} />
       </section>
-      </div>
     </div>
   );
 }
