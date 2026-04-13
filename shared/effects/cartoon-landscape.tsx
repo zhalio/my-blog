@@ -107,18 +107,6 @@ export function CartoonLandscape() {
          </svg>
       </div>
 
-      {/* 填补空隙的星星点点 */}
-      <div className="absolute top-[18%] left-[25%] w-4 h-4 text-amber-300 dark:text-amber-600/60 animate-pulse">
-         <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
-            <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" />
-         </svg>
-      </div>
-      <div className="absolute top-[40%] right-[35%] w-5 h-5 text-sky-300 dark:text-sky-600/60 animate-pulse delay-700">
-         <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
-            <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" />
-         </svg>
-      </div>
-
       {/* 卡通太阳/星球 (高处背景) */}
       <div className="absolute top-[4%] right-[5%] w-24 h-24 text-yellow-300 fill-yellow-100 dark:text-yellow-500/60 dark:fill-yellow-500/10 animate-[spin_40s_linear_infinite] opacity-80">
          <svg viewBox="0 0 100 100" className="w-full h-full">

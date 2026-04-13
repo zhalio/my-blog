@@ -43,13 +43,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 bg-yellow-100 dark:bg-amber-950/40 shadow-[4px_4px_0px_#f59e0b] dark:shadow-[4px_4px_0px_#78350f] border-2 border-yellow-400 dark:border-amber-700/50 rounded-lg font-bold text-yellow-800 dark:text-amber-400 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-default group mb-6 md:mb-8 rotate-[-2deg]">
               <span className="text-[10px] sm:text-xs md:text-sm tracking-widest font-black uppercase">✨ Welcome to my digital garden</span>
             </div>
-            
-            {/* Added decorative tiny star next to the badge */}
-            <div className="absolute -top-4 right-10 text-rose-400 animate-pulse lg:right-auto lg:left-64">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 animate-[spin_4s_linear_infinite]">
-                <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" />
-              </svg>
-            </div>
           </div>
 
           <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6rem] xl:text-[6.5rem] font-black leading-[1.1] text-slate-800 dark:text-slate-100 tracking-tight z-10 relative inline-block group mb-6 md:mb-8 transition-colors duration-300">
@@ -77,12 +70,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="animate-float-rotate relative w-full flex justify-center lg:justify-end">
             
             {/* Added decorative elements around the avatar card */}
-            <div className="absolute -left-6 top-10 text-sky-300 dark:text-sky-600 z-30 animate-[bounce_5s_ease-in-out_infinite]">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10 -rotate-12">
-                <path d="M2 12h20M12 2l10 10-10 10" />
-              </svg>
-            </div>
-            
             <div className="absolute -right-4 bottom-20 w-16 h-6 bg-yellow-200/80 -rotate-[15deg] backdrop-blur-sm z-30 shadow-sm border border-yellow-300/50"></div>
 
             {/* Main Profile Card - Neo-Brutalism & Playful design */}
