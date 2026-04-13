@@ -1,33 +1,32 @@
 "use client"
 
-import Lottie from "lottie-react";
-import { useEffect, useState } from "react";
+import Lottie from "lottie-react"
+import { useEffect, useState } from "react"
 
 export function Lottie404() {
-  const [animationData, setAnimationData] = useState(null);
+  const [animationData, setAnimationData] = useState<any>(null)
 
   useEffect(() => {
-    // Try the user provided animation first (without /embed/)
-    fetch('https://lottie.host/9866e4f6-f3cd-4476-863d-28f129285123/2j5X252222.json')
-      .then(res => {
-        if (!res.ok) throw new Error('Network response was not ok');
-        return res.json();
+    fetch('/lottie/404.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to load local 404 animation')
+        }
+        return response.json()
       })
-      .then(data => setAnimationData(data))
-      .catch(() => {
-        // Fallback to a reliable public JSON for 404 (Ghost)
-        fetch('https://assets2.lottiefiles.com/packages/lf20_kcsr6fcp.json')
-          .then(res => res.json())
-          .then(data => setAnimationData(data))
-          .catch(e => console.error("Fallback failed", e));
-      });
-  }, []);
+      .then((data) => setAnimationData(data))
+      .catch((error) => {
+        console.error('Failed to load local 404 animation', error)
+      })
+  }, [])
 
-  if (!animationData) return <div className="h-64 w-64 bg-muted/20 animate-pulse rounded-lg" />;
+  if (!animationData) {
+    return <div className="mx-auto h-64 w-full max-w-md animate-pulse rounded-[2rem] border-2 border-slate-200 bg-white/70 shadow-[10px_10px_0px_#e2e8f0] dark:border-slate-700 dark:bg-slate-800/70 dark:shadow-[10px_10px_0px_#020617]" />
+  }
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <Lottie animationData={animationData} loop={true} />
+      <Lottie animationData={animationData} loop />
     </div>
-  );
+  )
 }
