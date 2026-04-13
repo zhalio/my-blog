@@ -104,7 +104,7 @@ export function CartoonLandscape() {
         </svg>
       </div>
       
-      <div className="absolute bottom-0 left-0 md:left-[-50%] w-[200%] h-32 md:h-48 opacity-90 dark:opacity-30 animate-[slide-reverse_25s_linear_infinite]">
+      <div className="absolute bottom-0 left-0 w-[200%] h-32 md:h-48 opacity-90 dark:opacity-30 animate-[slide-reverse_25s_linear_infinite]">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="absolute bottom-0 w-full h-full">
           <path d="M0,60 C300,10 400,120 700,50 C1000,-20 1100,90 1200,60 L1200,120 L0,120 Z" className="fill-sky-100/60 dark:fill-sky-950/50" />
           {/* Handdrawn contour */}
