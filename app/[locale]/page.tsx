@@ -55,12 +55,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6rem] xl:text-[6.5rem] font-black leading-[1.1] text-slate-800 dark:text-slate-100 tracking-tight z-10 relative inline-block group mb-6 md:mb-8 transition-colors duration-300">
             {/* Text Stroke/Shadow Effect to look embossed */}
             <span className="relative z-10 inline-block px-1 [text-shadow:4px_4px_0px_#bae6fd] dark:[text-shadow:4px_4px_0px_#0284c7] hover:translate-x-1 hover:-translate-y-1 transition-transform duration-300">{settings.site_title || t('title')}</span>
-            
-            {/* 增加手绘感螺旋点缀 */}
-            <svg className="absolute -top-6 -right-12 w-12 h-12 text-teal-400/80 -z-10 animate-[spin_8s_linear_infinite]" viewBox="0 0 100 100" fill="none">
-              <path d="M50 10 C70 10 90 30 90 50 C90 70 70 90 50 90 C30 90 10 70 10 50 C10 30 30 10 50 10 Z" stroke="currentColor" strokeWidth="4" strokeDasharray="10 10" />
-              <path d="M50 20 C65 20 80 35 80 50 C80 65 65 80 50 80 C35 80 20 65 20 50" stroke="currentColor" strokeWidth="3" strokeDasharray="5 15" />
-            </svg>
           </h1>
 
           <div className="relative w-full max-w-[90%] sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 cursor-default mb-8 md:mb-12 flex flex-col items-center lg:items-start group">
@@ -83,11 +77,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="animate-float-rotate relative w-full flex justify-center lg:justify-end">
             
             {/* Added decorative elements around the avatar card */}
-            <div className="absolute -left-6 top-10 w-12 h-12 bg-rose-100 border-2 border-rose-400 rounded-full flex items-center justify-center -rotate-12 shadow-[4px_4px_0px_#fb7185] z-30 animate-bounce [animation-duration:3s]">
-               <span className="text-xl font-bold text-rose-500">!</span>
+            <div className="absolute -left-6 top-10 text-sky-300 dark:text-sky-600 z-30 animate-[bounce_5s_ease-in-out_infinite]">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10 -rotate-12">
+                <path d="M2 12h20M12 2l10 10-10 10" />
+              </svg>
             </div>
             
-            <div className="absolute -right-4 bottom-20 w-16 h-6 bg-emerald-200/80 -rotate-[15deg] backdrop-blur-sm z-30 shadow-sm border border-emerald-300/50"></div>
+            <div className="absolute -right-4 bottom-20 w-16 h-6 bg-yellow-200/80 -rotate-[15deg] backdrop-blur-sm z-30 shadow-sm border border-yellow-300/50"></div>
 
             {/* Main Profile Card - Neo-Brutalism & Playful design */}
             <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px] bg-[#fff9ed] dark:bg-slate-800/90 backdrop-blur-sm p-8 sm:p-10 pb-10 sm:pb-12 shadow-[12px_12px_0px_#cbd5e1] dark:shadow-[12px_12px_0px_#0f172a] z-20 rounded-[2.5rem] border-4 border-slate-200 dark:border-slate-600 hover:-translate-y-2 hover:-rotate-[4deg] hover:shadow-[18px_18px_0px_#94a3b8] dark:hover:shadow-[18px_18px_0px_#020617] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group flex flex-col items-center rotate-2">

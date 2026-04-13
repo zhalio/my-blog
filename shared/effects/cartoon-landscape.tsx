@@ -61,10 +61,49 @@ export function CartoonLandscape() {
         <CloudSvg />
       </div>
 
-      {/* 填补空隙的涂鸦纸飞机 */}
+      {/* 添加了一朵低空的云朵 */}
+      <div className="absolute top-[45%] right-[20%] w-28 md:w-36 h-14 md:h-18 animate-[slide_90s_linear_infinite] opacity-60">
+        <CloudSvg />
+      </div>
+
+      {/* 填补空隙的涂鸦纸飞机 1 */}
       <div className="absolute top-[35%] left-[35%] w-8 md:w-12 h-8 md:h-12 animate-[slide_45s_linear_infinite]">
-         <svg viewBox="0 0 24 24" className="w-full h-full text-slate-400 dark:text-slate-500 opacity-60 rotate-12">
+         <svg viewBox="0 0 24 24" className="w-full h-full text-sky-400 dark:text-sky-600 opacity-60 rotate-12">
             <path d="M22 2 L11 13 M22 2 l-7 20 -4-9 -9-4 20-7 z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+         </svg>
+      </div>
+
+      {/* 涂鸦纸飞机 2 - 反向更高处 */}
+      <div className="absolute top-[15%] right-[40%] w-6 md:w-10 h-6 md:h-10 animate-[slide-reverse_35s_linear_infinite] delay-500">
+         <svg viewBox="0 0 24 24" className="w-full h-full text-indigo-400 dark:text-indigo-600 opacity-50 -scale-x-100 -rotate-12">
+            <path d="M22 2 L11 13 M22 2 l-7 20 -4-9 -9-4 20-7 z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+         </svg>
+      </div>
+
+      {/* 涂鸦小鸟飞越 (两只) */}
+      <div className="absolute top-[28%] left-[10%] w-6 md:w-8 h-4 md:h-6 animate-[slide_40s_linear_infinite] opacity-70">
+         <svg viewBox="0 0 24 24" className="w-full h-full text-slate-500 dark:text-slate-400">
+            <path d="M2 12 Q 7 5, 12 12 Q 17 5, 22 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+         </svg>
+      </div>
+      <div className="absolute top-[26%] left-[8%] w-4 md:w-6 h-3 md:h-5 animate-[slide_40s_linear_infinite] delay-150 opacity-50">
+         <svg viewBox="0 0 24 24" className="w-full h-full text-slate-500 dark:text-slate-400">
+            <path d="M2 12 Q 7 5, 12 12 Q 17 5, 22 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+         </svg>
+      </div>
+
+      {/* 手绘热气球 */}
+      <div className="absolute top-[12%] left-[75%] w-12 md:w-16 h-16 md:h-20 animate-[slide-reverse_120s_linear_infinite] delay-700 opacity-60 hover:opacity-100 transition-opacity">
+         <svg viewBox="0 0 100 120" className="w-full h-full">
+            {/* Balloon body */}
+            <path d="M50 10 C20 10 10 40 10 60 C10 80 40 90 40 100 L60 100 C60 90 90 80 90 60 C90 40 80 10 50 10 Z" fill="none" className="stroke-rose-400 dark:stroke-rose-600" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M50 10 C35 10 30 40 30 60 C30 80 40 90 40 100" fill="none" className="stroke-rose-300 dark:stroke-rose-700" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M50 10 C65 10 70 40 70 60 C70 80 60 90 60 100" fill="none" className="stroke-rose-300 dark:stroke-rose-700" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* Basket */}
+            <rect x="42" y="105" width="16" height="12" rx="2" fill="none" className="stroke-amber-600 dark:stroke-amber-700" strokeWidth="2" strokeLinejoin="round"/>
+            {/* Ropes */}
+            <line x1="40" y1="100" x2="42" y2="105" className="stroke-amber-600 dark:stroke-amber-700" strokeWidth="1.5" />
+            <line x1="60" y1="100" x2="58" y2="105" className="stroke-amber-600 dark:stroke-amber-700" strokeWidth="1.5" />
          </svg>
       </div>
 
