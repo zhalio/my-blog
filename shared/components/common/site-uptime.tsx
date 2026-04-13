@@ -13,7 +13,7 @@ const calcDays = () => {
   return Math.floor(diff / MS_PER_DAY)
 }
 
-export function SiteUptimeBadge() {
+export function SiteUptimeBadge({ className }: { className?: string }) {
   const days = useMemo(() => calcDays(), [])
 
   const handleConfetti = () => {
@@ -52,7 +52,7 @@ export function SiteUptimeBadge() {
     <button
       type="button"
       onClick={handleConfetti}
-      className="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-500/20 px-6 py-2.5 text-sm text-amber-700 dark:text-amber-300 border-2 border-transparent shadow-sm hover:shadow-md hover:-translate-y-1 rounded-full transition-all outline-none font-bold active:scale-95 group font-heading tracking-wide mx-auto lg:mx-0 duration-300 relative"
+      className={`inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-500/20 px-6 py-2.5 text-sm text-amber-700 dark:text-amber-300 border-2 border-transparent shadow-sm hover:shadow-md hover:-translate-y-1 rounded-full transition-all outline-none font-bold active:scale-95 group font-heading tracking-wide mx-auto lg:mx-0 duration-300 relative ${className || ''}`}
     >
       <span className="flex items-center justify-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-amber-500 dark:text-amber-400 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>

@@ -51,15 +51,17 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </h1>
 
           <div className="relative w-full max-w-[90%] sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 cursor-default mb-8 md:mb-12 flex flex-col items-center lg:items-start group">
-             <div className="relative min-h-[60px] sm:min-h-[80px] text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-slate-600 dark:text-slate-400 leading-relaxed sm:leading-relaxed z-10 w-full max-w-xl text-center lg:text-left mx-auto lg:mx-0 transition-all duration-300 flex items-start justify-center lg:justify-start">
-               <TypewriterEffect text={settings.site_description || t('description')} speed={50} waitBeforeDelete={6000} />
+             <div className="relative min-h-[60px] sm:min-h-[80px] text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-slate-600 dark:text-slate-400 leading-relaxed sm:leading-relaxed z-10 w-full max-w-xl text-center lg:text-left mx-auto lg:mx-0 transition-all duration-300">
+               <TypewriterEffect text={settings.site_description || t('description')} speed={50} waitBeforeDelete={6000} className="text-center lg:text-left" />
              </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-8 relative z-20 mt-4">
-             <HomeButtons viewPostsText={t('viewPosts')} />
-             <div className="transition-transform hover:-translate-y-1">
-               <SiteUptimeBadge />
+          <div className="w-full sm:w-auto flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 relative z-20 mt-4">
+             <div className="flex w-full sm:w-auto gap-3 sm:gap-4 justify-center">
+               <HomeButtons viewPostsText={t('viewPosts')} />
+             </div>
+             <div className="w-full sm:w-auto transition-transform hover:-translate-y-1 flex justify-center mt-2 sm:mt-0">
+               <SiteUptimeBadge className="w-full sm:w-auto justify-center" />
              </div>
           </div>
         </FadeIn>

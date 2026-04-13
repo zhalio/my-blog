@@ -9,6 +9,7 @@ interface TypewriterEffectProps {
   waitBeforeRestart?: number;
   cursor?: boolean;
   loop?: boolean;
+  className?: string;
 }
 
 export function TypewriterEffect({
@@ -18,6 +19,7 @@ export function TypewriterEffect({
   waitBeforeRestart = 500,
   cursor = true,
   loop = true,
+  className = "",
 }: TypewriterEffectProps) {
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -60,7 +62,7 @@ export function TypewriterEffect({
   }, [displayedText, isDeleting, text, speed, waitBeforeDelete, waitBeforeRestart, loop]);
 
   return (
-    <span className="inline-block relative min-h-[1.5em] break-words text-left align-top">
+    <span className={`inline-block relative min-h-[1.5em] break-words align-top ${className}`}>
       {displayedText}
       {cursor && (
         <span className="animate-pulse font-bold text-emerald-500 ml-0.5 inline-block -translate-y-0.5 select-none">|</span>
