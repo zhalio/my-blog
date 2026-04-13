@@ -38,9 +38,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         
         {/* 左侧文字与按钮区 */}
         <FadeIn className="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left z-20 relative">
-          
-          {/* Decorative background shape behind text to make it more "full" */}
-          <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-sky-50/50 dark:bg-sky-900/10 rounded-[3rem] -rotate-2 -z-10 blur-xl opacity-70 border border-white dark:border-slate-800 mask-image:linear-gradient(to_bottom,transparent,black)" />
 
           <div className="animate-float-slow w-full flex justify-center lg:justify-start relative">
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 bg-yellow-100 dark:bg-amber-950/40 shadow-[4px_4px_0px_#f59e0b] dark:shadow-[4px_4px_0px_#78350f] border-2 border-yellow-400 dark:border-amber-700/50 rounded-lg font-bold text-yellow-800 dark:text-amber-400 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-default group mb-6 md:mb-8 rotate-[-2deg]">
@@ -49,7 +46,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             
             {/* Added decorative tiny star next to the badge */}
             <div className="absolute -top-4 right-10 text-rose-400 animate-pulse lg:right-auto lg:left-64">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 animate-[spin_4s_linear_infinite]">
                 <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" />
               </svg>
             </div>
@@ -57,20 +54,42 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
           <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6rem] xl:text-[6.5rem] font-black leading-[1.1] text-slate-800 dark:text-slate-100 tracking-tight z-10 relative inline-block group mb-6 md:mb-8 transition-colors duration-300">
             {/* Text Stroke/Shadow Effect to look embossed */}
-            <span className="relative z-10 inline-block px-1 [text-shadow:4px_4px_0px_#bae6fd] dark:[text-shadow:4px_4px_0px_#0284c7]">{settings.site_title || t('title')}</span>
+            <span className="relative z-10 inline-block px-1 [text-shadow:4px_4px_0px_#bae6fd] dark:[text-shadow:4px_4px_0px_#0284c7] hover:translate-x-1 hover:-translate-y-1 transition-transform duration-300">{settings.site_title || t('title')}</span>
+            
+            {/* 增加手绘感螺旋点缀 */}
+            <svg className="absolute -top-6 -right-12 w-12 h-12 text-teal-400/80 -z-10 animate-[spin_8s_linear_infinite]" viewBox="0 0 100 100" fill="none">
+              <path d="M50 10 C70 10 90 30 90 50 C90 70 70 90 50 90 C30 90 10 70 10 50 C10 30 30 10 50 10 Z" stroke="currentColor" strokeWidth="4" strokeDasharray="10 10" />
+              <path d="M50 20 C65 20 80 35 80 50 C80 65 65 80 50 80 C35 80 20 65 20 50" stroke="currentColor" strokeWidth="3" strokeDasharray="5 15" />
+            </svg>
           </h1>
 
-          <div className="relative w-full max-w-[90%] sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 cursor-default mb-8 md:mb-12">
+          <div className="relative w-full max-w-[90%] sm:max-w-md md:max-w-2xl mx-auto lg:mx-0 cursor-default mb-8 md:mb-12 flex flex-col items-center lg:items-start group">
              <div className="relative min-h-[60px] sm:min-h-[80px] text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-slate-600 dark:text-slate-400 leading-relaxed sm:leading-relaxed z-10 w-full max-w-xl text-center lg:text-left mx-auto lg:mx-0 transition-all duration-300 flex items-start justify-center lg:justify-start">
                <TypewriterEffect text={settings.site_description || t('description')} speed={50} waitBeforeDelete={6000} />
              </div>
-             {/* Small hand-drawn underline under description */}
-             <svg className="absolute -bottom-4 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-32 h-3 text-sky-300 dark:text-sky-700/60" viewBox="0 0 100 10" preserveAspectRatio="none">
-               <path d="M0,5 Q50,-5 100,5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+             
+             {/* 纯手绘笔触展开动画：替换掉原来的丑线条 */}
+             <svg className="absolute -bottom-6 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-32 md:w-48 h-6 text-sky-400/80 dark:text-sky-600/80 pointer-events-none" viewBox="0 0 200 20" preserveAspectRatio="none">
+               <path 
+                 d="M5,15 Q50,-5 100,10 T195,15" 
+                 fill="none" 
+                 stroke="currentColor" 
+                 strokeWidth="4" 
+                 strokeLinecap="round" 
+                 className="[stroke-dasharray:200] [stroke-dashoffset:200] group-hover:[stroke-dashoffset:0] transition-all duration-1000 ease-out" 
+               />
+               <path 
+                 d="M10,18 Q60,-2 110,13 T190,18" 
+                 fill="none" 
+                 stroke="currentColor" 
+                 strokeWidth="2" 
+                 strokeLinecap="round" 
+                 className="[stroke-dasharray:200] [stroke-dashoffset:200] group-hover:[stroke-dashoffset:0] transition-all duration-[1200ms] ease-out delay-100 opacity-60" 
+               />
              </svg>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 relative z-20 mt-4">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-8 relative z-20 mt-4">
              <HomeButtons viewPostsText={t('viewPosts')} />
              <div className="rotate-2 transition-transform hover:-rotate-2">
                <SiteUptimeBadge />
